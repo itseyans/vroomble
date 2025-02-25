@@ -67,21 +67,20 @@ const RegisterButton = styled.button`
 `;
 
 const NavBar = () => {
-  return (
-    <NavBarContainer>
-      <NavItems>
-        <LogoContainer>
-          <Logo>VROOMBLE</Logo>
-          <EmblemContainer>
-            <Emblem src="/images/emblem.png" alt="Emblem" />
-          </EmblemContainer>
-        </LogoContainer>
-        <NavItem href="#">Home</NavItem> {/* Home on the right */}
-        <NavItem href="#">About</NavItem>
-      </NavItems>
-      <RegisterButton>Register</RegisterButton>
-    </NavBarContainer>
-  );
-};
-
+                              return (
+                                <NavBarContainer>
+                                  <NavItems>
+                                    <LogoContainer>
+                                      <Logo>VROOMBLE</Logo>
+                                      <EmblemContainer>
+                                        <Emblem src="/images/emblem.png" alt="Emblem" />
+                                      </EmblemContainer>
+                                    </LogoContainer>
+                                    <NavItem href="#">Home</NavItem> {/* Services in navbar */}
+                                    <NavItem href="#">Services</NavItem> 
+                                  </NavItems>
+                                  <RegisterButton>Register</RegisterButton>
+                                </NavBarContainer>
+                              );
+                            };
 export default NavBar;
