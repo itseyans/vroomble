@@ -1,9 +1,7 @@
-"use client"; // Add this line at the top
+"use client";
 
-import React from 'react';
-import styled from 'styled-components';
-
-// ... your NavBar component code
+import React from "react";
+import styled from "styled-components";
 
 const NavBarContainer = styled.nav`
   background-color: black;
@@ -11,6 +9,29 @@ const NavBarContainer = styled.nav`
   display: flex;
   align-items: center;
   padding: 1rem;
+  justify-content: center; // Center all items
+`;
+
+const NavItems = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const NavItem = styled.a`
+  color: gold;
+  text-decoration: none;
+  margin: 0 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: rgba(255, 215, 0, 0.2);
+  }
+`;
+
+const LogoContainer = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const Logo = styled.span`
@@ -35,30 +56,30 @@ const Emblem = styled.img`
   height: auto;
 `;
 
-const NavItem = styled.a`
-  color: gold;
-  text-decoration: none;
-  margin-left: 1rem;
+const RegisterButton = styled.button`
+  background-color: gold;
+  color: black;
   padding: 0.5rem 1rem;
+  border: none;
   border-radius: 4px;
-
-  &:hover {
-    background-color: rgba(255, 215, 0, 0.2);
-  }
+  cursor: pointer;
+  margin-left: auto; // Push to the far right
 `;
 
 const NavBar = () => {
   return (
     <NavBarContainer>
-      <Logo>VROOMBLE</Logo>
-      <EmblemContainer>
-        <Emblem src="/images/emblem.png" alt="Emblem" />
-      </EmblemContainer>
-      <NavItem href="#">Home</NavItem>
-      <NavItem href="#">About</NavItem>
-      <NavItem href="#">Services</NavItem>
-      <NavItem href="#">Contact</NavItem>
-      <NavItem href="#">Register</NavItem>
+      <NavItems>
+        <LogoContainer>
+          <Logo>VROOMBLE</Logo>
+          <EmblemContainer>
+            <Emblem src="/images/emblem.png" alt="Emblem" />
+          </EmblemContainer>
+        </LogoContainer>
+        <NavItem href="#">Home</NavItem> {/* Home on the right */}
+        <NavItem href="#">About</NavItem>
+      </NavItems>
+      <RegisterButton>Register</RegisterButton>
     </NavBarContainer>
   );
 };
