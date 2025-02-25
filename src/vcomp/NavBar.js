@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import styled from "styled-components";
 
 const NavBarContainer = styled.nav`
@@ -67,20 +68,78 @@ const RegisterButton = styled.button`
 `;
 
 const NavBar = () => {
-                              return (
-                                <NavBarContainer>
-                                  <NavItems>
-                                    <LogoContainer>
-                                      <Logo>VROOMBLE</Logo>
-                                      <EmblemContainer>
-                                        <Emblem src="/images/emblem.png" alt="Emblem" />
-                                      </EmblemContainer>
-                                    </LogoContainer>
-                                    <NavItem href="#">Home</NavItem> {/* Services in navbar */}
-                                    <NavItem href="#">Services</NavItem> 
-                                  </NavItems>
-                                  <RegisterButton>Register</RegisterButton>
-                                </NavBarContainer>
-                              );
-                            };
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userRole, setUserRole] = useState(null); // 'user' or 'admin'
+
+  useEffect(() => {
+    // Check authentication and role (e.g., from local storage)
+    const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+    if (token) {
+      setIsLoggedIn(true);
+      setUserRole(role);
+    }
+  },);
+
+  const handleLogin = () => {
+    // Perform login logic and update state
+    setIsLoggedIn(true);
+    //... (set userRole based on login response)
+  };
+
+  const handleLogout = () => {
+    // Perform logout logic and update state
+    setIsLoggedIn(false);
+    setUserRole(null);
+  };
+
+  return (
+    <NavBarContainer>
+      <NavItems>
+        <LogoContainer>
+          <Logo>VROOMBLE</Logo>
+          <EmblemContainer>
+            <Emblem src="/images/emblem.png" alt="Emblem" />
+          </EmblemContainer>
+        </LogoContainer>
+
+        {isLoggedIn? (
+          userRole === "admin"? (
+            // Admin navbar
+            <>
+              <Link href="/admin/dashboard">
+                <NavItem>Dashboard</NavItem>
+              </Link>
+              <Link href="/admin/users">
+                <NavItem>Users</NavItem>
+              </Link>
+              {/*... other admin links */}
+            </>
+          ): (
+            // User navbar
+            <>
+              <Link href="/home">
+                <NavItem>Home</NavItem>
+              </Link>
+              <Link href="/services">
+                <NavItem>Services</NavItem>
+              </Link>
+              {/*... other user links */}
+            </>
+          )
+        ): (
+          // Not logged in navbar (no buttons)
+          <></>
+        )}
+      </NavItems>
+
+      {isLoggedIn? (
+        <button onClick={handleLogout}>Logout</button>
+      ): (
+        <RegisterButton onClick={handleLogin}>Register</RegisterButton>
+      )}
+    </NavBarContainer>
+  );
+};
+
 export default NavBar;
