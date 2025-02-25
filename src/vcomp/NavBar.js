@@ -58,6 +58,7 @@ const NavBar = () => {
       <NavItem href="#">About</NavItem>
       <NavItem href="#">Services</NavItem>
       <NavItem href="#">Contact</NavItem>
+      <NavItem href="#">Register</NavItem>
     </NavBarContainer>
   );
 };
