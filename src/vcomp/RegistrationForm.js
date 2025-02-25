@@ -4,9 +4,10 @@ import Button from "/public/Button.js"; // Ensure this is the correct path
 
 const FormContainer = styled.div`
   width: 660px;
-  height: 740px;
+  height: auto;
   background: #ddd;
-  border-radius: 10px;
+  border-radius: 20px;
+  border: 5px solid #ffc629;
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -23,21 +24,25 @@ const InputGroup = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin-bottom: 15px;
 `;
 
-const Label = styled.label`
-  font-size: 16px;
+const StyledLabel = styled.label`
   font-weight: bold;
+  align-self: flex-start;
+  margin-left: 30px;
   margin-bottom: 5px;
 `;
 
-const Input = styled.input`
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
+const LInput = styled.input`
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 12px;
+  font-size: 16px;
+  width: 300px; /* Fixed width */
   box-sizing: border-box;
 
   &:focus {
@@ -51,22 +56,6 @@ const ErrorText = styled.p`
   color: red;
   font-size: 14px;
   margin-top: 5px;
-`;
-
-const SubmitButton = styled(Button)`
-  width: 100%;
-  padding: 12px;
-  font-size: 18px;
-  background-color: black;
-  color: white;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: gray;
-  }
 `;
 
 function RegistrationForm() {
@@ -91,12 +80,15 @@ function RegistrationForm() {
   const validateForm = () => {
     let newErrors = {};
 
-    if (!formData.firstName.trim()) newErrors.firstName = "First Name is required";
+    if (!formData.firstName.trim())
+      newErrors.firstName = "First Name is required";
     if (!formData.lastName.trim()) newErrors.lastName = "Last Name is required";
-    if (!formData.contactNumber.trim()) newErrors.contactNumber = "Contact Number is required";
+    if (!formData.contactNumber.trim())
+      newErrors.contactNumber = "Contact Number is required";
     if (!formData.email.trim()) newErrors.email = "Email Address is required";
     if (!formData.password.trim()) newErrors.password = "Password is required";
-    if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = "Passwords do not match";
+    if (formData.password !== formData.confirmPassword)
+      newErrors.confirmPassword = "Passwords do not match";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -112,45 +104,81 @@ function RegistrationForm() {
 
   return (
     <FormContainer>
-      <Title>REGISTER</Title>
+      <Title style={{ fontFamily: "Segoe UI Variable, sans-serif" }}>
+        REGISTER
+      </Title>
       <form onSubmit={handleSubmit}>
         <InputGroup>
-          <Label>First Name</Label>
-          <Input type="text" name="firstName" value={formData.firstName} onChange={handleChange} />
+          <StyledLabel>First Name</StyledLabel>
+          <LInput
+            type="text"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleChange}
+          />
           {errors.firstName && <ErrorText>{errors.firstName}</ErrorText>}
         </InputGroup>
 
         <InputGroup>
-          <Label>Last Name</Label>
-          <Input type="text" name="lastName" value={formData.lastName} onChange={handleChange} />
+          <StyledLabel>Last Name</StyledLabel>
+          <LInput
+            type="text"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
+          />
           {errors.lastName && <ErrorText>{errors.lastName}</ErrorText>}
         </InputGroup>
 
         <InputGroup>
-          <Label>Contact Number</Label>
-          <Input type="text" name="contactNumber" value={formData.contactNumber} onChange={handleChange} />
-          {errors.contactNumber && <ErrorText>{errors.contactNumber}</ErrorText>}
+          <StyledLabel>Contact Number</StyledLabel>
+          <LInput
+            type="number"
+            name="contactNumber"
+            value={formData.contactNumber}
+            onChange={handleChange}
+          />
+          {errors.contactNumber && (
+            <ErrorText>{errors.contactNumber}</ErrorText>
+          )}
         </InputGroup>
 
         <InputGroup>
-          <Label>Email Address</Label>
-          <Input type="email" name="email" value={formData.email} onChange={handleChange} />
+          <StyledLabel>Email Address</StyledLabel>
+          <LInput
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
           {errors.email && <ErrorText>{errors.email}</ErrorText>}
         </InputGroup>
 
         <InputGroup>
-          <Label>Password</Label>
-          <Input type="password" name="password" value={formData.password} onChange={handleChange} />
+          <StyledLabel>Password</StyledLabel>
+          <LInput
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
           {errors.password && <ErrorText>{errors.password}</ErrorText>}
         </InputGroup>
 
         <InputGroup>
-          <Label>Confirm Password</Label>
-          <Input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} />
-          {errors.confirmPassword && <ErrorText>{errors.confirmPassword}</ErrorText>}
+          <StyledLabel>Confirm Password</StyledLabel>
+          <LInput
+            type="password"
+            name="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+          />
+          {errors.confirmPassword && (
+            <ErrorText>{errors.confirmPassword}</ErrorText>
+          )}
         </InputGroup>
 
-        <SubmitButton type="submit">SIGN UP</SubmitButton>
+        <Button type="submit">SIGN UP</Button>
       </form>
     </FormContainer>
   );
