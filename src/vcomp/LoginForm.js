@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Button from "/public/Button.js";
+import Button from "/public/SignButton.js";
 
 const LForm = styled.div`
   padding: 20px;

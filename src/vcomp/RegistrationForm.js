@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Button from "/public/Button.js"; // Ensure this is the correct path
+import Button from "/public/SignButton.js"; // Ensure this is the correct path
 
 const FormContainer = styled.div`
   width: 660px;
