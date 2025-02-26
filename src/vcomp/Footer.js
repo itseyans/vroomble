@@ -33,12 +33,19 @@ const Footer = () => {
   return (
     <FooterContainer>
       <FooterItems>
+
         <Link href="/about_us" passHref>
+
           <FooterItem>About Us</FooterItem>
+
         </Link>
-        <Link href="/contact" passHref>
+
+        <Link href="/contacts" passHref>
+
           <FooterItem>Contact</FooterItem>
+
         </Link>
+
       </FooterItems>
     </FooterContainer>
   );

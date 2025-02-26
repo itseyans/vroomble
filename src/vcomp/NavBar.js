@@ -110,6 +110,7 @@ const NavBar = () => {
               <Link href="/admin/dashboard">
                 <NavItem>Dashboard</NavItem>
               </Link>
+
               <Link href="/admin/users">
                 <NavItem>Users</NavItem>
               </Link>
@@ -121,6 +122,7 @@ const NavBar = () => {
               <Link href="/home">
                 <NavItem>Home</NavItem>
               </Link>
+              
               <Link href="/services">
                 <NavItem>Services</NavItem>
               </Link>
