@@ -3,66 +3,59 @@ import styled from "styled-components";
 
 const DropdownContainer = styled.div`
   position: relative;
-  width: 300px;
+  width: 280px; /* Increased width for better balance */
 `;
 
 const DropdownButton = styled.button`
-  width: 100%;
-  padding: 6px 12px; /* Reduced padding to compensate for larger text */
-  font-size: 24px; /* Increased font size */
-  border: 3px solid #ccc;
+  width: 305px;
+  height: 55px; /* Increased height for a perfect match */
+  padding: 20px; /* Adjusted padding */
+  font-size: 20px; /* Slightly larger text for better readability */
+  font-weight: semi-bold;
+  border: 2px solid black;
   border-radius: 12px;
   background: white;
   cursor: pointer;
-  text-align: left;
+  text-align: center;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  min-width: 0;
   box-sizing: border-box;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 
   &:hover {
-    border-color: #999;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #f0f0f0;
   }
 
   &:focus {
-    border-color: #666;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4);
+    border-color: #000;
     outline: none;
   }
 `;
-
-
 
 const DropdownList = styled.ul`
   position: absolute;
   width: 100%;
   background: white;
-  border: 3px solid #ccc; /* Match the 3px thickness */
+  border: 2px solid #ccc;
   border-radius: 12px;
   margin-top: 5px;
-  max-height: 200px;
+  max-height: 250px;
   overflow-y: auto;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-x: hidden;
   list-style: none;
   padding: 0;
   z-index: 10;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
 `;
 
 const DropdownItem = styled.li`
-  padding: 10px;
-  text-align: left; /* Left-align text */
+  padding: 12px;
+  text-align: left;
   cursor: pointer;
-  border-radius: 12px; /* Rounded corners */
-  max-width: 100%; /* Prevent text overflow */
-  overflow-x: hidden; /* Hide any horizontal overflow */
+  border-radius: 12px;
+  max-width: 100%;
+  overflow-x: hidden;
 
   &:hover {
     background: #ffc629;
@@ -71,12 +64,12 @@ const DropdownItem = styled.li`
 
 const SearchInput = styled.input`
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   border: none;
   border-bottom: 1px solid #ccc;
-  font-size: 16px;
-  border-radius: 12px; /* Rounded corners */
-  box-sizing: border-box; /* Ensure padding doesn't increase width */
+  font-size: 18px;
+  border-radius: 12px;
+  box-sizing: border-box;
 
   &:focus {
     outline: none;
@@ -106,7 +99,7 @@ const VehicleDropdown = () => {
         "SUBARU BRZ",
       ];
       setVehicles(data);
-      setFilteredVehicles(data); // Initialize filtered list
+      setFilteredVehicles(data);
     };
 
     fetchVehicles();
