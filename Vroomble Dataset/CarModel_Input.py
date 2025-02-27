@@ -6,9 +6,9 @@ def get_car_details():
     make = input("Enter car make (e.g., Toyota, Mitsubishi): ")
     model = input("Enter car model (e.g., Vios, Xpander): ")  # Get model first
 
-    allowed_body_types = ["SUV", "SEDAN", "UV", "COUPE", "HATCHBACK", "TRUCK", "VAN", "CONVERTIBLE", "WAGON"]
+    allowed_body_types = ["SUV", "SEDAN", "UV", "COUPE", "HATCHBACK", "TRUCK", "VAN", "CONVERTIBLE", "WAGON", "MOTORCYCLE"]
     while True:
-        body_type = input(f"Enter body type for {make} {model} (SUV, SEDAN, UV, COUPE, etc.): ").upper()
+        body_type = input(f"Enter body type for {make} {model} (SUV, SEDAN, UV, COUPE, MOTORCYCLE, etc.): ").upper()
         if body_type in allowed_body_types:
             break
         else:
