@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Button from "./SignButton.js"; // Ensure this is the correct path
 
 const FormContainer = styled.div`
   width: 700px;
@@ -18,6 +17,7 @@ const FormContainer = styled.div`
 const Title = styled.h2`
   text-align: center;
   margin-bottom: 20px;
+  color: #333; /* Darker text color */
 `;
 
 const InputGroup = styled.div`
@@ -33,6 +33,8 @@ const StyledLabel = styled.label`
   align-self: flex-start;
   margin-left: 30px;
   margin-bottom: 5px;
+  color: #333; /* Darker text color */
+  font-size: 18px; /* Increased font size */
 `;
 
 const LInput = styled.input`
@@ -41,9 +43,11 @@ const LInput = styled.input`
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 12px;
-  font-size: 16px;
+  font-size: 18px; /* Increased font size */
   width: 300px; /* Fixed width */
   box-sizing: border-box;
+  font-family: sans-serif; /* Example font family */
+  color: #333;
 
   &:focus {
     border-color: #ffc629;
@@ -58,14 +62,44 @@ const ErrorText = styled.p`
   margin-top: 5px;
 `;
 
+const Button = styled.button`
+  background-color: #ffc629; /* Gold background color */
+  color: black;
+  padding: 12px 24px; /* Increased padding */
+  border: none;
+  border-radius: 12px; /* Larger border radius */
+  cursor: pointer;
+  font-size: 18px; /* Increased font size */
+  transition: background-color 0.3s ease; /* Add hover effect */
+  font-weight: bold; // Make the button label bold
+
+  &:hover {
+    background-color: #e6b800; /* Slightly darker gold on hover */
+  }
+`;
+
+const StyledSelect = styled.select`
+  width: 300px;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 18px;
+  font-family: sans-serif;
+  color: #333;
+`;
+
+const categories = [
+  "Offroad", "Street", "Maintenance", "Sports", "Wheels", "Exterior", "Interior", "Tires"
+]; 
+
 function CarPartRegistrationForm() {
-  // Changed function name
   const [formData, setFormData] = useState({
     make: "",
     part_name: "",
     model_number: "",
     category: "",
-    year: "",
     part_origSRP: "",
   });
 
@@ -85,7 +119,6 @@ function CarPartRegistrationForm() {
     if (!formData.part_name.trim())
       newErrors.part_name = "Part Name is required";
     if (!formData.category.trim()) newErrors.category = "Category is required";
-    if (!formData.year.trim()) newErrors.year = "Year is required";
     if (!formData.part_origSRP.trim())
       newErrors.part_origSRP = "Original SRP is required";
 
@@ -93,13 +126,33 @@ function CarPartRegistrationForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validateForm()) {
-      alert("Car Part Registration Successful!");
-      console.log("Car Part Data:", formData);
-    }
-  };
+  const handleSubmit = async (e) => {
+                              e.preventDefault();
+                              if (validateForm()) {
+                                  try {
+                                      const response = await fetch("http://127.0.0.1:8000/car_parts/", { // Corrected endpoint
+                                          method: "POST",
+                                          headers: {
+                                              "Content-Type": "application/json",
+                                          },
+                                          body: JSON.stringify(formData),
+                                      });
+                          
+                                      if (response.ok) {
+                                          // Request was successful
+                                          console.log("Car part registered successfully!");
+                                          // Optionally, you can reset the form or update the UI here
+                                      } else {
+                                          // Request failed
+                                          console.error("Failed to register car part");
+                                          // Handle the error, e.g., display an error message to the user
+                                      }
+                                  } catch (error) {
+                                      console.error("Error:", error);
+                                      // Handle network or other errors
+                                  }
+                              }
+                          };
 
   return (
     <FormContainer>
@@ -141,24 +194,19 @@ function CarPartRegistrationForm() {
 
         <InputGroup>
           <StyledLabel>Category</StyledLabel>
-          <LInput
-            type="text"
+          <StyledSelect
             name="category"
             value={formData.category}
             onChange={handleChange}
-          />
+          >
+            <option value="">Select a Category</option>
+            {categories.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </StyledSelect>
           {errors.category && <ErrorText>{errors.category}</ErrorText>}
-        </InputGroup>
-
-        <InputGroup>
-          <StyledLabel>Year</StyledLabel>
-          <LInput
-            type="number"
-            name="year"
-            value={formData.year}
-            onChange={handleChange}
-          />
-          {errors.year && <ErrorText>{errors.year}</ErrorText>}
         </InputGroup>
 
         <InputGroup>
@@ -177,3 +225,5 @@ function CarPartRegistrationForm() {
     </FormContainer>
   );
 }
+
+export default CarPartRegistrationForm;

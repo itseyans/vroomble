@@ -103,8 +103,8 @@ const NavBar = () => {
           </EmblemContainer>
         </LogoContainer>
 
-        {isLoggedIn? (
-          userRole === "admin"? (
+        {isLoggedIn ? (
+          userRole === "admin" ? (
             // Admin navbar
             <>
               <Link href="/admin/dashboard">
@@ -116,28 +116,33 @@ const NavBar = () => {
               </Link>
               {/*... other admin links */}
             </>
-          ): (
+          ) : (
             // User navbar
             <>
               <Link href="/home">
                 <NavItem>Home</NavItem>
               </Link>
-              
+
               <Link href="/services">
                 <NavItem>Services</NavItem>
+              </Link>
+
+              {/* Car Part Registration button for testing */}
+              <Link href="/part_registration">
+                <NavItem>Car Part Registration</NavItem>
               </Link>
               {/*... other user links */}
             </>
           )
-        ): (
+        ) : (
           // Not logged in navbar (no buttons)
           <></>
         )}
       </NavItems>
 
-      {isLoggedIn? (
+      {isLoggedIn ? (
         <button onClick={handleLogout}>Logout</button>
-      ): (
+      ) : (
         <RegisterButton onClick={handleLogin}>Register</RegisterButton>
       )}
     </NavBarContainer>
