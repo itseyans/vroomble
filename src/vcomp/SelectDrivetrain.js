@@ -77,7 +77,7 @@ const SearchInput = styled.input`
 // **Updated drivetrain options**
 const DRIVETRAIN_OPTIONS = ["RWD", "FWD", "AWD", "4WD", "6WD", "8WD", "eAWD"];
 
-const Driveselect = () => {
+const SelectDrive = () => {
   const [selectedDrivetrain, setSelectedDrivetrain] =
     useState("SELECT DRIVETRAIN");
   const [isOpen, setIsOpen] = useState(false);
@@ -129,4 +129,4 @@ const Driveselect = () => {
   );
 };
 
-export default Driveselect;
+export default SelectDrive;
