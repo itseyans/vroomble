@@ -8,13 +8,14 @@ app = FastAPI()
 # Database file path
 db_file = os.path.join("C:\\Users\\Sobre\\OneDrive\\Desktop\\Vroomble\\Vroomble Dataset", "car_parts_database.db")
 
-# Pydantic model for car part data
+# Pydantic model for car part data (matching the form fields)
 class CarPart(BaseModel):
+    make: str
     part_name: str
     model_number: str | None = None  # Optional model number
     category: str
-    manufacturer: str
-    price: float
+    year: int
+    part_origSRP: float  # Assuming this is the original SRP
 
 # Function to create the car_parts table if it doesn't exist
 def create_table_if_not_exists(db_file):
@@ -25,11 +26,12 @@ def create_table_if_not_exists(db_file):
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS car_parts (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+                make TEXT,  -- Added 'make' column
                 part_name TEXT NOT NULL,
                 model_number TEXT,
                 category TEXT,
-                manufacturer TEXT,
-                price REAL
+                year INTEGER,  -- Added 'year' column
+                part_origSRP REAL  -- Added 'part_origSRP' column
             )
         ''')
         conn.commit()
@@ -39,7 +41,7 @@ def create_table_if_not_exists(db_file):
 
 create_table_if_not_exists(db_file)
 
-# API endpoint to register a car part
+# API endpoint to register a car part (modified to match form fields)
 @app.post("/car_parts/")
 async def register_car_part(car_part: CarPart):
     try:
@@ -57,11 +59,11 @@ async def register_car_part(car_part: CarPart):
         if existing_entry_count > 0:
             raise HTTPException(status_code=400, detail="A car part with that name and model number (or just name) already exists.")
         else:
-            # Insert the car part data
+            # Insert the car part data (using the correct field names)
             cursor.execute('''
-                INSERT INTO car_parts (part_name, model_number, category, manufacturer, price)
-                VALUES (?, ?, ?, ?, ?)
-            ''', (car_part.part_name, car_part.model_number, car_part.category, car_part.manufacturer, car_part.price))
+                INSERT INTO car_parts (make, part_name, model_number, category, year, part_origSRP)
+                VALUES (?, ?, ?, ?, ?, ?)
+            ''', (car_part.make, car_part.part_name, car_part.model_number, car_part.category, car_part.year, car_part.part_origSRP))
             conn.commit()
             conn.close()
             return {"message": "Car part registered successfully"}
@@ -71,21 +73,23 @@ async def register_car_part(car_part: CarPart):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error registering car part: {e}")
 
-# API endpoint to handle form submission for car part registration
+# API endpoint to handle form submission (modified to match form fields)
 @app.post("/car_parts/form/")
 async def register_car_part_form(
+    make: str = Form(...),
     part_name: str = Form(...),
-    model_number: str | None = Form(None),  # Optional model number
+    model_number: str | None = Form(None),
     category: str = Form(...),
-    manufacturer: str = Form(...),
-    price: float = Form(...)
+    year: int = Form(...),
+    part_origSRP: float = Form(...)
 ):
     car_part_data = CarPart(
+        make=make,
         part_name=part_name,
         model_number=model_number,
         category=category,
-        manufacturer=manufacturer,
-        price=price
+        year=year,
+        part_origSRP=part_origSRP
     )
     return await register_car_part(car_part_data)
 
