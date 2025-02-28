@@ -9,52 +9,61 @@ import GeneralButton from "./GeneralButton";
 import SelectYear from "./SelectYear";
 
 const Container = styled.div`
-  width: 950px; /* Adjusted width for better spacing */
-  height: auto;
+  width: 950px;
   background: #d9d9d9;
   border-radius: 12px;
-  padding: 40px;
+  padding: 30px;
+  border: 4px solid #ffc629;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  border: 4px solid #ffc629;
-  gap: 25px; /* Adjusted spacing */
+  gap: 20px;
 `;
 
-const Header = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 22px;
+const Header = styled.h2`
+  margin: 0;
+  font-size: 24px;
   font-weight: bold;
-  margin-bottom: 15px;
-  align-self: center;
+  text-align: left;
 `;
 
-const DropdownContainer = styled.div`
+const Row = styled.div`
   display: flex;
-  gap: 15px; /* Adjusted spacing between dropdowns */
-  margin-bottom: 15px;
   flex-wrap: wrap;
-  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+
+  /* Increase horizontal gap with margin-right,
+     and add margin-bottom to provide vertical space when items wrap. */
+  & > * {
+    margin-right: 50px; /* Increase this value for even wider spacing */
+    margin-bottom: 20px; /* Adds vertical gap between wrapped items */
+  }
+
+  /* Remove the extra right margin on the last child in each row */
+  & > *:last-child {
+    margin-right: 0;
+  }
 `;
 
-const InputContainer = styled.div`
+const InputsRow = styled.div`
   display: flex;
-  justify-content: center;
-  gap: 60px; /* Adjusted gap for better alignment */
-  width: 100%;
-  margin-bottom: 15px;
+  flex-wrap: wrap;
+  gap: 60px;
 `;
 
 const Column = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  align-items: center;
+  gap: 8px;
+`;
+
+const Label = styled.label`
+  font-size: 18px;
+  font-weight: bold;
 `;
 
 const InputField = styled.input`
-  width: 230px; /* Slightly increased width */
+  width: 230px;
   height: 50px;
   padding: 12px;
   font-size: 16px;
@@ -64,34 +73,32 @@ const InputField = styled.input`
   text-align: center;
 `;
 
-const Label = styled.label`
-  font-size: 18px; /* Increased label size */
-  font-weight: bold;
-  text-align: center;
-`;
-
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-  width: 100%;
-  margin-top: 15px;
 `;
 
 const AddVehicle = () => {
   return (
     <Container>
       <Header>🚗 ADD VEHICLE</Header>
-      <DropdownContainer>
+
+      {/* First row of dropdowns */}
+      <Row>
         <SelectBrand />
         <SelectFuel />
         <Driveselect />
         <SelectTrans />
-      </DropdownContainer>
-      <DropdownContainer>
+      </Row>
+
+      {/* Second row of dropdowns */}
+      <Row>
         <SelectYear />
         <SelectBody />
-      </DropdownContainer>
-      <InputContainer>
+      </Row>
+
+      {/* Model and Retail SRP inputs */}
+      <InputsRow>
         <Column>
           <Label>MODEL</Label>
           <InputField placeholder="VIOS" />
@@ -100,7 +107,9 @@ const AddVehicle = () => {
           <Label>Retail SRP</Label>
           <InputField placeholder="PHP 1,500,000.00" />
         </Column>
-      </InputContainer>
+      </InputsRow>
+
+      {/* Add Vehicle button */}
       <ButtonContainer>
         <GeneralButton>ADD VEHICLE</GeneralButton>
       </ButtonContainer>
