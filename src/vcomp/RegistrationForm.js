@@ -17,6 +17,7 @@ const FormContainer = styled.div`
 
 const Title = styled.h2`
   color: black;
+  font-weight: bold;
   text-align: center;
   margin-bottom: 20px;
 `;

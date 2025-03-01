@@ -32,6 +32,13 @@ const LInput = styled.input`
   }
 `;
 
+const Title = styled.h2`
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+`;
+
 const Label = styled.label`
   color: black;
   font-weight: bold;
@@ -75,6 +82,7 @@ function LoginForm({ label, placeholder, required, errorMessage }) {
 
   return (
     <LForm onSubmit={handleSubmit}>
+    <Title>LOGIN</Title>
       <Label htmlFor="Username">Username</Label>
       <LInput
         type="text"
