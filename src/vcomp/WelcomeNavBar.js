@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import RegistrationForm from "./RegistrationForm.js";
+import LoginForm from "./LoginForm.js";
 
 const NavBarContainer = styled.nav`
   margin-bottom: 50px;
@@ -90,30 +91,17 @@ const PageContainer = styled.div`
 `;
 
 const WelcomeNavBar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userRole, setUserRole] = useState(null);
-  const [showReg, setShowReg] = useState(false); // State for registration form visibility
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const role = localStorage.getItem("role");
-    if (token) {
-      setIsLoggedIn(true);
-      setUserRole(role);
-    }
-  }, []);
+  const [showReg, setShowReg] = useState(false);
+  const [showLog, setShowLog] = useState(false);
 
   const handleLogin = () => {
-    setIsLoggedIn(true);
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setUserRole(null);
+    setShowLog(true);
+    setShowReg(false); // Hide registration form
   };
 
   const handleRegister = () => {
-    setShowReg(true); // Set state to show registration form
+    setShowReg(true);
+    setShowLog(false); // Hide login form
   };
 
   return (
@@ -126,48 +114,21 @@ const WelcomeNavBar = () => {
               <Emblem src="/images/emblem.png" alt="Emblem" />
             </EmblemContainer>
           </LogoContainer>
-
-          {isLoggedIn ? (
-            userRole === "admin" ? (
-              <>
-                <Link href="/admin/dashboard">
-                  <NavItem>Dashboard</NavItem>
-                </Link>
-                <Link href="/admin/users">
-                  <NavItem>Users</NavItem>
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link href="/home">
-                  <NavItem>Home</NavItem>
-                </Link>
-                <Link href="/services">
-                  <NavItem>Services</NavItem>
-                </Link>
-                <Link href="/part_registration">
-                  <NavItem>Car Part Registration</NavItem>
-                </Link>
-              </>
-            )
-          ) : (
-            <></>
-          )}
-        </NavItems>
-
-        {isLoggedIn ? (
-          <button onClick={handleLogout}>Logout</button>
-        ) : (
           <>
             <LoginButton onClick={handleLogin}>Login</LoginButton>
           </>
-        )}
-        <RegisterButton onClick={handleRegister}>Register</RegisterButton>
+          <RegisterButton onClick={handleRegister}>Register</RegisterButton>
+        </NavItems>
       </NavBarContainer>
+
+      {/* The forms after button click */}
+
       <center>
-      {showReg && (
-          <RegistrationForm />
-      )}
+        {showReg && <RegistrationForm />}
+      </center>
+
+      <center>
+        {showLog && <LoginForm />}
       </center>
     </>
   );
