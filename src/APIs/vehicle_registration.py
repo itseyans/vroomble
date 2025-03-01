@@ -111,3 +111,5 @@ async def get_dropdown_options():
 @app.get("/")
 async def root():
     return {"message": "Vehicle registration API"}
+
+# TEsting
