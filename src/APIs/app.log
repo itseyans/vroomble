@@ -1,0 +1,408 @@
+2025-03-01 16:26:32,239 - INFO - Database table created or already exists.
+2025-03-01 16:26:40,419 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:26:40,419 - DEBUG - Calling on_header_field with data[42:61]
+2025-03-01 16:26:40,419 - DEBUG - Calling on_header_value with data[63:85]
+2025-03-01 16:26:40,419 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:26:40,419 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:26:40,419 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:26:40,419 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:26:40,419 - DEBUG - Calling on_header_field with data[133:152]
+2025-03-01 16:26:40,419 - DEBUG - Calling on_header_value with data[154:177]
+2025-03-01 16:26:40,420 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:26:40,420 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:26:40,420 - DEBUG - Calling on_part_data with data[181:189]
+2025-03-01 16:26:40,420 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:26:40,420 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:26:40,420 - DEBUG - Calling on_header_field with data[233:252]
+2025-03-01 16:26:40,421 - DEBUG - Calling on_header_value with data[254:281]
+2025-03-01 16:26:40,421 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:26:40,421 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:26:40,421 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:26:40,421 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:26:40,421 - DEBUG - Calling on_header_field with data[329:348]
+2025-03-01 16:26:40,421 - DEBUG - Calling on_header_value with data[350:380]
+2025-03-01 16:26:40,421 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:26:40,421 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:26:40,421 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:26:40,421 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:26:40,421 - DEBUG - Calling on_header_field with data[428:447]
+2025-03-01 16:26:40,421 - DEBUG - Calling on_header_value with data[449:477]
+2025-03-01 16:26:40,421 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:26:40,421 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:26:40,421 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:26:40,421 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:26:40,421 - DEBUG - Calling on_header_field with data[525:544]
+2025-03-01 16:26:40,421 - DEBUG - Calling on_header_value with data[546:573]
+2025-03-01 16:26:40,421 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:26:40,421 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:26:40,421 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:26:40,421 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:26:40,421 - DEBUG - Calling on_header_field with data[621:640]
+2025-03-01 16:26:40,421 - DEBUG - Calling on_header_value with data[642:664]
+2025-03-01 16:26:40,421 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:26:40,421 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:26:40,421 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:26:40,421 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:26:40,421 - DEBUG - Calling on_header_field with data[712:731]
+2025-03-01 16:26:40,421 - DEBUG - Calling on_header_value with data[733:761]
+2025-03-01 16:26:40,421 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:26:40,421 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:26:40,421 - DEBUG - Calling on_part_data with data[765:774]
+2025-03-01 16:26:40,421 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:26:40,421 - DEBUG - Calling on_end with no data
+2025-03-01 16:26:40,422 - ERROR - Validation error: [{'type': 'int_parsing', 'loc': ('body', 'year'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': ''}]
+2025-03-01 16:30:07,785 - INFO - Database table created or already exists.
+2025-03-01 16:30:45,516 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:30:45,517 - DEBUG - Calling on_header_field with data[42:61]
+2025-03-01 16:30:45,517 - DEBUG - Calling on_header_value with data[63:85]
+2025-03-01 16:30:45,517 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:30:45,517 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:30:45,517 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:30:45,517 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:30:45,517 - DEBUG - Calling on_header_field with data[133:152]
+2025-03-01 16:30:45,517 - DEBUG - Calling on_header_value with data[154:177]
+2025-03-01 16:30:45,517 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:30:45,517 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:30:45,517 - DEBUG - Calling on_part_data with data[181:189]
+2025-03-01 16:30:45,517 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:30:45,517 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:30:45,517 - DEBUG - Calling on_header_field with data[233:252]
+2025-03-01 16:30:45,517 - DEBUG - Calling on_header_value with data[254:281]
+2025-03-01 16:30:45,517 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:30:45,517 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:30:45,517 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:30:45,517 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:30:45,517 - DEBUG - Calling on_header_field with data[329:348]
+2025-03-01 16:30:45,517 - DEBUG - Calling on_header_value with data[350:380]
+2025-03-01 16:30:45,517 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:30:45,517 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:30:45,517 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:30:45,517 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:30:45,517 - DEBUG - Calling on_header_field with data[428:447]
+2025-03-01 16:30:45,517 - DEBUG - Calling on_header_value with data[449:477]
+2025-03-01 16:30:45,517 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:30:45,517 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:30:45,517 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:30:45,517 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:30:45,518 - DEBUG - Calling on_header_field with data[525:544]
+2025-03-01 16:30:45,518 - DEBUG - Calling on_header_value with data[546:573]
+2025-03-01 16:30:45,518 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:30:45,518 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:30:45,518 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:30:45,518 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:30:45,518 - DEBUG - Calling on_header_field with data[621:640]
+2025-03-01 16:30:45,518 - DEBUG - Calling on_header_value with data[642:664]
+2025-03-01 16:30:45,518 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:30:45,518 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:30:45,518 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:30:45,518 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:30:45,518 - DEBUG - Calling on_header_field with data[712:731]
+2025-03-01 16:30:45,518 - DEBUG - Calling on_header_value with data[733:761]
+2025-03-01 16:30:45,518 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:30:45,518 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:30:45,518 - DEBUG - Calling on_part_data with data[765:774]
+2025-03-01 16:30:45,518 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:30:45,518 - DEBUG - Calling on_end with no data
+2025-03-01 16:30:45,518 - ERROR - Validation error: [{'type': 'int_parsing', 'loc': ('body', 'year'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': ''}]
+2025-03-01 16:36:08,956 - INFO - Database table created or already exists.
+2025-03-01 16:38:26,303 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:38:26,303 - DEBUG - Calling on_header_field with data[42:61]
+2025-03-01 16:38:26,303 - DEBUG - Calling on_header_value with data[63:85]
+2025-03-01 16:38:26,303 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:38:26,303 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:38:26,305 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:38:26,305 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:38:26,305 - DEBUG - Calling on_header_field with data[133:152]
+2025-03-01 16:38:26,305 - DEBUG - Calling on_header_value with data[154:177]
+2025-03-01 16:38:26,305 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:38:26,305 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:38:26,305 - DEBUG - Calling on_part_data with data[181:189]
+2025-03-01 16:38:26,305 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:38:26,305 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:38:26,305 - DEBUG - Calling on_header_field with data[233:252]
+2025-03-01 16:38:26,305 - DEBUG - Calling on_header_value with data[254:281]
+2025-03-01 16:38:26,305 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:38:26,306 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:38:26,306 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:38:26,306 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:38:26,306 - DEBUG - Calling on_header_field with data[329:348]
+2025-03-01 16:38:26,306 - DEBUG - Calling on_header_value with data[350:380]
+2025-03-01 16:38:26,306 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:38:26,306 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:38:26,306 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:38:26,306 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:38:26,306 - DEBUG - Calling on_header_field with data[428:447]
+2025-03-01 16:38:26,306 - DEBUG - Calling on_header_value with data[449:477]
+2025-03-01 16:38:26,306 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:38:26,306 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:38:26,306 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:38:26,306 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:38:26,306 - DEBUG - Calling on_header_field with data[525:544]
+2025-03-01 16:38:26,306 - DEBUG - Calling on_header_value with data[546:573]
+2025-03-01 16:38:26,306 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:38:26,306 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:38:26,307 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:38:26,307 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:38:26,307 - DEBUG - Calling on_header_field with data[621:640]
+2025-03-01 16:38:26,307 - DEBUG - Calling on_header_value with data[642:664]
+2025-03-01 16:38:26,307 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:38:26,307 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:38:26,307 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:38:26,307 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:38:26,307 - DEBUG - Calling on_header_field with data[712:731]
+2025-03-01 16:38:26,307 - DEBUG - Calling on_header_value with data[733:761]
+2025-03-01 16:38:26,307 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:38:26,307 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:38:26,307 - DEBUG - Calling on_part_data with data[765:774]
+2025-03-01 16:38:26,307 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:38:26,308 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:38:26,308 - DEBUG - Calling on_header_field with data[818:837]
+2025-03-01 16:38:26,308 - DEBUG - Calling on_header_value with data[839:864]
+2025-03-01 16:38:26,308 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:38:26,308 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:38:26,308 - DEBUG - Calling on_part_data with data[868:869]
+2025-03-01 16:38:26,308 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:38:26,308 - DEBUG - Calling on_end with no data
+2025-03-01 16:38:26,308 - ERROR - Validation error: [{'type': 'int_parsing', 'loc': ('body', 'year'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': ''}]
+2025-03-01 16:43:04,239 - INFO - Database table created or already exists.
+2025-03-01 16:43:18,991 - INFO - Database table created or already exists.
+2025-03-01 16:43:44,498 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:43:44,498 - DEBUG - Calling on_header_field with data[42:61]
+2025-03-01 16:43:44,498 - DEBUG - Calling on_header_value with data[63:85]
+2025-03-01 16:43:44,498 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:43:44,498 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:43:44,498 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_header_field with data[133:152]
+2025-03-01 16:43:44,499 - DEBUG - Calling on_header_value with data[154:177]
+2025-03-01 16:43:44,499 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_part_data with data[181:189]
+2025-03-01 16:43:44,499 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_header_field with data[233:252]
+2025-03-01 16:43:44,499 - DEBUG - Calling on_header_value with data[254:281]
+2025-03-01 16:43:44,499 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_header_field with data[329:348]
+2025-03-01 16:43:44,499 - DEBUG - Calling on_header_value with data[350:380]
+2025-03-01 16:43:44,499 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_header_field with data[428:447]
+2025-03-01 16:43:44,499 - DEBUG - Calling on_header_value with data[449:477]
+2025-03-01 16:43:44,499 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_header_field with data[525:544]
+2025-03-01 16:43:44,499 - DEBUG - Calling on_header_value with data[546:573]
+2025-03-01 16:43:44,499 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_header_field with data[621:640]
+2025-03-01 16:43:44,499 - DEBUG - Calling on_header_value with data[642:664]
+2025-03-01 16:43:44,499 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:43:44,499 - DEBUG - Calling on_header_field with data[712:731]
+2025-03-01 16:43:44,499 - DEBUG - Calling on_header_value with data[733:761]
+2025-03-01 16:43:44,500 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:43:44,500 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:43:44,500 - DEBUG - Calling on_part_data with data[765:774]
+2025-03-01 16:43:44,500 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:43:44,500 - DEBUG - Calling on_part_begin with no data
+2025-03-01 16:43:44,500 - DEBUG - Calling on_header_field with data[818:837]
+2025-03-01 16:43:44,500 - DEBUG - Calling on_header_value with data[839:864]
+2025-03-01 16:43:44,500 - DEBUG - Calling on_header_end with no data
+2025-03-01 16:43:44,500 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 16:43:44,500 - DEBUG - Calling on_part_data with data[868:869]
+2025-03-01 16:43:44,500 - DEBUG - Calling on_part_end with no data
+2025-03-01 16:43:44,500 - DEBUG - Calling on_end with no data
+2025-03-01 16:43:44,500 - ERROR - Validation error: [{'type': 'int_parsing', 'loc': ('body', 'year'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': ''}]
+2025-03-01 17:19:31,056 - INFO - Database table created or already exists.
+2025-03-01 17:19:50,614 - DEBUG - Calling on_part_begin with no data
+2025-03-01 17:19:50,614 - DEBUG - Calling on_header_field with data[42:61]
+2025-03-01 17:19:50,614 - DEBUG - Calling on_header_value with data[63:85]
+2025-03-01 17:19:50,614 - DEBUG - Calling on_header_end with no data
+2025-03-01 17:19:50,614 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 17:19:50,614 - DEBUG - Calling on_part_end with no data
+2025-03-01 17:19:50,614 - DEBUG - Calling on_part_begin with no data
+2025-03-01 17:19:50,614 - DEBUG - Calling on_header_field with data[133:152]
+2025-03-01 17:19:50,615 - DEBUG - Calling on_header_value with data[154:177]
+2025-03-01 17:19:50,615 - DEBUG - Calling on_header_end with no data
+2025-03-01 17:19:50,615 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 17:19:50,615 - DEBUG - Calling on_part_data with data[181:189]
+2025-03-01 17:19:50,615 - DEBUG - Calling on_part_end with no data
+2025-03-01 17:19:50,615 - DEBUG - Calling on_part_begin with no data
+2025-03-01 17:19:50,615 - DEBUG - Calling on_header_field with data[233:252]
+2025-03-01 17:19:50,615 - DEBUG - Calling on_header_value with data[254:281]
+2025-03-01 17:19:50,615 - DEBUG - Calling on_header_end with no data
+2025-03-01 17:19:50,615 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 17:19:50,615 - DEBUG - Calling on_part_end with no data
+2025-03-01 17:19:50,615 - DEBUG - Calling on_part_begin with no data
+2025-03-01 17:19:50,615 - DEBUG - Calling on_header_field with data[329:348]
+2025-03-01 17:19:50,615 - DEBUG - Calling on_header_value with data[350:380]
+2025-03-01 17:19:50,615 - DEBUG - Calling on_header_end with no data
+2025-03-01 17:19:50,615 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 17:19:50,615 - DEBUG - Calling on_part_end with no data
+2025-03-01 17:19:50,616 - DEBUG - Calling on_part_begin with no data
+2025-03-01 17:19:50,616 - DEBUG - Calling on_header_field with data[428:447]
+2025-03-01 17:19:50,616 - DEBUG - Calling on_header_value with data[449:477]
+2025-03-01 17:19:50,616 - DEBUG - Calling on_header_end with no data
+2025-03-01 17:19:50,616 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 17:19:50,616 - DEBUG - Calling on_part_end with no data
+2025-03-01 17:19:50,616 - DEBUG - Calling on_part_begin with no data
+2025-03-01 17:19:50,616 - DEBUG - Calling on_header_field with data[525:544]
+2025-03-01 17:19:50,616 - DEBUG - Calling on_header_value with data[546:573]
+2025-03-01 17:19:50,616 - DEBUG - Calling on_header_end with no data
+2025-03-01 17:19:50,616 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 17:19:50,616 - DEBUG - Calling on_part_end with no data
+2025-03-01 17:19:50,616 - DEBUG - Calling on_part_begin with no data
+2025-03-01 17:19:50,616 - DEBUG - Calling on_header_field with data[621:640]
+2025-03-01 17:19:50,616 - DEBUG - Calling on_header_value with data[642:664]
+2025-03-01 17:19:50,616 - DEBUG - Calling on_header_end with no data
+2025-03-01 17:19:50,617 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 17:19:50,617 - DEBUG - Calling on_part_end with no data
+2025-03-01 17:19:50,617 - DEBUG - Calling on_part_begin with no data
+2025-03-01 17:19:50,617 - DEBUG - Calling on_header_field with data[712:731]
+2025-03-01 17:19:50,617 - DEBUG - Calling on_header_value with data[733:761]
+2025-03-01 17:19:50,617 - DEBUG - Calling on_header_end with no data
+2025-03-01 17:19:50,617 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 17:19:50,617 - DEBUG - Calling on_part_data with data[765:774]
+2025-03-01 17:19:50,618 - DEBUG - Calling on_part_end with no data
+2025-03-01 17:19:50,618 - DEBUG - Calling on_part_begin with no data
+2025-03-01 17:19:50,618 - DEBUG - Calling on_header_field with data[818:837]
+2025-03-01 17:19:50,618 - DEBUG - Calling on_header_value with data[839:864]
+2025-03-01 17:19:50,618 - DEBUG - Calling on_header_end with no data
+2025-03-01 17:19:50,618 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 17:19:50,618 - DEBUG - Calling on_part_data with data[868:869]
+2025-03-01 17:19:50,618 - DEBUG - Calling on_part_end with no data
+2025-03-01 17:19:50,618 - DEBUG - Calling on_end with no data
+2025-03-01 17:19:50,619 - ERROR - Validation error: [{'type': 'int_parsing', 'loc': ('body', 'year'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': ''}]
+2025-03-01 17:28:07,565 - DEBUG - Calling on_part_begin with no data
+2025-03-01 17:28:07,566 - DEBUG - Calling on_header_field with data[42:61]
+2025-03-01 17:28:07,566 - DEBUG - Calling on_header_value with data[63:85]
+2025-03-01 17:28:07,566 - DEBUG - Calling on_header_end with no data
+2025-03-01 17:28:07,566 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 17:28:07,566 - DEBUG - Calling on_part_end with no data
+2025-03-01 17:28:07,566 - DEBUG - Calling on_part_begin with no data
+2025-03-01 17:28:07,566 - DEBUG - Calling on_header_field with data[133:152]
+2025-03-01 17:28:07,566 - DEBUG - Calling on_header_value with data[154:177]
+2025-03-01 17:28:07,566 - DEBUG - Calling on_header_end with no data
+2025-03-01 17:28:07,566 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 17:28:07,566 - DEBUG - Calling on_part_data with data[181:189]
+2025-03-01 17:28:07,566 - DEBUG - Calling on_part_end with no data
+2025-03-01 17:28:07,566 - DEBUG - Calling on_part_begin with no data
+2025-03-01 17:28:07,566 - DEBUG - Calling on_header_field with data[233:252]
+2025-03-01 17:28:07,566 - DEBUG - Calling on_header_value with data[254:281]
+2025-03-01 17:28:07,566 - DEBUG - Calling on_header_end with no data
+2025-03-01 17:28:07,566 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 17:28:07,566 - DEBUG - Calling on_part_end with no data
+2025-03-01 17:28:07,566 - DEBUG - Calling on_part_begin with no data
+2025-03-01 17:28:07,566 - DEBUG - Calling on_header_field with data[329:348]
+2025-03-01 17:28:07,566 - DEBUG - Calling on_header_value with data[350:380]
+2025-03-01 17:28:07,566 - DEBUG - Calling on_header_end with no data
+2025-03-01 17:28:07,566 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 17:28:07,566 - DEBUG - Calling on_part_end with no data
+2025-03-01 17:28:07,566 - DEBUG - Calling on_part_begin with no data
+2025-03-01 17:28:07,566 - DEBUG - Calling on_header_field with data[428:447]
+2025-03-01 17:28:07,566 - DEBUG - Calling on_header_value with data[449:477]
+2025-03-01 17:28:07,567 - DEBUG - Calling on_header_end with no data
+2025-03-01 17:28:07,567 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 17:28:07,567 - DEBUG - Calling on_part_end with no data
+2025-03-01 17:28:07,567 - DEBUG - Calling on_part_begin with no data
+2025-03-01 17:28:07,567 - DEBUG - Calling on_header_field with data[525:544]
+2025-03-01 17:28:07,567 - DEBUG - Calling on_header_value with data[546:573]
+2025-03-01 17:28:07,567 - DEBUG - Calling on_header_end with no data
+2025-03-01 17:28:07,567 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 17:28:07,567 - DEBUG - Calling on_part_end with no data
+2025-03-01 17:28:07,567 - DEBUG - Calling on_part_begin with no data
+2025-03-01 17:28:07,567 - DEBUG - Calling on_header_field with data[621:640]
+2025-03-01 17:28:07,567 - DEBUG - Calling on_header_value with data[642:664]
+2025-03-01 17:28:07,567 - DEBUG - Calling on_header_end with no data
+2025-03-01 17:28:07,567 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 17:28:07,567 - DEBUG - Calling on_part_end with no data
+2025-03-01 17:28:07,567 - DEBUG - Calling on_part_begin with no data
+2025-03-01 17:28:07,567 - DEBUG - Calling on_header_field with data[712:731]
+2025-03-01 17:28:07,567 - DEBUG - Calling on_header_value with data[733:761]
+2025-03-01 17:28:07,567 - DEBUG - Calling on_header_end with no data
+2025-03-01 17:28:07,567 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 17:28:07,567 - DEBUG - Calling on_part_data with data[765:774]
+2025-03-01 17:28:07,567 - DEBUG - Calling on_part_end with no data
+2025-03-01 17:28:07,567 - DEBUG - Calling on_part_begin with no data
+2025-03-01 17:28:07,567 - DEBUG - Calling on_header_field with data[818:837]
+2025-03-01 17:28:07,567 - DEBUG - Calling on_header_value with data[839:864]
+2025-03-01 17:28:07,567 - DEBUG - Calling on_header_end with no data
+2025-03-01 17:28:07,567 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 17:28:07,567 - DEBUG - Calling on_part_data with data[868:869]
+2025-03-01 17:28:07,567 - DEBUG - Calling on_part_end with no data
+2025-03-01 17:28:07,567 - DEBUG - Calling on_end with no data
+2025-03-01 17:28:07,567 - ERROR - Validation error: [{'type': 'int_parsing', 'loc': ('body', 'year'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': ''}]
+2025-03-01 18:04:56,167 - DEBUG - Calling on_part_begin with no data
+2025-03-01 18:04:56,167 - DEBUG - Calling on_header_field with data[42:61]
+2025-03-01 18:04:56,167 - DEBUG - Calling on_header_value with data[63:85]
+2025-03-01 18:04:56,167 - DEBUG - Calling on_header_end with no data
+2025-03-01 18:04:56,167 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 18:04:56,167 - DEBUG - Calling on_part_data with data[89:95]
+2025-03-01 18:04:56,167 - DEBUG - Calling on_part_end with no data
+2025-03-01 18:04:56,167 - DEBUG - Calling on_part_begin with no data
+2025-03-01 18:04:56,167 - DEBUG - Calling on_header_field with data[139:158]
+2025-03-01 18:04:56,167 - DEBUG - Calling on_header_value with data[160:183]
+2025-03-01 18:04:56,167 - DEBUG - Calling on_header_end with no data
+2025-03-01 18:04:56,167 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 18:04:56,167 - DEBUG - Calling on_part_data with data[187:195]
+2025-03-01 18:04:56,167 - DEBUG - Calling on_part_end with no data
+2025-03-01 18:04:56,167 - DEBUG - Calling on_part_begin with no data
+2025-03-01 18:04:56,167 - DEBUG - Calling on_header_field with data[239:258]
+2025-03-01 18:04:56,167 - DEBUG - Calling on_header_value with data[260:287]
+2025-03-01 18:04:56,167 - DEBUG - Calling on_header_end with no data
+2025-03-01 18:04:56,167 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 18:04:56,167 - DEBUG - Calling on_part_end with no data
+2025-03-01 18:04:56,168 - DEBUG - Calling on_part_begin with no data
+2025-03-01 18:04:56,168 - DEBUG - Calling on_header_field with data[335:354]
+2025-03-01 18:04:56,168 - DEBUG - Calling on_header_value with data[356:386]
+2025-03-01 18:04:56,168 - DEBUG - Calling on_header_end with no data
+2025-03-01 18:04:56,168 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 18:04:56,168 - DEBUG - Calling on_part_end with no data
+2025-03-01 18:04:56,168 - DEBUG - Calling on_part_begin with no data
+2025-03-01 18:04:56,168 - DEBUG - Calling on_header_field with data[434:453]
+2025-03-01 18:04:56,168 - DEBUG - Calling on_header_value with data[455:483]
+2025-03-01 18:04:56,168 - DEBUG - Calling on_header_end with no data
+2025-03-01 18:04:56,168 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 18:04:56,168 - DEBUG - Calling on_part_end with no data
+2025-03-01 18:04:56,168 - DEBUG - Calling on_part_begin with no data
+2025-03-01 18:04:56,168 - DEBUG - Calling on_header_field with data[531:550]
+2025-03-01 18:04:56,168 - DEBUG - Calling on_header_value with data[552:579]
+2025-03-01 18:04:56,168 - DEBUG - Calling on_header_end with no data
+2025-03-01 18:04:56,168 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 18:04:56,168 - DEBUG - Calling on_part_end with no data
+2025-03-01 18:04:56,168 - DEBUG - Calling on_part_begin with no data
+2025-03-01 18:04:56,168 - DEBUG - Calling on_header_field with data[627:646]
+2025-03-01 18:04:56,168 - DEBUG - Calling on_header_value with data[648:670]
+2025-03-01 18:04:56,168 - DEBUG - Calling on_header_end with no data
+2025-03-01 18:04:56,168 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 18:04:56,168 - DEBUG - Calling on_part_end with no data
+2025-03-01 18:04:56,168 - DEBUG - Calling on_part_begin with no data
+2025-03-01 18:04:56,168 - DEBUG - Calling on_header_field with data[718:737]
+2025-03-01 18:04:56,168 - DEBUG - Calling on_header_value with data[739:767]
+2025-03-01 18:04:56,168 - DEBUG - Calling on_header_end with no data
+2025-03-01 18:04:56,168 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 18:04:56,168 - DEBUG - Calling on_part_data with data[771:778]
+2025-03-01 18:04:56,168 - DEBUG - Calling on_part_end with no data
+2025-03-01 18:04:56,168 - DEBUG - Calling on_part_begin with no data
+2025-03-01 18:04:56,168 - DEBUG - Calling on_header_field with data[822:841]
+2025-03-01 18:04:56,168 - DEBUG - Calling on_header_value with data[843:868]
+2025-03-01 18:04:56,168 - DEBUG - Calling on_header_end with no data
+2025-03-01 18:04:56,168 - DEBUG - Calling on_headers_finished with no data
+2025-03-01 18:04:56,168 - DEBUG - Calling on_part_data with data[872:873]
+2025-03-01 18:04:56,168 - DEBUG - Calling on_part_end with no data
+2025-03-01 18:04:56,169 - DEBUG - Calling on_end with no data
+2025-03-01 18:04:56,169 - ERROR - Validation error: [{'type': 'int_parsing', 'loc': ('body', 'year'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': ''}]
+2025-03-01 18:26:31,109 - INFO - Database table created or already exists.
+2025-03-01 18:26:54,271 - INFO - Database table created or already exists.

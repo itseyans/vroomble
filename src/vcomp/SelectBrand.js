@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 import styled from "styled-components";
 
 const DropdownContainer = styled.div`
@@ -78,71 +79,23 @@ const SearchInput = styled.input`
 `;
 
 const BRANDS = [
-  "Abarth",
-  "Alfa Romeo",
-  "Aston Martin",
-  "Audi",
-  "BAIC",
-  "Bentley",
-  "BMW",
-  "BYD",
-  "Changan",
-  "Chery",
-  "Chevrolet",
-  "Chrysler",
-  "Citroën",
-  "Daewoo",
-  "Daihatsu",
-  "Dodge",
-  "Dongfeng",
-  "Ferrari",
-  "Fiat",
-  "Ford",
-  "Foton",
-  "GAC",
-  "Geely",
-  "Great Wall",
-  "Haima",
-  "Haval",
-  "Hino",
-  "Honda",
-  "Hyundai",
-  "Isuzu",
-  "Jaguar",
-  "Jeep",
-  "JMC",
-  "Kia",
-  "Lamborghini",
-  "Land Rover",
-  "Lexus",
-  "Lotus",
-  "Maserati",
-  "Mazda",
-  "McLaren",
-  "Mercedes-Benz",
-  "MG",
-  "Mini",
-  "Mitsubishi",
-  "Nissan",
-  "Peugeot",
-  "Porsche",
-  "RAM",
-  "Renault",
-  "Rolls-Royce",
-  "SsangYong",
-  "Subaru",
-  "Suzuki",
-  "Tata",
-  "Toyota",
-  "Volkswagen",
-  "Volvo",
+  "Abarth", "Alfa Romeo", "Aston Martin", "Audi", "BAIC", "Bentley", "BMW",
+  "BYD", "Changan", "Chery", "Chevrolet", "Chrysler", "Citroën", "Daewoo",
+  "Daihatsu", "Dodge", "Dongfeng", "Ferrari", "Fiat", "Ford", "Foton", "GAC",
+  "Geely", "Great Wall", "Haima", "Haval", "Hino", "Honda", "Hyundai", "Isuzu",
+  "Jaguar", "Jeep", "JMC", "Kia", "Lamborghini", "Land Rover", "Lexus", "Lotus",
+  "Maserati", "Mazda", "McLaren", "Mercedes-Benz", "MG", "Mini", "Mitsubishi",
+  "Nissan", "Peugeot", "Porsche", "RAM", "Renault", "Rolls-Royce", "SsangYong",
+  "Subaru", "Suzuki", "Tata", "Toyota", "Volkswagen", "Volvo"
 ];
 
-const SelectBrand = () => {
-  const [selectedBrand, setSelectedBrand] = useState("SELECT BRAND");
+const SelectBrand = ({ value, onChange, name }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredBrands, setFilteredBrands] = useState(BRANDS);
+
+  // Remove useEffect and internal selectedBrand state
+  const displayValue = value || "SELECT BRAND";
 
   const handleSearch = (e) => {
     const value = e.target.value.toUpperCase();
@@ -153,38 +106,63 @@ const SelectBrand = () => {
   };
 
   const handleSelect = (brand) => {
-    setSelectedBrand(brand);
     setIsOpen(false);
     setSearchTerm("");
+    onChange({
+      target: {
+        name: name,
+        value: brand
+      }
+    });
   };
 
   return (
     <DropdownContainer>
-      <DropdownButton onClick={() => setIsOpen(!isOpen)}>
-        {selectedBrand} {isOpen ? "▲" : "▼"}
+      <DropdownButton 
+        type="button" 
+        onClick={() => setIsOpen(!isOpen)}
+        aria-haspopup="listbox"
+        aria-expanded={isOpen}
+      >
+        <span style={{ color: value ? 'black' : '#666' }}>
+          {displayValue}
+        </span>
+        {isOpen ? "▲" : "▼"}
       </DropdownButton>
 
       {isOpen && (
-        <DropdownList>
+        <DropdownList role="listbox">
           <SearchInput
             type="text"
             placeholder="Search brand..."
             value={searchTerm}
             onChange={handleSearch}
+            aria-label="Search brands"
           />
           {filteredBrands.length > 0 ? (
-            filteredBrands.map((brand, index) => (
-              <DropdownItem key={index} onClick={() => handleSelect(brand)}>
+            filteredBrands.map((brand) => (
+              <DropdownItem
+                key={brand}
+                onClick={() => handleSelect(brand)}
+                role="option"
+                aria-selected={brand === value}
+              >
                 {brand}
               </DropdownItem>
             ))
           ) : (
-            <DropdownItem>No results found</DropdownItem>
+            <DropdownItem role="option">No results found</DropdownItem>
           )}
         </DropdownList>
       )}
     </DropdownContainer>
   );
+};
+
+SelectBrand.propTypes = {
+  value: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired
 };
 
 export default SelectBrand;

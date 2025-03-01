@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import styled from "styled-components";
 
 const DropdownContainer = styled.div`
@@ -80,53 +80,51 @@ const SearchInput = styled.input`
 // Generate years from 1950 to 2030
 const YEARS = Array.from({ length: 81 }, (_, i) => (1950 + i).toString());
 
-const SelectYear = () => {
-  const [selectedYear, setSelectedYear] = useState("PRODUCTION YEAR");
-  const [isOpen, setIsOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredYears, setFilteredYears] = useState(YEARS);
+const SelectYear = memo(() => { // Wrap with memo
+    const [selectedYear, setSelectedYear] = useState("PRODUCTION YEAR");
+    const [isOpen, setIsOpen] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [filteredYears, setFilteredYears] = useState(YEARS);
 
-  // Handle search input
-  const handleSearch = (e) => {
-    const value = e.target.value;
-    setSearchTerm(value);
-    setFilteredYears(YEARS.filter((year) => year.includes(value)));
-  };
+    const handleSearch = (e) => {
+        const value = e.target.value;
+        setSearchTerm(value);
+        setFilteredYears(YEARS.filter((year) => year.includes(value)));
+    };
 
-  // Handle selecting a year
-  const handleSelect = (year) => {
-    setSelectedYear(year);
-    setIsOpen(false);
-    setSearchTerm("");
-  };
+    const handleSelect = (year) => {
+        setSelectedYear(year);
+        setIsOpen(false);
+        setSearchTerm("");
+    };
 
-  return (
-    <DropdownContainer>
-      <DropdownButton onClick={() => setIsOpen(!isOpen)}>
-        {selectedYear} {isOpen ? "▲" : "▼"}
-      </DropdownButton>
+    return (
+        <DropdownContainer>
+            <DropdownButton onClick={() => setIsOpen(!isOpen)}>
+                {selectedYear} {isOpen ? "▲" : "▼"}
+            </DropdownButton>
 
-      {isOpen && (
-        <DropdownList>
-          <SearchInput
-            type="text"
-            placeholder="Search year..."
-            value={searchTerm}
-            onChange={handleSearch}
-          />
-          {filteredYears.length > 0 ? (
-            filteredYears.map((year, index) => (
-              <DropdownItem key={index} onClick={() => handleSelect(year)}>
-                {year}
-              </DropdownItem>
-            ))
-          ) : (
-            <DropdownItem>No results found</DropdownItem>
-          )}
-        </DropdownList>
-      )}
-    </DropdownContainer>
-  );
-};
+            {isOpen && (
+                <DropdownList>
+                    <SearchInput
+                        type="text"
+                        placeholder="Search year..."
+                        value={searchTerm}
+                        onChange={handleSearch}
+                    />
+                    {filteredYears.length > 0 ? (
+                        filteredYears.map((year, index) => (
+                            <DropdownItem key={index} onClick={() => handleSelect(year)}>
+                                {year}
+                            </DropdownItem>
+                        ))
+                    ) : (
+                        <DropdownItem>No results found</DropdownItem>
+                    )}
+                </DropdownList>
+            )}
+        </DropdownContainer>
+    );
+});
 
 export default SelectYear;

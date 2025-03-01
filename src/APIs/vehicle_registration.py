@@ -1,22 +1,71 @@
-from fastapi import FastAPI, Form, HTTPException
-from pydantic import BaseModel
-import sqlite3
+import logging
 import os
+import sqlite3
+from typing import Union
+from datetime import datetime
+
+from fastapi import FastAPI, Form, HTTPException, Request, status
+from fastapi.exceptions import RequestValidationError
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel, validator
 
 app = FastAPI()
 
 # Database file path
-db_file = os.path.join("C:\\Users\\Sobre\\OneDrive\\Desktop\\Vroomble\\Vroomble Dataset", "car_database.db")  # Replace with your actual path
+db_file = os.path.join(".", "car_database.db")  # Relative path for simplicity
 
+# CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
+
+# Configure logging
+logging.basicConfig(
+    filename="app.log",  # Log file name
+    level=logging.DEBUG,  # Log level
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
+
+# Custom exception classes for more specific error handling
+class CarAlreadyExistsError(HTTPException):
+    def __init__(self, detail: str = None):
+        super().__init__(status_code=400, detail=detail or "An identical car entry already exists in the database.")
+
+class DatabaseError(HTTPException):
+    def __init__(self, detail: str = None):
+        super().__init__(status_code=500, detail=detail or "Database error.")
+
+
+# Updated Car model with validation
 class Car(BaseModel):
     make: str
     model: str
     body_type: str
-    variant: str
     transmission: str
     drivetrain: str
     fuel_type: str
     year: int
+    variant: str = "N/A"
+    retail_srp: float  # Changed to float type
+
+    @validator('year')
+    def validate_year(cls, v):
+        if v < 1886 or v > datetime.now().year + 1:
+            raise ValueError('Invalid year')
+        return v
+
+    @validator('retail_srp')
+    def validate_retail_srp(cls, v):
+        if v <= 0:
+            raise ValueError('Retail SRP must be positive')
+        return v
+
 
 def create_table_if_not_exists(db_file):
     """Creates the cars table if it doesn't exist."""
@@ -30,86 +79,88 @@ def create_table_if_not_exists(db_file):
                 Make TEXT,
                 Model TEXT,
                 Body_Type TEXT,
-                Variant TEXT,
                 Transmission TEXT,
                 Drivetrain TEXT,
                 Fuel_Type TEXT,
-                Year INTEGER
+                Year INTEGER,
+                Retail_SRP TEXT,
+                Variant TEXT
             )
         ''')
         conn.commit()
+        logger.info("Database table created or already exists.")
         conn.close()
-    except Exception as e:
-        print(f"Error creating table: {e}")
+    except sqlite3.Error as e:
+        logger.error(f"Error creating table: {e}")
+        raise DatabaseError(detail=f"Error creating table: {e}")
+
 
 create_table_if_not_exists(db_file)
 
-@app.post("/cars/")
-async def create_car(car: Car):
-    """Saves car data to the database, preventing duplicates."""
+
+# Modified endpoint to accept JSON
+@app.post("/cars/form/")
+async def create_car_form(
+    car_data: Car  # Receive as JSON body instead of form-data
+):
     try:
         conn = sqlite3.connect(db_file)
         cursor = conn.cursor()
 
+        # Convert SRP to string with 2 decimal places for storage
+        srp_str = f"{car_data.retail_srp:.2f}"
+
         cursor.execute('''
-            SELECT COUNT(*) FROM cars 
-            WHERE Make=? AND Model=? AND Body_Type=? AND Variant=? AND Transmission=? AND Drivetrain=? AND Fuel_Type=? AND Year=?
-        ''', (car.make, car.model, car.body_type, car.variant, car.transmission, car.drivetrain, car.fuel_type, car.year))
+            INSERT INTO cars (Make, Model, Body_Type, Transmission, Drivetrain, Fuel_Type, Year, Retail_SRP, Variant)
+            VALUES (?,?,?,?,?,?,?,?,?)
+        ''', (
+            car_data.make, car_data.model, car_data.body_type,
+            car_data.transmission, car_data.drivetrain, car_data.fuel_type,
+            car_data.year, srp_str, car_data.variant
+        ))
 
-        existing_entry_count = cursor.fetchone()[0]
+        conn.commit()
+        logger.info(f"Car added: {car_data}")
+        return {"message": "Car model saved successfully"}
 
-        if existing_entry_count > 0:
-            raise HTTPException(status_code=400, detail="An identical car entry already exists in the database.")
-        else:
-            cursor.execute('''
-                INSERT INTO cars (Make, Model, Body_Type, Variant, Transmission, Drivetrain, Fuel_Type, Year)
-                VALUES (?,?,?,?,?,?,?,?)
-            ''', (car.make, car.model, car.body_type, car.variant, car.transmission, car.drivetrain, car.fuel_type, car.year))
-            conn.commit()
-            conn.close()
-            return {"message": "Car model saved successfully"}
+    except sqlite3.IntegrityError:
+        raise CarAlreadyExistsError()
+    except sqlite3.Error as e:
+        logger.error(f"Database error: {e}")
+        raise DatabaseError(detail=f"Error saving to database: {e}")
 
-    except HTTPException as http_exception:
-        raise http_exception
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error saving to database: {e}")
-
-@app.post("/cars/form/")
-async def create_car_form(
-    make: str = Form(...),
-    model: str = Form(...),
-    body_type: str = Form(...),
-    variant: str = Form(...),
-    transmission: str = Form(...),
-    drivetrain: str = Form(...),
-    fuel_type: str = Form(...),
-    year: int = Form(...)
-):
-    car_data = Car(
-        make=make,
-        model=model,
-        body_type=body_type,
-        variant=variant,
-        transmission=transmission,
-        drivetrain=drivetrain,
-        fuel_type=fuel_type,
-        year=year,
-    )
-    return await create_car(car_data)
 
 @app.get("/dropdown_options/")
 async def get_dropdown_options():
     """Returns the available options for dropdown menus."""
     return {
-        "makes": ["Toyota", "Mitsubishi", "Honda", "Ford", "Chevrolet"],  # Add more makes as needed
+        "makes": ["Toyota", "Mitsubishi", "Honda", "Ford", "Chevrolet"],
         "body_types": ["SUV", "SEDAN", "UV", "COUPE", "HATCHBACK", "TRUCK", "VAN", "CONVERTIBLE", "WAGON", "MOTORCYCLE"],
-        "transmissions": ["Automatic", "Manual", "CVT"],  # Add more transmission types as needed
-        "drivetrains": ["FWD", "RWD", "AWD", "4WD"],  # Add more drivetrain options as needed
-        "fuel_types": ["Unleaded", "Diesel", "Electric", "Hybrid"],  # Add more fuel types as needed
+        "transmissions": ["Automatic", "Manual", "CVT"],
+        "drivetrains": ["FWD", "RWD", "AWD", "4WD"],
+        "fuel_types": ["Unleaded", "Diesel", "Electric", "Hybrid"],
     }
+
 
 @app.get("/")
 async def root():
     return {"message": "Vehicle registration API"}
 
-# TEsting
+
+# Global exception handler
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    logger.exception(f"Unhandled exception: {exc}")
+    return JSONResponse(
+        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        content={"detail": "Internal server error"},
+    )
+
+# Exception handler for validation errors
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    logger.error(f"Validation error: {exc}")
+    return JSONResponse(
+        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+        content={"detail": exc.errors()},
+    )
