@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import NavBar from "../vcomp/NavBar";
+import WelcomeNavBar from "../vcomp/WelcomeNavBar";
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen"> 
-      <NavBar></NavBar>
+      <WelcomeNavBar></WelcomeNavBar>
       <footer className="flex gap-6 flex-wrap items-center justify-center p-4">
       </footer>
 
