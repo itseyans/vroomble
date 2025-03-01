@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Button from "/public/SignButton.js"; // Ensure this is the correct path
+import Button from "./SignButton.js";
 
 const FormContainer = styled.div`
   width: 660px;
-  height: auto;
+   height: auto;
   background: #ddd;
   border-radius: 20px;
   border: 5px solid #ffc629;
@@ -16,6 +16,7 @@ const FormContainer = styled.div`
 `;
 
 const Title = styled.h2`
+  color: black;
   text-align: center;
   margin-bottom: 20px;
 `;
@@ -29,6 +30,7 @@ const InputGroup = styled.div`
 `;
 
 const StyledLabel = styled.label`
+  color: black;
   font-weight: bold;
   align-self: flex-start;
   margin-left: 30px;
@@ -36,6 +38,7 @@ const StyledLabel = styled.label`
 `;
 
 const LInput = styled.input`
+  color: black;
   padding: 10px;
   margin-top: 5px;
   margin-bottom: 10px;

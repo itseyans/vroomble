@@ -45,7 +45,6 @@ const Footer = () => {
           <FooterItem>Contact</FooterItem>
 
         </Link>
-
       </FooterItems>
     </FooterContainer>
   );
