@@ -157,12 +157,40 @@ const AddVehicle = () => {
     year: false,
   });
 
-  const [bodyTypes, setBodyTypes] = useState();
-  const [bodyTypeSearchTerm, setBodyTypeSearchTerm] = useState("");
-  const [transmissions, setTransmissions] = useState(["Automatic", "Manual"]);
-  const [drivetrains, setDrivetrains] = useState(["FWD", "RWD", "AWD", "4WD"]);
-  const [fuelTypes, setFuelTypes] = useState(["Gasoline", "Diesel", "Electric", "Hybrid"]);
+
+useEffect(() => {
+  fetch("http://localhost:8000/dropdown_options/", {
+    method: "GET", // Ensure it's GET
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      setBodyTypes(data.body_types || []);
+      setTransmissions(data.transmissions || []);
+      setDrivetrains(data.drivetrains || []);
+      setFuelTypes(data.fuel_types || []);
+    })
+    .catch((error) => console.error("Error fetching dropdown options:", error));
+}, []);
+
+const [bodyTypes, setBodyTypes] = useState([]); // Keep only one declaration
+const [transmissions, setTransmissions] = useState([]);
+const [drivetrains, setDrivetrains] = useState([]);
+const [fuelTypes, setFuelTypes] = useState([]);
+
+
   const years = Array.from({ length: new Date().getFullYear() - 1999 }, (_, i) => 2000 + i).reverse();
+
+
+  const [bodyTypeSearchTerm, setBodyTypeSearchTerm] = useState(""); // Define it
+
 
   const SearchInput = styled.input`
   width: 100%;
@@ -180,35 +208,6 @@ const AddVehicle = () => {
 `;
 
   const dropdownRef = useRef(null);
-
-  useEffect(() => {
-                              fetch("http://127.0.0.1:8000/dropdown_options/", {
-                                  method: "POST",
-                                  headers: {
-                                      "Content-Type": "application/json"
-                                  },
-                                  body: JSON.stringify({ name: "Test", value: 123 })
-                              })
-                              .then(response => {
-                                  console.log("Response Status:", response.status);  // Logs status (e.g., 200, 404, 500)
-                                  return response.text();  // Read raw response (even if it's HTML)
-                              })
-                              .then(data => {
-                                  console.log("Raw Response Body:", data);  // Logs the actual response content
-                                  try {
-                                      const jsonData = JSON.parse(data);  // Try parsing JSON (if valid)
-                                      console.log("Parsed JSON:", jsonData);
-                                  } catch (error) {
-                                      console.error("Error parsing JSON:", error);
-                                  }
-                              })
-                              .catch(error => console.error("Fetch Error:", error));
-                          
-                          }, []); // <-- Empty dependency array to run only once on mount
-
-
-
-
 
   const filteredBodyTypes = bodyTypes?.filter((type) =>
     type.toLowerCase().includes(bodyTypeSearchTerm.toLowerCase())
@@ -228,38 +227,55 @@ const AddVehicle = () => {
     setDropdowns({ ...dropdowns, [name]: !dropdowns[name] });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form Data:", formData);
-    fetch('/cars/form/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Success:', data);
-        alert(data.message);
-        // Clear the form after successful submission
-        setFormData({
-          make: "",
-          model: "",
-          body_type: "",
-          variant: "",
-          transmission: "",
-          drivetrain: "",
-          fuel_type: "",
-          year: "",
-          retail_srp: "",
-        });
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        alert('An error occurred. Please try again.');
-      });
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  console.log("Raw Form Data:", formData); // Logs the state object
+
+  const formattedData = {
+    ...formData,
+    year: Number(formData.year),  // Convert year to a number
+    retail_srp: Number(formData.retail_srp),  // Convert retail_srp to a number
   };
+
+  console.log("Formatted Data being sent:", JSON.stringify(formattedData, null, 2)); 
+
+  try {
+    const response = await fetch("http://localhost:8000/submit_form/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formattedData),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`HTTP error! Status: ${response.status}, Response: ${errorText}`);
+    }
+
+    const data = await response.json();
+    console.log("Server Response:", data);
+    alert(data.message);
+
+    // Clear form after successful submission
+    setFormData({
+      make: "",
+      model: "",
+      body_type: "",
+      variant: "",
+      transmission: "",
+      drivetrain: "",
+      fuel_type: "",
+      year: "",
+      retail_srp: "",
+    });
+  } catch (error) {
+    console.error("Error:", error);
+    alert("An error occurred. Please try again.");
+  }
+};
+
+
+
 
   return (
     <Container>
