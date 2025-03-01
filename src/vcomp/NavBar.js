@@ -1,3 +1,4 @@
+// NavBar.js
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -10,7 +11,7 @@ const NavBarContainer = styled.nav`
   display: flex;
   align-items: center;
   padding: 1rem;
-  justify-content: center; // Center all items
+  justify-content: space-between;
 `;
 
 const NavItems = styled.div`
@@ -57,94 +58,83 @@ const Emblem = styled.img`
   height: auto;
 `;
 
-const RegisterButton = styled.button`
+const LogoutButton = styled.button`
   background-color: gold;
   color: black;
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-left: auto; // Push to the far right
+  margin-left: 1rem;
 `;
 
 const NavBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userRole, setUserRole] = useState(null); // 'user' or 'admin'
+  const [userRole, setUserRole] = useState(null);
 
   useEffect(() => {
-    // Check authentication and role (e.g., from local storage)
     const token = localStorage.getItem("token");
     const role = localStorage.getItem("role");
     if (token) {
       setIsLoggedIn(true);
       setUserRole(role);
     }
-  },);
+    console.log("NavBar useEffect:", isLoggedIn, userRole);
+  }, []);
 
-  const handleLogin = () => {
-    // Perform login logic and update state
-    setIsLoggedIn(true);
-    //... (set userRole based on login response)
-  };
+  console.log("NavBar rendering:", isLoggedIn, userRole);
 
-  const handleLogout = () => {
-    // Perform logout logic and update state
-    setIsLoggedIn(false);
-    setUserRole(null);
-  };
+  // if (!isLoggedIn) {
+  //   return null; // Temporarily commented out
+  // }
 
   return (
     <NavBarContainer>
+      <LogoContainer>
+        <Logo>VROOMBLE</Logo>
+        <EmblemContainer>
+          <Emblem src="/images/emblem.png" alt="Emblem" />
+        </EmblemContainer>
+      </LogoContainer>
+
       <NavItems>
-        <LogoContainer>
-          <Logo>VROOMBLE</Logo>
-          <EmblemContainer>
-            <Emblem src="/images/emblem.png" alt="Emblem" />
-          </EmblemContainer>
-        </LogoContainer>
-
-        {isLoggedIn ? (
-          userRole === "admin" ? (
-            // Admin navbar
-            <>
-              <Link href="/admin/dashboard">
-                <NavItem>Dashboard</NavItem>
-              </Link>
-
-              <Link href="/admin/users">
-                <NavItem>Users</NavItem>
-              </Link>
-              {/*... other admin links */}
-            </>
-          ) : (
-            // User navbar
-            <>
-              <Link href="/home">
-                <NavItem>Home</NavItem>
-              </Link>
-
-              <Link href="/services">
-                <NavItem>Services</NavItem>
-              </Link>
-
-              {/* Car Part Registration button for testing */}
-              <Link href="/part_registration">
-                <NavItem>Car Part Registration</NavItem>
-              </Link>
-              {/*... other user links */}
-            </>
-          )
+        {userRole === "admin" ? (
+          <>
+            <Link href="/admin/dashboard">
+              <NavItem>Dashboard</NavItem>
+            </Link>
+            <Link href="/admin/users">
+              <NavItem>Users</NavItem>
+            </Link>
+          </>
         ) : (
-          // Not logged in navbar (no buttons)
-          <></>
+          <>
+            <Link href="/home">
+              <NavItem>Home</NavItem>
+            </Link>
+            <Link href="/services">
+              <NavItem>Services</NavItem>
+            </Link>
+            <Link href="/vehicle_registration">
+              <NavItem>Vehicle Registration</NavItem>
+            </Link>
+            <Link href="/part_registration">
+              <NavItem>Car Part Registration</NavItem>
+            </Link>
+          </>
         )}
+        <LogoutButton
+          onClick={() => {
+            localStorage.removeItem("token");
+            localStorage.removeItem("role");
+            setIsLoggedIn(false);
+            setUserRole(null);
+            window.location.href = "/";
+          }}
+        >
+          Logout
+        </LogoutButton>
       </NavItems>
-
-      {isLoggedIn ? (
-        <button onClick={handleLogout}>Logout</button>
-      ) : (
-        <RegisterButton onClick={handleLogin}>Register</RegisterButton>
-      )}
     </NavBarContainer>
   );
 };

@@ -67,7 +67,7 @@ const BODY_TYPES = [
   "SUV", "Crossover", "Pickup Truck", "Off-Road Vehicle", "Van", "Minivan (MPV)",
   "Supercar", "Roadster", "Muscle Car", "Luxury Car",
   "Pickup-Based SUV", "Microcar / Kei Car", "Panel Van", "Box Truck / Lorry",
-  "Bus / Coach", "Flatbed Truck", "Chassis Cab"
+  "Bus / Coach", "Flatbed Truck", "Chassis Cab", "Motorcycle"
 ];
 
 const SelectBody = () => {

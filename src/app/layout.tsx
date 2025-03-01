@@ -25,9 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head />
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <WelcomeNavBar /> {/* Render WelcomeNavBar */}
         {children}
         <Footer />
       </body>

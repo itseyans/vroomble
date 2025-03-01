@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import SelectBrand from "./SelectBrand";
 import SelectFuel from "./SelectFuel";
-import Driveselect from "./Driveselect";
+import Driveselect from "./SelectDrivetrain";
 import SelectTrans from "./SelectTrans";
 import SelectBody from "./SelectBody";
 import GeneralButton from "./GeneralButton";
@@ -24,13 +24,16 @@ const Header = styled.h2`
   font-size: 24px;
   font-weight: bold;
   text-align: left;
+  color: black;
+  
 `;
 
 const Row = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 20px;        
+  color: black;
 
   /* Increase horizontal gap with margin-right,
      and add margin-bottom to provide vertical space when items wrap. */
@@ -49,6 +52,8 @@ const InputsRow = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 60px;
+  color: black;
+  font-weight: bold;
 `;
 
 const Column = styled.div`
@@ -60,6 +65,7 @@ const Column = styled.div`
 const Label = styled.label`
   font-size: 18px;
   font-weight: bold;
+  color: black;
 `;
 
 const InputField = styled.input`
@@ -71,6 +77,7 @@ const InputField = styled.input`
   border-radius: 8px;
   background: white;
   text-align: center;
+  color: black;
 `;
 
 const ButtonContainer = styled.div`

@@ -10,13 +10,13 @@ const NavBarContainer = styled.nav`
   display: flex;
   align-items: center;
   padding: 1rem;
-  justify-content: center; // Center all items
+  justify-content: space-between; // Space between logo and links
+  width: 100%;
 `;
 
 const NavItems = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between; // Add this line
 `;
 
 const NavItem = styled.a`
@@ -58,28 +58,32 @@ const Emblem = styled.img`
   height: auto;
 `;
 
+const RegisterButton = styled.button`
+  background-color: gold;
+  color: black;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 1rem; // Add some space between login and register
+`;
+
 const WelcomeNavBar = () => {
   return (
     <NavBarContainer>
       <NavItems>
-        {/* Logo and Title (Left) */}
-        <LogoContainer>
-          <Logo>VROOMBLE</Logo>
-          <EmblemContainer>
-            <Emblem src="/images/emblem.png" alt="Emblem" />
-          </EmblemContainer>
-        </LogoContainer>
-
-        {/* Landing Page Navbar (Login & Register - Right) */}
-        <div> {/* Removed inline style */}
-          <Link href="/login">
-            <NavItem>Login</NavItem>
-          </Link>
-          <Link href="/register">
-            <NavItem>Register</NavItem>
-          </Link>
-        </div>
+        {/* ... (Logo and Emblem) */}
       </NavItems>
+      <div>
+        <Link href="/homepage"> 
+          <NavItem> {/* NavItem wraps the text content only */}
+            Login
+          </NavItem>
+        </Link>
+        <Link href="/register">
+          <RegisterButton>Register</RegisterButton> 
+        </Link>
+      </div>
     </NavBarContainer>
   );
 };

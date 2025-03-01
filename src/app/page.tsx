@@ -1,10 +1,30 @@
 "use client";
 
 import Image from "next/image";
+import WelcomeNavBar from "../vcomp/WelcomeNavBar";
+import styled from 'styled-components';
+
+const PageContainer = styled.div`
+  width: 100%;
+  min-height: 100vh; /* Ensure full viewport height */
+  display: flex;
+  flex-direction: column;
+  background-color:#131415; /* Or whatever background you want */
+`;
+
+const ContentContainer = styled.div`
+  flex-grow: 1; /* Allow content to take up remaining space */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+  justify-content: center; /* Center content vertically */
+  padding: 2rem;
+`;
 
 export default function Home() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+      <WelcomeNavBar />
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
           className="dark:invert"
@@ -98,6 +118,13 @@ export default function Home() {
           Go to nextjs.org →
         </a>
       </footer>
+
+      <style jsx global>{`
+        body {
+          margin: 0;
+          padding: 0;
+        }
+      `}</style>
     </div>
   );
 }

@@ -63,7 +63,7 @@ const DropdownItem = styled.li`
 `;
 
 const SelectFuel = () => {
-  const FUEL_OPTIONS = ["Diesel", "Gasoline", "Electric"];
+  const FUEL_OPTIONS = ["Diesel", "Gasoline", "Electric","Hybrid"];
   const [selectedFuel, setSelectedFuel] = useState("SELECT FUEL");
   const [isOpen, setIsOpen] = useState(false);
 

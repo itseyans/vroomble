@@ -1,14 +1,28 @@
-"use client"; // Assuming you're using Next.js with the "use client" directive
+"use client";
 
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import CarPartRegistrationForm from '../../vcomp/CarParts_Registration.js';
+import NavBar from '../../vcomp/NavBar'; 
+
+const AppContainer = styled.div` 
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #131415;
+  color: gold;
+`;
+
+const NavBarContainer = styled.div`
+  /* Add any specific styling for the NavBar container if needed */
+`;
 
 const PageContainer = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column; 
+  justify-content: center; // Center the button vertically
   align-items: center;
-  min-height: 100vh;
+  flex-grow: 1; // Allow this container to take up available space
   background-color: #131415;
   color: gold;
 `;
@@ -37,13 +51,18 @@ const CarPartRegistrationPage = () => {
   };
 
   return (
-    <PageContainer>
-      {showForm ? (
-        <CarPartRegistrationForm />
-      ) : (
-        <Button onClick={handleButtonClick}>Add a Car Part</Button>
-      )}
-    </PageContainer>
+    <AppContainer> {/* Wrap everything in AppContainer */}
+      <NavBarContainer> {/* Separate container for NavBar */}
+        <NavBar /> 
+      </NavBarContainer>
+      <PageContainer> {/* Container for the button and form */}
+        {showForm ? (
+          <CarPartRegistrationForm />
+        ) : (
+          <Button onClick={handleButtonClick}>Add a Car Part</Button>
+        )}
+      </PageContainer>
+    </AppContainer>
   );
 };
 
