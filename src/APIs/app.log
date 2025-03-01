@@ -406,3 +406,26 @@
 2025-03-01 18:04:56,169 - ERROR - Validation error: [{'type': 'int_parsing', 'loc': ('body', 'year'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': ''}]
 2025-03-01 18:26:31,109 - INFO - Database table created or already exists.
 2025-03-01 18:26:54,271 - INFO - Database table created or already exists.
+2025-03-01 22:57:02,928 - INFO - Database table created or already exists.
+2025-03-02 00:00:57,283 - INFO - Database table created or already exists.
+2025-03-02 00:03:33,961 - INFO - Database table created or already exists.
+2025-03-02 00:05:57,111 - INFO - Database table created or already exists.
+2025-03-02 00:18:59,182 - INFO - Database table created or already exists.
+2025-03-02 00:21:21,950 - INFO - Database table created or already exists.
+2025-03-02 00:21:37,134 - INFO - Database table created or already exists.
+2025-03-02 00:28:01,956 - INFO - Database table created or already exists.
+2025-03-02 00:40:09,990 - INFO - Database table created or already exists.
+2025-03-02 00:50:10,294 - INFO - Database table created or already exists.
+2025-03-02 00:50:43,191 - ERROR - Validation error: [{'type': 'int_parsing', 'loc': ('body', 'year'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': ''}, {'type': 'float_parsing', 'loc': ('body', 'retail_srp'), 'msg': 'Input should be a valid number, unable to parse string as a number', 'input': ''}]
+2025-03-02 00:50:43,192 - ERROR - Validation error: [{'type': 'int_parsing', 'loc': ('body', 'year'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': ''}, {'type': 'float_parsing', 'loc': ('body', 'retail_srp'), 'msg': 'Input should be a valid number, unable to parse string as a number', 'input': ''}]
+2025-03-02 00:50:49,957 - ERROR - Validation error: [{'type': 'int_parsing', 'loc': ('body', 'year'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': ''}, {'type': 'float_parsing', 'loc': ('body', 'retail_srp'), 'msg': 'Input should be a valid number, unable to parse string as a number', 'input': ''}]
+2025-03-02 00:50:49,959 - ERROR - Validation error: [{'type': 'int_parsing', 'loc': ('body', 'year'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': ''}, {'type': 'float_parsing', 'loc': ('body', 'retail_srp'), 'msg': 'Input should be a valid number, unable to parse string as a number', 'input': ''}]
+2025-03-02 00:59:02,113 - ERROR - Validation error: [{'type': 'int_parsing', 'loc': ('body', 'year'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': ''}, {'type': 'float_parsing', 'loc': ('body', 'retail_srp'), 'msg': 'Input should be a valid number, unable to parse string as a number', 'input': ''}]
+2025-03-02 00:59:02,115 - ERROR - Validation error: [{'type': 'int_parsing', 'loc': ('body', 'year'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': ''}, {'type': 'float_parsing', 'loc': ('body', 'retail_srp'), 'msg': 'Input should be a valid number, unable to parse string as a number', 'input': ''}]
+2025-03-02 00:59:03,219 - ERROR - Validation error: [{'type': 'int_parsing', 'loc': ('body', 'year'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': ''}, {'type': 'float_parsing', 'loc': ('body', 'retail_srp'), 'msg': 'Input should be a valid number, unable to parse string as a number', 'input': ''}]
+2025-03-02 00:59:03,221 - ERROR - Validation error: [{'type': 'int_parsing', 'loc': ('body', 'year'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': ''}, {'type': 'float_parsing', 'loc': ('body', 'retail_srp'), 'msg': 'Input should be a valid number, unable to parse string as a number', 'input': ''}]
+2025-03-02 00:59:06,590 - ERROR - Validation error: [{'type': 'int_parsing', 'loc': ('body', 'year'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': ''}, {'type': 'float_parsing', 'loc': ('body', 'retail_srp'), 'msg': 'Input should be a valid number, unable to parse string as a number', 'input': ''}]
+2025-03-02 00:59:06,592 - ERROR - Validation error: [{'type': 'int_parsing', 'loc': ('body', 'year'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': ''}, {'type': 'float_parsing', 'loc': ('body', 'retail_srp'), 'msg': 'Input should be a valid number, unable to parse string as a number', 'input': ''}]
+2025-03-02 00:59:07,092 - ERROR - Validation error: [{'type': 'int_parsing', 'loc': ('body', 'year'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': ''}, {'type': 'float_parsing', 'loc': ('body', 'retail_srp'), 'msg': 'Input should be a valid number, unable to parse string as a number', 'input': ''}]
+2025-03-02 00:59:07,094 - ERROR - Validation error: [{'type': 'int_parsing', 'loc': ('body', 'year'), 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': ''}, {'type': 'float_parsing', 'loc': ('body', 'retail_srp'), 'msg': 'Input should be a valid number, unable to parse string as a number', 'input': ''}]
+2025-03-02 01:01:34,169 - INFO - Database table created or already exists.

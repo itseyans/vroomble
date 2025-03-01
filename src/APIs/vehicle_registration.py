@@ -18,10 +18,10 @@ db_file = os.path.join(".", "car_database.db")  # Relative path for simplicity
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins
+    allow_origins=["http://localhost:3000"],  # React app URL
     allow_credentials=True,
-    allow_methods=["*"],  # Allows all methods
-    allow_headers=["*"],  # Allows all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Configure logging
@@ -79,12 +79,12 @@ def create_table_if_not_exists(db_file):
                 Make TEXT,
                 Model TEXT,
                 Body_Type TEXT,
-                Variant TEXT
+                Variant TEXT,
                 Transmission TEXT,
                 Drivetrain TEXT,
                 Fuel_Type TEXT,
-                Year INTEGER,  
-                Retail_SRP FLOAT,
+                Year INTEGER,
+                Retail_SRP FLOAT
             )
         ''')
         conn.commit()
@@ -129,32 +129,33 @@ async def create_car_form(
         logger.error(f"Database error: {e}")
         raise DatabaseError(detail=f"Error saving to database: {e}")
 
+@app.get("/")
+async def root():
+    return {"message": "Vehicle registration API"}
 
 @app.get("/dropdown_options/")
 async def get_dropdown_options():
     """Returns the available options for dropdown menus."""
     return {
-        "makes": ["Toyota", "Mitsubishi", "Honda", "Ford", "Chevrolet"],
-        "body_types": ["SUV", "SEDAN", "UV", "COUPE", "HATCHBACK", "TRUCK", "VAN", "CONVERTIBLE", "WAGON", "MOTORCYCLE"],
+        "makes": ["Abarth", "Alfa Romeo", "Aston Martin", "Audi", "BAIC", "Bentley", "BMW",
+  "BYD", "Changan", "Chery", "Chevrolet", "Chrysler", "Citroën", "Daewoo",
+  "Daihatsu", "Dodge", "Dongfeng", "Ferrari", "Fiat", "Ford", "Foton", "GAC",
+  "Geely", "Great Wall", "Haima", "Haval", "Hino", "Honda", "Hyundai", "Isuzu",
+  "Jaguar", "Jeep", "JMC", "Kia", "Lamborghini", "Land Rover", "Lexus", "Lotus",
+  "Maserati", "Mazda", "McLaren", "Mercedes-Benz", "MG", "Mini", "Mitsubishi",
+  "Nissan", "Peugeot", "Porsche", "RAM", "Renault", "Rolls-Royce", "SsangYong",
+  "Subaru", "Suzuki", "Tata", "Toyota", "Volkswagen", "Volvo"],
+        "body_types": [
+            "Sedan", "Hatchback", "Coupe", "Convertible", "Wagon", "Fastback",
+            "SUV", "Crossover", "Pickup Truck", "Off-Road Vehicle", "Van", "Minivan (MPV)",
+            "Supercar", "Roadster", "Muscle Car", "Luxury Car",
+            "Pickup-Based SUV", "Microcar / Kei Car", "Panel Van", "Box Truck / Lorry",
+            "Bus / Coach", "Flatbed Truck", "Chassis Cab", "Motorcycle"
+        ],
         "transmissions": ["Automatic", "Manual", "CVT"],
         "drivetrains": ["FWD", "RWD", "AWD", "4WD"],
         "fuel_types": ["Unleaded", "Diesel", "Electric", "Hybrid"],
     }
-
-
-@app.get("/")
-async def root():
-    return {"message": "Vehicle registration API"}
-
-
-# Global exception handler
-@app.exception_handler(Exception)
-async def global_exception_handler(request: Request, exc: Exception):
-    logger.exception(f"Unhandled exception: {exc}")
-    return JSONResponse(
-        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-        content={"detail": "Internal server error"},
-    )
 
 # Exception handler for validation errors
 @app.exception_handler(RequestValidationError)
@@ -163,4 +164,12 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
     return JSONResponse(
         status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
         content={"detail": exc.errors()},
+    )
+
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    logger.exception(f"Unhandled exception: {exc}")
+    return JSONResponse(
+        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        content={"error": str(exc)}  # Ensure JSON response
     )

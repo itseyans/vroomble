@@ -63,44 +63,34 @@ async def register_car_part(car_part: CarPart):
         # Ensure directory exists.
         if not os.path.exists(db_dir):
             os.makedirs(db_dir)
-            print(f"Created directory: {db_dir}")
 
         conn = sqlite3.connect(db_file)
         cursor = conn.cursor()
 
-        # Check for duplicates based on part_name and model_number (if provided)
+        # Check for duplicates **ONLY** based on `model_number` (if provided)
         if car_part.model_number:
-            cursor.execute("SELECT COUNT(*) FROM car_parts WHERE part_name=? AND model_number=?", (car_part.part_name, car_part.model_number))
-        else:
-            cursor.execute("SELECT COUNT(*) FROM car_parts WHERE part_name=?", (car_part.part_name,))
+            cursor.execute("SELECT COUNT(*) FROM car_parts WHERE model_number=?", (car_part.model_number,))
+            existing_entry_count = cursor.fetchone()[0]
+            if existing_entry_count > 0:
+                raise HTTPException(status_code=400, detail="A car part with this model number already exists.")
 
-        existing_entry_count = cursor.fetchone()[0]
+        # Insert the car part data
+        cursor.execute('''
+            INSERT INTO car_parts (make, part_name, model_number, category, part_origSRP)
+            VALUES (?, ?, ?, ?, ?)
+        ''', (car_part.make, car_part.part_name, car_part.model_number, car_part.category, car_part.part_origSRP))
+        conn.commit()
+        conn.close()
 
-        if existing_entry_count > 0:
-            raise HTTPException(status_code=400, detail="A car part with that name and model number (or just name) already exists.")
-        else:
-            # Log the data being inserted
-            print(f"Inserting data: {car_part.make}, {car_part.part_name}, {car_part.model_number}, {car_part.category}, {car_part.part_origSRP}")
-
-            # Insert the car part data (using the correct field names)
-            cursor.execute('''
-                INSERT INTO car_parts (make, part_name, model_number, category, part_origSRP)
-                VALUES (?, ?, ?, ?, ?)
-            ''', (car_part.make, car_part.part_name, car_part.model_number, car_part.category, car_part.part_origSRP))
-            conn.commit()
-            print("Commit successful!")  # Added log after commit
-            conn.close()
-            print("Car part registered successfully")
-            return {"message": "Car part registered successfully"}
+        return {"message": "Car part registered successfully"}
 
     except sqlite3.Error as sqlite_err:
-        print(f"SQLite error: {sqlite_err}")
         raise HTTPException(status_code=500, detail=f"Database error: {sqlite_err}")
     except HTTPException as http_exception:
         raise http_exception
     except Exception as e:
-        print(f"Error registering car part: {e}")
         raise HTTPException(status_code=500, detail=f"Error registering car part: {e}")
+
 
 # API endpoint to handle form submission (modified to match form fields)
 @app.post("/car_parts/form/")
@@ -126,6 +116,10 @@ async def get_dropdown_options():
     return {
         "categories": ["Offroad", "Street", "Maintenance", "Sports", "Wheels", "Exterior", "Interior", "Tires"]
     }
+
+@app.post("http://localhost:3000/vehicle_registration")
+async def create_item(data: dict):
+    return {"message": "Data received!", "data": data}
 
 @app.get("/")
 async def root():
