@@ -47,11 +47,11 @@ class Car(BaseModel):
     make: str
     model: str
     body_type: str
+    variant: str = "N/A"
     transmission: str
     drivetrain: str
     fuel_type: str
     year: int
-    variant: str = "N/A"
     retail_srp: float  # Changed to float type
 
     @validator('year')
@@ -79,12 +79,12 @@ def create_table_if_not_exists(db_file):
                 Make TEXT,
                 Model TEXT,
                 Body_Type TEXT,
+                Variant TEXT
                 Transmission TEXT,
                 Drivetrain TEXT,
                 Fuel_Type TEXT,
-                Year INTEGER,
-                Retail_SRP TEXT,
-                Variant TEXT
+                Year INTEGER,  
+                Retail_SRP FLOAT,
             )
         ''')
         conn.commit()
