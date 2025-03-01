@@ -5,33 +5,35 @@ import Button from "./SignButton.js";
 const LForm = styled.div`
   padding: 20px;
   margin: 20px;
+  background: #ddd;
   border: 5px solid #ffc629;
   border-radius: 10px;
   width: 350px;
   height: 400px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const LInput = styled.input`
+  color: black;
   padding: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 15px;
+  margin-bottom: 30px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
-  width: 300px; /* Adjust as needed */
+  width: 100%;
   box-sizing: border-box;
 
   &:focus {
-    // Style on focus
-    border-color: #ffc629; // Example: Blue border
-    outline: none; // Remove default outline
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2); // Optional: Subtle shadow
+    border-color: #ffc629;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
   }
 `;
 
 const Label = styled.label`
-  position: relative;
-  left: -110px;
+  color: black;
   font-weight: bold;
 `;
 
@@ -42,37 +44,59 @@ const ErrorM = styled.p`
 `;
 
 function LoginForm({ label, placeholder, required, errorMessage }) {
-  const [inputValue, setInputValue] = useState("");
-  const [hasError, setHasError] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [usernameError, setUsernameError] = useState(false);
 
-  const handleChange = (event) => {
-    setInputValue(event.target.value);
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
 
-    // Basic validation (example: required field)
     if (required && event.target.value.trim() === "") {
-      setHasError(true);
+      setUsernameError(true);
     } else {
-      setHasError(false);
+      setUsernameError(false);
     }
   };
 
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if(required && username.trim() === ""){
+        setUsernameError(true);
+        return;
+    }
+    // Handle form submission logic here (e.g., send data to server)
+    console.log("Username:", username);
+    console.log("Password:", password);
+  };
+
   return (
-    <LForm>
-      <Label htmlFor="myInput">Username</Label>
+    <LForm onSubmit={handleSubmit}>
+      <Label htmlFor="Username">Username</Label>
       <LInput
         type="text"
         id="Username"
         placeholder="Username"
-        onChange={handleChange}
-        required={required} // Pass the required prop to the input
-        aria-invalid={hasError} // For accessibility
+        value={username}
+        onChange={handleUsernameChange}
+        required={required}
+        aria-invalid={usernameError}
       />
-      <LInput type="password" id="Password" placeholder="Password" />
-      {hasError && (
-        <ErrorMessage>{errorMessage || "This field is required"}</ErrorMessage>
-      )}{" "}
-      {/* Display error message */}
+      {usernameError && <ErrorM>{errorMessage || "This field is required"}</ErrorM>}
+      <Label htmlFor="Password">Password</Label>
+      <LInput
+        type="password"
+        id="Password"
+        placeholder="Password"
+        value={password}
+        onChange={handlePasswordChange}
+      />
+      <center>
       <Button type="submit">Login</Button>
+      </center>
     </LForm>
   );
 }

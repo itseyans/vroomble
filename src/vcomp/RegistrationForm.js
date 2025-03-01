@@ -4,7 +4,7 @@ import Button from "./SignButton.js";
 
 const FormContainer = styled.div`
   width: 660px;
-   height: auto;
+  height: auto;
   background: #ddd;
   border-radius: 20px;
   border: 5px solid #ffc629;
