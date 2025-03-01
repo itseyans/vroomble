@@ -3,13 +3,14 @@ import os
 import sqlite3
 from typing import Union
 from datetime import datetime
+from fastapi.responses import JSONResponse
+
 
 from fastapi import FastAPI, Form, HTTPException, Request, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel, validator
-
+from pydantic import BaseModel, field_validator 
 app = FastAPI()
 
 # Database file path
@@ -43,6 +44,7 @@ class DatabaseError(HTTPException):
 
 
 # Updated Car model with validation
+
 class Car(BaseModel):
     make: str
     model: str
@@ -52,19 +54,27 @@ class Car(BaseModel):
     drivetrain: str
     fuel_type: str
     year: int
-    retail_srp: float  # Changed to float type
+    retail_srp: float  
 
-    @validator('year')
+    @field_validator('year')
+    @classmethod
     def validate_year(cls, v):
         if v < 1886 or v > datetime.now().year + 1:
             raise ValueError('Invalid year')
         return v
 
-    @validator('retail_srp')
+    @field_validator('retail_srp')
+    @classmethod
     def validate_retail_srp(cls, v):
         if v <= 0:
             raise ValueError('Retail SRP must be positive')
         return v
+
+@app.post("/submit_form/")
+async def submit_form(request: Request):
+    body = await request.json()
+    print("Received Data:", body)  # Debugging
+    return {"message": "Received", "data": body}
 
 
 def create_table_if_not_exists(db_file):
@@ -136,26 +146,24 @@ async def root():
 @app.get("/dropdown_options/")
 async def get_dropdown_options():
     """Returns the available options for dropdown menus."""
-    return {
+    return JSONResponse(content={
         "makes": ["Abarth", "Alfa Romeo", "Aston Martin", "Audi", "BAIC", "Bentley", "BMW",
-  "BYD", "Changan", "Chery", "Chevrolet", "Chrysler", "Citroën", "Daewoo",
-  "Daihatsu", "Dodge", "Dongfeng", "Ferrari", "Fiat", "Ford", "Foton", "GAC",
-  "Geely", "Great Wall", "Haima", "Haval", "Hino", "Honda", "Hyundai", "Isuzu",
-  "Jaguar", "Jeep", "JMC", "Kia", "Lamborghini", "Land Rover", "Lexus", "Lotus",
-  "Maserati", "Mazda", "McLaren", "Mercedes-Benz", "MG", "Mini", "Mitsubishi",
-  "Nissan", "Peugeot", "Porsche", "RAM", "Renault", "Rolls-Royce", "SsangYong",
-  "Subaru", "Suzuki", "Tata", "Toyota", "Volkswagen", "Volvo"],
-        "body_types": [
-            "Sedan", "Hatchback", "Coupe", "Convertible", "Wagon", "Fastback",
-            "SUV", "Crossover", "Pickup Truck", "Off-Road Vehicle", "Van", "Minivan (MPV)",
-            "Supercar", "Roadster", "Muscle Car", "Luxury Car",
-            "Pickup-Based SUV", "Microcar / Kei Car", "Panel Van", "Box Truck / Lorry",
-            "Bus / Coach", "Flatbed Truck", "Chassis Cab", "Motorcycle"
-        ],
+                  "BYD", "Changan", "Chery", "Chevrolet", "Chrysler", "Citroën", "Daewoo",
+                  "Daihatsu", "Dodge", "Dongfeng", "Ferrari", "Fiat", "Ford", "Foton", "GAC",
+                  "Geely", "Great Wall", "Haima", "Haval", "Hino", "Honda", "Hyundai", "Isuzu",
+                  "Jaguar", "Jeep", "JMC", "Kia", "Lamborghini", "Land Rover", "Lexus", "Lotus",
+                  "Maserati", "Mazda", "McLaren", "Mercedes-Benz", "MG", "Mini", "Mitsubishi",
+                  "Nissan", "Peugeot", "Porsche", "RAM", "Renault", "Rolls-Royce", "SsangYong",
+                  "Subaru", "Suzuki", "Tata", "Toyota", "Volkswagen", "Volvo"],
+        "body_types": ["Sedan", "Hatchback", "Coupe", "Convertible", "Wagon", "Fastback",
+                       "SUV", "Crossover", "Pickup Truck", "Off-Road Vehicle", "Van", "Minivan (MPV)",
+                       "Supercar", "Roadster", "Muscle Car", "Luxury Car",
+                       "Pickup-Based SUV", "Microcar / Kei Car", "Panel Van", "Box Truck / Lorry",
+                       "Bus / Coach", "Flatbed Truck", "Chassis Cab", "Motorcycle"],
         "transmissions": ["Automatic", "Manual", "CVT"],
         "drivetrains": ["FWD", "RWD", "AWD", "4WD"],
         "fuel_types": ["Unleaded", "Diesel", "Electric", "Hybrid"],
-    }
+    })
 
 # Exception handler for validation errors
 @app.exception_handler(RequestValidationError)
