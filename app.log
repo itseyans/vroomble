@@ -976,3 +976,36 @@ json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
          with values ('TOYOTA', 'FORTUNER', 'SUV', 'CVT', 'RWD', 'Diesel', 2014, '1300000.00', 'G')
 2025-03-02 11:28:11,145 - INFO - Car added successfully: make='TOYOTA' model='FORTUNER' body_type='SUV' variant='G' transmission='CVT' drivetrain='RWD' fuel_type='Diesel' year=2014 retail_srp=1300000.0
+2025-03-02 11:35:39,244 - INFO - Database and table created successfully (if not already existing).
+2025-03-02 11:36:08,738 - INFO - Entering create_car_form function...
+2025-03-02 11:36:08,740 - INFO - Executing SQL: 
+            INSERT INTO cars (Make, Model, Body_Type, Transmission, Drivetrain, Fuel_Type, Year, Retail_SRP, Variant)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+         with values ('TOYOTA', 'FORTUNER', 'SUV', 'Automatic', 'RWD', 'Diesel', 2014, '1300000.00', 'G')
+2025-03-02 11:36:08,743 - INFO - Car added successfully: make='TOYOTA' model='FORTUNER' body_type='SUV' variant='G' transmission='Automatic' drivetrain='RWD' fuel_type='Diesel' year=2014 retail_srp=1300000.0
+2025-03-02 11:39:29,132 - INFO - Database and table created successfully (if not already existing).
+2025-03-02 11:39:50,371 - INFO - Entering create_car_form function...
+2025-03-02 11:39:50,371 - INFO - Executing SQL: 
+            INSERT INTO cars (Make, Model, Body_Type, Transmission, Drivetrain, Fuel_Type, Year, Retail_SRP, Variant)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+         with values ('TOYOTA', 'FORTUNER', 'SUV', 'CVT', 'RWD', 'Diesel', 2014, '1300000.00', 'G')
+2025-03-02 11:39:50,372 - ERROR - Database error: non-deterministic use of strftime() in a CHECK constraint
+2025-03-02 11:41:33,236 - INFO - Database and table created successfully (if not already existing).
+2025-03-02 11:41:49,913 - INFO - Entering create_car_form function...
+2025-03-02 11:41:49,913 - INFO - Executing SQL: 
+            INSERT INTO cars (Make, Model, Body_Type, Transmission, Drivetrain, Fuel_Type, Year, Retail_SRP, Variant)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+         with values ('TOYOTA', 'FORTUNER', 'SUV', 'CVT', 'RWD', 'Diesel', 2014, '1300000.00', 'G')
+2025-03-02 11:41:49,918 - INFO - Car added successfully: make='TOYOTA' model='FORTUNER' body_type='SUV' variant='G' transmission='CVT' drivetrain='RWD' fuel_type='Diesel' year=2014 retail_srp=1300000.0
+2025-03-02 11:45:05,673 - INFO - Entering create_car_form function...
+2025-03-02 11:45:05,674 - INFO - Executing SQL: 
+            INSERT INTO cars (Make, Model, Body_Type, Transmission, Drivetrain, Fuel_Type, Year, Retail_SRP, Variant)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+         with values ('MITSUBISHI', 'EVO X', 'Sedan', '', 'AWD', 'Unleaded', 2008, '2200000.00', 'MR')
+2025-03-02 11:45:05,676 - INFO - Car added successfully: make='MITSUBISHI' model='EVO X' body_type='Sedan' variant='MR' transmission='' drivetrain='AWD' fuel_type='Unleaded' year=2008 retail_srp=2200000.0
+2025-03-02 12:27:12,110 - INFO - Entering create_car_form function...
+2025-03-02 12:27:12,110 - INFO - Executing SQL: 
+            INSERT INTO cars (Make, Model, Body_Type, Transmission, Drivetrain, Fuel_Type, Year, Retail_SRP, Variant)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+         with values ('HYUNDAI', 'REINA', 'Sedan', 'Automatic', 'FWD', 'Unleaded', 2021, '700000.00', '')
+2025-03-02 12:27:12,114 - INFO - Car added successfully: make='HYUNDAI' model='REINA' body_type='Sedan' variant='' transmission='Automatic' drivetrain='FWD' fuel_type='Unleaded' year=2021 retail_srp=700000.0

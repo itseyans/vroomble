@@ -14,7 +14,8 @@ from pydantic import BaseModel, field_validator
 app = FastAPI()
 
 # Database file path
-db_file = os.path.join(".", "vehicle_database.db")  # Relative path for simplicity
+db_file = r"C:\Users\Sobre\OneDrive\Desktop\Vroomble\Vroomble Dataset\vehicle_database.db"
+print(f"Database file path: {db_file}")
 
 # CORS middleware
 app.add_middleware(
