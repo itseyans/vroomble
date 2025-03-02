@@ -136,6 +136,7 @@ const DropdownItem = styled.li`
   }
 `;
 
+
 const AddVehicle = () => {
   const [formData, setFormData] = useState({
     make: "",
@@ -148,6 +149,21 @@ const AddVehicle = () => {
     year: "",
     retail_srp: "",
   });
+
+  const SearchInput = styled.input` // 
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  font-size: 16px;
+  border-radius: 8px;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-bottom: 2px solid #ffc629;
+  }
+`;
 
   const [dropdowns, setDropdowns] = useState({
     body_type: false,
@@ -190,22 +206,6 @@ const [fuelTypes, setFuelTypes] = useState([]);
 
 
   const [bodyTypeSearchTerm, setBodyTypeSearchTerm] = useState(""); // Define it
-
-
-  const SearchInput = styled.input`
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-bottom: 1px solid #ccc;
-  font-size: 16px;
-  border-radius: 8px;
-  box-sizing: border-box;
-
-  &:focus {
-    outline: none;
-    border-bottom: 2px solid #ffc629;
-  }
-`;
 
   const dropdownRef = useRef(null);
 
@@ -305,17 +305,19 @@ const handleSubmit = async (e) => {
           <Column>
             <Label>Body Type</Label>
             <DropdownContainer ref={dropdownRef}>
-              <DropdownButton onClick={() => toggleDropdown("body_type")}>
+            <DropdownButton type="button" onClick={() => toggleDropdown("body_type")}>
                 {formData.body_type || "Select Body Type"}
               </DropdownButton>
               {dropdowns.body_type && (
                 <DropdownList>
                   <SearchInput
-                    type="text"
-                    placeholder="Search body types..."
-                    value={bodyTypeSearchTerm}
-                    onChange={(e) => setBodyTypeSearchTerm(e.target.value)}
-                  />
+  type="text"
+  placeholder="Search body types..."
+  value={bodyTypeSearchTerm}
+  onChange={(e) => setBodyTypeSearchTerm(e.target.value)}
+  onMouseDown={(e) => e.stopPropagation()} // Prevent dropdown from closing
+/>
+
                   {bodyTypes.length > 0 ? ( // Conditionally render the list
                     filteredBodyTypes.map((type) => (
                       <DropdownItem
@@ -347,7 +349,7 @@ const handleSubmit = async (e) => {
           <Column>
             <Label>Transmission</Label>
             <DropdownContainer>
-              <DropdownButton onClick={() => toggleDropdown("transmission")}>
+            <DropdownButton type="button" onClick={() => toggleDropdown("transmission")}>
                 {formData.transmission || "Select Transmission"}
               </DropdownButton>
               {dropdowns.transmission && (
@@ -367,7 +369,7 @@ const handleSubmit = async (e) => {
           <Column>
             <Label>Drivetrain</Label>
             <DropdownContainer>
-              <DropdownButton onClick={() => toggleDropdown("drivetrain")}>
+            <DropdownButton type="button" onClick={() => toggleDropdown("drivetrain")}>
                 {formData.drivetrain || "Select Drivetrain"}
               </DropdownButton>
               {dropdowns.drivetrain && (
@@ -389,7 +391,7 @@ const handleSubmit = async (e) => {
           <Column>
             <Label>Fuel Type</Label>
             <DropdownContainer>
-              <DropdownButton onClick={() => toggleDropdown("fuel_type")}>
+            <DropdownButton type="button" onClick={() => toggleDropdown("fuel_type")}>
                 {formData.fuel_type || "Select Fuel Type"}
               </DropdownButton>
               {dropdowns.fuel_type && (
@@ -409,7 +411,7 @@ const handleSubmit = async (e) => {
           <Column>
             <Label>Year</Label>
             <DropdownContainer>
-              <DropdownButton onClick={() => toggleDropdown("year")}>
+            <DropdownButton type="button" onClick={() => toggleDropdown("year")}>
                 {formData.year || "Select Year"}
               </DropdownButton>
               {dropdowns.year && (

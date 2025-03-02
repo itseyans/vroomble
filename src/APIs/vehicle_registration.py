@@ -14,7 +14,7 @@ from pydantic import BaseModel, field_validator
 app = FastAPI()
 
 # Database file path
-db_file = os.path.join(".", "car_database.db")  # Relative path for simplicity
+db_file = os.path.join(".", "vehicle_database.db")  # Relative path for simplicity
 
 # CORS middleware
 app.add_middleware(
@@ -70,74 +70,92 @@ class Car(BaseModel):
             raise ValueError('Retail SRP must be positive')
         return v
 
-@app.post("/submit_form/")
-async def submit_form(request: Request):
-    body = await request.json()
-    print("Received Data:", body)  # Debugging
-    return {"message": "Received", "data": body}
-
-
-def create_table_if_not_exists(db_file):
-    """Creates the cars table if it doesn't exist."""
+def create_table_if_not_exists():
+    """Ensures the database file and table exist before use."""
     try:
+        # ✅ Ensure database file is created
         conn = sqlite3.connect(db_file)
         cursor = conn.cursor()
-        cursor.execute("PRAGMA user_version = 1")
+
+        # ✅ Enable foreign keys (optional but good practice)
+        cursor.execute("PRAGMA foreign_keys = ON")
+
+        # ✅ Create the table if it doesn't exist
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS cars (
                 ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                Make TEXT,
-                Model TEXT,
-                Body_Type TEXT,
-                Variant TEXT,
-                Transmission TEXT,
-                Drivetrain TEXT,
-                Fuel_Type TEXT,
-                Year INTEGER,
-                Retail_SRP FLOAT
+                Make TEXT NOT NULL,
+                Model TEXT NOT NULL,
+                Body_Type TEXT NOT NULL,
+                Variant TEXT DEFAULT 'N/A',
+                Transmission TEXT NOT NULL,
+                Drivetrain TEXT NOT NULL,
+                Fuel_Type TEXT NOT NULL,
+                Year INTEGER NOT NULL,
+                Retail_SRP FLOAT NOT NULL CHECK(Retail_SRP > 0)
             )
         ''')
+
         conn.commit()
-        logger.info("Database table created or already exists.")
+        logger.info("Database and table created successfully (if not already existing).")
+        print("✅ Database and table initialized!")  # Debugging output
         conn.close()
+
     except sqlite3.Error as e:
-        logger.error(f"Error creating table: {e}")
-        raise DatabaseError(detail=f"Error creating table: {e}")
+        logger.error(f"Error initializing database: {e}")
+        raise DatabaseError(detail=f"Database initialization error: {e}")
+
+# ✅ Call function on startup
+create_table_if_not_exists()
+
+# --- Modified submit_form endpoint for validation ---
+@app.post("/submit_form/")
+async def submit_form(car_data: Car):  # Expect Car model for validation
+    """
+    Endpoint to receive and validate car form data.
+    If data is valid, it proceeds to save it to the database.
+    """
+    print("Received Data for Validation:", car_data) # Logging received data
+
+    # If validation passes (FastAPI will automatically validate against the Car model),
+    # proceed to save the data.  We can directly call the create_car_form function here.
+    return await create_car_form(car_data) # Call create_car_form to save
 
 
-create_table_if_not_exists(db_file)
-
-
-# Modified endpoint to accept JSON
+# --- cars/form endpoint for database saving (keep this as is) ---
 @app.post("/cars/form/")
-async def create_car_form(
-    car_data: Car  # Receive as JSON body instead of form-data
-):
+async def create_car_form(car_data: Car):
+    logger.info("Entering create_car_form function...")  # ADD THIS LINE
+
     try:
         conn = sqlite3.connect(db_file)
         cursor = conn.cursor()
 
-        # Convert SRP to string with 2 decimal places for storage
         srp_str = f"{car_data.retail_srp:.2f}"
 
-        cursor.execute('''
+        sql_query = '''
             INSERT INTO cars (Make, Model, Body_Type, Transmission, Drivetrain, Fuel_Type, Year, Retail_SRP, Variant)
-            VALUES (?,?,?,?,?,?,?,?,?)
-        ''', (
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        '''
+        values = (
             car_data.make, car_data.model, car_data.body_type,
             car_data.transmission, car_data.drivetrain, car_data.fuel_type,
             car_data.year, srp_str, car_data.variant
-        ))
+        )
 
+        # Log the query before execution
+        logger.info(f"Executing SQL: {sql_query} with values {values}")
+
+        cursor.execute(sql_query, values)
         conn.commit()
-        logger.info(f"Car added: {car_data}")
+        conn.close()
+
+        logger.info(f"Car added successfully: {car_data}")
         return {"message": "Car model saved successfully"}
 
-    except sqlite3.IntegrityError:
-        raise CarAlreadyExistsError()
     except sqlite3.Error as e:
         logger.error(f"Database error: {e}")
-        raise DatabaseError(detail=f"Error saving to database: {e}")
+        return JSONResponse(status_code=500, content={"error": f"Database error: {e}"})
 
 @app.get("/")
 async def root():
