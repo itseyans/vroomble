@@ -1,3 +1,4 @@
+// frontend/src/RegistrationForm.js (React)
 import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "./SignButton.js";
@@ -45,7 +46,7 @@ const LInput = styled.input`
   border: 1px solid #ccc;
   border-radius: 12px;
   font-size: 16px;
-  width: 300px; /* Fixed width */
+  width: 300px;
   box-sizing: border-box;
 
   &:focus {
@@ -97,11 +98,45 @@ function RegistrationForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      alert("Registration Successful!");
-      console.log("User Data:", formData);
+      try {
+        const response = await fetch("http://127.0.0.1:8000/register/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            contactNumber: formData.contactNumber,
+            email: formData.email,
+            password: formData.password,
+          }),
+        });
+
+        if (response.ok) {
+          alert("Registration Successful!");
+          console.log("User Data:", formData);
+          // Optionally clear form data after successful submission
+          setFormData({
+            firstName: "",
+            lastName: "",
+            contactNumber: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+          });
+          setErrors({}); // Clear errors
+        } else {
+          const errorData = await response.json();
+          alert(`Registration Failed: ${JSON.stringify(errorData)}`);
+        }
+      } catch (error) {
+        console.error("Error during registration:", error);
+        alert("An error occurred during registration.");
+      }
     }
   };
 
