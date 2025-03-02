@@ -241,7 +241,7 @@ const handleSubmit = async (e) => {
   console.log("Formatted Data being sent:", JSON.stringify(formattedData, null, 2)); 
 
   try {
-    const response = await fetch("http://localhost:8000/submit_form/", {
+    const response = await fetch("http://localhost:8000/cars/form/", { // <-- IMPORTANT: Keep pointing to /submit_form/
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formattedData),
@@ -250,7 +250,7 @@ const handleSubmit = async (e) => {
     if (!response.ok) {
       const errorText = await response.text();
       throw new Error(`HTTP error! Status: ${response.status}, Response: ${errorText}`);
-    }
+   }
 
     const data = await response.json();
     console.log("Server Response:", data);
