@@ -40,6 +40,7 @@ const Title = styled.h2`
 `;
 
 const Label = styled.label`
+  margin-right: 300px;
   color: black;
   font-weight: bold;
 `;
@@ -54,6 +55,7 @@ function LoginForm({ label, placeholder, required, errorMessage }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [usernameError, setUsernameError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -67,6 +69,12 @@ function LoginForm({ label, placeholder, required, errorMessage }) {
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
+
+    if (required && event.target.value.trim() === "") {
+      setPasswordError(true);
+    } else {
+      setPasswordError(false);
+    }
   };
 
   const handleSubmit = (event) => {
@@ -94,6 +102,7 @@ function LoginForm({ label, placeholder, required, errorMessage }) {
         aria-invalid={usernameError}
       />
       {usernameError && <ErrorM>{errorMessage || "This field is required"}</ErrorM>}
+
       <Label htmlFor="Password">Password</Label>
       <LInput
         type="password"
@@ -101,7 +110,11 @@ function LoginForm({ label, placeholder, required, errorMessage }) {
         placeholder="Password"
         value={password}
         onChange={handlePasswordChange}
+        required={required}
+        aria-invalid={passwordError}
       />
+       {passwordError && <ErrorM>{errorMessage || "This field is required"}</ErrorM>}
+
       <center>
       <Button type="submit">Login</Button>
       </center>

@@ -34,7 +34,6 @@ const StyledLabel = styled.label`
   color: black;
   font-weight: bold;
   align-self: flex-start;
-  margin-left: 30px;
   margin-bottom: 5px;
 `;
 
