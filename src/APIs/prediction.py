@@ -7,8 +7,8 @@ import joblib
 app = FastAPI()
 
 # ✅ Load trained model and scaler from Jupyter Notebook
-model = joblib.load("trained_model.pkl")
-scaler = joblib.load("scaler.pkl")
+model = joblib.load(r"C:\Users\HP\Documents\GitHub\vroomble\src\AI\trained_model.pkl")
+scaler = joblib.load(r"C:\Users\HP\Documents\GitHub\vroomble\src\AI\scaler.pkl")
 
 # ✅ Load dataset from Excel
 dataset_path = r"C:\Users\HP\Documents\GitHub\vroomble\Vroomble Dataset\vroomble_car_datasets.xlsx"
