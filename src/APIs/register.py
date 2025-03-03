@@ -1,7 +1,6 @@
-from fastapi import FastAPI, HTTPException
+# backend/Register.py
+from fastapi import FastAPI, Depends, HTTPException
 from pydantic import BaseModel
-import sqlite3
-import os  # Import the os module
 from passlib.context import CryptContext
 from fastapi.middleware.cors import CORSMiddleware
 
