@@ -1,10 +1,6 @@
 # backend/Register.py
 from fastapi import FastAPI, Depends, HTTPException
-from sqlalchemy import create_engine, Column, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
 from pydantic import BaseModel
-from sqlalchemy.orm import Session
 from passlib.context import CryptContext
 from fastapi.middleware.cors import CORSMiddleware
 
