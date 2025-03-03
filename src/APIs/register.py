@@ -4,25 +4,11 @@ from pydantic import BaseModel
 from passlib.context import CryptContext
 from fastapi.middleware.cors import CORSMiddleware
 
-DATABASE_URL = "sqlite:///./users.db" # SQLite database file in the same directory
-engine = create_engine(DATABASE_URL)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-Base = declarative_base()
+DATABASE_DIR = r"C:\Users\456\Desktop\setj\Vroomble Dataset" #using raw string to avoid escape sequence issues.
+DATABASE_FILE = "users.db"
+DATABASE_URL = os.path.join(DATABASE_DIR, DATABASE_FILE) #use os.path.join for path creation.
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
-class User(Base):
-    __tablename__ = "users"
-
-    id = Column(Integer, primary_key=True, index=True)
-    firstName = Column(String)
-    lastName = Column(String)
-    contactNumber = Column(String)
-    email = Column(String, unique=True, index=True)
-    hashed_password = Column(String)
-
-Base.metadata.create_all(bind=engine)
 
 class UserCreate(BaseModel):
     firstName: str
@@ -48,31 +34,60 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
 def get_password_hash(password):
     return pwd_context.hash(password)
 
+def create_table():
+    conn = sqlite3.connect(DATABASE_URL)
+    cursor = conn.cursor()
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            firstName TEXT,
+            lastName TEXT,
+            contactNumber TEXT,
+            email TEXT UNIQUE,
+            hashed_password TEXT
+        )
+    """)
+    conn.commit()
+    conn.close()
+
+create_table()  # Ensure the table exists on startup
+
 @app.post("/register/")
-def create_user(user: UserCreate, db: Session = Depends(get_db)):
+def create_user(user: UserCreate):
     hashed_password = get_password_hash(user.password)
-    db_user = User(
-        firstName=user.firstName,
-        lastName=user.lastName,
-        contactNumber=user.contactNumber,
-        email=user.email,
-        hashed_password=hashed_password,
-    )
-    db.add(db_user)
+    conn = sqlite3.connect(DATABASE_URL)
+    cursor = conn.cursor()
     try:
-        db.commit()
-        db.refresh(db_user)
-        return db_user
+        cursor.execute("""
+            INSERT INTO users (firstName, lastName, contactNumber, email, hashed_password)
+            VALUES (?, ?, ?, ?, ?)
+        """, (user.firstName, user.lastName, user.contactNumber, user.email, hashed_password))
+        conn.commit()
+        user_id = cursor.lastrowid
+        cursor.execute("SELECT * FROM users WHERE id = ?", (user_id,))
+        result = cursor.fetchone()
+
+        conn.close()
+
+        if result:
+            return {
+                "id": result[0],
+                "firstName": result[1],
+                "lastName": result[2],
+                "contactNumber": result[3],
+                "email": result[4]
+            }
+        else:
+            raise HTTPException(status_code=500, detail="Failed to retrieve user after creation")
+
+    except sqlite3.IntegrityError as e:
+        conn.rollback()
+        conn.close()
+        raise HTTPException(status_code=400, detail="Email already registered")
     except Exception as e:
-        db.rollback()
+        conn.rollback()
+        conn.close()
         raise HTTPException(status_code=400, detail=str(e))
