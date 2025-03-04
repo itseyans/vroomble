@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 // Import your icon images (replace with actual paths)
-import carIcon from "./caricon.png"; // Example: car-icon.png
-import vehicleIcon from "./caricon.png"; // Example: vehicle-icon.png
-import userIcon from "./usericon.png"; // Example: user-icon.png
-import sellerIcon from "./usericon.png"; // Example: seller-icon.png
+import carIcon from "../../images/caricon.png";
+import vehicleIcon from "../../images/caricon.png"; 
+import userIcon from "../../images/usericon.png";
+import sellerIcon from "../../images/usericon.png";
 
 const NavBarContainer = styled.nav`
   background-color: #ffc629; /* Yellow background */
@@ -23,7 +23,7 @@ const NavItem = styled.div`
   background-color: #f0f0f0; /* Light gray box */
   border-radius: 10px;
   padding: 1rem;
-  width: 200px; /* Adjust width as needed */
+  width: 50px; /* Adjust width as needed */
   text-align: center;
 `;
 
@@ -43,7 +43,13 @@ const NavIcon = styled.img`
   height: 50px;
 `;
 
-const YellowNavBar = ({ users, vehicles, registeredCars, sellers }) => {
+const YellowNavBar = () => {
+  // Define the data for the counts here
+  const users = 100;
+  const vehicles = 50;
+  const registeredCars = 200;
+  const sellers = 20;
+
   return (
     <NavBarContainer>
       <NavItem>

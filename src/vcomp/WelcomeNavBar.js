@@ -19,6 +19,8 @@ const NavBarContainer = styled.nav`
 const NavItems = styled.div`
   display: flex;
   align-items: center;
+  justify-content: flex end;
+  width:100%;
 `;
 
 const NavItem = styled.a`
@@ -77,7 +79,7 @@ const LoginButton = styled.button`
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-left: 850px;
+  margin-left: 700px;
 `;
 
 const PageContainer = styled.div`
