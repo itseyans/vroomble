@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import styled from "styled-components";
 import RegistrationForm from "./RegistrationForm.js";
 import LoginForm from "./LoginForm.js";
@@ -13,26 +12,12 @@ const NavBarContainer = styled.nav`
   display: flex;
   align-items: center;
   padding: 1rem;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 const NavItems = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex end;
-  width:100%;
-`;
-
-const NavItem = styled.a`
-  color: gold;
-  text-decoration: none;
-  margin: 0 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-
-  &:hover {
-    background-color: rgba(255, 215, 0, 0.2);
-  }
 `;
 
 const LogoContainer = styled.div`
@@ -69,7 +54,7 @@ const RegisterButton = styled.button`
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-left: 1rem;
+  margin-left: 50px;
 `;
 
 const LoginButton = styled.button`
@@ -79,17 +64,7 @@ const LoginButton = styled.button`
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-left: 700px;
-`;
-
-const PageContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #131415;
-  color: gold;
-  flex-direction: column;
+  margin-left: 1100px;
 `;
 
 const WelcomeNavBar = () => {
