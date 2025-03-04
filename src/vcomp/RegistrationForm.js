@@ -46,7 +46,7 @@ const LInput = styled.input`
   border: 1px solid #ccc;
   border-radius: 12px;
   font-size: 16px;
-  width: 300px; 
+  width: 300px;
   box-sizing: border-box;
 
   &:focus {
@@ -84,8 +84,7 @@ function RegistrationForm() {
   const validateForm = () => {
     let newErrors = {};
 
-    if (!formData.firstName.trim())
-      newErrors.firstName = "First Name is required";
+    if (!formData.firstName.trim()) newErrors.firstName = "First Name is required";
     if (!formData.lastName.trim()) newErrors.lastName = "Last Name is required";
     if (!formData.contactNumber.trim())
       newErrors.contactNumber = "Contact Number is required";
@@ -98,11 +97,30 @@ function RegistrationForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      alert("Registration Successful!");
-      console.log("User Data:", formData);
+      try {
+        const { confirmPassword, ...dataToSend } = formData;
+        const response = await fetch("http://localhost:8000/register/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dataToSend),
+        });
+
+        if (response.ok) {
+          alert("Registration Successful!");
+          console.log("User Data:", formData);
+        } else {
+          const errorData = await response.json();
+          alert(`Registration failed: ${errorData.error || "Unknown error"}`);
+        }
+      } catch (error) {
+        console.error("Error during registration:", error);
+        alert("An error occurred during registration.");
+      }
     }
   };
 

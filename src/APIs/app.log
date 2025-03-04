@@ -431,3 +431,374 @@
 2025-03-02 01:01:34,169 - INFO - Database table created or already exists.
 2025-03-02 01:28:28,463 - INFO - Database table created or already exists.
 2025-03-02 01:29:51,631 - INFO - Database table created or already exists.
+2025-03-04 18:18:55,103 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
+2025-03-04 18:18:55,132 - INFO - Local database table 'users' created (if not already existing).
+2025-03-04 18:18:55,166 - INFO - Will watch for changes in these directories: ['C:\\Users\\456\\Desktop\\setj\\src\\APIs']
+2025-03-04 18:18:55,174 - INFO - Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+2025-03-04 18:18:55,182 - INFO - Started reloader process [6900] using WatchFiles
+2025-03-04 18:18:57,460 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
+2025-03-04 18:18:57,463 - INFO - Local database table 'users' created (if not already existing).
+2025-03-04 18:18:57,466 - INFO - Started server process [12616]
+2025-03-04 18:18:57,473 - INFO - Waiting for application startup.
+2025-03-04 18:18:57,477 - INFO - Application startup complete.
+2025-03-04 18:19:09,773 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:10,137 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:10,500 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:10,866 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:11,229 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:11,592 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:11,957 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:12,316 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:12,674 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:13,035 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:13,397 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:13,761 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:14,125 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:14,490 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:14,850 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:15,215 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:15,581 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:15,941 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:16,302 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:16,682 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:17,046 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:17,409 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:17,776 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:18,143 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:18,506 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:18,871 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:19,223 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:19,589 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:19,951 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:20,314 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:20,678 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:21,030 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:21,395 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:21,762 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:22,124 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:22,483 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:22,844 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:23,205 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:23,566 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:23,922 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:24,280 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:24,644 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:25,009 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:25,372 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:25,737 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:26,096 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:26,464 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:26,826 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:27,190 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:27,552 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:27,912 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:28,278 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:28,638 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:29,000 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:29,373 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:29,738 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:30,100 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:30,460 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:30,821 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:31,182 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:31,542 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:31,901 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:32,258 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:32,620 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:32,981 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:33,346 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:33,711 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:34,068 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:34,435 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:34,794 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:35,159 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:35,521 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:35,882 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:36,244 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:36,605 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:36,970 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:37,329 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:37,688 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:38,053 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:38,416 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:38,776 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:39,134 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:39,493 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:39,856 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:40,222 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:40,583 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:40,947 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:41,340 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:41,706 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:42,071 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:42,431 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:42,790 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:43,152 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:43,514 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:43,875 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:44,241 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:44,605 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:44,963 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:45,321 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:45,683 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:46,076 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:46,439 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:46,802 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:47,161 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:47,521 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:47,884 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:48,300 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:48,652 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:49,054 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:49,467 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:49,881 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:50,292 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:50,705 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:51,066 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:51,478 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:51,901 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:52,261 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:52,669 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:53,073 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:53,482 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:53,896 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:54,260 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:54,675 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:55,091 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:55,450 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:55,865 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:56,277 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:56,639 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:57,044 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:57,457 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:57,868 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:58,229 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:58,642 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:59,058 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:59,472 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:19:59,833 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:00,287 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:00,651 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:01,060 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:01,465 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:01,870 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:02,290 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:02,703 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:03,116 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:03,525 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:03,932 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:04,298 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:04,718 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:05,121 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:05,525 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:05,930 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:06,341 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:06,707 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:07,122 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:07,530 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:07,895 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:08,308 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:08,719 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:09,077 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:09,490 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:09,908 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:10,318 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:10,682 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:11,095 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:11,500 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:11,906 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:12,309 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:12,715 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:13,127 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:13,540 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:13,898 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:14,304 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:14,719 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:15,134 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:15,543 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:15,947 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:16,354 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:16,757 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:17,167 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:17,527 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:17,930 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:18,337 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:18,744 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:19,155 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:19,513 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:19,928 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:20,343 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:20,705 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:21,120 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:21,533 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:21,940 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:22,355 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:22,717 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:23,122 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:23,538 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:23,944 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:24,354 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:24,763 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:25,121 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:25,532 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:25,941 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:26,352 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:26,711 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:27,124 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:27,532 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:27,943 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:28,354 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:28,716 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:29,126 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:29,535 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:29,938 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:30,300 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:30,714 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:31,051 - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\456\AppData\Local\Programs\Python\Python313\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-03-04 18:20:31,085 - DEBUG - detected 'bcrypt' backend, version '<unknown>'
+2025-03-04 18:20:31,085 - DEBUG - 'bcrypt' backend lacks $2$ support, enabling workaround
+2025-03-04 18:20:31,139 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:31,498 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:31,850 - DEBUG - 3 changes detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\users.db'), (<Change.deleted: 3>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\users.db-journal'), (<Change.added: 1>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\users.db-journal')}
+2025-03-04 18:20:32,204 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:32,558 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:32,912 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:33,265 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:33,620 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:34,028 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:34,436 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:34,847 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:35,250 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:35,611 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:36,027 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:36,437 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:36,796 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:37,210 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:37,619 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:38,030 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:38,439 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:38,799 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:39,221 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:39,636 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:39,996 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:40,409 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:40,816 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:41,228 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:41,589 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:41,994 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:42,399 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:42,808 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:43,171 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:43,582 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:43,994 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:44,407 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:44,817 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:45,226 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:45,585 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:45,995 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:46,407 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:46,815 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:47,223 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:47,580 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:47,990 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:48,395 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:48,804 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:49,212 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:49,571 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:49,986 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:50,391 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:50,805 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:51,303 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:51,721 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:52,127 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:52,487 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:52,899 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:53,306 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:53,668 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\app.log')}
+2025-03-04 18:20:53,973 - INFO - Shutting down
+2025-03-04 18:20:54,083 - INFO - Waiting for application shutdown.
+2025-03-04 18:20:54,086 - INFO - Application shutdown complete.
+2025-03-04 18:20:54,088 - INFO - Finished server process [12616]
+2025-03-04 18:20:54,208 - INFO - Stopping reloader process [6900]
+2025-03-04 18:24:00,834 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
+2025-03-04 18:24:00,837 - INFO - Local database table 'users' created (if not already existing).
+2025-03-04 18:24:00,867 - INFO - Will watch for changes in these directories: ['C:\\Users\\456\\Desktop\\setj\\src\\APIs']
+2025-03-04 18:24:00,874 - INFO - Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+2025-03-04 18:24:00,878 - INFO - Started reloader process [1632] using WatchFiles
+2025-03-04 18:24:02,567 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
+2025-03-04 18:24:02,569 - INFO - Local database table 'users' created (if not already existing).
+2025-03-04 18:24:02,574 - INFO - Started server process [14140]
+2025-03-04 18:24:02,589 - INFO - Waiting for application startup.
+2025-03-04 18:24:02,600 - INFO - Application startup complete.
+2025-03-04 18:24:08,183 - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\456\AppData\Local\Programs\Python\Python313\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-03-04 18:24:08,187 - DEBUG - detected 'bcrypt' backend, version '<unknown>'
+2025-03-04 18:24:08,187 - DEBUG - 'bcrypt' backend lacks $2$ support, enabling workaround
+2025-03-04 18:24:08,718 - DEBUG - 3 changes detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\users.db'), (<Change.deleted: 3>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\users.db-journal'), (<Change.added: 1>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\users.db-journal')}
+2025-03-04 18:25:34,592 - DEBUG - 1 change detected: {(<Change.added: 1>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\users.db-journal')}
+2025-03-04 18:26:10,111 - ERROR - Database error during user registration: database is locked
+2025-03-04 18:26:16,107 - ERROR - Database error during user registration: database is locked
+2025-03-04 18:26:18,324 - DEBUG - 3 changes detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\users.db'), (<Change.deleted: 3>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\users.db-journal'), (<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\users.db-journal')}
+2025-03-04 18:26:22,670 - ERROR - Database error during user registration: UNIQUE constraint failed: users.email
+2025-03-04 18:26:35,242 - ERROR - Database error during user registration: database is locked
+2025-03-04 18:26:41,239 - ERROR - Database error during user registration: database is locked
+2025-03-04 18:26:41,455 - INFO - Shutting down
+2025-03-04 18:26:41,565 - INFO - Waiting for application shutdown.
+2025-03-04 18:26:41,568 - INFO - Application shutdown complete.
+2025-03-04 18:26:41,569 - INFO - Finished server process [14140]
+2025-03-04 18:26:41,698 - INFO - Stopping reloader process [1632]
+2025-03-04 18:26:44,164 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
+2025-03-04 18:26:44,167 - INFO - Local database table 'users' created (if not already existing).
+2025-03-04 18:26:44,275 - INFO - Will watch for changes in these directories: ['C:\\Users\\456\\Desktop\\setj\\src\\APIs']
+2025-03-04 18:26:44,283 - INFO - Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+2025-03-04 18:26:44,288 - INFO - Started reloader process [2328] using WatchFiles
+2025-03-04 18:26:46,293 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
+2025-03-04 18:26:46,295 - INFO - Local database table 'users' created (if not already existing).
+2025-03-04 18:26:46,299 - INFO - Started server process [4512]
+2025-03-04 18:26:46,307 - INFO - Waiting for application startup.
+2025-03-04 18:26:46,309 - INFO - Application startup complete.
+2025-03-04 18:26:48,157 - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\456\AppData\Local\Programs\Python\Python313\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-03-04 18:26:48,159 - DEBUG - detected 'bcrypt' backend, version '<unknown>'
+2025-03-04 18:26:48,159 - DEBUG - 'bcrypt' backend lacks $2$ support, enabling workaround
+2025-03-04 18:26:48,662 - DEBUG - 1 change detected: {(<Change.added: 1>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\users.db-journal')}
+2025-03-04 18:26:49,014 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\users.db-journal')}
+2025-03-04 18:26:49,416 - DEBUG - 1 change detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\users.db-journal')}
+2025-03-04 18:26:49,872 - DEBUG - 3 changes detected: {(<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\users.db'), (<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\users.db-journal'), (<Change.deleted: 3>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\users.db-journal')}
+2025-03-04 18:26:53,946 - INFO - Shutting down
+2025-03-04 18:26:54,056 - INFO - Waiting for application shutdown.
+2025-03-04 18:26:54,058 - INFO - Application shutdown complete.
+2025-03-04 18:26:54,060 - INFO - Finished server process [4512]
+2025-03-04 18:26:54,178 - INFO - Stopping reloader process [2328]
+2025-03-04 18:29:04,470 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
+2025-03-04 18:29:05,548 - INFO - Local database table 'users' created (if not already existing).
+2025-03-04 18:29:05,610 - INFO - Will watch for changes in these directories: ['C:\\Users\\456\\Desktop\\setj\\src\\APIs']
+2025-03-04 18:29:05,622 - INFO - Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+2025-03-04 18:29:05,627 - INFO - Started reloader process [12860] using WatchFiles
+2025-03-04 18:29:08,463 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
+2025-03-04 18:29:08,467 - INFO - Local database table 'users' created (if not already existing).
+2025-03-04 18:29:08,471 - INFO - Started server process [4384]
+2025-03-04 18:29:08,530 - INFO - Waiting for application startup.
+2025-03-04 18:29:08,532 - INFO - Application startup complete.
+2025-03-04 18:29:37,715 - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\456\AppData\Local\Programs\Python\Python313\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-03-04 18:29:37,718 - DEBUG - detected 'bcrypt' backend, version '<unknown>'
+2025-03-04 18:29:37,718 - DEBUG - 'bcrypt' backend lacks $2$ support, enabling workaround
+2025-03-04 18:29:38,299 - DEBUG - 3 changes detected: {(<Change.deleted: 3>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\users.db-journal'), (<Change.modified: 2>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\users.db'), (<Change.added: 1>, 'C:\\Users\\456\\Desktop\\setj\\src\\APIs\\users.db-journal')}
