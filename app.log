@@ -1118,3 +1118,88 @@ TypeError: Object of type ValueError is not JSON serializable
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
          with values ('Chevrolet', 'Suburvan', 'SUV', 'Automatic', '4WD', 'Unleaded', 2024, '8634888.00', 'Z71')
 2025-03-03 01:03:27,277 - INFO - Car added successfully: make='Chevrolet' model='Suburvan' body_type='SUV' variant='Z71' transmission='Automatic' drivetrain='4WD' fuel_type='Unleaded' year=2024 retail_srp=8634888.0
+2025-03-04 22:57:12,687 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
+2025-03-04 22:57:12,698 - INFO - Local database table 'users' created (if not already existing).
+2025-03-04 22:58:05,802 - DEBUG - bcrypt 'builtin' backend not enabled via $PASSLIB_BUILTIN_BCRYPT
+2025-03-04 22:58:05,803 - ERROR - Error during registration: bcrypt: no backends available -- recommend you install one (e.g. 'pip install bcrypt')
+Traceback (most recent call last):
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\src\APIs\register.py", line 78, in register_user
+    hashed_password = hash_password(registration_data.password)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\src\APIs\register.py", line 45, in hash_password
+    return pwd_context.hash(password)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\passlib\context.py", line 2258, in hash
+    return record.hash(secret, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\passlib\utils\handlers.py", line 779, in hash
+    self.checksum = self._calc_checksum(secret)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\passlib\utils\handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\passlib\utils\handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\passlib\utils\handlers.py", line 2176, in set_backend
+    raise default_error
+passlib.exc.MissingBackendError: bcrypt: no backends available -- recommend you install one (e.g. 'pip install bcrypt')
+2025-03-04 22:59:07,532 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
+2025-03-04 22:59:07,536 - INFO - Local database table 'users' created (if not already existing).
+2025-03-04 22:59:11,721 - DEBUG - bcrypt 'builtin' backend not enabled via $PASSLIB_BUILTIN_BCRYPT
+2025-03-04 22:59:11,721 - ERROR - Error during registration: bcrypt: no backends available -- recommend you install one (e.g. 'pip install bcrypt')
+Traceback (most recent call last):
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\src\APIs\register.py", line 78, in register_user
+    hashed_password = hash_password(registration_data.password)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\src\APIs\register.py", line 45, in hash_password
+    return pwd_context.hash(password)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\passlib\context.py", line 2258, in hash
+    return record.hash(secret, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\passlib\utils\handlers.py", line 779, in hash
+    self.checksum = self._calc_checksum(secret)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\passlib\utils\handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\passlib\utils\handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\passlib\utils\handlers.py", line 2176, in set_backend
+    raise default_error
+passlib.exc.MissingBackendError: bcrypt: no backends available -- recommend you install one (e.g. 'pip install bcrypt')
+2025-03-04 22:59:31,446 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
+2025-03-04 22:59:31,447 - INFO - Local database table 'users' created (if not already existing).
+2025-03-04 22:59:35,171 - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-03-04 22:59:35,172 - DEBUG - detected 'bcrypt' backend, version '<unknown>'
+2025-03-04 22:59:35,172 - DEBUG - 'bcrypt' backend lacks $2$ support, enabling workaround
+2025-03-04 23:05:47,629 - ERROR - Database error during user registration: UNIQUE constraint failed: users.email
+2025-03-04 23:07:24,914 - ERROR - Database error during user registration: database is locked
+2025-03-04 23:07:25,326 - ERROR - Database error during user registration: UNIQUE constraint failed: users.email
+2025-03-04 23:12:07,707 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
+2025-03-04 23:12:07,707 - ERROR - Error connecting to cloud database: connect() got an unexpected keyword argument 'token'
+2025-03-04 23:13:29,072 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
+2025-03-04 23:13:29,073 - ERROR - Error connecting to cloud database: connect() got an unexpected keyword argument 'token'
+2025-03-04 23:13:47,530 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
+2025-03-04 23:13:47,530 - ERROR - Error connecting to cloud database: connect() got an unexpected keyword argument 'token'
+2025-03-04 23:17:47,180 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
+2025-03-04 23:17:47,537 - DEBUG - cannot commit - no transaction is active
+2025-03-04 23:17:47,538 - INFO - Cloud database table 'users' created (if not already existing).
+2025-03-04 23:21:06,682 - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-03-04 23:21:06,684 - DEBUG - detected 'bcrypt' backend, version '<unknown>'
+2025-03-04 23:21:06,684 - DEBUG - 'bcrypt' backend lacks $2$ support, enabling workaround
+2025-03-04 23:21:07,266 - DEBUG - cannot commit - no transaction is active
