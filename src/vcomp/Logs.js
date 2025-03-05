@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import MaintenanceLogsButton from "./MaintenanceLogsButton";
 
 const LogsContainer = styled.div`
   width: 300px;
@@ -29,25 +30,41 @@ const LogItem = styled.div`
   text-align: left;
 `;
 
-const ViewAllButton = styled.button`
-  background-color: #f0f0f0;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 30px; /* Added margin-top to create space */
+const LogDate = styled.span`
+  font-weight: bold; // Add styling for LogDate here
+`;
+
+const LogDescription = styled.span`
+  // Add styling for LogDescription here
+`;
+
+const ViewAllButtonContainer = styled.div`
+  text-align: center;
+  margin-top: 20px;
 `;
 
 const MaintenanceLogs = ({ logs }) => {
+  const [logsData] = useState([
+    { id: 1, date: "02/12/25", description: "Oil Change" },
+    { id: 2, date: "02/05/25", description: "Wrap" },
+    { id: 3, date: "01/25/25", description: "Battery" },
+  ]);
+
   return (
     <LogsContainer>
       <Title>| ALL LOGS</Title>
-      {logs.map((log, index) => (
-        <LogItem key={index}>
-          {log.date} {log.description}
+      {logsData.map((log) => (
+        <LogItem key={log.id}>
+          <LogDate>{log.date}</LogDate> {/* Render LogDate */}
+          <LogDescription>{log.description}</LogDescription> {/* Render LogDescription */}
         </LogItem>
       ))}
-      <ViewAllButton>VIEW ALL</ViewAllButton>
+      <ViewAllButtonContainer>
+        <MaintenanceLogsButton
+          label="VIEW ALL"
+          onClick={() => console.log("View All clicked")}
+        />
+      </ViewAllButtonContainer>
     </LogsContainer>
   );
 };
