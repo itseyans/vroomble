@@ -2,14 +2,14 @@
 
 import Image from "next/image";
 import WelcomeNavBar from "../vcomp/WelcomeNavBar";
-import YellowNavBar from "@/vcomp/YellowNavBar";
+import Background from "@/vcomp/background";
 
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen"> 
       <WelcomeNavBar></WelcomeNavBar>
-      <YellowNavBar />
+      <Background />
       <footer className="flex gap-6 flex-wrap items-center justify-center p-4">
       </footer>
 

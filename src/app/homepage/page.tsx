@@ -1,6 +1,7 @@
 "use client";
 
 import NavBar from "../../vcomp/NavBar";
+import Background from "../../vcomp/background"; // Ensure correct import
 import styled from "styled-components";
 
 const PageContainer = styled.div`
@@ -24,6 +25,7 @@ export default function Home() {
   return (
     <PageContainer>
       <NavBar />
+      <Background /> {/* Ensure this is rendered right after NavBar */}
       <ContentContainer>
         <h1>Welcome to the Home Page!</h1>
       </ContentContainer>
