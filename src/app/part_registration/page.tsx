@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import Background from '@/vcomp/background.js';
 import CarPartRegistrationForm from '../../vcomp/CarParts_Registration.js';
 import NavBar from '../../vcomp/NavBar'; 
 
@@ -55,6 +56,7 @@ const CarPartRegistrationPage = () => {
       <NavBarContainer> {/* Separate container for NavBar */}
         <NavBar /> 
       </NavBarContainer>
+      <Background />
       <PageContainer> {/* Container for the button and form */}
         {showForm ? (
           <CarPartRegistrationForm />

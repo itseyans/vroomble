@@ -120,19 +120,11 @@ const RegisterVehicle = () => {
           <Label>Accident History</Label>
           <InputField placeholder="None" />
 
-          <Label>Production Year</Label>
-          <InputField placeholder="2025" />
-
           <Label>Condition</Label>
           <InputField placeholder="NEW" />
-        </Column>
 
-        {/* Additional Info & Register Button */}
-        <RightColumn>
-          <Label>Additional Information</Label>
-          <TextArea placeholder="MODIFICATION, DAMAGES, DESCRIPTION" />
           <RegisterButton>REGISTER VEHICLE</RegisterButton>
-        </RightColumn>
+        </Column>
       </FormContainer>
     </Container>
   );
