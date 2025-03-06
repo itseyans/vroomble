@@ -2,7 +2,7 @@
 
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import BackgroundImage from '../../vcomp/BackgroundImage.js';
+import Background from '../../vcomp/background';
 import NavBar from '../../vcomp/NavBar.js';
 import RegisterVehicle from "../../vcomp/RegisterVehicle.js";
 import Footer from "../../vcomp/Footer.js";
@@ -56,6 +56,7 @@ const VehicleRegistrationPage = () => {
         <NavBarContainer> 
           <NavBar /> 
         </NavBarContainer>
+        <Background />
         <PageContainer> 
           {showForm ? (
             <RegisterVehicle /> 
