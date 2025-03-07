@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import Background from '../../vcomp/background';
 import NavBar from '../../vcomp/NavBar.js';
 import RegisterVehicle from "../../vcomp/RegisterVehicle.js";
-import Footer from "../../vcomp/Footer.js";
 
 const AppContainer = styled.div` 
   display: flex;
@@ -64,7 +63,6 @@ const VehicleRegistrationPage = () => {
             <Button onClick={handleButtonClick}>Register a Vehicle</Button>
           )}
         </PageContainer>
-        <Footer />
       </AppContainer>
     );
   };

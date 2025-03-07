@@ -6,8 +6,8 @@ import carImage from '/mazda.png';
 
 const CarDetailsContainer = styled.div`
   font-family: sans-serif;
-  width: 600px; // Adjust as needed
-  margin: 20px auto;
+  width: 400px; // Reduced width
+  margin: 10px auto; // Reduced margin
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -17,9 +17,9 @@ const Title = styled.h1`
   background-color: #f0f0f0;
   color: #333;
   text-align: center;
-  padding: 20px;
+  padding: 10px; // Reduced padding
   margin: 0;
-  font-size: 2em;
+  font-size: 1.2em; // Reduced font size
   font-weight: bold;
   text-transform: uppercase;
 `;
@@ -27,26 +27,27 @@ const Title = styled.h1`
 const CarImage = styled.img`
   width: 100%;
   display: block;
+  // Replace with your actual image path
 `;
 
 const DetailsBox = styled.div`
   background-color: #f9f9f9;
-  padding: 20px;
+  padding: 15px; // Reduced padding
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  border: 2px solid black; // Added black border to DetailsBox
-  border-radius: 0 0 10px 10px; // Add border-radius to bottom corners
+  gap: 15px; // Reduced gap
+  border: 2px solid black;
+  border-radius: 0 0 10px 10px;
 `;
 
 const DetailColumn = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px; // Reduced gap
 `;
 
 const DetailItem = styled.div`
-  font-size: 1em;
+  font-size: 1 em; // Reduced font size
   color: #555;
 `;
 
