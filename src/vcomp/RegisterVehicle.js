@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import VehicleDropdown from "./VehicleSelect"; // Vehicle selection dropdown
-import GeneralButton from "./GeneralButton"; // Buttons for Upload & Register
+import VehicleDropdown from "../vcomp/VehicleSelect"; // Vehicle selection dropdown
+import GeneralButton from "../vcomp/GeneralButton"; // Buttons for Upload & Register
+import ImageUploadModal from "../vcomp/ImageUploadModal";
 
 const Container = styled.div`
-  width: 1373px;
-  height: 800px;
+  width: 930px;
+  height: 750px;
   background: #d9d9d9;
   border-radius: 12px;
   padding: 5px;
@@ -91,6 +92,22 @@ const RegisterButton = styled(GeneralButton)`
 `;
 
 const RegisterVehicle = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [uploadedImages, setUploadedImages] = useState([]);
+
+  const handleUploadButtonClick = () => {
+    setShowModal(true);
+  };
+
+  const handleModalClose = () => {
+    setShowModal(false);
+  };
+
+  const handleImagesUpload = (images) => {
+    setUploadedImages(images); // Update uploadedImages with the array of images
+    setShowModal(false);
+  };
+
   return (
     <Container>
       <Header>🚗 REGISTER VEHICLE</Header>
@@ -98,8 +115,16 @@ const RegisterVehicle = () => {
       {/* Dropdown + Upload Image (Now centered properly) */}
       <ButtonContainer>
         <VehicleDropdown />
-        <GeneralButton>+ Upload Images</GeneralButton>
+        <GeneralButton onClick={handleUploadButtonClick}>
+          + Upload Images
+        </GeneralButton>
       </ButtonContainer>
+      {showModal && (
+        <ImageUploadModal
+          onClose={handleModalClose}
+          onUpload={handleImagesUpload}
+        />
+      )}
 
       {/* Form Fields */}
       <FormContainer>

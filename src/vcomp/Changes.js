@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import DatePicker from "./DatePicker";
-import GeneralButton from "./GeneralButton.js";
+import DatePicker from "../vcomp/SelectDate";
+import GeneralButton from "../vcomp/GeneralButton";
+import ImageUploadModal from "../vcomp/ImageUploadModal";
 
 const FormContainer = styled.div`
-  width: 240px;
+  width: 230px;
   padding: 20px;
   background-color: #f0f0f0;
   border-radius: 10px;
@@ -51,12 +52,14 @@ const UploadButton = styled(GeneralButton)`
   border-radius: 4px;
   cursor: pointer;
   margin-bottom: 10px;
-  width: 225px;
+  width: 160px;
+  font-size: 12px; // Reduced font size for UploadButton
 `;
 
 const SubmitButton = styled(GeneralButton)`
   margin-top: 10px;
-  width: 300px;
+  width: 180px;
+  font-size: 14px; // Reduced font size for SubmitButton
   display: ${(props) => (props.isCalendarOpen ? "none" : "block")};
 `;
 
@@ -65,6 +68,25 @@ const PartsAndCostWithDatePicker = () => {
   const [cost, setCost] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const [uploadedImage, setUploadedImage] = useState(null);
+  const [showModal, setShowModal] = useState(false); // Correct state variable name
+
+  const handleImageUpload = (image) => {
+    setUploadedImage(image);
+  };
+
+  const handleUploadButtonClick = () => {
+    setShowModal(!showModal); // Correct state variable name
+  };
+
+  const handleModalClose = () => {
+    setShowModal(false); // Correct state variable name
+  };
+
+  const handleImagesUpload = (images) => {
+    setUploadedImage(images);
+    setShowModal(false); // Correct state variable name
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -94,7 +116,15 @@ const PartsAndCostWithDatePicker = () => {
           />
         </InputGroup>
         <CenteredContainer>
-          <UploadButton>+ UPLOAD IMAGES</UploadButton>
+          <UploadButton onClick={handleUploadButtonClick}>
+            + UPLOAD IMAGES
+          </UploadButton>
+          {showModal && ( // Correct state variable name
+            <ImageUploadModal
+              onClose={handleModalClose}
+              onUpload={handleImagesUpload}
+            />
+          )}
           <DatePicker
             onChange={setSelectedDate}
             isCalendarOpen={isCalendarOpen}
