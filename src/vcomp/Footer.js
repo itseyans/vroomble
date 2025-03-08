@@ -33,17 +33,12 @@ const Footer = () => {
   return (
     <FooterContainer>
       <FooterItems>
-
-        <Link href="/about_us" passHref>
-
+        <Link href="/about_us" passHref legacyBehavior>
           <FooterItem>About Us</FooterItem>
-
         </Link>
 
-        <Link href="/contacts" passHref>
-
+        <Link href="/contacts" passHref legacyBehavior>
           <FooterItem>Contact</FooterItem>
-
         </Link>
       </FooterItems>
     </FooterContainer>
