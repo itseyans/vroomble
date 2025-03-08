@@ -5,6 +5,7 @@ import styled from "styled-components";
 import RegistrationForm from "./RegistrationForm.js";
 import LoginForm from "./LoginForm.js";
 
+// ✅ Black Navbar Container
 const NavBarContainer = styled.nav`
   background-color: black;
   color: gold;
@@ -14,16 +15,19 @@ const NavBarContainer = styled.nav`
   padding: 2rem 4rem;
   position: relative;
   height: 8rem;
+  margin-bottom: 0;
 `;
 
+// ✅ Logo Design
 const LogoContainer = styled.div`
   display: flex;
   align-items: center;
-  font-family: 'Shrikhand', cursive;
+  font-family: "Shrikhand", cursive;
   font-size: 3.5rem;
   color: gold;
 `;
 
+// ✅ Emblem Background
 const EmblemBackground = styled.div`
   position: absolute;
   top: 50%;
@@ -39,6 +43,7 @@ const EmblemBackground = styled.div`
   z-index: 2;
 `;
 
+// ✅ Emblem Logo
 const EmblemContainer = styled.div`
   display: flex;
   align-items: center;
@@ -52,6 +57,7 @@ const Emblem = styled.img`
   height: auto;
 `;
 
+// ✅ Buttons (Sign In / Register)
 const ButtonContainer = styled.div`
   display: flex;
   gap: 15px;
@@ -73,6 +79,51 @@ const NavButton = styled.button`
   }
 `;
 
+// ✅ Yellow Section directly below the navbar
+const YellowSection = styled.div`
+  background-color: #ffc629;
+  height: 200px;
+  width: 100%;
+  clip-path: polygon(25% 100%, 75% 100%, 100% 0, 0% 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StatsContainer = styled.div`
+  display: flex;
+  gap: 40px;
+`;
+
+const StatBox = styled.div`
+  background-color: #ffc629;
+  border: 3px solid black;
+  border-radius: 10px;
+  padding: 15px;
+  width: 180px;
+  height: 160px;
+  text-align: center;
+  font-family: "Segoe UI Variable", sans-serif;
+  font-weight: bold;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const CarIcon = styled.img`
+  width: 70px;
+  height: auto;
+  margin-bottom: 12px;
+`;
+
+const UserIcon = styled.img`
+  width: 65px;
+  height: auto;
+  margin-bottom: 12px;
+`;
+
 const FormContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -88,6 +139,7 @@ const WelcomeNavBar = () => {
 
   return (
     <>
+      {/* ✅ Black Navbar */}
       <NavBarContainer>
         <LogoContainer>VROOMBLE</LogoContainer>
         <EmblemBackground>
@@ -101,7 +153,33 @@ const WelcomeNavBar = () => {
         </ButtonContainer>
       </NavBarContainer>
 
-      {/* Show Forms on Click */}
+      {/* ✅ Yellow Section */}
+      <YellowSection>
+        <StatsContainer>
+          <StatBox>
+            <CarIcon src="/caricon.png" alt="Registered Cars" />
+            <span>Registered Cars</span>
+            <span>???</span>
+          </StatBox>
+          <StatBox>
+            <CarIcon src="/caricon.png" alt="Listed Vehicles" />
+            <span>Listed Vehicles</span>
+            <span>???</span>
+          </StatBox>
+          <StatBox>
+            <UserIcon src="/usericon.png" alt="Registered Users" />
+            <span>Registered Users</span>
+            <span>???</span>
+          </StatBox>
+          <StatBox>
+            <UserIcon src="/usericon.png" alt="Registered Users" />
+            <span>Registered Users</span>
+            <span>???</span>
+          </StatBox>
+        </StatsContainer>
+      </YellowSection>
+
+      {/* ✅ Forms */}
       <FormContainer>
         {activeForm === "register" && <RegistrationForm />}
         {activeForm === "login" && <LoginForm />}

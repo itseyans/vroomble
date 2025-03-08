@@ -1,77 +1,85 @@
+"use client";
+
 import React from "react";
 import styled from "styled-components";
 
-// Import your icon images (replace with actual paths)
-import carIcon from "../images/caricon.png";
-import vehicleIcon from "../images/caricon.png"; 
-import userIcon from "../images/usericon.png";
-import sellerIcon from "../images/usericon.png";
-
-const NavBarContainer = styled.nav`
+const YellowSection = styled.div`
   background-color: #ffc629;
-  color: black;
+  height: 200px;
+  width: 100%;
+  clip-path: polygon(5% 100%, 95% 100%, 98% 0, 2% 0);
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  padding: 0.5rem; /* Reduced padding for closer spacing */
+  margin: 0;  /* Ensure no extra spacing */
+  padding: 0;
+  position: relative;
+  z-index: 1;
+  top: -2px; /* Move it up slightly */
 `;
 
-const NavItem = styled.div`
+
+
+const StatsContainer = styled.div`
+  display: flex;
+  gap: 40px; /* Ensures proper spacing */
+`;
+
+const StatBox = styled.div`
+  background-color: #ffc629; /* Exact match to YellowNavBar */
+  border: 3px solid black;
+  border-radius: 10px;
+  padding: 15px;
+  width: 180px; /* Increased width */
+  height: 160px; /* Increased height */
+  text-align: center;
+  font-family: "Segoe UI Variable", sans-serif;
+  font-weight: bold;
+  color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f0f0f0;
-  border-radius: 10px;
-  padding: 0.75rem; /* Reduced padding inside NavItem */
-  width: 180px; /* Adjusted width for better spacing */
-  text-align: center;
+  justify-content: center;
 `;
 
-const NavTitle = styled.span`
-  font-weight: bold;
-  font-size: 1rem;
-  margin-top: 0.5rem;
+const CarIcon = styled.img`
+  width: 70px;  /* Slightly larger for balance */
+  height: auto;
+  margin-bottom: 12px;
 `;
 
-const NavCount = styled.span`
-  font-size: 1.2rem;
-  margin-top: 0.5rem;
-`;
-
-const NavIcon = styled.img`
-  width: 50px;
-  height: 50px;
+const UserIcon = styled.img`
+  width: 65px;
+  height: auto;
+  margin-bottom: 12px;
 `;
 
 const YellowNavBar = () => {
-  const users = 100;
-  const vehicles = 50;
-  const registeredCars = 200;
-  const sellers = 20;
-
   return (
-    <NavBarContainer>
-      <NavItem>
-        <NavIcon src={carIcon} alt="Registered Cars" />
-        <NavTitle>Registered Cars</NavTitle>
-        <NavCount>{registeredCars}</NavCount>
-      </NavItem>
-      <NavItem>
-        <NavIcon src={vehicleIcon} alt="Listed Vehicles" />
-        <NavTitle>Listed Vehicles</NavTitle>
-        <NavCount>{vehicles}</NavCount>
-      </NavItem>
-      <NavItem>
-        <NavIcon src={userIcon} alt="Registered Users" />
-        <NavTitle>Registered Users</NavTitle>
-        <NavCount>{users}</NavCount>
-      </NavItem>
-      <NavItem>
-        <NavIcon src={sellerIcon} alt="Registered Sellers" />
-        <NavTitle>Registered Sellers</NavTitle>
-        <NavCount>{sellers}</NavCount>
-      </NavItem>
-    </NavBarContainer>
+    <YellowSection>
+      <StatsContainer>
+        <StatBox>
+          <CarIcon src="/caricon.png" alt="Registered Cars" />
+          <span>Registered Cars</span>
+          <span>001</span>
+        </StatBox>
+        <StatBox>
+          <CarIcon src="/caricon.png" alt="Listed Vehicles" />
+          <span>Listed Vehicles</span>
+          <span>001</span>
+        </StatBox>
+        <StatBox>
+          <UserIcon src="/usericon.png" alt="Registered Users" />
+          <span>Registered Users</span>
+          <span>001</span>
+        </StatBox>
+        <StatBox>
+          <UserIcon src="/usericon.png" alt="Registered Users" />
+          <span>Registered Users</span>
+          <span>001</span>
+        </StatBox>
+      </StatsContainer>
+    </YellowSection>
   );
 };
 
