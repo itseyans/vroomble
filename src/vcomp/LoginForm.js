@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Button from "./SignButton.js";
+import Button from "./SignButton.js"; // Assuming you have a SignButton component
 
 const LForm = styled.div`
   padding: 20px;
@@ -52,18 +52,19 @@ const ErrorM = styled.p`
 `;
 
 function LoginForm({ label, placeholder, required, errorMessage }) {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [usernameError, setUsernameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [loginError, setLoginError] = useState(null);
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
 
     if (required && event.target.value.trim() === "") {
-      setUsernameError(true);
+      setEmailError(true);
     } else {
-      setUsernameError(false);
+      setEmailError(false);
     }
   };
 
@@ -77,31 +78,52 @@ function LoginForm({ label, placeholder, required, errorMessage }) {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    if(required && username.trim() === ""){
-        setUsernameError(true);
-        return;
+    if (required && email.trim() === "") {
+      setEmailError(true);
+      return;
     }
-    // Handle form submission logic here (e.g., send data to server)
-    console.log("Username:", username);
-    console.log("Password:", password);
+
+    try {
+      const response = await fetch("http://localhost:8000/login/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("access_token", data.access_token);
+        console.log("Login successful!");
+        // Example: Redirect to a protected route
+        // window.location.href = "/dashboard";
+      } else {
+        const errorData = await response.json();
+        setLoginError(errorData.detail || "Login failed");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      setLoginError("An unexpected error occurred.");
+    }
   };
 
   return (
     <LForm onSubmit={handleSubmit}>
-    <Title>LOGIN</Title>
-      <Label htmlFor="Username">Username</Label>
+      <Title>LOGIN</Title>
+      <Label htmlFor="email">Email</Label>
       <LInput
         type="text"
-        id="Username"
-        placeholder="Username"
-        value={username}
-        onChange={handleUsernameChange}
+        id="email"
+        placeholder="Email"
+        value={email}
+        onChange={handleEmailChange}
         required={required}
-        aria-invalid={usernameError}
+        aria-invalid={emailError}
       />
-      {usernameError && <ErrorM>{errorMessage || "This field is required"}</ErrorM>}
+      {emailError && <ErrorM>{errorMessage || "This field is required"}</ErrorM>}
 
       <Label htmlFor="Password">Password</Label>
       <LInput
@@ -113,10 +135,12 @@ function LoginForm({ label, placeholder, required, errorMessage }) {
         required={required}
         aria-invalid={passwordError}
       />
-       {passwordError && <ErrorM>{errorMessage || "This field is required"}</ErrorM>}
+      {passwordError && <ErrorM>{errorMessage || "This field is required"}</ErrorM>}
+
+      {loginError && <ErrorM>{loginError}</ErrorM>}
 
       <center>
-      <Button type="submit">Login</Button>
+        <Button type="submit">Login</Button>
       </center>
     </LForm>
   );

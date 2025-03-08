@@ -123,8 +123,6 @@ async def register_user(registration_data: Registration):
         conn.close() # Ensure connection is closed even on error
         return JSONResponse(status_code=500, content={"error": str(e)})
 
-# ... (rest of your existing code: /submit_form/, /cars/form/, etc.)
-
 @app.get("/")
 async def root():
     return {"message": "Vehicle registration API"}
