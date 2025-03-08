@@ -84,7 +84,7 @@ const YellowSection = styled.div`
   background-color: #ffc629;
   height: 200px;
   width: 100%;
-  clip-path: polygon(25% 100%, 75% 100%, % 0, 0% 0);
+  clip-path: polygon(25% 100%, 75% 100%, 100% 0, 0% 0);
   display: flex;
   justify-content: center;
   align-items: center;
