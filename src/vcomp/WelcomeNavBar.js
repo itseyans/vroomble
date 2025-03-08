@@ -84,7 +84,7 @@ const YellowSection = styled.div`
   background-color: #ffc629;
   height: 200px;
   width: 100%;
-  clip-path: polygon(25% 100%, 75% 100%, 100% 0, 0% 0);
+  clip-path: polygon(25% 100%, 75% 100%, % 0, 0% 0);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -159,22 +159,22 @@ const WelcomeNavBar = () => {
           <StatBox>
             <CarIcon src="/caricon.png" alt="Registered Cars" />
             <span>Registered Cars</span>
-            <span>???</span>
+            <span>001</span>
           </StatBox>
           <StatBox>
             <CarIcon src="/caricon.png" alt="Listed Vehicles" />
             <span>Listed Vehicles</span>
-            <span>???</span>
+            <span>001</span>
           </StatBox>
           <StatBox>
             <UserIcon src="/usericon.png" alt="Registered Users" />
             <span>Registered Users</span>
-            <span>???</span>
+            <span>001</span>
           </StatBox>
           <StatBox>
             <UserIcon src="/usericon.png" alt="Registered Users" />
             <span>Registered Users</span>
-            <span>???</span>
+            <span>001</span>
           </StatBox>
         </StatsContainer>
       </YellowSection>
