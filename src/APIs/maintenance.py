@@ -1,54 +1,45 @@
-from fastapi import FastAPI, Depends
-from sqlalchemy import create_engine, Column, Integer, String, Float, Date
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, Session
+from fastapi import FastAPI, HTTPException
+import joblib
+import numpy as np
 from pydantic import BaseModel
-from datetime import date
 import os
 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./maintenance.db")
-engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-Base = declarative_base()
-
-# Database Model
-class MaintenanceLog(Base):
-    __tablename__ = "maintenance_logs"
-    id = Column(Integer, primary_key=True, index=True)
-    car_model = Column(String, index=True)
-    part = Column(String)
-    cost = Column(Float)
-    date = Column(Date)
-    image_url = Column(String, nullable=True)
-
-# Pydantic Schema
-class MaintenanceLogCreate(BaseModel):
-    car_model: str
-    part: str
-    cost: float
-    date: date
-    image_url: str | None = None
-
-# Initialize DB
-Base.metadata.create_all(bind=engine)
-
+# Initialize FastAPI app
 app = FastAPI()
 
-def get_db():
-    db = SessionLocal()
+# Define the correct path to the AI model
+MODEL_DIR = r"C:\Users\HP\Documents\GitHub\vroomble\src\AI"
+MODEL_PATH = os.path.join(MODEL_DIR, "maintenance_model.pkl")
+SCALER_PATH = os.path.join(MODEL_DIR, "scaler.pkl")
+
+# Load the trained AI model and scaler
+try:
+    model = joblib.load(MODEL_PATH)
+    scaler = joblib.load(SCALER_PATH)  # Ensure scaler is loaded too
+except FileNotFoundError as e:
+    raise RuntimeError(f"Model or scaler file not found: {str(e)}")
+
+# Define input data model
+class MaintenanceRequest(BaseModel):
+    mileage: int
+    age: int
+    last_service_mileage: int
+
+@app.post("/predict_maintenance")
+def predict_maintenance(request: MaintenanceRequest):
     try:
-        yield db
-    finally:
-        db.close()
+        # Compute missing feature
+        miles_since_last_service = request.mileage - request.last_service_mileage
 
-@app.post("/logs/", response_model=MaintenanceLogCreate)
-def create_log(log: MaintenanceLogCreate, db: Session = Depends(get_db)):
-    db_log = MaintenanceLog(**log.dict())
-    db.add(db_log)
-    db.commit()
-    db.refresh(db_log)
-    return db_log
+        # Ensure correct feature order before scaling
+        input_data = np.array([[request.mileage, request.age, request.last_service_mileage, miles_since_last_service]])
 
-@app.get("/logs/")
-def get_logs(db: Session = Depends(get_db)):
-    return db.query(MaintenanceLog).all()
+        # Scale input data
+        input_data_scaled = scaler.transform(input_data)
+
+        # Predict next service mileage
+        prediction = model.predict(input_data_scaled)
+
+        return {"next_service_mileage": int(prediction[0])}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
