@@ -2,11 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 // Replace with the actual path to your image
-import carImage from '/mazda.png';
 
 const CarDetailsContainer = styled.div`
   font-family: sans-serif;
-  width: 400px; // Reduced width
+  width: 600px; // Reduced width
   margin: 10px auto; // Reduced margin
   border-radius: 10px;
   overflow: hidden;
@@ -19,7 +18,7 @@ const Title = styled.h1`
   text-align: center;
   padding: 10px; // Reduced padding
   margin: 0;
-  font-size: 1.2em; // Reduced font size
+  font-size: 2em; // Reduced font size
   font-weight: bold;
   text-transform: uppercase;
 `;
@@ -47,7 +46,7 @@ const DetailColumn = styled.div`
 `;
 
 const DetailItem = styled.div`
-  font-size: 1 em; // Reduced font size
+  font-size: 2 em; // Reduced font size
   color: #555;
 `;
 
@@ -55,7 +54,7 @@ const CarDetails = () => {
   return (
     <CarDetailsContainer>
       <Title>MAZDA MX-5 MIATA RF</Title>
-      <CarImage src={carImage} alt="Mazda MX-5 Miata RF" />
+      <CarImage src="/mazda.png" alt="Mazda MX-5 Miata RF" />
       <DetailsBox>
         <DetailColumn>
           <DetailItem>Mazda Japan</DetailItem>

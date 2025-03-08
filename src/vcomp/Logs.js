@@ -3,8 +3,8 @@ import styled from "styled-components";
 import MaintenanceLogsButton from "./MaintenanceLogsButton";
 
 const LogsContainer = styled.div`
-  width: 300px;
-  padding: 20px;
+  width: 350px;
+  padding: 40px;
   background-color: #e0e0e0;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -15,15 +15,18 @@ const LogsContainer = styled.div`
 
 const Title = styled.h2`
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
   border-bottom: 2px solid #ccc;
   padding-bottom: 10px;
+  padding-top: 10px;
   width: 100%;
+  font-size: 2em;
+  
 `;
 
 const LogItem = styled.div`
-  background-color: #f0f0f0;
-  padding: 15px;
+  background-color:rgb(255, 255, 255);
+  padding: 20px;
   border-radius: 8px;
   margin-bottom: 10px;
   width: 90%;

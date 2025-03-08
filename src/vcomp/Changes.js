@@ -5,9 +5,9 @@ import GeneralButton from "../vcomp/GeneralButton";
 import ImageUploadModal from "../vcomp/ImageUploadModal";
 
 const FormContainer = styled.div`
-  width: 230px;
+  width: 350px;
   padding: 20px;
-  background-color: #f0f0f0;
+  background-color: #e0e0e0;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -17,7 +17,11 @@ const FormContainer = styled.div`
 
 const Title = styled.h2`
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
+  padding-top: 30px;
+  padding-bottom: 10px;
+  font-size: 2em;
+  border-bottom: 2px solid #ccc;
 `;
 
 const InputGroup = styled.div`
@@ -42,24 +46,24 @@ const CenteredContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 15px;
+  margin-top: 20px;
 `;
 
 const UploadButton = styled(GeneralButton)`
-  background-color: #e0e0e0;
+  background-color: #f0f0e0;
   padding: 15px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   width: 160px;
-  font-size: 12px; // Reduced font size for UploadButton
+  font-size: 14px; // Reduced font size for UploadButton
 `;
 
 const SubmitButton = styled(GeneralButton)`
-  margin-top: 10px;
-  width: 180px;
-  font-size: 14px; // Reduced font size for SubmitButton
+  margin-top: 30px;
+  width: 200px;
+  font-size: 16px; // Reduced font size for SubmitButton
   display: ${(props) => (props.isCalendarOpen ? "none" : "block")};
 `;
 
