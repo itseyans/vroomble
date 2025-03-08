@@ -13,7 +13,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi import status
 
 # --- Cloud Database Configuration ---
-CLOUD_DATABASE_CONNECTION_STRING = os.environ.get("CLOUD_DATABASE_CONNECTION_STRING", "sqlitecloud://cuf1maatnz.g6.sqlite.cloud:8860/users.db?apikey=9IwJf2Fz9xSDaQBetYibFbLhi7HrKlAEobNy9wjio9o")
+CLOUD_DATABASE_CONNECTION_STRING = os.environ.get("CLOUD_DATABASE_CONNECTION_STRING", "sqlitecloud://cuf1maatnz.g6.sqlite.cloud:8860/Vroomble Database?apikey=9IwJf2Fz9xSDaQBetYibFbLhi7HrKlAEobNy9wjio9o")
 
 # --- Logging Setup ---
 logging.basicConfig(
