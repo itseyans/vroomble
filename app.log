@@ -1203,3 +1203,23 @@ AttributeError: module 'bcrypt' has no attribute '__about__'
 2025-03-04 23:21:06,684 - DEBUG - detected 'bcrypt' backend, version '<unknown>'
 2025-03-04 23:21:06,684 - DEBUG - 'bcrypt' backend lacks $2$ support, enabling workaround
 2025-03-04 23:21:07,266 - DEBUG - cannot commit - no transaction is active
+2025-03-04 23:25:54,197 - ERROR - Error during registration: UNIQUE constraint failed: users.email
+Traceback (most recent call last):
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\src\APIs\register.py", line 99, in register_user
+    cursor.execute(
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+sqlitecloud.exceptions.SQLiteCloudIntegrityError: UNIQUE constraint failed: users.email
+2025-03-04 23:26:46,857 - DEBUG - cannot commit - no transaction is active

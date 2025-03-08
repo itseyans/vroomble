@@ -1,0 +1,26 @@
+2025-03-08 20:43:00,452 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
+2025-03-08 21:30:26,381 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
+2025-03-08 21:33:03,423 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
+2025-03-08 21:35:36,148 - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-03-08 21:35:36,159 - DEBUG - detected 'bcrypt' backend, version '<unknown>'
+2025-03-08 21:35:36,159 - DEBUG - 'bcrypt' backend lacks $2$ support, enabling workaround
+2025-03-08 21:35:36,372 - INFO - User sobrekim@gmail.com logged in successfully
+2025-03-08 21:35:43,354 - INFO - User sobrekim@gmail.com logged in successfully
+2025-03-08 21:36:14,472 - WARNING - Login failed: Incorrect password for email sobrekim@gmail.com
+2025-03-08 21:36:14,472 - ERROR - Unexpected error during login: 400: Incorrect email or password
+Traceback (most recent call last):
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\src\APIs\login.py", line 120, in login_user
+    raise HTTPException(status_code=400, detail="Incorrect email or password")
+fastapi.exceptions.HTTPException: 400: Incorrect email or password
+2025-03-08 21:36:24,716 - INFO - User sobrekim@gmail.com logged in successfully
+2025-03-08 21:37:50,008 - WARNING - Login failed: Incorrect password for email sobrekim@gmail.com
+2025-03-08 21:37:50,008 - ERROR - Unexpected error during login: 400: Incorrect email or password
+Traceback (most recent call last):
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\src\APIs\login.py", line 120, in login_user
+    raise HTTPException(status_code=400, detail="Incorrect email or password")
+fastapi.exceptions.HTTPException: 400: Incorrect email or password
