@@ -22,6 +22,7 @@ const DropdownButton = styled.button`
   align-items: center;
   box-sizing: border-box;
   transition: all 0.2s ease-in-out;
+  color: #000000;
 
   &:hover {
     background-color: #f0f0f0;
@@ -47,6 +48,7 @@ const DropdownList = styled.ul`
   padding: 0;
   z-index: 10;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+  color: #000000;
 `;
 
 const DropdownItem = styled.li`
