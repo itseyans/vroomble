@@ -3,8 +3,7 @@ import styled from "styled-components";
 import VehicleDropdown from "../vcomp/VehicleSelect"; // Vehicle selection dropdown
 import GeneralButton from "../vcomp/GeneralButton"; // Buttons for Upload & Register
 import ImageUploadModal from "../vcomp/ImageUploadModal";
-import SelectTrim from "../vcomp/SelectTrim";
-import SelectModel from "../vcomp/SelectModel";
+
 
 const Container = styled.div`
   width: 930px;

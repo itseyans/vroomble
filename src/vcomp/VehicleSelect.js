@@ -3,14 +3,14 @@ import styled from "styled-components";
 
 const DropdownContainer = styled.div`
   position: relative;
-  width: 280px; /* Increased width for better balance */
+  width: 280px;
 `;
 
 const DropdownButton = styled.button`
   width: 305px;
-  height: 55px; /* Increased height for a perfect match */
-  padding: 20px; /* Adjusted padding */
-  font-size: 20px; /* Slightly larger text for better readability */
+  height: 55px;
+  padding: 20px;
+  font-size: 20px;
   font-weight: semi-bold;
   border: 2px solid black;
   border-radius: 12px;
@@ -43,7 +43,6 @@ const DropdownList = styled.ul`
   margin-top: 5px;
   max-height: 250px;
   overflow-y: auto;
-  overflow-x: hidden;
   list-style: none;
   padding: 0;
   z-index: 10;
@@ -79,46 +78,62 @@ const SearchInput = styled.input`
   }
 `;
 
-const VehicleDropdown = () => {
+const VehicleDropdown = ({ onSelect }) => {
   const [vehicles, setVehicles] = useState([]);
   const [filteredVehicles, setFilteredVehicles] = useState([]);
   const [selectedVehicle, setSelectedVehicle] = useState("SELECT VEHICLE");
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Simulated API call to fetch vehicles from a database
+  // ✅ Fetch vehicles from API (port 8002)
   useEffect(() => {
     const fetchVehicles = async () => {
-      const data = [
-        "TOYOTA VIOS",
-        "FORTUNER",
-        "FORD RAPTOR",
-        "FERRARI SF90",
-        "LAMBORGHINI HURACAN",
-        "MAZDA MIATA",
-        "TOYOTA SUPRA",
-        "TOYOTA 86",
-        "SUBARU BRZ",
-      ];
-      setVehicles(data);
-      setFilteredVehicles(data);
+      try {
+        const url = searchTerm
+          ? `http://localhost:8002/api/vehicles?q=${searchTerm}`
+          : "http://localhost:8002/api/vehicles";
+
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Failed to fetch vehicles");
+
+        const data = await response.json();
+        setVehicles(data);
+        setFilteredVehicles(data);
+      } catch (error) {
+        console.error("❌ Error fetching vehicles:", error);
+        setVehicles([]);
+      }
     };
 
     fetchVehicles();
-  }, []);
+  }, [searchTerm]);
 
-  // Handle search input
+  // ✅ Filter search input (Now includes Year)
   const handleSearch = (e) => {
     const value = e.target.value.toUpperCase();
     setSearchTerm(value);
-    setFilteredVehicles(vehicles.filter((vehicle) => vehicle.includes(value)));
+    setFilteredVehicles(
+      vehicles.filter(
+        (vehicle) =>
+          vehicle.make.toUpperCase().includes(value) ||
+          vehicle.model.toUpperCase().includes(value) ||
+          (vehicle.variant && vehicle.variant.toUpperCase().includes(value)) ||
+          vehicle.drivetrain.toUpperCase().includes(value) ||
+          vehicle.year.toString().includes(value) // ✅ Added year filtering
+      )
+    );
   };
 
-  // Handle selecting a vehicle
+  // ✅ Handle selecting a vehicle
   const handleSelect = (vehicle) => {
-    setSelectedVehicle(vehicle);
+    const formattedVehicle = `${vehicle.make} ${vehicle.model} (${vehicle.variant || "N/A"}) - ${vehicle.drivetrain} - ${vehicle.year}`;
+    setSelectedVehicle(formattedVehicle);
     setIsOpen(false);
     setSearchTerm("");
+
+    if (onSelect) {
+      onSelect(vehicle); // ✅ Pass full vehicle object to parent component
+    }
   };
 
   return (
@@ -136,9 +151,9 @@ const VehicleDropdown = () => {
             onChange={handleSearch}
           />
           {filteredVehicles.length > 0 ? (
-            filteredVehicles.map((vehicle, index) => (
-              <DropdownItem key={index} onClick={() => handleSelect(vehicle)}>
-                {vehicle}
+            filteredVehicles.map((vehicle) => (
+              <DropdownItem key={vehicle.id} onClick={() => handleSelect(vehicle)}>
+                {vehicle.make} {vehicle.model} ({vehicle.variant || "N/A"}) - {vehicle.drivetrain} - {vehicle.year}
               </DropdownItem>
             ))
           ) : (
