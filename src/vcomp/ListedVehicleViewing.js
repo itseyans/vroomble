@@ -80,14 +80,6 @@ const ListedVehicleViewing = () => {
           ))}
         </div>
       </div>
-
-      {/* Footer */}
-      <div
-        style={{
-          backgroundColor: "#222",
-          height: "20px",
-        }}
-      ></div>
     </div>
   );
 };

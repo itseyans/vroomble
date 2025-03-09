@@ -33,6 +33,7 @@ const CalendarDropdown = styled.div`
   top: 100%;
   left: 0;
   z-index: 100;
+  color: #000000;
 `;
 
 const DatePicker = ({ onChange, isCalendarOpen, setIsCalendarOpen }) => {

@@ -9,8 +9,7 @@ const PageContainer = styled.div`
   width: 100%;
   min-height: 100vh; 
   display: flex;
-  flex-direction: column;
-  background-color: #131415; 
+  flex-direction: column; 
 `;
 
 const ContentContainer = styled.div`
@@ -25,7 +24,6 @@ const ContentContainer = styled.div`
 const Button = styled.button`
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #242424;
   color: gold;
   border: none;
   border-radius: 8px;
@@ -49,11 +47,7 @@ const VehicleRegistrationPage = () => {
     <PageContainer>
       <NavBar /> 
       <ContentContainer>
-        {showForm ? (
-          <AddVehicle /> 
-        ) : (
-          <Button onClick={handleButtonClick}>Add a Vehicle Model</Button>
-        )}
+        <AddVehicle />
       </ContentContainer>
     </PageContainer>
   );

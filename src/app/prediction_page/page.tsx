@@ -1,11 +1,29 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import styled from 'styled-components';
-import GeneralButton from '@/vcomp/GeneralButton';
-import NavBar from '@/vcomp/NavBar';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import styled from "styled-components";
+import GeneralButton from "@/vcomp/GeneralButton";
+import NavBar from "@/vcomp/NavBar";
 
+/** Define API response types */
+interface CarMakersResponse {
+  makers: string[];
+}
+
+interface CarModelsResponse {
+  models: string[];
+}
+
+interface CarPartsResponse {
+  parts: string[];
+}
+
+interface PredictionResponse {
+  prediction: string;
+}
+
+/** Styled Components */
 const Container = styled.div`
   width: 100%;
   max-width: 1200px;
@@ -47,26 +65,32 @@ const Input = styled.input`
   background: white;
 `;
 
-const MultiSelectDropdown = styled.div`
+const MultiSelectContainer = styled.div`
   width: 100%;
   position: relative;
 `;
 
-const SelectedParts = styled.div`
+const PartsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
-  margin-top: 5px;
+  gap: 10px;
+  margin-top: 10px;
 `;
 
-const PartTag = styled.span`
+const PartTag = styled.label`
+  display: flex;
+  align-items: center;
   background: #007bff;
   color: white;
   padding: 5px 10px;
   border-radius: 5px;
   font-size: 14px;
-  display: inline-flex;
-  align-items: center;
+  cursor: pointer;
+`;
+
+const Checkbox = styled.input`
+  margin-right: 8px;
+  cursor: pointer;
 `;
 
 const Button = styled(GeneralButton)`
@@ -93,120 +117,144 @@ const Result = styled.div`
   font-weight: bold;
 `;
 
-const PredictForm = () => {
-    const [carMakers, setCarMakers] = useState([]);
-    const [selectedMaker, setSelectedMaker] = useState('');
-    const [carModels, setCarModels] = useState([]);
-    const [selectedModel, setSelectedModel] = useState('');
-    const [carParts, setCarParts] = useState([]);
-    const [selectedParts, setSelectedParts] = useState([]);
-    const [months, setMonths] = useState('');
-    const [prediction, setPrediction] = useState(null);
-    const [loading, setLoading] = useState(false);
+/** Main Component */
+const PredictForm: React.FC = () => {
+  const [carMakers, setCarMakers] = useState<string[]>([]);
+  const [selectedMaker, setSelectedMaker] = useState<string>("");
+  const [carModels, setCarModels] = useState<string[]>([]);
+  const [selectedModel, setSelectedModel] = useState<string>("");
+  const [carParts, setCarParts] = useState<string[]>([]);
+  const [selectedParts, setSelectedParts] = useState<string[]>([]);
+  const [months, setMonths] = useState<string>("");
+  const [prediction, setPrediction] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
-    useEffect(() => {
-        axios.get("http://127.0.0.1:8000/car-makers")
-            .then(response => setCarMakers(response.data.makers || []))
-            .catch(error => console.error("Error fetching car makers:", error));
-    }, []);
+  /** Fetch car makers on mount */
+  useEffect(() => {
+    axios
+      .get<CarMakersResponse>("http://127.0.0.1:8000/car-makers")
+      .then((response) => setCarMakers(response.data.makers || []))
+      .catch((error) => console.error("Error fetching car makers:", error));
+  }, []);
 
-    useEffect(() => {
-        if (selectedMaker) {
-            axios.get(`http://127.0.0.1:8000/car-models?make=${selectedMaker}`)
-                .then(response => setCarModels(response.data.models || []))
-                .catch(error => console.error("Error fetching car models:", error));
-        }
-    }, [selectedMaker]);
+  /** Fetch car models when car maker is selected */
+  useEffect(() => {
+    if (selectedMaker) {
+      axios
+        .get<CarModelsResponse>(`http://127.0.0.1:8000/car-models?make=${selectedMaker}`)
+        .then((response) => setCarModels(response.data.models || []))
+        .catch((error) => console.error("Error fetching car models:", error));
+    } else {
+      setCarModels([]);
+    }
+  }, [selectedMaker]);
 
-    useEffect(() => {
-        if (selectedModel) {
-            axios.get(`http://127.0.0.1:8000/car-parts?model=${selectedModel}`)
-                .then(response => setCarParts(response.data.parts || []))
-                .catch(error => console.error("Error fetching car parts:", error));
-        }
-    }, [selectedModel]);
+  /** Fetch car parts when car model is selected */
+  useEffect(() => {
+    if (selectedModel) {
+      axios
+        .get<CarPartsResponse>(`http://127.0.0.1:8000/car-parts?model=${selectedModel}`)
+        .then((response) => setCarParts(response.data.parts || []))
+        .catch((error) => console.error("Error fetching car parts:", error));
+    } else {
+      setCarParts([]);
+    }
+  }, [selectedModel]);
 
-    const handlePartSelect = (part) => {
-        setSelectedParts((prevParts) =>
-            prevParts.includes(part) ? prevParts.filter(p => p !== part) : [...prevParts, part]
-        );
-    };
+  /** Handle selection of car parts */
+  const handlePartSelect = (part: string) => {
+    setSelectedParts((prevParts) =>
+      prevParts.includes(part)
+        ? prevParts.filter((p) => p !== part)
+        : [...prevParts, part]
+    );
+  };
 
-    const fetchPrediction = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        try {
-            const response = await axios.get(
-                `http://127.0.0.1:8000/predict_price?model=${selectedModel}&parts=${selectedParts.join(",")}&months=${months}`
-            );
-            setPrediction(response.data.prediction);
-        } catch (error) {
-            console.error("Error fetching prediction:", error);
-            setPrediction("Error fetching prediction");
-        }
-        setLoading(false);
-    };
+  /** Fetch price prediction */
+  const fetchPrediction = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!selectedModel || selectedParts.length === 0 || !months) {
+      alert("Please fill in all fields before submitting.");
+      return;
+    }
 
-    return (
-        <Container>
-            <Header>Car Price Prediction</Header>
-            <Form onSubmit={fetchPrediction}>
-                <Dropdown value={selectedMaker} onChange={(e) => setSelectedMaker(e.target.value)} required>
-                    <option value="">Select Car Maker</option>
-                    {carMakers.map((maker, index) => (
-                        <option key={index} value={maker}>{maker}</option>
-                    ))}
-                </Dropdown>
+    setLoading(true);
+    try {
+      const response = await axios.get<PredictionResponse>(
+        `http://127.0.0.1:8000/predict_price?model=${selectedModel}&parts=${selectedParts.join(
+          ","
+        )}&months=${months}`
+      );
+      setPrediction(response.data.prediction);
+    } catch (error) {
+      console.error("Error fetching prediction:", error);
+      setPrediction("Error fetching prediction");
+    }
+    setLoading(false);
+  };
 
-                <Dropdown value={selectedModel} onChange={(e) => setSelectedModel(e.target.value)} required>
-                    <option value="">Select Car Model</option>
-                    {carModels.map((model, index) => (
-                        <option key={index} value={model}>{model}</option>
-                    ))}
-                </Dropdown>
+  return (
+    <Container>
+      <Header>Car Price Prediction</Header>
+      <Form onSubmit={fetchPrediction}>
+        {/* Car Maker Dropdown */}
+        <Dropdown value={selectedMaker} onChange={(e) => setSelectedMaker(e.target.value)} required>
+          <option value="">Select Car Maker</option>
+          {carMakers.map((maker, index) => (
+            <option key={index} value={maker}>
+              {maker}
+            </option>
+          ))}
+        </Dropdown>
 
-                <MultiSelectDropdown>
-                    <Dropdown>
-                        <option>Select Car Parts</option>
-                    </Dropdown>
-                    <SelectedParts>
-                        {carParts.map((part, index) => (
-                            <label key={index}>
-                                <input
-                                    type="checkbox"
-                                    value={part}
-                                    checked={selectedParts.includes(part)}
-                                    onChange={() => handlePartSelect(part)}
-                                />
-                                {part}
-                            </label>
-                        ))}
-                    </SelectedParts>
-                </MultiSelectDropdown>
+        {/* Car Model Dropdown */}
+        <Dropdown value={selectedModel} onChange={(e) => setSelectedModel(e.target.value)} required>
+          <option value="">Select Car Model</option>
+          {carModels.map((model, index) => (
+            <option key={index} value={model}>
+              {model}
+            </option>
+          ))}
+        </Dropdown>
 
-                <Input 
-                    type="number" 
-                    value={months} 
-                    onChange={(e) => setMonths(e.target.value)} 
-                    placeholder="Enter number of months"
-                    required
+        {/* MultiSelect for Car Parts */}
+        <MultiSelectContainer>
+          <p>Select Car Parts:</p>
+          <PartsContainer>
+            {carParts.map((part, index) => (
+              <PartTag key={index}>
+                <Checkbox
+                  type="checkbox"
+                  value={part}
+                  checked={selectedParts.includes(part)}
+                  onChange={() => handlePartSelect(part)}
                 />
+                {part}
+              </PartTag>
+            ))}
+          </PartsContainer>
+        </MultiSelectContainer>
 
-                <Button type="submit">Get Prediction</Button>
-            </Form>
-            {loading && <p>Loading...</p>}
-            {prediction !== null && <Result>Prediction: {prediction}</Result>}
-        </Container>
-    );
+        {/* Months Input */}
+        <Input type="number" value={months} onChange={(e) => setMonths(e.target.value)} placeholder="Enter number of months" required />
+
+        {/* Submit Button */}
+        <Button type="submit">Get Prediction</Button>
+      </Form>
+
+      {/* Loading and Result */}
+      {loading && <p>Loading...</p>}
+      {prediction !== null && <Result>Prediction: {prediction}</Result>}
+    </Container>
+  );
 };
 
-const PredictionPage = () => {
-    return (
-        <>
-            <NavBar />
-            <PredictForm />
-        </>
-    );
-};
+const PredictionPage: React.FC = () => (
+  <>
+    <NavBar />
+    <PredictForm />
+  </>
+);
 
 export default PredictionPage;
