@@ -126,13 +126,15 @@ const VehicleDropdown = ({ onSelect }) => {
 
   // ✅ Handle selecting a vehicle
   const handleSelect = (vehicle) => {
-    const formattedVehicle = `${vehicle.make} ${vehicle.model} (${vehicle.variant || "N/A"}) - ${vehicle.drivetrain} - ${vehicle.year}`;
-    setSelectedVehicle(formattedVehicle);
+    console.log("🚗 Selected Vehicle:", vehicle);
+    console.log("🚗 Selected Vehicle CarID:", vehicle.CarID, typeof vehicle.CarID); // ⭐️ Log vehicle.CarID and its type
+    setSelectedVehicle(`${vehicle.make} ${vehicle.model} (${vehicle.variant || "N/A"}) - ${vehicle.drivetrain} - ${vehicle.year}`);
     setIsOpen(false);
     setSearchTerm("");
 
     if (onSelect) {
-      onSelect(vehicle); // ✅ Pass full vehicle object to parent component
+      console.log("📡 Sending CarID to Parent Component:", vehicle.CarID);
+      onSelect(vehicle.CarID);
     }
   };
 

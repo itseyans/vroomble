@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import VehicleDropdown from "../vcomp/VehicleSelect"; // Vehicle selection dropdown
-import GeneralButton from "../vcomp/GeneralButton"; // Buttons for Upload & Register
+import VehicleDropdown from "../vcomp/VehicleSelect";
+import GeneralButton from "../vcomp/GeneralButton";
 import ImageUploadModal from "../vcomp/ImageUploadModal";
-
 
 const Container = styled.div`
   width: 930px;
@@ -13,9 +12,9 @@ const Container = styled.div`
   padding: 5px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center everything horizontally */
-  justify-content: center; /* Center everything vertically */
-  border: 10px solid #ffc629; /* 2px Yellow Stroke */
+  align-items: center;
+  justify-content: center;
+  border: 10px solid #ffc629;
 `;
 
 const Header = styled.div`
@@ -29,17 +28,17 @@ const Header = styled.div`
 
 const ButtonContainer = styled.div`
   display: flex;
-  gap: 65px; /* Adjusted spacing for perfect alignment */
+  gap: 65px;
   align-items: center;
-  justify-content: center; /* Center the buttons */
+  justify-content: center;
   width: 100%;
-  margin-bottom: 20px; /* More spacing below buttons */
+  margin-bottom: 20px;
 `;
 
 const FormContainer = styled.div`
   display: flex;
   gap: 80px;
-  justify-content: center; /* Center the form content */
+  justify-content: center;
   align-items: flex-start;
   width: 100%;
 `;
@@ -58,20 +57,7 @@ const InputField = styled.input`
   border: 2px solid black;
   border-radius: 12px;
   background: white;
-`;
-
-const TextArea = styled.textarea`
-  width: 320px;
-  height: 173px;
-  padding: 22px;
-  font-size: 16px;
-  border: 2px solid black;
-  border-radius: 12px;
-  background: white;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: #000000;
 `;
 
 const Label = styled.label`
@@ -82,22 +68,32 @@ const Label = styled.label`
   color: #000000;
 `;
 
-const RightColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-`;
-
 const RegisterButton = styled(GeneralButton)`
   width: 320px;
-  margin-top: 60px; /* Ensure proper spacing from text area */
+  margin-top: 60px;
 `;
-
 
 const RegisterVehicle = () => {
   const [showModal, setShowModal] = useState(false);
-  const [uploadedImages, setUploadedImages] = useState([]);
+  const [uploadedImages, setUploadedImages] = useState();
+  const [carID, setCarID] = useState(""); // Corrected state variable name
+  const [trim, setTrim] = useState("");
+  const [plateEnd, setPlateEnd] = useState("");
+  const [color, setColor] = useState("");
+  const [mileage, setMileage] = useState("");
+
+  const handleSelect = (selectedId) => {
+    console.log("📡 Received CarID from Dropdown:", selectedId, typeof selectedId);
+
+    if (!selectedId || isNaN(selectedId)) {
+      console.error("❌ Invalid CarID:", selectedId, typeof selectedId);
+      alert("❌ Please select a valid vehicle!");
+      return;
+    }
+
+    setCarID(selectedId);
+    console.log("✅ CarID set:", selectedId, "State carID:", carID); // ⭐️ Log state carID after setting
+  };
 
   const handleUploadButtonClick = () => {
     setShowModal(true);
@@ -108,51 +104,87 @@ const RegisterVehicle = () => {
   };
 
   const handleImagesUpload = (images) => {
-    setUploadedImages(images); // Update uploadedImages with the array of images
+    setUploadedImages(images);
     setShowModal(false);
+  };
+
+  const handleSubmit = async () => {
+    console.log("📡 Submitting Vehicle Registration...");
+    console.log("Current carID before submit:", carID, typeof carID); // ⭐️ Log carID and its type before submit
+
+    if (!carID || isNaN(carID)) {
+      console.error("❌ Invalid CarID in handleSubmit:", carID);
+      alert("❌ Please select a valid vehicle!");
+      return;
+    }
+
+    const formData = {
+      carID: parseInt(carID), // Keep parseInt to ensure integer for API
+      trim: trim.trim(),
+      plateEnd: plateEnd.trim(),
+      color: color.trim(),
+      mileage: mileage.trim(),
+    };
+
+    console.log("📡 Sending Data to API:", formData);
+
+    try {
+      const response = await fetch("http://localhost:8004/api/register-vehicle/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert("✅ Vehicle registered successfully!");
+        setCarID(""); // Reset carID after successful registration
+        setTrim("");
+        setPlateEnd("");
+        setColor("");
+        setMileage("");
+      } else {
+        const errorData = await response.json();
+        alert(`❌ Failed to register vehicle: ${errorData.detail}`);
+      }
+    } catch (error) {
+      console.error("❌ Error:", error);
+      alert("An error occurred while registering the vehicle.");
+    }
   };
 
   return (
     <Container>
       <Header>🚗 REGISTER VEHICLE</Header>
 
-      {/* Form Fields */}
       <FormContainer>
-        {/* Left Column */}
         <Column>
           <Label>Vehicle</Label>
           <ButtonContainer>
-            <VehicleDropdown />
+            <VehicleDropdown onSelect={handleSelect} /> {/* Pass handleSelect to onSelect */}
           </ButtonContainer>
 
-          <Label>Trim</Label>
-          <InputField placeholder="Sports, XE, etc."></InputField>
+          <Label>Trim Color</Label>
+          <InputField placeholder="Black" value={trim} onChange={(e) => setTrim(e.target.value)} />
 
           <Label>Plate End (3)</Label>
-          <InputField placeholder="888" />
+          <InputField placeholder="888" value={plateEnd} onChange={(e) => setPlateEnd(e.target.value)} />
         </Column>
 
-        {/* Right Column */}
         <Column>
           <Label>Color</Label>
-          <InputField placeholder="Blue" />
+          <InputField placeholder="Blue" value={color} onChange={(e) => setColor(e.target.value)} />
 
           <Label>Mileage</Label>
-          <InputField placeholder="12345 KM" />
+          <InputField placeholder="12345 KM" value={mileage} onChange={(e) => setMileage(e.target.value)} />
 
-          <ButtonContainer style={{marginTop:'50px'}}>
-            <GeneralButton onClick={handleUploadButtonClick}>
-              + Upload Images
-            </GeneralButton>
+          <ButtonContainer style={{ marginTop: "50px" }}>
+            <GeneralButton onClick={handleUploadButtonClick}>+ Upload Images</GeneralButton>
           </ButtonContainer>
           {showModal && (
-            <ImageUploadModal
-              onClose={handleModalClose}
-              onUpload={handleImagesUpload}
-            />
+            <ImageUploadModal onClose={handleModalClose} onUpload={handleImagesUpload} />
           )}
 
-          <RegisterButton>REGISTER VEHICLE</RegisterButton>
+          <RegisterButton onClick={handleSubmit}>REGISTER VEHICLE</RegisterButton>
         </Column>
       </FormContainer>
     </Container>

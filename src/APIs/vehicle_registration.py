@@ -121,7 +121,7 @@ async def get_vehicles(q: str = None):
             results = cursor.fetchall()
             return [
                 {
-                    "id": row[0],
+                    "CarID": row[0],
                     "make": row[1],
                     "model": row[2],
                     "variant": row[3],
