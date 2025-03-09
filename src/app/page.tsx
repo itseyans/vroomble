@@ -1,12 +1,30 @@
 "use client";
 
 import WelcomeNavBar from "../vcomp/WelcomeNavBar";
+import ListingCard from "../vcomp/ListingCard";
 import Background from "@/vcomp/background";
+import styled from "styled-components";
+
+const ListingContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 40px; /* Increased spacing between cards */
+  margin-top: 40px; /* Slightly increased spacing below YellowNavBar */
+  flex-wrap: wrap; /* Ensure responsiveness */
+`;
+
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      <WelcomeNavBar />
+      <WelcomeNavBar /> {/* Now contains the yellow section too */}
+      <ListingContainer>
+        {/* Dynamically render 4 Listing Cards */}
+        <ListingCard carName="Database - Car Name" imageUrl="Image From Database" dateListed="Date listed - Database" />
+        <ListingCard carName="Database - Car Name" imageUrl="Image From Database" dateListed="Date listed - Database" />
+        <ListingCard carName="Database - Car Name" imageUrl="Image From Database" dateListed="Date listed - Database" />
+        <ListingCard carName="Database - Car Name" imageUrl="Image From Database" dateListed="Date listed - Database" />
+      </ListingContainer>
       <Background />
 
       <footer className="flex gap-6 flex-wrap items-center justify-center p-4"></footer>

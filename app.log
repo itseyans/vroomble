@@ -1223,3 +1223,7 @@ Traceback (most recent call last):
     raise get_sqlitecloud_error_with_extended_code(
 sqlitecloud.exceptions.SQLiteCloudIntegrityError: UNIQUE constraint failed: users.email
 2025-03-04 23:26:46,857 - DEBUG - cannot commit - no transaction is active
+2025-03-09 01:37:41,129 - ERROR - Error initializing SQLite Cloud database table: Unable to find command USE DATABASE Vroomble Database;SET CLIENT KEY COMPRESSION TO 1;.
+2025-03-09 01:44:03,285 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
+2025-03-09 01:44:03,615 - ERROR - Error connecting to cloud database: Unable to find command USE DATABASE Vroomble Database;SET CLIENT KEY COMPRESSION TO 1;.
+2025-03-09 01:44:27,596 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>

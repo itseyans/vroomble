@@ -17,7 +17,7 @@ app = FastAPI()
 
 # Cloud Database Connection (No local file path needed)
 # IMPORTANT: Replace 'YOUR_ACTUAL_API_KEY' with the API Key from your Connection Details!
-DATABASE_URL = "sqlitecloud://cuf1maatnz.g6.sqlite.cloud:8860/vehicle_database.db?apikey=9IwJf2Fz9xSDaQBetYibFbLhi7HrKlAEobNy9wjio9o"
+DATABASE_URL = "sqlitecloud://cuf1maatnz.g6.sqlite.cloud:8860/Vroomble Database?apikey=9IwJf2Fz9xSDaQBetYibFbLhi7HrKlAEobNy9wjio9o"
 
 # Initial connection attempt - you can keep this for early verification, but connections are also made in functions
 # try:
@@ -126,7 +126,7 @@ def create_table_if_not_exists():
         )
 
 # ✅ Call function on startup to ensure table exists (optional, depending on your workflow)
-create_table_if_not_exists()
+#create_table_if_not_exists()
 
 # --- submit_form endpoint (same as before) ---
 @app.post("/submit_form/")

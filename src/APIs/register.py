@@ -16,7 +16,7 @@ app = FastAPI()
 
 # ---  Cloud Database Configuration ---
 # Use CLOUD_DATABASE_CONNECTION_STRING for the full connection string
-CLOUD_DATABASE_CONNECTION_STRING = "sqlitecloud://cuf1maatnz.g6.sqlite.cloud:8860/users.db?apikey=9IwJf2Fz9xSDaQBetYibFbLhi7HrKlAEobNy9wjio9o"  #  <-  Your FULL connection string here!
+CLOUD_DATABASE_CONNECTION_STRING = "sqlitecloud://cuf1maatnz.g6.sqlite.cloud:8860/Vroomble Database?apikey=9IwJf2Fz9xSDaQBetYibFbLhi7HrKlAEobNy9wjio9o"  #  <-  Your FULL connection string here!
 
 # --- It's highly recommended to use environment variables for sensitive information like API keys ---
 # You can set environment variables like CLOUD_DATABASE_CONNECTION_STRING
@@ -88,7 +88,7 @@ def create_table_if_not_exists():
         conn.close() # Ensure connection is closed even on error
         raise DatabaseError(detail=f"Cloud database table initialization error: {e}")
 
-create_table_if_not_exists() # Initialize table on app startup (if not exists)
+#create_table_if_not_exists() # Initialize table on app startup (if not exists)
 
 @app.post("/register/")
 async def register_user(registration_data: Registration):

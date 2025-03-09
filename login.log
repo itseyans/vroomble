@@ -24,3 +24,12 @@ Traceback (most recent call last):
   File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\src\APIs\login.py", line 120, in login_user
     raise HTTPException(status_code=400, detail="Incorrect email or password")
 fastapi.exceptions.HTTPException: 400: Incorrect email or password
+2025-03-08 21:55:33,702 - WARNING - Login failed: Incorrect password for email sobrekim@gmail.com
+2025-03-08 21:55:33,702 - ERROR - Unexpected error during login: 400: Incorrect email or password
+Traceback (most recent call last):
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\src\APIs\login.py", line 120, in login_user
+    raise HTTPException(status_code=400, detail="Incorrect email or password")
+fastapi.exceptions.HTTPException: 400: Incorrect email or password
+2025-03-08 21:55:49,078 - INFO - User sobrekim@gmail.com logged in successfully
+2025-03-08 23:41:06,290 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
+2025-03-09 01:44:41,431 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
