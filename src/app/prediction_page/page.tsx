@@ -1,27 +1,11 @@
-"use client";
+"use client"; // ✅ Ensure Client-Side Rendering
 
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import styled from "styled-components";
-import GeneralButton from "@/vcomp/GeneralButton";
-import NavBar from "@/vcomp/NavBar";
-
-/** Define API response types */
-interface CarMakersResponse {
-  makers: string[];
-}
-
-interface CarModelsResponse {
-  models: string[];
-}
-
-interface CarPartsResponse {
-  parts: string[];
-}
-
-interface PredictionResponse {
-  prediction: string;
-}
+import Background from "../../vcomp/Background"; // ✅ Background component
+import NavBar from "../../vcomp/NavBar"; // ✅ Navigation Bar component
+import GeneralButton from "../../vcomp/GeneralButton";
+import usePredict from "../../vcomp/Predict"; // ✅ Importing the hook properly
 
 /** Styled Components */
 const Container = styled.div`
@@ -56,58 +40,12 @@ const Dropdown = styled.select`
   background: white;
 `;
 
-const Input = styled.input`
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  background: white;
-`;
-
-const MultiSelectContainer = styled.div`
-  width: 100%;
-  position: relative;
-`;
-
-const PartsContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 10px;
-`;
-
-const PartTag = styled.label`
-  display: flex;
-  align-items: center;
-  background: #007bff;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 14px;
-  cursor: pointer;
-`;
-
-const Checkbox = styled.input`
-  margin-right: 8px;
-  cursor: pointer;
-`;
-
 const Button = styled(GeneralButton)`
-  background: #007bff;
-  color: white;
-  padding: 10px;
-  text-align: center;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  &:hover {
-    background: #0056b3;
-  }
+  width: 100%;
 `;
 
-const Result = styled.div`
+/** Styled box for output */
+const ResultBox = styled.div`
   margin-top: 20px;
   padding: 15px;
   background: #e9ecef;
@@ -117,144 +55,76 @@ const Result = styled.div`
   font-weight: bold;
 `;
 
-/** Main Component */
-const PredictForm: React.FC = () => {
-  const [carMakers, setCarMakers] = useState<string[]>([]);
-  const [selectedMaker, setSelectedMaker] = useState<string>("");
-  const [carModels, setCarModels] = useState<string[]>([]);
-  const [selectedModel, setSelectedModel] = useState<string>("");
-  const [carParts, setCarParts] = useState<string[]>([]);
-  const [selectedParts, setSelectedParts] = useState<string[]>([]);
-  const [months, setMonths] = useState<string>("");
-  const [prediction, setPrediction] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+const PredictForm = () => {
+  const {
+    carMakers,
+    carModels,
+    selectedMaker,
+    setSelectedMaker,
+    selectedModel,
+    setSelectedModel,
+    months,
+    setMonths,
+    prediction,
+    fetchPrediction,
+    loading,
+    hydration,
+  } = usePredict(); // ✅ Use the hook inside
 
-  /** Fetch car makers on mount */
-  useEffect(() => {
-    axios
-      .get<CarMakersResponse>("http://127.0.0.1:8000/car-makers")
-      .then((response) => setCarMakers(response.data.makers || []))
-      .catch((error) => console.error("Error fetching car makers:", error));
-  }, []);
-
-  /** Fetch car models when car maker is selected */
-  useEffect(() => {
-    if (selectedMaker) {
-      axios
-        .get<CarModelsResponse>(`http://127.0.0.1:8000/car-models?make=${selectedMaker}`)
-        .then((response) => setCarModels(response.data.models || []))
-        .catch((error) => console.error("Error fetching car models:", error));
-    } else {
-      setCarModels([]);
-    }
-  }, [selectedMaker]);
-
-  /** Fetch car parts when car model is selected */
-  useEffect(() => {
-    if (selectedModel) {
-      axios
-        .get<CarPartsResponse>(`http://127.0.0.1:8000/car-parts?model=${selectedModel}`)
-        .then((response) => setCarParts(response.data.parts || []))
-        .catch((error) => console.error("Error fetching car parts:", error));
-    } else {
-      setCarParts([]);
-    }
-  }, [selectedModel]);
-
-  /** Handle selection of car parts */
-  const handlePartSelect = (part: string) => {
-    setSelectedParts((prevParts) =>
-      prevParts.includes(part)
-        ? prevParts.filter((p) => p !== part)
-        : [...prevParts, part]
-    );
-  };
-
-  /** Fetch price prediction */
-  const fetchPrediction = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!selectedModel || selectedParts.length === 0 || !months) {
-      alert("Please fill in all fields before submitting.");
-      return;
-    }
-
-    setLoading(true);
-    try {
-      const response = await axios.get<PredictionResponse>(
-        `http://127.0.0.1:8000/predict_price?model=${selectedModel}&parts=${selectedParts.join(
-          ","
-        )}&months=${months}`
-      );
-      setPrediction(response.data.prediction);
-    } catch (error) {
-      console.error("Error fetching prediction:", error);
-      setPrediction("Error fetching prediction");
-    }
-    setLoading(false);
-  };
+  /** Prevent rendering until hydration is complete */
+  if (!hydration) {
+    return <p>Loading...</p>;
+  }
 
   return (
-    <Container>
-      <Header>Car Price Prediction</Header>
-      <Form onSubmit={fetchPrediction}>
-        {/* Car Maker Dropdown */}
-        <Dropdown value={selectedMaker} onChange={(e) => setSelectedMaker(e.target.value)} required>
-          <option value="">Select Car Maker</option>
-          {carMakers.map((maker, index) => (
-            <option key={index} value={maker}>
-              {maker}
-            </option>
-          ))}
-        </Dropdown>
+    <>
+      {/* Background & Navbar at the top */}
+      <NavBar />
+      <Background />
 
-        {/* Car Model Dropdown */}
-        <Dropdown value={selectedModel} onChange={(e) => setSelectedModel(e.target.value)} required>
-          <option value="">Select Car Model</option>
-          {carModels.map((model, index) => (
-            <option key={index} value={model}>
-              {model}
-            </option>
-          ))}
-        </Dropdown>
-
-        {/* MultiSelect for Car Parts */}
-        <MultiSelectContainer>
-          <p>Select Car Parts:</p>
-          <PartsContainer>
-            {carParts.map((part, index) => (
-              <PartTag key={index}>
-                <Checkbox
-                  type="checkbox"
-                  value={part}
-                  checked={selectedParts.includes(part)}
-                  onChange={() => handlePartSelect(part)}
-                />
-                {part}
-              </PartTag>
+      {/* Prediction Form Section */}
+      <Container>
+        <Header>Dream Car Creator & Cost Estimator</Header>
+        <Form onSubmit={(e) => { e.preventDefault(); fetchPrediction(); }}>
+          {/* Car Maker Dropdown */}
+          <Dropdown value={selectedMaker} onChange={(e) => setSelectedMaker(e.target.value)} required>
+            <option value="">Select Car Maker</option>
+            {carMakers.map((maker, index) => (
+              <option key={index} value={maker}>
+                {maker}
+              </option>
             ))}
-          </PartsContainer>
-        </MultiSelectContainer>
+          </Dropdown>
 
-        {/* Months Input */}
-        <Input type="number" value={months} onChange={(e) => setMonths(e.target.value)} placeholder="Enter number of months" required />
+          {/* Car Model Dropdown */}
+          <Dropdown value={selectedModel} onChange={(e) => setSelectedModel(e.target.value)} required>
+            <option value="">Select Car Model</option>
+            {carModels.map((model, index) => (
+              <option key={index} value={model}>
+                {model}
+              </option>
+            ))}
+          </Dropdown>
 
-        {/* Submit Button */}
-        <Button type="submit">Get Prediction</Button>
-      </Form>
+          {/* Months Input */}
+          <Dropdown value={months} onChange={(e) => setMonths(e.target.value)} required>
+            <option value="">Enter number of months</option>
+            {[1, 3, 6, 12, 24].map((month, index) => (
+              <option key={index} value={month}>
+                {month} months
+              </option>
+            ))}
+          </Dropdown>
 
-      {/* Loading and Result */}
-      {loading && <p>Loading...</p>}
-      {prediction !== null && <Result>Prediction: {prediction}</Result>}
-    </Container>
+          {/* Submit Button */}
+          <Button type="submit">{loading ? "Loading..." : "Get Prediction"}</Button>
+        </Form>
+
+        {/* Display the Prediction Result */}
+        {prediction !== null && <ResultBox>Predicted Price: ${parseFloat(prediction).toFixed(2)}</ResultBox>}
+      </Container>
+    </>
   );
 };
 
-const PredictionPage: React.FC = () => (
-  <>
-    <NavBar />
-    <PredictForm />
-  </>
-);
-
-export default PredictionPage;
+export default PredictForm; // ✅ Correctly export the component
