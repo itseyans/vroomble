@@ -6,7 +6,7 @@ import React from "react";
 import styled from "styled-components";
 import NavBar from "../../vcomp/NavBar";
 import FilterButton from "../../vcomp/FilterButton"; // Import FilterButton
-import ListingCard from "../../vcomp/Listingcard";
+import ListingCard from "../../vcomp/ListingCard";
 
 const PageContainer = styled.div`
   display: flex;

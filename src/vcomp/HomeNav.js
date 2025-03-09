@@ -2,6 +2,7 @@
 
 import React from "react";
 import styled from "styled-components";
+import { useRouter } from "next/navigation"; // ✅ Import router for navigation
 
 // ✅ Navbar Container (Full Width & Fixed to Top)
 const NavBarContainer = styled.nav`
@@ -11,13 +12,13 @@ const NavBarContainer = styled.nav`
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem 4rem;
-  position: fixed; /* ✅ Sticks to the top */
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%; /* ✅ Spans full width */
+  width: 100%;
   height: 6rem;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-  z-index: 10; /* ✅ Ensure it's above everything */
+  z-index: 10;
 `;
 
 // ✅ Logo Section
@@ -60,15 +61,17 @@ const Emblem = styled.img`
   height: auto;
 `;
 
-// ✅ User Icon Section (Aligned to Right)
-const UserIconContainer = styled.div`
+// ✅ Right-Side Container for User Icon & Button
+const RightContainer = styled.div`
   display: flex;
   align-items: center;
+  gap: 15px; /* ✅ Space between elements */
   padding-right: 2rem;
 `;
 
+// ✅ User Icon Section
 const UserIcon = styled.img`
-  width: 45px; /* Adjust size as needed */
+  width: 45px;
   height: 45px;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
@@ -78,7 +81,27 @@ const UserIcon = styled.img`
   }
 `;
 
+// ✅ Buy Cars Button
+const BuyButton = styled.button`
+  background-color: gold;
+  color: black;
+  font-weight: bold;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+
+  &:hover {
+    background-color: #ffcc00;
+    transform: scale(1.05);
+  }
+`;
+
 const HomeNav = () => {
+  const router = useRouter(); // ✅ Initialize router
+
   return (
     <NavBarContainer>
       {/* Left: VROOMBLE Logo */}
@@ -91,10 +114,13 @@ const HomeNav = () => {
         </EmblemContainer>
       </EmblemBackground>
 
-      {/* Right: User Icon */}
-      <UserIconContainer>
+      {/* Right: Buy Vehicles Button + User Icon */}
+      <RightContainer>
+        <BuyButton onClick={() => router.push("/ListedVehiclesPage")}>
+          BUY VEHICLES
+        </BuyButton>
         <UserIcon src="/usericonround.png" alt="User Profile" />
-      </UserIconContainer>
+      </RightContainer>
     </NavBarContainer>
   );
 };
