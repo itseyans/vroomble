@@ -1,4 +1,6 @@
+"use client"; // Add this for client components in Next.js
 import React, { useState } from "react";
+import { useRouter } from "next/navigation"; // Next.js router
 import styled from "styled-components";
 
 const LForm = styled.form`
@@ -50,7 +52,8 @@ const ErrorM = styled.p`
     font-size: 14px;
 `;
 
-function LoginForm({ label, placeholder, required, errorMessage }) {
+function LoginForm({ required, errorMessage }) {
+    const router = useRouter(); // Use Next.js router
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [emailError, setEmailError] = useState(false);
@@ -83,18 +86,18 @@ function LoginForm({ label, placeholder, required, errorMessage }) {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({ email, password }),
+                credentials: "include",
             });
 
             if (response.ok) {
-                console.log("Login successful!");
-                // Example: Redirect to a protected route
-                // window.location.href = "/dashboard";
+                console.log("✅ Login successful!");
+                router.push("/homepage"); // Redirect using Next.js router
             } else {
                 const errorData = await response.json();
                 setLoginError(errorData.detail || "Login failed");
             }
         } catch (error) {
-            console.error("Login error:", error);
+            console.error("❌ Login error:", error);
             setLoginError("An unexpected error occurred.");
         }
     };
