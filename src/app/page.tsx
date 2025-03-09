@@ -1,8 +1,7 @@
 "use client";
 
 import WelcomeNavBar from "../vcomp/WelcomeNavBar";
-import ListingCard from "../vcomp/Listingcard";
-import Background from "../vcomp/background";
+import ListingCard from "../vcomp/ListingCard";
 import styled from "styled-components";
 
 const ListingContainer = styled.div`
@@ -25,8 +24,7 @@ export default function Home() {
         <ListingCard carName="Database - Car Name" imageUrl="Image From Database" dateListed="Date listed - Database" />
         <ListingCard carName="Database - Car Name" imageUrl="Image From Database" dateListed="Date listed - Database" />
       </ListingContainer>
-      <Background />
-
+  
       <footer className="flex gap-6 flex-wrap items-center justify-center p-4"></footer>
 
       <style jsx global>{`
