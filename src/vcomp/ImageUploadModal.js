@@ -13,6 +13,7 @@ const ModalOverlay = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 1000;
+
 `;
 
 const ModalContent = styled.div`
@@ -22,6 +23,7 @@ const ModalContent = styled.div`
   width: 500px;
   max-width: 90%;
   text-align: center;
+  color: #000000;
 `;
 
 const Input = styled.input`

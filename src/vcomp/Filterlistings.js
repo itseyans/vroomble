@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import GeneralButton from "./GeneralButton";
-import SelectBody from "./SelectBody";
-import SelectBrand from "./SelectBrand";
+import GeneralButton from "../vcomp/GeneralButton";
+import SelectBody from "../vcomp/SelectBody";
+import SelectBrand from "../vcomp/SelectBrand";
 
 const FilterContainer = styled.div`
   display: flex;

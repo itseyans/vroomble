@@ -1,7 +1,7 @@
 "use client";
 
 import WelcomeNavBar from "../vcomp/WelcomeNavBar";
-import ListingCard from "../vcomp/ListingCard";
+import ListingCard from "../vcomp/Listingcard";
 import Background from "../vcomp/background";
 import styled from "styled-components";
 

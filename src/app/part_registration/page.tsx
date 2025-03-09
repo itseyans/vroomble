@@ -10,7 +10,6 @@ const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #131415;
   color: gold;
 `;
 
@@ -24,7 +23,6 @@ const PageContainer = styled.div`
   justify-content: center; // Center the button vertically
   align-items: center;
   flex-grow: 1; // Allow this container to take up available space
-  background-color: #131415;
   color: gold;
 `;
 
