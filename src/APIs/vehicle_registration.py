@@ -15,21 +15,21 @@ from pydantic import BaseModel, field_validator
 
 app = FastAPI()
 
-# Cloud Database Connection (No local file path needed)
-# IMPORTANT: Replace 'YOUR_ACTUAL_API_KEY' with the API Key from your Connection Details!
-DATABASE_URL = "sqlitecloud://cuf1maatnz.g6.sqlite.cloud:8860/Vroomble Database?apikey=9IwJf2Fz9xSDaQBetYibFbLhi7HrKlAEobNy9wjio9o"
+# ✅ Define connection string correctly (as a STRING, not a connection object)
+CLOUD_DATABASE_CONNECTION_STRING = "sqlitecloud://cuf1maatnz.g6.sqlite.cloud:8860/Vroomble_Database.db?apikey=9IwJf2Fz9xSDaQBetYibFbLhi7HrKlAEobNy9wjio9o"
 
-# Initial connection attempt - you can keep this for early verification, but connections are also made in functions
-# try:
-#     conn = sqlitecloud.connect(DATABASE_URL)
-#     print("✅ Successfully connected to SQLite Cloud database!")
-#     conn.close() # Close immediately after verification, connections are managed in functions
-# except sqlitecloud.Error as e:
-#     print(f"❌ Error connecting to SQLite Cloud database: {e}")
-#     # It's better to handle connection within functions to manage resources effectively
+# ✅ Check and establish connection
+try:
+    with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:  # ✅ Use the connection string inside connect()
+        print("✅ Successfully connected to SQLite Cloud database!")
+        cursor = conn.cursor()
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+        tables = cursor.fetchall()
+        print("Existing Tables:", tables)
+except sqlitecloud.Error as e:
+    print(f"❌ SQLite Cloud connection error: {e}")
 
-
-# CORS middleware (same as before)
+# ✅ CORS middleware (same as before)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],  # React app URL
@@ -38,27 +38,22 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Configure logging (same as before)
+# ✅ Logging configuration
 logging.basicConfig(
-    filename="app.log",  # Log file name
-    level=logging.DEBUG,  # Log level
+    filename="app.log",
+    level=logging.DEBUG,
     format="%(asctime)s - %(levelname)s - %(message)s",
 )
 logger = logging.getLogger(__name__)
 
-# Custom exception classes (same as before)
+# ✅ Custom exception classes
 class CarAlreadyExistsError(HTTPException):
     def __init__(self, detail: str = None):
-        super().__init__(
-            status_code=400,
-            detail=detail or "An identical car entry already exists in the database.",
-        )
+        super().__init__(status_code=400, detail=detail or "An identical car entry already exists.")
 
 class DatabaseError(HTTPException):
     def __init__(self, detail: str = None):
-        super().__init__(
-            status_code=500, detail=detail or "Database error."
-        )
+        super().__init__(status_code=500, detail=detail or "Database error.")
 
 # Car model (same as before)
 class Car(BaseModel):
@@ -100,7 +95,7 @@ def create_table_if_not_exists():
             cursor.execute(
                 """
                 CREATE TABLE IF NOT EXISTS cars (
-                    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                    CarID INTEGER PRIMARY KEY AUTOINCREMENT,
                     Make TEXT NOT NULL,
                     Model TEXT NOT NULL,
                     Body_Type TEXT NOT NULL,
@@ -145,7 +140,7 @@ async def create_car_form(car_data: Car):
 
     try:
         # ✅ Connect to SQLite Cloud database (using DATABASE_URL) - Use context manager
-        with sqlitecloud.connect(DATABASE_URL) as conn:
+        with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:
             cursor = conn.cursor()
             srp_str = f"{car_data.retail_srp:.2f}"
 

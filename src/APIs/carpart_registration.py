@@ -1,15 +1,13 @@
 from fastapi import FastAPI, HTTPException, Form
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-import sqlite3
-import os
+import sqlitecloud  # Using SQLite Cloud (not local sqlite3)
 
 app = FastAPI()
 
-# CORS configuration (Make sure to include this)
+# ✅ CORS Configuration (Allow frontend requests from Next.js)
 origins = [
-    "http://localhost:3000",  # Replace with your Next.js frontend URL
-    # Add other allowed origins if needed
+    "http://localhost:3000",  # Next.js frontend
 ]
 
 app.add_middleware(
@@ -20,79 +18,83 @@ app.add_middleware(
     allow_headers=["*"],  # Allows all headers
 )
 
-# Database file path
-db_file = os.path.join("C:\\Users\\Sobre\\OneDrive\\Desktop\\Vroomble\\Vroomble Dataset", "car_parts_database.db")
-db_dir = os.path.dirname(db_file)  # get just the path to the directory.
+# ✅ Define SQLite Cloud Connection
+CLOUD_DATABASE_CONNECTION_STRING = "sqlitecloud://cuf1maatnz.g6.sqlite.cloud:8860/Vroomble_Database.db?apikey=9IwJf2Fz9xSDaQBetYibFbLhi7HrKlAEobNy9wjio9o"
 
-# Pydantic model for car part data (matching the form fields)
+# ✅ Check and Establish Connection
+try:
+    with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:
+        print("✅ Successfully connected to SQLite Cloud database!")
+        cursor = conn.cursor()
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+        tables = cursor.fetchall()
+        print("Existing Tables:", tables)
+except sqlitecloud.Error as e:
+    print(f"❌ SQLite Cloud connection error: {e}")
+
+# ✅ Pydantic Model for Car Parts
 class CarPart(BaseModel):
     make: str
     part_name: str
     model_number: str | None = None  # Optional model number
     category: str
-    part_origSRP: float  # Assuming this is the original SRP
+    part_origSRP: float  # Original price
 
-# Function to create the car_parts table if it doesn't exist
-def create_table_if_not_exists(db_file):
+# ✅ Function to Ensure `car_parts` Table Exists in SQLite Cloud
+def create_table_if_not_exists():
     try:
-        conn = sqlite3.connect(db_file)
-        cursor = conn.cursor()
-        cursor.execute("PRAGMA user_version = 1")
-        cursor.execute('''
-            CREATE TABLE IF NOT EXISTS car_parts (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                make TEXT,  -- Added 'make' column
-                part_name TEXT NOT NULL,
-                model_number TEXT,
-                category TEXT,
-                part_origSRP REAL  -- Added 'part_origSRP' column
-            )
-        ''')
-        conn.commit()
-        conn.close()
-        print("Table created or already exists.")
-    except Exception as e:
-        print(f"Error creating table: {e}")
+        with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:
+            cursor = conn.cursor()
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS car_parts (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    make TEXT NOT NULL,
+                    part_name TEXT NOT NULL,
+                    model_number TEXT UNIQUE,  -- Ensure model_number is unique
+                    category TEXT NOT NULL,
+                    part_origSRP REAL NOT NULL CHECK(part_origSRP > 0)
+                )
+            ''')
+            conn.commit()
+            print("✅ Table 'car_parts' created or already exists.")
+    except sqlitecloud.Error as e:
+        print(f"❌ Error creating table in SQLite Cloud: {e}")
 
-create_table_if_not_exists(db_file)
+# ✅ Create table if not exists
+create_table_if_not_exists()
 
-# API endpoint to register a car part (modified to match form fields)
+# ✅ API Endpoint to Register a Car Part (POST)
 @app.post("/car_parts/")
 async def register_car_part(car_part: CarPart):
     try:
-        # Ensure directory exists.
-        if not os.path.exists(db_dir):
-            os.makedirs(db_dir)
+        with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:
+            cursor = conn.cursor()
 
-        conn = sqlite3.connect(db_file)
-        cursor = conn.cursor()
+            # Check if a car part with the same `model_number` already exists
+            if car_part.model_number:
+                cursor.execute("SELECT COUNT(*) FROM car_parts WHERE model_number=?", (car_part.model_number,))
+                existing_entry_count = cursor.fetchone()[0]
+                if existing_entry_count > 0:
+                    raise HTTPException(status_code=400, detail="A car part with this model number already exists.")
 
-        # Check for duplicates **ONLY** based on `model_number` (if provided)
-        if car_part.model_number:
-            cursor.execute("SELECT COUNT(*) FROM car_parts WHERE model_number=?", (car_part.model_number,))
-            existing_entry_count = cursor.fetchone()[0]
-            if existing_entry_count > 0:
-                raise HTTPException(status_code=400, detail="A car part with this model number already exists.")
+            # Insert car part data
+            cursor.execute('''
+                INSERT INTO car_parts (make, part_name, model_number, category, part_origSRP)
+                VALUES (?, ?, ?, ?, ?)
+            ''', (car_part.make, car_part.part_name, car_part.model_number, car_part.category, car_part.part_origSRP))
+            
+            conn.commit()
 
-        # Insert the car part data
-        cursor.execute('''
-            INSERT INTO car_parts (make, part_name, model_number, category, part_origSRP)
-            VALUES (?, ?, ?, ?, ?)
-        ''', (car_part.make, car_part.part_name, car_part.model_number, car_part.category, car_part.part_origSRP))
-        conn.commit()
-        conn.close()
+        return {"message": "✅ Car part registered successfully!"}
 
-        return {"message": "Car part registered successfully"}
-
-    except sqlite3.Error as sqlite_err:
-        raise HTTPException(status_code=500, detail=f"Database error: {sqlite_err}")
+    except sqlitecloud.Error as sqlite_err:
+        raise HTTPException(status_code=500, detail=f"❌ Database error: {sqlite_err}")
     except HTTPException as http_exception:
         raise http_exception
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error registering car part: {e}")
+        raise HTTPException(status_code=500, detail=f"❌ Error registering car part: {e}")
 
-
-# API endpoint to handle form submission (modified to match form fields)
+# ✅ API Endpoint to Handle Form Submission (POST)
 @app.post("/car_parts/form/")
 async def register_car_part_form(
     make: str = Form(...),
@@ -110,17 +112,19 @@ async def register_car_part_form(
     )
     return await register_car_part(car_part_data)
 
-# API endpoint to provide dropdown options for the form
+# ✅ API Endpoint to Provide Dropdown Options
 @app.get("/car_parts/dropdown_options/")
 async def get_dropdown_options():
     return {
         "categories": ["Offroad", "Street", "Maintenance", "Sports", "Wheels", "Exterior", "Interior", "Tires"]
     }
 
-@app.post("http://localhost:3000/vehicle_registration")
+# ✅ API Endpoint to Receive Data from Frontend
+@app.post("/vehicle_registration")
 async def create_item(data: dict):
-    return {"message": "Data received!", "data": data}
+    return {"message": "✅ Data received!", "data": data}
 
+# ✅ Root Endpoint (Welcome Message)
 @app.get("/")
 async def root():
-    return {"message": "Welcome to the Car Part Registration API!"}
+    return {"message": "🚗 Welcome to the Car Part Registration API!"}

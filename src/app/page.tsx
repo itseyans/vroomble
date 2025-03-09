@@ -1,8 +1,8 @@
 "use client";
 
 import WelcomeNavBar from "../vcomp/WelcomeNavBar";
-import ListingCard from "../vcomp/ListingCard";
-import Background from "@/vcomp/background";
+import ListingCard from "../vcomp/Listingcard";
+import Background from "../vcomp/background";
 import styled from "styled-components";
 
 const ListingContainer = styled.div`
