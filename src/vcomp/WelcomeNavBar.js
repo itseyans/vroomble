@@ -16,6 +16,7 @@ const NavBarContainer = styled.nav`
   position: relative;
   height: 8rem;
   margin-bottom: 0;
+  z-index: 1000;
 `;
 
 // ✅ Logo Design
@@ -27,7 +28,7 @@ const LogoContainer = styled.div`
   color: gold;
 `;
 
-// ✅ Emblem Background
+// ✅ Emblem Background (Restored)
 const EmblemBackground = styled.div`
   position: absolute;
   top: 50%;
@@ -40,7 +41,7 @@ const EmblemBackground = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2;
+  z-index: 1002;
 `;
 
 // ✅ Emblem Logo
@@ -84,10 +85,11 @@ const YellowSection = styled.div`
   background-color: #ffc629;
   height: 200px;
   width: 100%;
-  clip-path: polygon(25% 100%, 75% 100%, 100% 0, 0% 0);
+  clip-path: polygon(20% 100%, 80% 100%, 100% 0, 0% 0);
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 999;
 `;
 
 const StatsContainer = styled.div`
@@ -112,22 +114,52 @@ const StatBox = styled.div`
   justify-content: center;
 `;
 
-const CarIcon = styled.img`
-  width: 70px;
-  height: auto;
-  margin-bottom: 12px;
+// ✅ Blurred Overlay (Applies blur when a form is active)
+const BlurOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);  /* Dark overlay */
+  backdrop-filter: blur(10px);  /* ✅ Blurs everything */
+  z-index: 1000;  /* ✅ Below the pop-up but above the content */
 `;
 
-const UserIcon = styled.img`
-  width: 65px;
-  height: auto;
-  margin-bottom: 12px;
+// ✅ Popup Container (Ensures form is above the overlay)
+const ModalContainer = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  padding: 0;
+  text-align: center;
+  z-index: 1001;  /* ✅ Ensure it's above the blur */
+  border: none;
+  width: auto;
 `;
 
-const FormContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 3rem; /* Added margin to push forms lower */
+// ✅ Close Button (Fixed Visibility + Better Positioning)
+const CloseButton = styled.button`
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  background: black;
+  color: white;
+  border: 2px solid white;
+  font-size: 16px;
+  font-weight: bold;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1002;
+  transition: background 0.2s;
+
+  &:hover {
+    background: red;
+  }
 `;
 
 const WelcomeNavBar = () => {
@@ -142,11 +174,14 @@ const WelcomeNavBar = () => {
       {/* ✅ Black Navbar */}
       <NavBarContainer>
         <LogoContainer>VROOMBLE</LogoContainer>
+        
+        {/* ✅ Restored Emblem */}
         <EmblemBackground>
           <EmblemContainer>
             <Emblem src="/LOGO.png" alt="Vroomble Logo" />
           </EmblemContainer>
         </EmblemBackground>
+
         <ButtonContainer>
           <NavButton onClick={() => toggleForm("login")}>Sign In</NavButton>
           <NavButton onClick={() => toggleForm("register")}>Register</NavButton>
@@ -157,33 +192,36 @@ const WelcomeNavBar = () => {
       <YellowSection>
         <StatsContainer>
           <StatBox>
-            <CarIcon src="/caricon.png" alt="Registered Cars" />
             <span>Registered Cars</span>
             <span>001</span>
           </StatBox>
           <StatBox>
-            <CarIcon src="/caricon.png" alt="Listed Vehicles" />
             <span>Listed Vehicles</span>
             <span>001</span>
           </StatBox>
           <StatBox>
-            <UserIcon src="/usericon.png" alt="Registered Users" />
             <span>Registered Users</span>
             <span>001</span>
           </StatBox>
           <StatBox>
-            <UserIcon src="/usericon.png" alt="Registered Users" />
             <span>Registered Users</span>
             <span>001</span>
           </StatBox>
         </StatsContainer>
       </YellowSection>
 
-      {/* ✅ Forms */}
-      <FormContainer>
-        {activeForm === "register" && <RegistrationForm />}
-        {activeForm === "login" && <LoginForm />}
-      </FormContainer>
+      {/* ✅ Blurred Background when Popup is Active */}
+      {activeForm && <BlurOverlay onClick={() => setActiveForm(null)} />}
+
+      {/* ✅ Popup Forms (Now with Close Button) */}
+      {activeForm && (
+        <ModalContainer>
+          <CloseButton onClick={() => setActiveForm(null)}>X</CloseButton>
+          
+          {activeForm === "register" && <RegistrationForm />}
+          {activeForm === "login" && <LoginForm />}
+        </ModalContainer>
+      )}
     </>
   );
 };

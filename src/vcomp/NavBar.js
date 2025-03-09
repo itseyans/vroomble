@@ -108,7 +108,7 @@ const NavBar = () => {
           </>
         ) : (
           <>
-            <Link href="/home">
+            <Link href="/homepage">
               <NavItem>Home</NavItem>
             </Link>
             <Link href="/services">
