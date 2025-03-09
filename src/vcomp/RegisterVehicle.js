@@ -74,121 +74,118 @@ const RegisterButton = styled(GeneralButton)`
 `;
 
 const RegisterVehicle = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [uploadedImages, setUploadedImages] = useState();
-  const [carID, setCarID] = useState(""); // Corrected state variable name
-  const [trim, setTrim] = useState("");
-  const [plateEnd, setPlateEnd] = useState("");
-  const [color, setColor] = useState("");
-  const [mileage, setMileage] = useState("");
+    const [showModal, setShowModal] = useState(false);
+    const [uploadedImages, setUploadedImages] = useState();
+    const [carID, setCarID] = useState("");
+    const [trim, setTrim] = useState("");
+    const [plateEnd, setPlateEnd] = useState("");
+    const [color, setColor] = useState("");
+    const [mileage, setMileage] = useState("");
 
-  const handleSelect = (selectedId) => {
-    console.log("📡 Received CarID from Dropdown:", selectedId, typeof selectedId);
-
-    if (!selectedId || isNaN(selectedId)) {
-      console.error("❌ Invalid CarID:", selectedId, typeof selectedId);
-      alert("❌ Please select a valid vehicle!");
-      return;
-    }
-
-    setCarID(selectedId);
-    console.log("✅ CarID set:", selectedId, "State carID:", carID); // ⭐️ Log state carID after setting
-  };
-
-  const handleUploadButtonClick = () => {
-    setShowModal(true);
-  };
-
-  const handleModalClose = () => {
-    setShowModal(false);
-  };
-
-  const handleImagesUpload = (images) => {
-    setUploadedImages(images);
-    setShowModal(false);
-  };
-
-  const handleSubmit = async () => {
-    console.log("📡 Submitting Vehicle Registration...");
-    console.log("Current carID before submit:", carID, typeof carID); // ⭐️ Log carID and its type before submit
-
-    if (!carID || isNaN(carID)) {
-      console.error("❌ Invalid CarID in handleSubmit:", carID);
-      alert("❌ Please select a valid vehicle!");
-      return;
-    }
-
-    const formData = {
-      carID: parseInt(carID), // Keep parseInt to ensure integer for API
-      trim: trim.trim(),
-      plateEnd: plateEnd.trim(),
-      color: color.trim(),
-      mileage: mileage.trim(),
+    const handleSelect = (selectedId) => {
+        console.log("📡 Received CarID from Dropdown:", selectedId, typeof selectedId);
+        if (!selectedId || isNaN(selectedId)) {
+            console.error("❌ Invalid CarID:", selectedId, typeof selectedId);
+            alert("❌ Please select a valid vehicle!");
+            return;
+        }
+        setCarID(selectedId);
+        console.log("✅ carID set:", selectedId, "State carID:", carID); // Corrected log to lowercase 'carID'
     };
 
-    console.log("📡 Sending Data to API:", formData);
+    const handleUploadButtonClick = () => {
+        setShowModal(true);
+    };
 
-    try {
-      const response = await fetch("http://localhost:8004/api/register-vehicle/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+    const handleModalClose = () => {
+        setShowModal(false);
+    };
 
-      if (response.ok) {
-        alert("✅ Vehicle registered successfully!");
-        setCarID(""); // Reset carID after successful registration
-        setTrim("");
-        setPlateEnd("");
-        setColor("");
-        setMileage("");
-      } else {
-        const errorData = await response.json();
-        alert(`❌ Failed to register vehicle: ${errorData.detail}`);
-      }
-    } catch (error) {
-      console.error("❌ Error:", error);
-      alert("An error occurred while registering the vehicle.");
-    }
-  };
+    const handleImagesUpload = (images) => {
+        setUploadedImages(images);
+        setShowModal(false);
+    };
 
-  return (
-    <Container>
-      <Header>🚗 REGISTER VEHICLE</Header>
+    const handleSubmit = async () => {
+        console.log("📡 Submitting Vehicle Registration...");
+        console.log("Current carID before submit:", carID, typeof carID);
 
-      <FormContainer>
-        <Column>
-          <Label>Vehicle</Label>
-          <ButtonContainer>
-            <VehicleDropdown onSelect={handleSelect} /> {/* Pass handleSelect to onSelect */}
-          </ButtonContainer>
+        if (!carID || isNaN(carID)) {
+            console.error("❌ Invalid carID in handleSubmit:", carID); // Corrected log to lowercase 'carID'
+            alert("❌ Please select a valid vehicle!");
+            return;
+        }
 
-          <Label>Trim Color</Label>
-          <InputField placeholder="Black" value={trim} onChange={(e) => setTrim(e.target.value)} />
+        const formData = {
+            carID: parseInt(carID), 
+            trim: trim.trim(),
+            plateEnd: plateEnd.trim(),
+            color: color.trim(),
+            mileage: mileage.trim(),
+        };
 
-          <Label>Plate End (3)</Label>
-          <InputField placeholder="888" value={plateEnd} onChange={(e) => setPlateEnd(e.target.value)} />
-        </Column>
+        console.log("📡 Sending Data to API:", formData); // This log should now show 'carID'
 
-        <Column>
-          <Label>Color</Label>
-          <InputField placeholder="Blue" value={color} onChange={(e) => setColor(e.target.value)} />
+        try {
+            const response = await fetch("http://localhost:8004/api/register-vehicle/", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
 
-          <Label>Mileage</Label>
-          <InputField placeholder="12345 KM" value={mileage} onChange={(e) => setMileage(e.target.value)} />
+            if (response.ok) {
+                alert("✅ Vehicle registered successfully!");
+                setCarID("");
+                setTrim("");
+                setPlateEnd("");
+                setColor("");
+                setMileage("");
+            } else {
+                const errorData = await response.json();
+                alert(`❌ Failed to register vehicle: ${errorData.detail}`);
+            }
+        } catch (error) {
+            console.error("❌ Error:", error);
+            alert("An error occurred while registering the vehicle.");
+        }
+    };
 
-          <ButtonContainer style={{ marginTop: "50px" }}>
-            <GeneralButton onClick={handleUploadButtonClick}>+ Upload Images</GeneralButton>
-          </ButtonContainer>
-          {showModal && (
-            <ImageUploadModal onClose={handleModalClose} onUpload={handleImagesUpload} />
-          )}
+    return (
+        <Container>
+            <Header>🚗 REGISTER VEHICLE</Header>
+            <FormContainer>
+                <Column>
+                    <Label>Vehicle</Label>
+                    <ButtonContainer>
+                        <VehicleDropdown onSelect={handleSelect} />
+                    </ButtonContainer>
 
-          <RegisterButton onClick={handleSubmit}>REGISTER VEHICLE</RegisterButton>
-        </Column>
-      </FormContainer>
-    </Container>
-  );
+                    <Label>Trim Color</Label>
+                    <InputField placeholder="Black" value={trim} onChange={(e) => setTrim(e.target.value)} />
+
+                    <Label>Plate End (3)</Label>
+                    <InputField placeholder="888" value={plateEnd} onChange={(e) => setPlateEnd(e.target.value)} />
+                </Column>
+
+                <Column>
+                    <Label>Color</Label>
+                    <InputField placeholder="Blue" value={color} onChange={(e) => setColor(e.target.value)} />
+
+                    <Label>Mileage</Label>
+                    <InputField placeholder="12345 KM" value={mileage} onChange={(e) => setMileage(e.target.value)} />
+
+                    <ButtonContainer style={{ marginTop: "50px" }}>
+                        <GeneralButton onClick={handleUploadButtonClick}>+ Upload Images</GeneralButton>
+                    </ButtonContainer>
+                    {showModal && (
+                        <ImageUploadModal onClose={handleModalClose} onUpload={handleImagesUpload} />
+                    )}
+
+                    <RegisterButton onClick={handleSubmit}>REGISTER VEHICLE</RegisterButton>
+                </Column>
+            </FormContainer>
+        </Container>
+    );
 };
 
 export default RegisterVehicle;

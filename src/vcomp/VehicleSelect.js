@@ -85,7 +85,6 @@ const VehicleDropdown = ({ onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // ✅ Fetch vehicles from API (port 8002)
   useEffect(() => {
     const fetchVehicles = async () => {
       try {
@@ -108,7 +107,6 @@ const VehicleDropdown = ({ onSelect }) => {
     fetchVehicles();
   }, [searchTerm]);
 
-  // ✅ Filter search input (Now includes Year)
   const handleSearch = (e) => {
     const value = e.target.value.toUpperCase();
     setSearchTerm(value);
@@ -119,22 +117,24 @@ const VehicleDropdown = ({ onSelect }) => {
           vehicle.model.toUpperCase().includes(value) ||
           (vehicle.variant && vehicle.variant.toUpperCase().includes(value)) ||
           vehicle.drivetrain.toUpperCase().includes(value) ||
-          vehicle.year.toString().includes(value) // ✅ Added year filtering
+          vehicle.year.toString().includes(value)
       )
     );
   };
 
-  // ✅ Handle selecting a vehicle
   const handleSelect = (vehicle) => {
+    const formattedVehicle = `${vehicle.make} ${vehicle.model} (${
+      vehicle.variant || "N/A"
+    }) - ${vehicle.drivetrain} - ${vehicle.year}`;
+    setSelectedVehicle(formattedVehicle);
     console.log("🚗 Selected Vehicle:", vehicle);
-    console.log("🚗 Selected Vehicle CarID:", vehicle.CarID, typeof vehicle.CarID); // ⭐️ Log vehicle.CarID and its type
-    setSelectedVehicle(`${vehicle.make} ${vehicle.model} (${vehicle.variant || "N/A"}) - ${vehicle.drivetrain} - ${vehicle.year}`);
+    console.log("🚗 Selected Vehicle CarID:", vehicle.CarID, typeof vehicle.CarID);
     setIsOpen(false);
     setSearchTerm("");
 
     if (onSelect) {
       console.log("📡 Sending CarID to Parent Component:", vehicle.CarID);
-      onSelect(vehicle.CarID);
+      onSelect(vehicle); // Pass the entire vehicle object.
     }
   };
 

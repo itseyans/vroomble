@@ -2,10 +2,7 @@
 
 import WelcomeNavBar from "../vcomp/WelcomeNavBar";
 import ListingCard from "../vcomp/ListingCard";
-<<<<<<< Updated upstream
-=======
 import Background from "../vcomp/background";
->>>>>>> Stashed changes
 import styled from "styled-components";
 
 const ListingContainer = styled.div`
