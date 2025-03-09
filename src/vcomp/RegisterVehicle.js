@@ -3,6 +3,8 @@ import styled from "styled-components";
 import VehicleDropdown from "../vcomp/VehicleSelect"; // Vehicle selection dropdown
 import GeneralButton from "../vcomp/GeneralButton"; // Buttons for Upload & Register
 import ImageUploadModal from "../vcomp/ImageUploadModal";
+import SelectTrim from "../vcomp/SelectTrim";
+import SelectModel from "../vcomp/SelectModel";
 
 const Container = styled.div`
   width: 930px;
@@ -20,7 +22,7 @@ const Container = styled.div`
 const Header = styled.div`
   display: flex;
   align-items: center;
-  font-size: 22px;
+  font-size: 30px;
   font-weight: bold;
   margin-bottom: 20px;
 `;
@@ -91,6 +93,7 @@ const RegisterButton = styled(GeneralButton)`
   margin-top: 55px; /* Ensure proper spacing from text area */
 `;
 
+
 const RegisterVehicle = () => {
   const [showModal, setShowModal] = useState(false);
   const [uploadedImages, setUploadedImages] = useState([]);
@@ -112,41 +115,51 @@ const RegisterVehicle = () => {
     <Container>
       <Header>🚗 REGISTER VEHICLE</Header>
 
-      {/* Dropdown + Upload Image (Now centered properly) */}
-      <ButtonContainer>
-        <VehicleDropdown />
-        <GeneralButton onClick={handleUploadButtonClick}>
-          + Upload Images
-        </GeneralButton>
-      </ButtonContainer>
-      {showModal && (
-        <ImageUploadModal
-          onClose={handleModalClose}
-          onUpload={handleImagesUpload}
-        />
-      )}
-
       {/* Form Fields */}
       <FormContainer>
         {/* Left Column */}
         <Column>
-          <Label>Plate End (3)</Label>
-          <InputField placeholder="888" />
+          <Label>Make</Label>
+          <ButtonContainer>
+            <VehicleDropdown />
+          </ButtonContainer>
 
-          <Label>Mileage</Label>
-          <InputField placeholder="12345 KM" />
+          <Label>Trim</Label>
+          <ButtonContainer>
+            <SelectTrim />
+          </ButtonContainer>
 
-          <Label>Color</Label>
-          <InputField placeholder="Blue" />
+          <Label>Model</Label>
+          <ButtonContainer>
+            <SelectModel />
+          </ButtonContainer>
+
+          <ButtonContainer>
+            <GeneralButton onClick={handleUploadButtonClick}>
+              + Upload Images
+            </GeneralButton>
+          </ButtonContainer>
+          {showModal && (
+            <ImageUploadModal
+              onClose={handleModalClose}
+              onUpload={handleImagesUpload}
+            />
+          )}
         </Column>
 
         {/* Right Column */}
         <Column>
+          <Label>Color</Label>
+          <InputField placeholder="Blue" />
+
+          <Label>Mileage</Label>
+          <InputField placeholder="12345 KM" />
+
+          <Label>Plate End (3)</Label>
+          <InputField placeholder="888" />
+
           <Label>Accident History</Label>
           <InputField placeholder="None" />
-
-          <Label>Condition</Label>
-          <InputField placeholder="NEW" />
 
           <RegisterButton>REGISTER VEHICLE</RegisterButton>
         </Column>

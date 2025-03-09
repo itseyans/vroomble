@@ -51,17 +51,13 @@ const VehicleRegistrationPage = () => {
     };
   
     return (
-      <AppContainer> 
+      <AppContainer>
+        <Background />
         <NavBarContainer> 
           <NavBar /> 
         </NavBarContainer>
-        <Background />
         <PageContainer> 
-          {showForm ? (
-            <RegisterVehicle /> 
-          ) : (
-            <Button onClick={handleButtonClick}>Register a Vehicle</Button>
-          )}
+          <RegisterVehicle />
         </PageContainer>
       </AppContainer>
     );
