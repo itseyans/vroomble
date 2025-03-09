@@ -114,7 +114,7 @@ async def login_user(login_data: Login):
     try:
         with get_db_connection() as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT ID, firstName, lastName, contactNumber, email, password FROM users WHERE email = ?", (login_data.email,))
+            cursor.execute("SELECT users_ID, firstName, lastName, contactNumber, email, password FROM users WHERE email = ?", (login_data.email,))
             user = cursor.fetchone()
 
         if not user:
