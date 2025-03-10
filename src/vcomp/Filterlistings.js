@@ -1,3 +1,5 @@
+// Filterlistings.js (Vertical Popup Version)
+
 import React, { useState } from "react";
 import styled from "styled-components";
 import GeneralButton from "../vcomp/GeneralButton";
@@ -6,15 +8,14 @@ import SelectBrand from "../vcomp/SelectBrand";
 
 const FilterContainer = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column; // Vertical layout
   background: #d9d9d9;
   border: 4px solid #ffc629;
   border-radius: 12px;
-  padding: 10px 40px;
-  width: 100%;
-  max-width: 1440px;
-  gap: 5px;
+  padding: 40px;
+  width: 400px; // Adjust width as needed
+  gap: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // Add a shadow for popup effect
 `;
 
 const SearchInput = styled.input`
@@ -22,17 +23,17 @@ const SearchInput = styled.input`
   font-size: 16px;
   border: 2px solid black;
   border-radius: 8px;
-  width: 200px;
+  width: 100%; // Take full width
 `;
 
 const PriceRangeContainer = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column; // Vertical layout
   gap: 5px;
 `;
 
 const PriceSlider = styled.input`
-  width: 150px;
+  width: 100%; // Take full width
   -webkit-appearance: none;
   height: 6px;
   background: #ffc629;
@@ -43,7 +44,8 @@ const PriceSlider = styled.input`
 
 const DropdownContainer = styled.div`
   display: flex;
-  gap: 40px; /* Increased gap for better spacing */
+  flex-direction: column; // Vertical layout
+  gap: 10px;
 `;
 
 const FilterListings = () => {
