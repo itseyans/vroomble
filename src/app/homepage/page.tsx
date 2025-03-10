@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react"; // ✅ Import React
 import styled from "styled-components";
 import HomeNav from "@/vcomp/HomeNav";
 import PersoInfoH from "@/vcomp/PersoInfoH"; // ✅ Import Personal Info Panel
@@ -21,7 +22,7 @@ const ContentContainer = styled.div`
   margin-top: 8rem; /* ✅ Prevent overlap with navbar */
 `;
 
-export default function Home() {
+const Home: React.FC = () => {
   return (
     <PageContainer>
       {/* ✅ Navbar */}
@@ -33,4 +34,6 @@ export default function Home() {
       </ContentContainer>
     </PageContainer>
   );
-}
+};
+
+export default Home;
