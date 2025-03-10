@@ -92,4 +92,6 @@ const ListingCard = ({
   );
 };
 
+
+//ITS FUKIN CAPITAL C OKAY?
 export default ListingCard;
