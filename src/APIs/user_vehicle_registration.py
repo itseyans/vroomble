@@ -142,46 +142,41 @@ def get_db_connection():
         raise HTTPException(status_code=500, detail="Database connection error")
 
 # ✅ API Endpoint to Fetch Vehicles with Optional Search Query (Includes Variant & Drivetrain)
-@app.get("/api/vehicles")
-async def get_vehicles(q: str = Query(None, description="Search query")):
+@app.post("/api/register-vehicle/")
+async def register_user_vehicle(vehicle_data: UserRegisteredVehicle):
+    """Registers a user vehicle and links it to an existing CarID."""
     try:
-        with get_db_connection() as conn:
+        with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:
             cursor = conn.cursor()
-            
-            if q:
-                cursor.execute(
-                    """
-                    SELECT CarID as id, Make, Model, 
-                           COALESCE(Variant, 'N/A') as Variant, 
-                           Drivetrain
-                    FROM cars
-                    WHERE Make LIKE ? OR Model LIKE ? OR Variant LIKE ? OR Drivetrain LIKE ?
-                    """,
-                    (f"%{q}%", f"%{q}%", f"%{q}%", f"%{q}%"),
-                )
-            else:
-                cursor.execute(
-                    """
-                    SELECT CarID as id, Make, Model, 
-                           COALESCE(Variant, 'N/A') as Variant, 
-                           Drivetrain
-                    FROM cars
-                    """
-                )
-                
-            results = cursor.fetchall()
-            return [
-                {
-                    "id": row[0], 
-                    "make": row[1], 
-                    "model": row[2], 
-                    "variant": row[3],  # If NULL, it returns 'N/A'
-                    "drivetrain": row[4]
-                } for row in results
-            ]
+
+            # ✅ Check if CarID exists in the 'cars' table
+            cursor.execute("SELECT CarID FROM cars WHERE CarID = ?", (vehicle_data.CarID,))
+            existing_car = cursor.fetchone()
+            if not existing_car:
+                raise HTTPException(status_code=400, detail="CarID does not exist in the database.")
+
+            # ✅ Insert user-registered vehicle
+            cursor.execute(
+                """
+                INSERT INTO user_registered_vehicles (CarID, Trim, PlateEnd, Color, Mileage)
+                VALUES (?, ?, ?, ?, ?)
+                """,
+                (
+                    vehicle_data.CarID,
+                    vehicle_data.trim,
+                    vehicle_data.plateEnd,
+                    vehicle_data.color,
+                    vehicle_data.mileage,
+                ),
+            )
+            conn.commit()
+            logger.info(f"✅ Vehicle registered successfully: {vehicle_data}")
+            return {"message": "User vehicle registered successfully"}
+
     except sqlitecloud.Error as e:
-        logger.error(f"❌ Error fetching vehicles: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"❌ SQLite Cloud database error during registration: {e}")
+        raise HTTPException(status_code=500, detail=f"SQLite Cloud database error: {e}")
+
 
 # ✅ Root API Endpoint
 @app.get("/")

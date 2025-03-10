@@ -128,12 +128,12 @@ const VehicleDropdown = ({ onSelect }) => {
     }) - ${vehicle.drivetrain} - ${vehicle.year}`;
     setSelectedVehicle(formattedVehicle);
     console.log("🚗 Selected Vehicle:", vehicle);
-    console.log("🚗 Selected Vehicle CarID:", vehicle.CarID, typeof vehicle.CarID);
+    console.log("🚗 Selected Vehicle carID:", vehicle.carID, typeof vehicle.carID);
     setIsOpen(false);
     setSearchTerm("");
 
     if (onSelect) {
-      console.log("📡 Sending CarID to Parent Component:", vehicle.CarID);
+      console.log("📡 Sending carID to Parent Component:", vehicle.carID);
       onSelect(vehicle); // Pass the entire vehicle object.
     }
   };
@@ -154,7 +154,7 @@ const VehicleDropdown = ({ onSelect }) => {
           />
           {filteredVehicles.length > 0 ? (
             filteredVehicles.map((vehicle) => (
-              <DropdownItem key={vehicle.id} onClick={() => handleSelect(vehicle)}>
+              <DropdownItem key={vehicle.carID} onClick={() => handleSelect(vehicle)}> {/* Added key prop here using vehicle.carID */}
                 {vehicle.make} {vehicle.model} ({vehicle.variant || "N/A"}) - {vehicle.drivetrain} - {vehicle.year}
               </DropdownItem>
             ))
