@@ -57,7 +57,7 @@ def get_db_connection():
 def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
 
-# ✅ JWT Token Creation
+# ✅ JWT Token Creation (Updated to Include users_ID)
 def create_access_token(data: dict, expires_delta: timedelta = None):
     to_encode = data.copy()
     expire = datetime.utcnow() + (expires_delta or timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
@@ -70,7 +70,7 @@ def create_refresh_token(data: dict, expires_delta: timedelta = None):
     to_encode.update({"exp": expire})
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
-# ✅ Get User ID from Token
+# ✅ Get User ID from Token (Updated to Extract users_ID)
 def get_current_user(request: Request):
     token = request.cookies.get("access_token")
 
@@ -79,20 +79,12 @@ def get_current_user(request: Request):
 
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        email: str = payload.get("sub")
-        if email is None:
+        users_ID: int = payload.get("users_ID")
+        
+        if users_ID is None:
             raise HTTPException(status_code=401, detail="Invalid token")
-
-        with get_db_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute("SELECT ID FROM users WHERE email = ?", (email,))
-            user_id = cursor.fetchone()
-
-        if user_id is None:
-            raise HTTPException(status_code=401, detail="User not found")
-
-        return user_id[0]
-
+        
+        return users_ID
     except jwt.PyJWTError:
         raise HTTPException(status_code=401, detail="Invalid token")
 
@@ -108,9 +100,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ✅ API Endpoint for User Login
+# ✅ Updated Login API to Ensure Old Tokens are Removed
 @app.post("/login/")
-async def login_user(login_data: Login):
+async def login_user(login_data: Login, response: Response):
     try:
         with get_db_connection() as conn:
             cursor = conn.cursor()
@@ -121,24 +113,27 @@ async def login_user(login_data: Login):
             logger.warning(f"❌ Login failed: No user found with email {login_data.email}")
             raise HTTPException(status_code=400, detail="Incorrect email or password")
 
-        user_id, first_name, last_name, contact_number, email, hashed_password = user
+        users_ID, first_name, last_name, contact_number, email, hashed_password = user
 
         if not verify_password(login_data.password, hashed_password):
             logger.warning(f"❌ Login failed: Incorrect password for email {email}")
             raise HTTPException(status_code=400, detail="Incorrect email or password")
 
+        # ✅ Clear old tokens before setting new ones
+        response.delete_cookie("access_token", path="/", domain=None)
+        response.delete_cookie("refresh_token", path="/", domain=None)
+        
         access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-        access_token = create_access_token(data={"sub": email}, expires_delta=access_token_expires)
+        access_token = create_access_token(data={"sub": email, "users_ID": users_ID}, expires_delta=access_token_expires)
 
         refresh_token_expires = timedelta(minutes=REFRESH_TOKEN_EXPIRE_MINUTES)
-        refresh_token = create_refresh_token(data={"sub": email}, expires_delta=refresh_token_expires)
+        refresh_token = create_refresh_token(data={"sub": email, "users_ID": users_ID}, expires_delta=refresh_token_expires)
 
         logger.info(f"✅ User {email} logged in successfully")
 
-        response = Response(content='{"message": "Login successful"}', media_type="application/json")
-        response.set_cookie(key="access_token", value=access_token, httponly=True, secure=False)  # secure=True in production
-        response.set_cookie(key="refresh_token", value=refresh_token, httponly=True, secure=False)  # secure=True in production
-        return response
+        response.set_cookie(key="access_token", value=access_token, httponly=True, secure=False, path="/")  # secure=True in production
+        response.set_cookie(key="refresh_token", value=refresh_token, httponly=True, secure=False, path="/")  # secure=True in production
+        return {"message": "Login successful"}
 
     except sqlitecloud.Error as e:
         logger.error(f"❌ Database error during login: {e}")
@@ -146,39 +141,3 @@ async def login_user(login_data: Login):
     except Exception as e:
         logger.exception(f"❌ Unexpected error during login: {e}")
         return JSONResponse(status_code=500, content={"error": "Internal server error"})
-
-# ✅ Protected Route for Authentication Testing
-@app.get("/test_protected/")
-async def test_protected(user_id: int = Depends(get_current_user)):
-    return {"user_id": user_id, "message": "You are authenticated."}
-
-# ✅ API Endpoint to Refresh JWT Token
-@app.post("/refresh_token/")
-async def refresh_token(request: Request):
-    refresh_token = request.cookies.get("refresh_token")
-
-    if not refresh_token:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Refresh token missing")
-
-    try:
-        payload = jwt.decode(refresh_token, SECRET_KEY, algorithms=[ALGORITHM])
-        email: str = payload.get("sub")
-
-        if email is None:
-            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid refresh token")
-
-        access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-        access_token = create_access_token(data={"sub": email}, expires_delta=access_token_expires)
-
-        response = Response(content='{"message": "Token refreshed"}', media_type="application/json")
-        response.set_cookie(key="access_token", value=access_token, httponly=True, secure=False)  # secure=True in production
-
-        return response
-
-    except jwt.PyJWTError:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid refresh token")
-
-# ✅ API Root Endpoint (Welcome Message)
-@app.get("/")
-async def root():
-    return {"message": "🚗 Welcome to the Authentication API!"}
