@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import MaintenanceLogsButton from "./MaintenanceLogsButton";
+import VehicleMaintenanceLogs from "../vcomp/VeicleMaintenance";
 
 const LogsContainer = styled.div`
   width: 350px;
@@ -44,6 +45,10 @@ const LogDescription = styled.span`
 const ViewAllButtonContainer = styled.div`
   text-align: center;
   margin-top: 20px;
+  transition: transform 0.3s ease;
+
+  &:hover {
+  transform: scale(1.1); // Enlargen on hover
 `;
 
 const MaintenanceLogs = ({ logs }) => {
@@ -52,6 +57,9 @@ const MaintenanceLogs = ({ logs }) => {
     { id: 2, date: "02/05/25", description: "Wrap" },
     { id: 3, date: "01/25/25", description: "Battery" },
   ]);
+  
+  const [showLogs, setShowLogs] = useState(false); // Define showLogs and setShowLogs
+
 
   return (
     <LogsContainer>
@@ -62,12 +70,26 @@ const MaintenanceLogs = ({ logs }) => {
           <LogDescription>{log.description}</LogDescription> {/* Render LogDescription */}
         </LogItem>
       ))}
-      <ViewAllButtonContainer>
-        <MaintenanceLogsButton
-          label="VIEW ALL"
-          onClick={() => console.log("View All clicked")}
-        />
+        <ViewAllButtonContainer> {/* Use a container with onClick */}
+        <button onClick={() => setShowLogs(true)}>VIEW ALL</button>
       </ViewAllButtonContainer>
+
+      {showLogs && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          background: 'rgba(0, 0, 0, 0.5)',
+          zIndex: 1000,
+        }}>
+          <VehicleMaintenanceLogs onClose={() => setShowLogs(false)} />
+        </div>
+      )}
     </LogsContainer>
   );
 };
