@@ -1,96 +1,80 @@
-"use client"; // ✅ Ensure client-side rendering
-
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const usePredict = () => {
-  const [carMakers, setCarMakers] = useState([]);
-  const [carModels, setCarModels] = useState([]);
+  const [makers, setMakers] = useState([]);
+  const [models, setModels] = useState([]);
+  const [modificationTypes, setModificationTypes] = useState([]);
   const [carParts, setCarParts] = useState([]);
+
   const [selectedMaker, setSelectedMaker] = useState("");
   const [selectedModel, setSelectedModel] = useState("");
+  const [modificationType, setModificationType] = useState("");
   const [selectedParts, setSelectedParts] = useState([]);
-  const [months, setMonths] = useState("");
+  const [months, setMonths] = useState(12);
   const [prediction, setPrediction] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [hydration, setHydration] = useState(false); // ✅ Prevent SSR hydration issues
 
-  /** Prevent hydration errors */
   useEffect(() => {
-    setHydration(true);
+    axios.get("http://127.0.0.1:8000/car-makers")
+      .then(res => setMakers(res.data.makers));
   }, []);
 
-  /** Fetch car makers */
   useEffect(() => {
-    if (hydration) {
-      axios
-        .get("http://127.0.0.1:8000/car-makers")
-        .then((response) => setCarMakers(response.data.makers || []))
-        .catch((error) => console.error("Error fetching car makers:", error));
+    if (selectedMaker) {
+      axios.get(`http://127.0.0.1:8000/car-models?make=${selectedMaker}`)
+        .then(res => setModels(res.data.models));
     }
-  }, [hydration]);
+  }, [selectedMaker]);
 
-  /** Fetch car models */
   useEffect(() => {
-    if (selectedMaker && hydration) {
-      axios
-        .get(http://127.0.0.1:8000/car-models?make=${selectedMaker})
-        .then((response) => setCarModels(response.data.models || []))
-        .catch((error) => console.error("Error fetching car models:", error));
-    }
-  }, [selectedMaker, hydration]);
+    if (selectedModel) {
+      axios.get(`http://127.0.0.1:8000/modification-types?model=${selectedModel}`)
+        .then(res => setModificationTypes(res.data.modification_types));
 
-  /** Fetch car parts */
-  useEffect(() => {
-    if (selectedModel && hydration) {
-      axios
-        .get(http://127.0.0.1:8000/car-parts?model=${selectedModel})
-        .then((response) => setCarParts(response.data.parts || []))
-        .catch((error) => console.error("Error fetching car parts:", error));
+      axios.get(`http://127.0.0.1:8000/car-parts?model=${selectedModel}`)
+        .then(res => setCarParts(res.data.parts));
     }
-  }, [selectedModel, hydration]);
+  }, [selectedModel]);
 
-  /** Fetch price prediction */
   const fetchPrediction = async () => {
-    if (!selectedModel || selectedParts.length === 0 || !months) {
-      alert("Please fill in all fields before submitting.");
-      return;
-    }
-
     setLoading(true);
     try {
       const response = await axios.post("http://127.0.0.1:8000/predict-price", {
-        car_maker: selectedMaker,
-        car_model: selectedModel,
+        make: selectedMaker,
+        model_name: selectedModel,
+        modification_type: modificationType,
         selected_parts: selectedParts,
-        months: parseInt(months),
+        months: parseInt(months, 10),
       });
 
-      setPrediction(response.data.prediction);
+      setPrediction(response.data);
     } catch (error) {
-      console.error("Error fetching prediction:", error);
-      setPrediction("Error fetching prediction");
+      alert(`Error: ${error.response.data.detail}`);
+      console.error(error);
     }
     setLoading(false);
   };
 
   return {
-    carMakers,
-    carModels,
+    makers,
+    models,
+    modificationTypes,
     carParts,
     selectedMaker,
     setSelectedMaker,
     selectedModel,
     setSelectedModel,
+    modificationType,
+    setModificationType,
     selectedParts,
     setSelectedParts,
     months,
     setMonths,
-    prediction,
     fetchPrediction,
+    prediction,
     loading,
-    hydration,
   };
 };
 
-export default usePredict; // ✅ Export the hook (fix this why are you giving me new code) 
+export default PredictForm;
