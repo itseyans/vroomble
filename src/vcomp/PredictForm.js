@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect } from "react";
 
 const usePredict = () => {
   const [makers, setMakers] = useState([]);
@@ -16,45 +15,34 @@ const usePredict = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    axios.get("http://127.0.0.1:8000/car-makers")
-      .then(res => setMakers(res.data.makers));
+    fetch("http://127.0.0.1:8000/car-makers")
+      .then((res) => res.json())
+      .then((data) => setMakers(data.makers))
+      .catch((err) => console.error("Error fetching car makers:", err));
   }, []);
 
   useEffect(() => {
     if (selectedMaker) {
-      axios.get(`http://127.0.0.1:8000/car-models?make=${selectedMaker}`)
-        .then(res => setModels(res.data.models));
+      fetch(`http://127.0.0.1:8000/car-models?make=${selectedMaker}`)
+        .then((res) => res.json())
+        .then((data) => setModels(data.models))
+        .catch((err) => console.error("Error fetching car models:", err));
     }
   }, [selectedMaker]);
 
   useEffect(() => {
     if (selectedModel) {
-      axios.get(`http://127.0.0.1:8000/modification-types?model=${selectedModel}`)
-        .then(res => setModificationTypes(res.data.modification_types));
+      fetch(`http://127.0.0.1:8000/modification-types?model=${selectedModel}`)
+        .then((res) => res.json())
+        .then((data) => setModificationTypes(data.modification_types))
+        .catch((err) => console.error("Error fetching modification types:", err));
 
-      axios.get(`http://127.0.0.1:8000/car-parts?model=${selectedModel}`)
-        .then(res => setCarParts(res.data.parts));
+      fetch(`http://127.0.0.1:8000/car-parts?model=${selectedModel}`)
+        .then((res) => res.json())
+        .then((data) => setCarParts(data.parts))
+        .catch((err) => console.error("Error fetching car parts:", err));
     }
   }, [selectedModel]);
-
-  const fetchPrediction = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.post("http://127.0.0.1:8000/predict-price", {
-        make: selectedMaker,
-        model_name: selectedModel,
-        modification_type: modificationType,
-        selected_parts: selectedParts,
-        months: parseInt(months, 10),
-      });
-
-      setPrediction(response.data);
-    } catch (error) {
-      alert(`Error: ${error.response.data.detail}`);
-      console.error(error);
-    }
-    setLoading(false);
-  };
 
   return {
     makers,
@@ -71,10 +59,7 @@ const usePredict = () => {
     setSelectedParts,
     months,
     setMonths,
-    fetchPrediction,
-    prediction,
-    loading,
   };
 };
 
-export default PredictForm;
+export default usePredict;
