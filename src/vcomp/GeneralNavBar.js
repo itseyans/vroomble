@@ -1,5 +1,3 @@
-// GeneralNavBar.js
-
 'use client';
 
 import React, { useState } from "react";
