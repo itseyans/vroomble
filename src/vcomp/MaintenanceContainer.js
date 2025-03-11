@@ -3,7 +3,7 @@ import styled from "styled-components";
 import CarDetails from "../vcomp/CarDetails";
 import EngineTireInputs from "../vcomp/EngineTireInputs";
 import Changes from "../vcomp/Changes";
-import MaintenanceLogs from "../vcomp/Logs";
+import MaintenanceLogs from "./MaintenanceLogs";
 
 const MainContainer = styled.div`
   display: grid;

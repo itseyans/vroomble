@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import MaintenanceLogsButton from "./MaintenanceLogsButton";
-import VehicleMaintenanceLogs from "../vcomp/VeicleMaintenance";
+import VehicleMaintenanceLogs from "./VeicleMaintenanceLogs";
 
 const LogsContainer = styled.div`
   width: 350px;

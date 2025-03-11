@@ -3,7 +3,7 @@
 
 import React, { useState } from "react";
 import styled from "styled-components";
-import VehicleMaintenanceLogs from "../vcomp/VeicleMaintenance"; // Assuming this is the correct path
+import VehicleMaintenanceLogs from "./VeicleMaintenanceLogs"; // Assuming this is the correct path
 
 const LogsContainer = styled.div`
   background-color: #e0e0e0;
@@ -48,7 +48,7 @@ const LogItem = styled.div`
   justify-content: space-between;
 `;
 
-const MaintenanceLogs = () => {
+const HomeMaintenance = () => {
   const [showLogs, setShowLogs] = useState(false);
   const logsData = [
     { date: "01/25/2025", description: "Tire Change", vehicle: "LEXUS LC 500", cost: "$500" },
@@ -88,4 +88,4 @@ const MaintenanceLogs = () => {
   );
 };
 
-export default MaintenanceLogs;
+export default HomeMaintenance;
