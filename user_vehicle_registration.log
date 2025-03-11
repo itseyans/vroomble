@@ -34,3 +34,63 @@
 2025-03-11 21:13:53,375 - ERROR - \u274c Error initializing 'user_registered_vehicles' table: Invalid APIKEY.
 2025-03-11 21:14:01,052 - ERROR - \u274c Error initializing 'user_registered_vehicles' table: Invalid APIKEY.
 2025-03-11 21:14:08,674 - ERROR - \u274c Error initializing 'user_registered_vehicles' table: Invalid APIKEY.
+2025-03-11 21:42:53,345 - DEBUG - cannot commit - no transaction is active
+2025-03-11 21:42:53,346 - INFO - \u2705 Tables initialized successfully.
+2025-03-11 21:42:53,386 - DEBUG - cannot commit - no transaction is active
+2025-03-11 21:45:42,446 - DEBUG - cannot commit - no transaction is active
+2025-03-11 21:45:42,447 - INFO - \u2705 Tables initialized successfully.
+2025-03-11 21:45:42,496 - DEBUG - cannot commit - no transaction is active
+2025-03-11 22:01:44,024 - DEBUG - cannot commit - no transaction is active
+2025-03-11 22:01:44,025 - INFO - \u2705 Tables initialized successfully.
+2025-03-11 22:01:44,063 - DEBUG - cannot commit - no transaction is active
+2025-03-11 22:13:56,746 - DEBUG - cannot commit - no transaction is active
+2025-03-11 22:13:56,747 - INFO - \u2705 Tables initialized successfully.
+2025-03-11 22:13:56,796 - DEBUG - cannot commit - no transaction is active
+2025-03-11 22:14:18,547 - DEBUG - Calling on_part_begin with no data
+2025-03-11 22:14:18,548 - DEBUG - Calling on_header_field with data[42:61]
+2025-03-11 22:14:18,548 - DEBUG - Calling on_header_value with data[63:86]
+2025-03-11 22:14:18,548 - DEBUG - Calling on_header_end with no data
+2025-03-11 22:14:18,548 - DEBUG - Calling on_headers_finished with no data
+2025-03-11 22:14:18,548 - DEBUG - Calling on_part_data with data[90:91]
+2025-03-11 22:14:18,549 - DEBUG - Calling on_part_end with no data
+2025-03-11 22:14:18,549 - DEBUG - Calling on_part_begin with no data
+2025-03-11 22:14:18,549 - DEBUG - Calling on_header_field with data[135:154]
+2025-03-11 22:14:18,549 - DEBUG - Calling on_header_value with data[156:178]
+2025-03-11 22:14:18,549 - DEBUG - Calling on_header_end with no data
+2025-03-11 22:14:18,549 - DEBUG - Calling on_headers_finished with no data
+2025-03-11 22:14:18,549 - DEBUG - Calling on_part_data with data[182:185]
+2025-03-11 22:14:18,549 - DEBUG - Calling on_part_end with no data
+2025-03-11 22:14:18,549 - DEBUG - Calling on_part_begin with no data
+2025-03-11 22:14:18,549 - DEBUG - Calling on_header_field with data[229:248]
+2025-03-11 22:14:18,549 - DEBUG - Calling on_header_value with data[250:276]
+2025-03-11 22:14:18,550 - DEBUG - Calling on_header_end with no data
+2025-03-11 22:14:18,550 - DEBUG - Calling on_headers_finished with no data
+2025-03-11 22:14:18,550 - DEBUG - Calling on_part_data with data[280:283]
+2025-03-11 22:14:18,550 - DEBUG - Calling on_part_end with no data
+2025-03-11 22:14:18,550 - DEBUG - Calling on_part_begin with no data
+2025-03-11 22:14:18,550 - DEBUG - Calling on_header_field with data[327:346]
+2025-03-11 22:14:18,550 - DEBUG - Calling on_header_value with data[348:371]
+2025-03-11 22:14:18,550 - DEBUG - Calling on_header_end with no data
+2025-03-11 22:14:18,550 - DEBUG - Calling on_headers_finished with no data
+2025-03-11 22:14:18,550 - DEBUG - Calling on_part_data with data[375:379]
+2025-03-11 22:14:18,550 - DEBUG - Calling on_part_end with no data
+2025-03-11 22:14:18,550 - DEBUG - Calling on_part_begin with no data
+2025-03-11 22:14:18,551 - DEBUG - Calling on_header_field with data[423:442]
+2025-03-11 22:14:18,551 - DEBUG - Calling on_header_value with data[444:469]
+2025-03-11 22:14:18,551 - DEBUG - Calling on_header_end with no data
+2025-03-11 22:14:18,551 - DEBUG - Calling on_headers_finished with no data
+2025-03-11 22:14:18,551 - DEBUG - Calling on_part_data with data[473:477]
+2025-03-11 22:14:18,551 - DEBUG - Calling on_part_end with no data
+2025-03-11 22:14:18,551 - DEBUG - Calling on_part_begin with no data
+2025-03-11 22:14:18,551 - DEBUG - Calling on_header_field with data[521:540]
+2025-03-11 22:14:18,551 - DEBUG - Calling on_header_value with data[542:585]
+2025-03-11 22:14:18,551 - DEBUG - Calling on_header_end with no data
+2025-03-11 22:14:18,551 - DEBUG - Calling on_header_field with data[587:599]
+2025-03-11 22:14:18,551 - DEBUG - Calling on_header_value with data[601:611]
+2025-03-11 22:14:18,551 - DEBUG - Calling on_header_end with no data
+2025-03-11 22:14:18,552 - DEBUG - Calling on_headers_finished with no data
+2025-03-11 22:14:18,552 - DEBUG - Calling on_part_data with data[615:7147]
+2025-03-11 22:14:18,552 - DEBUG - Calling on_part_end with no data
+2025-03-11 22:14:18,552 - DEBUG - Calling on_end with no data
+2025-03-11 22:14:18,940 - DEBUG - cannot commit - no transaction is active
+2025-03-11 22:14:18,990 - DEBUG - cannot commit - no transaction is active

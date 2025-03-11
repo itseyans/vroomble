@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import VehicleDropdown from "../vcomp/VehicleSelect"; // Assuming VehicleSelect is the filename
+import VehicleDropdown from "../vcomp/VehicleSelect";
 import GeneralButton from "../vcomp/GeneralButton";
-import ImageUploadModal from "../vcomp/ImageUploadModal";
 
 const Container = styled.div`
   width: 930px;
@@ -76,104 +75,79 @@ const RegisterButton = styled(GeneralButton)`
 const ErrorMessage = styled.div`
   color: red;
   font-size: 14px;
-  margin-top: -10px; /* Adjust as needed to position error message */
+  margin-top: -10px;
   margin-bottom: 10px;
 `;
 
 const RegisterVehicle = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [uploadedImages, setUploadedImages] = useState();
-  const [carID, setCarID] = useState(""); // Corrected state variable name
+  const [carID, setCarID] = useState("");
   const [trim, setTrim] = useState("");
   const [plateEnd, setPlateEnd] = useState("");
   const [color, setColor] = useState("");
   const [mileage, setMileage] = useState({ value: "", error: "" });
+  const [imageFile, setImageFile] = useState(null); // ✅ Added state for image file
 
   const handleSelect = (selectedVehicle) => {
-    console.log("📡 Received CarID from Dropdown:", selectedVehicle); // Log the entire object
-    console.log("🚗 Type of Received Vehicle:", typeof selectedVehicle);
-
     if (!selectedVehicle || typeof selectedVehicle.carID !== "number") {
-      console.error("❌ Invalid CarID:", selectedVehicle);
       alert("❌ Please select a valid vehicle!");
       return;
     }
-
     setCarID(selectedVehicle.carID);
-    console.log("✅ CarID set:", selectedVehicle.carID, "State carID:", carID);
-    console.log("🚗 Type of State carID:", typeof carID);
   };
 
-  const handleUploadButtonClick = () => {
-    setShowModal(true);
-  };
-
-  const handleModalClose = () => {
-    setShowModal(false);
-  };
-
-  const handleImagesUpload = (images) => {
-    setUploadedImages(images);
-    setShowModal(false);
+  const handleImageChange = (event) => {
+    setImageFile(event.target.files[0]); // ✅ Store image file
   };
 
   const handleMileageChange = (e) => {
     const value = e.target.value;
-    const isValidMileage = /^\d*$/.test(value); // Regex to allow only digits
-
-    if (isValidMileage) {
-      setMileage({ value: value, error: "" }); // Valid input, clear error
-    } else {
-      setMileage({ value: value, error: "Mileage must be a number" }); // Invalid input, set error message
-    }
+    const isValidMileage = /^\d*$/.test(value);
+    setMileage({ value, error: isValidMileage ? "" : "Mileage must be a number" });
   };
 
   const handleSubmit = async () => {
-    console.log("📡 Submitting Vehicle Registration...");
-    console.log("Current carID before submit:", carID, typeof carID);
-
     if (!carID || isNaN(carID)) {
-      console.error("❌ Invalid CarID in handleSubmit:", carID);
       alert("❌ Please select a valid vehicle!");
       return;
     }
-
     if (mileage.error || !mileage.value.trim()) {
       alert("❌ Please enter a valid mileage (numbers only).");
       return;
     }
+    if (!imageFile) {
+      alert("❌ Please select an image to upload.");
+      return;
+    }
 
-    const formData = {
-      carID: parseInt(carID), // Ensure integer for API
-      trim: trim.trim(),
-      plateEnd: plateEnd.trim(),
-      color: color.trim(),
-      mileage: mileage.value.trim(),
-    };
-
-    console.log("📡 Sending Data to API:", formData);
+    const formData = new FormData();
+    formData.append("carID", carID);
+    formData.append("trim", trim.trim());
+    formData.append("plateEnd", plateEnd.trim());
+    formData.append("color", color.trim());
+    formData.append("mileage", mileage.value.trim());
+    formData.append("image", imageFile); // ✅ Attach image file
 
     try {
-      const response = await fetch("http://localhost:8004/api/register-vehicle/", {
+      const response = await fetch("http://localhost:8004/api/register-vehicle-with-image/", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-        credentials: "include", // ✅ Ensure JWT token (session) is sent
+        body: formData,
+        credentials: "include",
       });
 
+      const data = await response.json();
+
       if (response.ok) {
-        alert("✅ Vehicle registered successfully!");
-        setCarID(""); // Reset carID after successful registration
+        alert("✅ Vehicle registered successfully with image!");
+        setCarID("");
         setTrim("");
         setPlateEnd("");
         setColor("");
         setMileage({ value: "", error: "" });
+        setImageFile(null);
       } else {
-        const errorData = await response.json();
-        alert(`❌ Failed to register vehicle: ${errorData.detail}`);
+        alert(`❌ Failed to register vehicle: ${data.detail}`);
       }
     } catch (error) {
-      console.error("❌ Error:", error);
       alert("An error occurred while registering the vehicle.");
     }
   };
@@ -186,7 +160,7 @@ const RegisterVehicle = () => {
         <Column>
           <Label>Vehicle</Label>
           <ButtonContainer>
-            <VehicleDropdown onSelect={handleSelect} /> {/* Pass handleSelect to onSelect */}
+            <VehicleDropdown onSelect={handleSelect} />
           </ButtonContainer>
 
           <Label>Trim Color</Label>
@@ -201,18 +175,11 @@ const RegisterVehicle = () => {
           <InputField placeholder="Blue" value={color} onChange={(e) => setColor(e.target.value)} />
 
           <Label>Mileage (Km)</Label>
-          <InputField
-            placeholder="12345"
-            value={mileage.value}
-            onChange={handleMileageChange}
-          />
+          <InputField placeholder="12345" value={mileage.value} onChange={handleMileageChange} />
           {mileage.error && <ErrorMessage>{mileage.error}</ErrorMessage>}
-          <ButtonContainer style={{ marginTop: "50px" }}>
-            <GeneralButton onClick={handleUploadButtonClick}>+ Upload Images</GeneralButton>
-          </ButtonContainer>
-          {showModal && (
-            <ImageUploadModal onClose={handleModalClose} onUpload={handleImagesUpload} />
-          )}
+
+          <Label>Upload Image</Label>
+          <input type="file" accept="image/*" onChange={handleImageChange} />
 
           <RegisterButton onClick={handleSubmit}>REGISTER VEHICLE</RegisterButton>
         </Column>
