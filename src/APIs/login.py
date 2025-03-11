@@ -14,9 +14,12 @@ from dotenv import load_dotenv  # Import load_dotenv
 # Specify the exact path of your .env file
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(dotenv_path)
-                              
-# Fetch API Key
+
+
 SQLITE_CLOUD_API_KEY = os.environ.get("SQLITE_CLOUD_API_KEY")
+
+# ✅ SQLite Cloud Connection String
+CLOUD_DATABASE_CONNECTION_STRING = f"sqlitecloud://cuf1maatnz.g6.sqlite.cloud:8860/Vroomble_Database.db?apikey={SQLITE_CLOUD_API_KEY}"
 
 # Debugging: Print to verify
 print("🔍 Loaded API Key:", SQLITE_CLOUD_API_KEY)
