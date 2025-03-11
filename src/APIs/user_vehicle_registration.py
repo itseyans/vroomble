@@ -1,20 +1,21 @@
 import logging
 import sqlitecloud  # Using SQLite Cloud (not local sqlite3)
-from fastapi import FastAPI, HTTPException, Request, status, Query
-from fastapi.exceptions import RequestValidationError
+from fastapi import FastAPI, HTTPException, Depends, Cookie, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 import os
 from dotenv import load_dotenv  # Import load_dotenv
+import jwt  # Import JWT for decoding the token
 
-app = FastAPI()
-
+# ✅ Load Environment Variables
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
-
+# ✅ Fetch API Key and Secret Key
 SQLITE_CLOUD_API_KEY = os.environ.get("SQLITE_CLOUD_API_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY", "your_secret_key")  # Fallback for local testing
+ALGORITHM = "HS256"
 
 # ✅ SQLite Cloud Connection String
 CLOUD_DATABASE_CONNECTION_STRING = f"sqlitecloud://cuf1maatnz.g6.sqlite.cloud:8860/Vroomble_Database.db?apikey={SQLITE_CLOUD_API_KEY}"
@@ -29,6 +30,9 @@ try:
         print("Existing Tables:", tables)
 except sqlitecloud.Error as e:
     print(f"❌ SQLite Cloud connection error: {e}")
+
+# ✅ FastAPI App Initialization
+app = FastAPI()
 
 # ✅ CORS Middleware
 app.add_middleware(
@@ -65,11 +69,13 @@ def create_user_vehicle_table():
                 """
                 CREATE TABLE IF NOT EXISTS user_registered_vehicles (
                     UserRV_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                    users_ID INTEGER NOT NULL,
                     CarID INTEGER NOT NULL,
                     Trim TEXT NOT NULL,
                     PlateEnd TEXT NOT NULL,
                     Color TEXT NOT NULL,
                     Mileage TEXT NOT NULL,
+                    FOREIGN KEY (users_ID) REFERENCES users(users_ID),
                     FOREIGN KEY (CarID) REFERENCES cars(CarID)
                 )
                 """
@@ -83,19 +89,37 @@ def create_user_vehicle_table():
 # ✅ Ensure Table Exists on Startup
 create_user_vehicle_table()
 
+# ✅ Function to Extract `users_ID` from Access Token
+def get_current_user(access_token: str = Cookie(None)):
+    """Extracts users_ID from JWT token stored in cookies."""
+    if not access_token:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+
+    try:
+        payload = jwt.decode(access_token, SECRET_KEY, algorithms=[ALGORITHM])
+        users_ID: int = payload.get("users_ID")
+
+        if users_ID is None:
+            raise HTTPException(status_code=401, detail="Invalid token")
+
+        return users_ID
+    except jwt.PyJWTError:
+        raise HTTPException(status_code=401, detail="Invalid token")
+
 # ✅ API Endpoint to Register a Vehicle for a User
 @app.post("/api/register-vehicle/")
-async def register_vehicle(vehicle_data: UserRegisteredVehicle):
+async def register_vehicle(vehicle_data: UserRegisteredVehicle, users_ID: int = Depends(get_current_user)):
+    """
+    Registers a vehicle under the currently logged-in user by extracting users_ID from the session token.
+    """
     try:
-        logging.info(f"📥 Received registration request: {vehicle_data}")
+        logging.info(f"📥 Received registration request from User ID: {users_ID}")
         logging.info(f"📥 Received CarID: {vehicle_data.carID}, Type: {type(vehicle_data.carID)}")
-
-        logging.info(f"✅ Pydantic Validated Data: {vehicle_data.dict()}") # ⭐️ Log after Pydantic validation
 
         with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:
             cursor = conn.cursor()
 
-            logging.info(f"🔎 Checking if CarID: {vehicle_data.carID} exists in 'cars' table...")
+            # ✅ Check if CarID exists in the 'cars' table
             cursor.execute("SELECT CarID FROM cars WHERE CarID = ?", (vehicle_data.carID,))
             existing_car = cursor.fetchone()
 
@@ -105,18 +129,21 @@ async def register_vehicle(vehicle_data: UserRegisteredVehicle):
 
             logging.info(f"✅ CarID: {vehicle_data.carID} found. Proceeding with registration.")
 
+            # ✅ Insert user-registered vehicle with users_ID
             sql_query = """
-                INSERT INTO user_registered_vehicles (CarID, Trim, PlateEnd, Color, Mileage)
-                VALUES (?, ?, ?, ?, ?)
+                INSERT INTO user_registered_vehicles (users_ID, CarID, Trim, PlateEnd, Color, Mileage)
+                VALUES (?, ?, ?, ?, ?, ?)
             """
             params = (
+                users_ID,  # Extracted from session token
                 vehicle_data.carID,
                 vehicle_data.trim,
                 vehicle_data.plateEnd,
                 vehicle_data.color,
                 vehicle_data.mileage
             )
-            logging.info(f"🚀 Executing SQL Query: {sql_query} with Params: {params}") # ⭐️ Log SQL query and params
+
+            logging.info(f"🚀 Executing SQL Query: {sql_query} with Params: {params}")
 
             cursor.execute(sql_query, params)
             conn.commit()
@@ -125,82 +152,51 @@ async def register_vehicle(vehicle_data: UserRegisteredVehicle):
 
     except Exception as e:
         logging.error(f"❌ Error registering vehicle: {e}")
-        logging.error(f"❌ Exception Details: {type(e).__name__}, {e}") # ⭐️ Log exception type and details
-        raise HTTPException(status_code=500, detail=str(e)) # Keep as 500 for general errors, let's see if it changes to 422 based on logs
+        logging.error(f"❌ Exception Details: {type(e).__name__}, {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
+# ✅ API Endpoint to Fetch Registered Vehicles for a User
+@app.get("/api/user-vehicles/")
+async def get_user_vehicles(users_ID: int = Depends(get_current_user)):
+    """
+    Fetches all vehicles registered under the logged-in user.
+    """
+    try:
+        with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                """
+                SELECT CarID, Trim, PlateEnd, Color, Mileage FROM user_registered_vehicles
+                WHERE users_ID = ?
+                """,
+                (users_ID,)
+            )
+            vehicles = cursor.fetchall()
 
-# ✅ Root Endpoint
+            if not vehicles:
+                return {"message": "No vehicles registered by this user"}
+
+            return [
+                {
+                    "carID": row[0],
+                    "trim": row[1],
+                    "plateEnd": row[2],
+                    "color": row[3],
+                    "mileage": row[4],
+                }
+                for row in vehicles
+            ]
+
+    except sqlitecloud.Error as e:
+        logger.error(f"❌ Error fetching user vehicles: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+# ✅ Root API Endpoint
 @app.get("/")
 async def root():
     return {"message": "🚗 User Vehicle Registration API is running"}
 
 # ✅ Exception Handlers
-# ✅ Custom Exception for Database Errors
-class DatabaseError(HTTPException):
-    def __init__(self, detail: str = None):
-        super().__init__(status_code=500, detail=detail or "Database error.")
-
-# ✅ Function to Get Cloud Database Connection
-def get_db_connection():
-    try:
-        conn = sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING)
-        return conn
-    except sqlitecloud.Error as e:
-        logger.error(f"❌ Database connection error: {e}")
-        raise HTTPException(status_code=500, detail="Database connection error")
-
-# ✅ API Endpoint to Fetch Vehicles with Optional Search Query (Includes Variant & Drivetrain)
-@app.post("/api/register-vehicle/")
-async def register_user_vehicle(vehicle_data: UserRegisteredVehicle):
-    """Registers a user vehicle and links it to an existing CarID."""
-    try:
-        with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:
-            cursor = conn.cursor()
-
-            # ✅ Check if CarID exists in the 'cars' table
-            cursor.execute("SELECT CarID FROM cars WHERE CarID = ?", (vehicle_data.CarID,))
-            existing_car = cursor.fetchone()
-            if not existing_car:
-                raise HTTPException(status_code=400, detail="CarID does not exist in the database.")
-
-            # ✅ Insert user-registered vehicle
-            cursor.execute(
-                """
-                INSERT INTO user_registered_vehicles (CarID, Trim, PlateEnd, Color, Mileage)
-                VALUES (?, ?, ?, ?, ?)
-                """,
-                (
-                    vehicle_data.CarID,
-                    vehicle_data.trim,
-                    vehicle_data.plateEnd,
-                    vehicle_data.color,
-                    vehicle_data.mileage,
-                ),
-            )
-            conn.commit()
-            logger.info(f"✅ Vehicle registered successfully: {vehicle_data}")
-            return {"message": "User vehicle registered successfully"}
-
-    except sqlitecloud.Error as e:
-        logger.error(f"❌ SQLite Cloud database error during registration: {e}")
-        raise HTTPException(status_code=500, detail=f"SQLite Cloud database error: {e}")
-
-
-# ✅ Root API Endpoint
-@app.get("/")
-async def root():
-    return {"message": "🚗 Welcome to the Vehicle Registration API!"}
-
-# ✅ Exception Handler for Request Validation Errors
-@app.exception_handler(RequestValidationError)
-async def validation_exception_handler(request: Request, exc: RequestValidationError):
-    logger.error(f"❌ Validation error: {exc}")
-    return JSONResponse(
-        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-        content={"detail": exc.errors()},
-    )
-
-# ✅ Global Exception Handler
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
     logger.exception(f"❌ Unhandled exception: {exc}")

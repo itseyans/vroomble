@@ -1,0 +1,36 @@
+2025-03-11 17:42:04,814 - DEBUG - cannot commit - no transaction is active
+2025-03-11 17:42:04,815 - INFO - \u2705 SQLite Cloud Database table 'user_registered_vehicles' initialized.
+2025-03-11 17:42:04,853 - DEBUG - cannot commit - no transaction is active
+2025-03-11 17:43:34,785 - DEBUG - cannot commit - no transaction is active
+2025-03-11 17:43:34,786 - INFO - \u2705 SQLite Cloud Database table 'user_registered_vehicles' initialized.
+2025-03-11 17:43:34,833 - DEBUG - cannot commit - no transaction is active
+2025-03-11 17:48:13,522 - DEBUG - cannot commit - no transaction is active
+2025-03-11 17:48:13,523 - INFO - \u2705 SQLite Cloud Database table 'user_registered_vehicles' initialized.
+2025-03-11 17:48:13,572 - DEBUG - cannot commit - no transaction is active
+2025-03-11 17:51:33,336 - DEBUG - cannot commit - no transaction is active
+2025-03-11 17:51:33,336 - INFO - \u2705 SQLite Cloud Database table 'user_registered_vehicles' initialized.
+2025-03-11 17:51:33,387 - DEBUG - cannot commit - no transaction is active
+2025-03-11 17:52:25,402 - DEBUG - cannot commit - no transaction is active
+2025-03-11 17:52:25,403 - INFO - \u2705 SQLite Cloud table 'user_registered_vehicles' initialized.
+2025-03-11 17:52:25,450 - DEBUG - cannot commit - no transaction is active
+2025-03-11 17:59:06,762 - DEBUG - cannot commit - no transaction is active
+2025-03-11 17:59:06,762 - INFO - \u2705 SQLite Cloud table 'user_registered_vehicles' initialized.
+2025-03-11 17:59:06,828 - DEBUG - cannot commit - no transaction is active
+2025-03-11 17:59:13,934 - DEBUG - cannot commit - no transaction is active
+2025-03-11 17:59:13,935 - INFO - \u2705 SQLite Cloud table 'user_registered_vehicles' initialized.
+2025-03-11 17:59:13,974 - DEBUG - cannot commit - no transaction is active
+2025-03-11 17:59:38,442 - DEBUG - cannot commit - no transaction is active
+2025-03-11 17:59:38,443 - INFO - \u2705 SQLite Cloud table 'user_registered_vehicles' initialized.
+2025-03-11 17:59:38,483 - DEBUG - cannot commit - no transaction is active
+2025-03-11 17:59:43,480 - DEBUG - cannot commit - no transaction is active
+2025-03-11 17:59:43,480 - INFO - \u2705 SQLite Cloud table 'user_registered_vehicles' initialized.
+2025-03-11 17:59:43,517 - DEBUG - cannot commit - no transaction is active
+2025-03-11 18:00:13,264 - DEBUG - cannot commit - no transaction is active
+2025-03-11 18:00:13,265 - INFO - \u2705 SQLite Cloud table 'user_registered_vehicles' initialized.
+2025-03-11 18:00:13,303 - DEBUG - cannot commit - no transaction is active
+2025-03-11 21:10:57,908 - ERROR - \u274c Error initializing 'user_registered_vehicles' table: Invalid APIKEY.
+2025-03-11 21:11:58,658 - ERROR - \u274c Error initializing 'user_registered_vehicles' table: Invalid APIKEY.
+2025-03-11 21:13:16,069 - ERROR - \u274c Error initializing 'user_registered_vehicles' table: Invalid APIKEY.
+2025-03-11 21:13:53,375 - ERROR - \u274c Error initializing 'user_registered_vehicles' table: Invalid APIKEY.
+2025-03-11 21:14:01,052 - ERROR - \u274c Error initializing 'user_registered_vehicles' table: Invalid APIKEY.
+2025-03-11 21:14:08,674 - ERROR - \u274c Error initializing 'user_registered_vehicles' table: Invalid APIKEY.

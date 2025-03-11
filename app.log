@@ -1323,3 +1323,65 @@ NameError: name 'DATABASE_URL' is not defined
 2025-03-11 09:27:30,337 - ERROR - \u274c Error initializing SQLite Cloud database table: Invalid APIKEY.
 2025-03-11 09:27:46,608 - ERROR - \u274c Error initializing SQLite Cloud database table: Invalid APIKEY.
 2025-03-11 09:33:53,665 - ERROR - \u274c Error initializing SQLite Cloud database table: Invalid APIKEY.
+2025-03-11 17:51:33,718 - DEBUG - cannot commit - no transaction is active
+2025-03-11 17:51:33,719 - INFO - \u2705 'cars' table initialized in SQLite Cloud.
+2025-03-11 17:51:33,778 - DEBUG - cannot commit - no transaction is active
+2025-03-11 17:52:25,317 - DEBUG - cannot commit - no transaction is active
+2025-03-11 17:52:25,318 - INFO - \u2705 'cars' table initialized in SQLite Cloud.
+2025-03-11 17:52:25,371 - DEBUG - cannot commit - no transaction is active
+2025-03-11 17:52:29,848 - DEBUG - cannot rollback - no transaction is active
+2025-03-11 17:52:29,849 - ERROR - Rolling back transaction - error 'no such column: deleted_at'
+Traceback (most recent call last):
+  File "C:\Users\456\Desktop\setj\src\APIs\vehicle_registration.py", line 140, in get_vehicles
+    cursor.execute(
+    ~~~~~~~~~~~~~~^
+        "SELECT CarID, Make, Model, COALESCE(Variant, 'N/A'), COALESCE(Drivetrain, 'Unknown'), Year FROM cars WHERE deleted_at IS NULL"
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\456\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\456\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\456\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\456\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\456\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: no such column: deleted_at
+2025-03-11 17:52:29,856 - ERROR - \u274c Error fetching vehicles: no such column: deleted_at
+2025-03-11 17:52:30,484 - DEBUG - cannot rollback - no transaction is active
+2025-03-11 17:52:30,484 - ERROR - Rolling back transaction - error 'no such column: deleted_at'
+Traceback (most recent call last):
+  File "C:\Users\456\Desktop\setj\src\APIs\vehicle_registration.py", line 140, in get_vehicles
+    cursor.execute(
+    ~~~~~~~~~~~~~~^
+        "SELECT CarID, Make, Model, COALESCE(Variant, 'N/A'), COALESCE(Drivetrain, 'Unknown'), Year FROM cars WHERE deleted_at IS NULL"
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\456\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\456\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\456\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\456\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\456\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: no such column: deleted_at
+2025-03-11 17:52:30,488 - ERROR - \u274c Error fetching vehicles: no such column: deleted_at
