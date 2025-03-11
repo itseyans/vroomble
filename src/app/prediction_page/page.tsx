@@ -14,7 +14,6 @@ const PageContainer = styled.div`
   justify-content: center;
   min-height: 100vh;
   padding-top: 6rem; /* ✅ Prevents navbar overlap */
-  background: #f5f5f5;
 `;
 
 /** Title Box */
