@@ -20,7 +20,7 @@ const PersoInfoH = () => {
   return (
     <div
       style={{
-        width: "500px",
+        width: "clamp(500px, 80%, 800px)",
         padding: "20px",
         border: "5px solid gold",
         borderRadius: "10px",
