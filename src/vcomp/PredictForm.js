@@ -9,17 +9,19 @@ const Container = styled.div`
   justify-content: center;
   gap: 40px;
   padding: 40px;
-  background: transparent; 
+  background: transparent; /* Makes the container transparent */
 `;
-
+//reload
+//tite  
 const FormContainer = styled.div`
   min-width: 400px;
   max-width: 400px;
   padding: 20px;
   border-radius: 12px;
-  background-color: #d9d9d9;
+  background-color: #e0e0e0;
   border: 4px solid #ffc629;
   font-family: "Segoe UI Variable", sans-serif;
+  color: #000; /* Explicitly set text color to black */
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
@@ -30,22 +32,25 @@ const OutputContainer = styled.div`
   min-width: 400px;
   max-width: 400px;
   padding: 20px;
-  background: #d9d9d9;
+  background: #f8f9fa;
   border-radius: 12px;
   background-color: #e0e0e0;
   border: 4px solid #ffc629;
   font-family: "Segoe UI Variable", sans-serif;
+  color: #000; /* Explicitly set text color to black */
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   gap: 15px;
 `;
 
+
 //reloafd
 
 const Label = styled.label`
   font-weight: bold;
   margin-bottom: 5px;
+  color: #000; /* Explicitly set label color to black */
 `;
 
 const Select = styled.select`
@@ -65,6 +70,7 @@ const CheckboxLabel = styled.label`
   display: flex;
   align-items: center;
   gap: 5px;
+  color: #000; /* Explicitly set checkbox label color to black */
 `;
 
 const Button = styled.button`
@@ -279,7 +285,7 @@ const PredictForm = () => {
               </CheckboxLabel>
             ))
           ) : (
-            <p style={{ fontSize: "14px", color: "#000000" }}>
+            <p style={{ fontSize: "14px", color: "#999" }}>
               No car parts available for this modification type.
             </p>
           )}
