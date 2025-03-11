@@ -9,16 +9,15 @@ const Container = styled.div`
   justify-content: center;
   gap: 40px;
   padding: 40px;
-  background: transparent; /* Makes the container transparent */
+  background: transparent; 
 `;
-//reload
-//tite  
+
 const FormContainer = styled.div`
   min-width: 400px;
   max-width: 400px;
   padding: 20px;
   border-radius: 12px;
-  background-color: #e0e0e0;
+  background-color: #d9d9d9;
   border: 4px solid #ffc629;
   font-family: "Segoe UI Variable", sans-serif;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -31,7 +30,7 @@ const OutputContainer = styled.div`
   min-width: 400px;
   max-width: 400px;
   padding: 20px;
-  background: #f8f9fa;
+  background: #d9d9d9;
   border-radius: 12px;
   background-color: #e0e0e0;
   border: 4px solid #ffc629;
@@ -280,7 +279,7 @@ const PredictForm = () => {
               </CheckboxLabel>
             ))
           ) : (
-            <p style={{ fontSize: "14px", color: "#999" }}>
+            <p style={{ fontSize: "14px", color: "#000000" }}>
               No car parts available for this modification type.
             </p>
           )}

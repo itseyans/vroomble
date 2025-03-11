@@ -2,11 +2,9 @@
 
 import React from "react";
 import styled from "styled-components";
-import Background from '@/vcomp/background.js';
-import NavBar from "../../vcomp/GeneralNavBar"; // Use the correct import path
-import PredictForm from "../../vcomp/PredictForm"; // ✅ Keep this
-import GeneralButton from "../../vcomp/GeneralButton"; // Add if needed
-
+import Background from "@/vcomp/background.js";
+import GeneralNavBar from "../../vcomp/GeneralNavBar";
+import PredictForm from "../../vcomp/PredictForm"; 
 
 /** Styled Components */
 const PageContainer = styled.div`
@@ -15,34 +13,47 @@ const PageContainer = styled.div`
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  padding-top: 6rem; /* ✅ Prevents navbar overlap */
   background: #f5f5f5;
 `;
 
-const ContentBox = styled.div`
-  width: 450px;
-  padding: 20px;
-  background: white;
+/** Title Box */
+const TitleBox = styled.div`
+  background-color: #d9d9d9; /* ✅ Light gray background */
+  border: 5px solid #ffc629; /* ✅ Yellow stroke */
   border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin-bottom: 20px; /* ✅ Spacing between title and PredictForm */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
 `;
 
+/** Title Text */
 const Title = styled.h2`
-  text-align: center;
-  margin-bottom: 20px;
-  color: #333;
+  color: black;
+  font-weight: bold;
+  font-size: 1.8rem;
+  font-family: "Segoe UI Variable", sans-serif;
+  margin: 0;
 `;
 
 export default function Page() {
   return (
     <>
       <Background />
-      <NavBar />
+      <GeneralNavBar />
       <PageContainer>
-        <ContentBox>
+        {/* ✅ Title Container */}
+        <TitleBox>
           <Title>Car Price Prediction</Title>
-          <PredictForm /> {/* ✅ This now works properly */}
-        </ContentBox>
+        </TitleBox>
+
+        {/* ✅ Prediction Form */}
+        <PredictForm />
       </PageContainer>
     </>
   );
 }
+
