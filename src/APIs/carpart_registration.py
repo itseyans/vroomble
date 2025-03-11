@@ -21,7 +21,7 @@ app.add_middleware(
 )
 
 # Specify the exact path of your .env file
-dotenv_path = r"C:\Users\Sobre\OneDrive\Desktop\Vroomble\src\APIs\.env"
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(dotenv_path)
                               
 # Fetch API Key
