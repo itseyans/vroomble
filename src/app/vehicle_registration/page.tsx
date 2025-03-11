@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import AddVehicle from '../../vcomp/AddVehicle.js';
-import NavBar from '../../vcomp/NavBar'; 
+import NavBar from '../../vcomp/landingpage components/LandingNavBar.js'; 
 
 const PageContainer = styled.div`
   width: 100%;

@@ -118,7 +118,7 @@ const PopUpWrapper = styled.div.attrs((props) => ({
   z-index: 100;
 `;
 
-const HomeNav = () => {
+const GeneralNavBar = () => {
   const router = useRouter();
   const [showPopUp, setShowPopUp] = useState(false);
 
@@ -155,4 +155,4 @@ const HomeNav = () => {
   );
 };
 
-export default HomeNav;
+export default GeneralNavBar;

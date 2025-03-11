@@ -2,7 +2,7 @@
 
 import React from "react"; // ✅ Import React
 import styled from "styled-components";
-import HomeNav from "@/vcomp/HomeNav";
+import GeneralNavBar from "@/vcomp/GeneralNavBar";
 import PersoInfoH from "@/vcomp/PersoInfoH"; // ✅ Import Personal Info Panel
 
 const PageContainer = styled.div`
@@ -26,7 +26,7 @@ const Home: React.FC = () => {
   return (
     <PageContainer>
       {/* ✅ Navbar */}
-      <HomeNav />
+      <GeneralNavBar />
 
       {/* ✅ Content Section */}
       <ContentContainer>

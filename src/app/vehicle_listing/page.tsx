@@ -4,9 +4,9 @@
 
 import React from "react";
 import styled from "styled-components";
-import NavBar from "../../vcomp/NavBar";
+import LandingNavBar from "../../vcomp/landingpage components/LandingNavBar";
 import FilterButton from "../../vcomp/FilterButton"; // Import FilterButton
-import ListingCard from "../../vcomp/Listingcard";
+import ListingCard from "../../vcomp/ListingCard"; //CAPITAL C
 
 const PageContainer = styled.div`
   display: flex;
@@ -68,13 +68,14 @@ const ListedVehiclesPage = () => {
     },
   ];
 
-  const handleClick = (vehicle) => {
+  const handleClick = (vehicle: { name: string; image: string }) => {
     alert(`You clicked on ${vehicle.name}`);
   };
+  
 
   return (
     <PageContainer>
-      <NavBar />
+      <LandingNavBar />
       <ContentContainer>
         <Title>LISTED VEHICLE VIEWING</Title>
         <FilterButton /> {/* Use FilterButton instead of FilterListings */}

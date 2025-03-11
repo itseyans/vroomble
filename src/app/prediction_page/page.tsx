@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Background from "../../vcomp/background";
-import NavBar from "../../vcomp/NavBar";
+import NavBar from "../../vcomp/landingpage components/LandingNavBar";
 import GeneralButton from "../../vcomp/GeneralButton";
 
 /** Styled Components */
