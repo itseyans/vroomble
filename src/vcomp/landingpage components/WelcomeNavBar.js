@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import styled from "styled-components";
-import RegistrationForm from "./RegistrationForm.js";
-import LoginForm from "./LoginForm.js";
+import RegistrationForm from "../RegistrationForm.js";
+import LoginForm from "../LoginForm.js";
 
 // ✅ Black Navbar Container
 const NavBarContainer = styled.nav`

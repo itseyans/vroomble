@@ -132,6 +132,7 @@ const GeneralNavBar = () => {
 
       <RightContainer>
         <NavButton onClick={() => router.push("/homepage")}>HOME</NavButton>
+        <NavButton onClick={() => router.push("/prediction_page")}>CAR BUILDER</NavButton>
         <NavButton onClick={() => router.push("/vehicle_listing")}>VIEW LISTINGS</NavButton>
 
         <UserIconContainer>

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
-const NavBarContainer = styled.nav`
+const AdminNavBarContainer = styled.nav`
   background-color: black;
   color: gold;
   display: flex;
@@ -67,7 +67,7 @@ const LogoutButton = styled.button`
   margin-left: 1rem;
 `;
 
-const NavBar = () => {
+const AdminNavBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userRole, setUserRole] = useState(null);
 
@@ -78,17 +78,17 @@ const NavBar = () => {
       setIsLoggedIn(true);
       setUserRole(role);
     }
-    console.log("NavBar useEffect:", isLoggedIn, userRole);
+    console.log("AdminNavBar useEffect:", isLoggedIn, userRole);
   }, []);
 
-  console.log("NavBar rendering:", isLoggedIn, userRole);
+  console.log("AdminNavBar rendering:", isLoggedIn, userRole);
 
   // if (!isLoggedIn) {
   //   return null; // Temporarily commented out
   // }
 
   return (
-    <NavBarContainer>
+    <AdminNavBarContainer>
       <LogoContainer>
         <Logo>VROOMBLE</Logo>
         <EmblemContainer>
@@ -134,8 +134,8 @@ const NavBar = () => {
           Logout
         </LogoutButton>
       </NavItems>
-    </NavBarContainer>
+    </AdminNavBarContainer>
   );
 };
 
-export default NavBar;
+export default AdminNavBar;

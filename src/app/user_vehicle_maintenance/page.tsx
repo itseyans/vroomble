@@ -4,7 +4,7 @@
 
 import React from "react";
 import styled from "styled-components";
-import NavBar from "../../vcomp/landingpage components/LandingNavBar"; // Adjust the path as needed
+import NavBar from "../../vcomp/AdminNavBar"; // Adjust the path as needed
 import Background from "../../vcomp/background"; // Adjust the path as needed
 import MaintenanceContainer from "../../vcomp/MaintenanceContainer"; // Adjust the path as needed
 

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Background from '@/vcomp/background.js';
 import CarPartRegistrationForm from '../../vcomp/CarParts_Registration.js';
-import NavBar from '../../vcomp/landingpage components/LandingNavBar.js'; 
+import NavBar from '../../vcomp/AdminNavBar.js'; 
 
 const AppContainer = styled.div` 
   display: flex;
