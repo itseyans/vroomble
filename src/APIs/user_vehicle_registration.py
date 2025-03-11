@@ -5,11 +5,15 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
+import os
+from dotenv import load_dotenv  # Import load_dotenv
 
 app = FastAPI()
 
+SQLITE_CLOUD_API_KEY = os.environ.get("SQLITE_CLOUD_API_KEY")
+
 # ✅ SQLite Cloud Connection String
-CLOUD_DATABASE_CONNECTION_STRING = "sqlitecloud://cuf1maatnz.g6.sqlite.cloud:8860/Vroomble_Database.db?apikey=9IwJf2Fz9xSDaQBetYibFbLhi7HrKlAEobNy9wjio9o"
+CLOUD_DATABASE_CONNECTION_STRING = f"sqlitecloud://cuf1maatnz.g6.sqlite.cloud:8860/Vroomble_Database.db?apikey={SQLITE_CLOUD_API_KEY}"
 
 # ✅ Establish Connection & Check Tables
 try:
