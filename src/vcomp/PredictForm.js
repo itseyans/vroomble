@@ -227,7 +227,6 @@ const PredictForm = () => {
   return (
     <Container>
       <FormContainer>
-        <h2 style={{ textAlign: "center" }}>Car Price Prediction</h2>
 
         <Label>Select Maker:</Label>
         <Select
@@ -284,12 +283,24 @@ const PredictForm = () => {
                 {part}
               </CheckboxLabel>
             ))
+          
           ) : (
             <p style={{ fontSize: "14px", color: "#999" }}>
               No car parts available for this modification type.
             </p>
           )}
         </CheckboxGroup>
+      </FormContainer>
+
+      <OutputContainer>
+      <Label>Predicted Months:</Label>
+        <Input
+          type="number"
+          value={predictionMonths}
+          onChange={(e) => setPredictionMonths(e.target.value)}
+          min="1"
+          max="60"
+        />
 
         <Button
           onClick={predictPrice}
@@ -297,12 +308,18 @@ const PredictForm = () => {
         >
           {loading ? "Predicting..." : "Predict Price"}
         </Button>
-      </FormContainer>
-
-      <OutputContainer>
-        <h3>Prediction Output</h3>
+        <h3>Prediction Output:</h3>
         {predictionResult && (
-          <pre>{JSON.stringify(predictionResult, null, 2)}</pre>
+          <div>
+            <p><strong>Make:</strong> {predictionResult.Make}</p>
+            <p><strong>Model:</strong> {predictionResult.Model}</p>
+            <p><strong>Modification Type:</strong> {predictionResult["Modification Type"]}</p>
+            <p><strong>Selected Car Parts:</strong> {predictionResult["Selected Car Parts"].join(", ")}</p>
+            <p><strong>Car Base Price (PHP):</strong> {predictionResult["Base Price (PHP)"].toLocaleString()}</p>
+            <p><strong>Car Parts Cost (PHP):</strong> {predictionResult["Car Parts Cost (PHP)"].toLocaleString()}</p>
+            <p><strong>Current Total Price (PHP):</strong> {predictionResult["Current Total Price (PHP)"].toLocaleString()}</p>
+            <p><strong>Predicted Price After {predictionMonths} Months (PHP):</strong> {predictionResult[`Predicted Price After ${predictionMonths} Months (PHP)`].toLocaleString()}</p>
+          </div>
         )}
       </OutputContainer>
     </Container>
