@@ -3,21 +3,21 @@ import React from "react";
 import styled from "styled-components";
 
 // ✅ Main Container for Car Info
-const CarInfoContainer = styled.div`
+const CarInfoCardContainer = styled.div`
   background-color: #d9d9d9; /* Temporary Background for Visualization */
   padding: 5px;
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
   width: 100%;
-  max-width: 510px; /* ✅ Matches image width */
+  max-width: 610px; /* ✅ Matches image width */
   font-family: "Segoe UI Variable", sans-serif;
   color: black;
 `;
 
 // ✅ Car Image Container (Fixed Size 500x300)
 const CarImageContainer = styled.div`
-  width: 510px;
-  height: 250px;
+  width: 600px;
+  height: 300px;
   background-color: #b0b0b0; /* ✅ Placeholder Background */
   display: flex;
   align-items: center;
@@ -57,9 +57,9 @@ const TotalSpent = styled.p`
 `;
 
 // ✅ Main Component Function
-const CarInfoM = ({ imageUrl, carName, totalSpent }) => {
+const CarInfoCard = ({ imageUrl, carName, totalSpent }) => {
   return (
-    <CarInfoContainer>
+    <CarInfoCardContainer>
       {/* ✅ Image Placeholder */}
       <CarImageContainer>
         {imageUrl ? (
@@ -74,8 +74,8 @@ const CarInfoM = ({ imageUrl, carName, totalSpent }) => {
         <CarName>{carName || "Car Name Here"}</CarName>
         <TotalSpent>TOTAL SPENT: ₱{totalSpent || "0.00"}</TotalSpent>
       </CarDetailsWrapper>
-    </CarInfoContainer>
+    </CarInfoCardContainer>
   );
 };
 
-export default CarInfoM;
+export default CarInfoCard;

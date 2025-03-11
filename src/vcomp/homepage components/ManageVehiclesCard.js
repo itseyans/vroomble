@@ -1,20 +1,22 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import CarInfoM from "@/vcomp/CarInfoM"; // ✅ Import individual car info component
+import CarInfoCard from "@/vcomp/homepage components/CarInfoCard";
 
-// ✅ Main Container for Manage Vehicles
+// ✅ Main Container for Manage Vehicles (Updated Background)
 const ManageVehiclesContainer = styled.div`
-  background-color: #F4F4F5; /* ✅ Light gray background */
-  border: 5px solid #FFC629; /* ✅ Yellow border */
+  background-color: #D9D9D9; /* ✅ Updated Background */
+  border: 5px solid #FFC629;
   border-radius: 12px;
   padding: 20px;
-  width: 100%;
-  max-width: 550px;
+  width: 800px;
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
   font-family: "Segoe UI Variable", sans-serif;
   color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 // ✅ Title Section
@@ -24,23 +26,25 @@ const TitleContainer = styled.div`
   justify-content: space-between;
   font-weight: bold;
   font-size: 1.2rem;
+  width: 100%;
   margin-bottom: 15px;
+  color: black;
 `;
 
-// ✅ View All Button
-const ViewAllButton = styled.button`
-  background-color: black;
-  color: gold;
+// ✅ Buttons (Updated `VIEW ALL` to Match Other Buttons)
+const StyledButton = styled.button`
+  background-color: ${({ $color }) => $color || "black"};
+  color: ${({ $textColor }) => $textColor || "white"};
   font-weight: bold;
-  padding: 8px 12px;
-  font-size: 0.9rem;
+  padding: 12px 20px;
+  font-size: 1rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
+  width: 200px; /* ✅ Matches size of other buttons */
+  transition: transform 0.2s;
 
   &:hover {
-    background-color: #312F17;
     transform: scale(1.05);
   }
 `;
@@ -49,52 +53,89 @@ const ViewAllButton = styled.button`
 const CarListContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: center;
+  color: black;
+  width: 100%;
 `;
 
 // ✅ Bottom Button Container
 const BottomButtonsContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  width: 100%;
   margin-top: 20px;
 `;
 
-// ✅ Action Buttons (List & Add Vehicle)
-const ActionButton = styled.button`
-  background-color: ${({ color }) => color || "black"};
-  color: ${({ textColor }) => textColor || "white"};
-  font-weight: bold;
-  padding: 12px 20px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 10px;
+// ✅ Navigation Arrows
+const NavigationContainer = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+
+const NavButton = styled.button`
+  background-color: transparent;
+  border: 2px solid black;
+  color: black;
+  font-size: 1.5rem;
+  padding: 5px 12px;
+  border-radius: 50%;
   cursor: pointer;
   transition: transform 0.2s;
 
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
+    background-color: #d9d9d9;
   }
 `;
 
-const ManageVehiclesCard = () => {
+const ManageVehiclesCard = () => { 
+  // ✅ List of Cars
+  const cars = [
+    { carName: "LEXUS LC 500", totalSpent: "2500", imageUrl: "/lexus-lc500.png" },
+    { carName: "LB HURACAN STO", totalSpent: "12500", imageUrl: "/huracan-sto.png" },
+  ];
+
+  // ✅ State for Current Car Index
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // ✅ Handle Navigation
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % cars.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + cars.length) % cars.length);
+  };
+
   return (
     <ManageVehiclesContainer>
       {/* ✅ Title Section */}
       <TitleContainer>
         <span>MANAGE VEHICLES</span>
-        <ViewAllButton>VIEW ALL</ViewAllButton>
+        <StyledButton $color="black" $textColor="gold">VIEW ALL</StyledButton>
       </TitleContainer>
 
-      {/* ✅ Car List */}
+      {/* ✅ Car Info (Dynamic Based on Current Index) */}
       <CarListContainer>
-        <CarInfoM carName="LEXUS LC 500" totalSpent="₱2500" />
-        <CarInfoM carName="LB HURACAN STO" totalSpent="₱12500" />
+        <CarInfoCard 
+          carName={cars[currentIndex].carName} 
+          totalSpent={cars[currentIndex].totalSpent}
+          imageUrl={cars[currentIndex].imageUrl} 
+        />
       </CarListContainer>
 
-      {/* ✅ Bottom Buttons */}
+      {/* ✅ Bottom Buttons & Navigation */}
       <BottomButtonsContainer>
-        <ActionButton color="black" textColor="gold">+ LIST VEHICLE</ActionButton>
-        <ActionButton color="black" textColor="gold">+ ADD VEHICLE</ActionButton>
+        <StyledButton $color="black" $textColor="gold">+ ADD VEHICLE</StyledButton>
+
+        {/* ✅ Navigation Arrows */}
+        <NavigationContainer>
+          <NavButton onClick={handlePrev}>←</NavButton>
+          <NavButton onClick={handleNext}>→</NavButton>
+        </NavigationContainer>
+
+        <StyledButton $color="black" $textColor="gold">LIST VEHICLE</StyledButton>
       </BottomButtonsContainer>
     </ManageVehiclesContainer>
   );

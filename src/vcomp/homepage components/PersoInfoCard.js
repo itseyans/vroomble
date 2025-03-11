@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-const PersoInfoH = () => {
+const PersoInfoCard = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState("Temp Name");
   const [age, setAge] = useState(21);
@@ -20,7 +20,7 @@ const PersoInfoH = () => {
   return (
     <div
       style={{
-        width: "clamp(500px, 80%, 800px)",
+        width: "600px",
         padding: "20px",
         border: "5px solid gold",
         borderRadius: "10px",
@@ -220,4 +220,4 @@ const PersoInfoH = () => {
   );
 };
 
-export default PersoInfoH;
+export default PersoInfoCard;

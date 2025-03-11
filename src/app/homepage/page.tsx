@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react"; // ✅ Import React
 import styled from "styled-components";
 import GeneralNavBar from "@/vcomp/GeneralNavBar";
-import PersoInfoH from "@/vcomp/PersoInfoH"; // ✅ Import Personal Info Panel
+import PersoInfoCard from "@/vcomp/homepage components/PersoInfoCard";
+import MaintenanceLogsHome from "@/vcomp/homepage components/MaintenanceLogsHome"; // ✅ Imported
+import ManageVehiclesCard from "@/vcomp/homepage components/ManageVehiclesCard"; // ✅ Imported
 
 const PageContainer = styled.div`
   width: 100%;
@@ -16,13 +17,26 @@ const PageContainer = styled.div`
 `;
 
 const ContentContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 8rem; /* ✅ Prevent overlap with navbar */
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* ✅ Two-column layout */
+  gap: 2rem;
+  margin-top: 8rem; /* ✅ Prevents overlap with navbar */
+  width: 80%;
 `;
 
-const Home: React.FC = () => {
+const LeftColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+`;
+
+const RightColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+`;
+
+export default function Home() {
   return (
     <PageContainer>
       {/* ✅ Navbar */}
@@ -30,10 +44,19 @@ const Home: React.FC = () => {
 
       {/* ✅ Content Section */}
       <ContentContainer>
-        <PersoInfoH /> {/* ✅ Personal Information Panel */}
+        {/* ✅ Left Column: Personal Info + Maintenance Logs */}
+        <LeftColumn>
+          <PersoInfoCard />
+          <MaintenanceLogsHome />
+        </LeftColumn>
+
+        {/* ✅ Right Column: Manage Vehicles */}
+        <RightColumn>
+          <ManageVehiclesCard />
+        </RightColumn>
       </ContentContainer>
     </PageContainer>
   );
-};
+}
 
-export default Home;
+//testiog
