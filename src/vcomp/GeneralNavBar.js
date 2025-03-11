@@ -1,11 +1,14 @@
-"use client";
+// GeneralNavBar.js
+
+'use client';
 
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/navigation";
-import UserIconPopUp from "@/vcomp/UserIconPopUp"; // ✅ Import pop-up component
+import Link from 'next/link';
+import UserIconPopUp from "@/vcomp/UserIconPopUp";
 
-// ✅ Navbar Container (Full Width & Fixed to Top)
+// Styled Components Definitions
 const NavBarContainer = styled.nav`
   background-color: #131415;
   color: #E5BD3F;
@@ -22,7 +25,6 @@ const NavBarContainer = styled.nav`
   z-index: 10;
 `;
 
-// ✅ Logo Section
 const LogoContainer = styled.div`
   display: flex;
   align-items: center;
@@ -31,7 +33,6 @@ const LogoContainer = styled.div`
   color: #E5BD3F;
 `;
 
-// ✅ Emblem Background (Adjust Centering)
 const EmblemBackground = styled.div`
   position: absolute;
   top: 50%;
@@ -47,7 +48,6 @@ const EmblemBackground = styled.div`
   z-index: 2;
 `;
 
-// ✅ Emblem Logo
 const EmblemContainer = styled.div`
   display: flex;
   align-items: center;
@@ -61,16 +61,14 @@ const Emblem = styled.img`
   height: auto;
 `;
 
-// ✅ Right-Side Container for Buttons & User Icon
 const RightContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 15px;
   padding-right: 2rem;
-  position: relative; /* ✅ Needed to properly position the pop-up */
+  position: relative;
 `;
 
-// ✅ Styled Button
 const NavButton = styled.button`
   background-color: #FFC629;
   color: #131415;
@@ -88,7 +86,6 @@ const NavButton = styled.button`
   }
 `;
 
-// ✅ User Icon Section
 const UserIconContainer = styled.div`
   position: relative;
   display: flex;
@@ -96,7 +93,6 @@ const UserIconContainer = styled.div`
   align-items: center;
 `;
 
-// ✅ User Icon Image
 const UserIcon = styled.img`
   width: 45px;
   height: 45px;
@@ -108,49 +104,44 @@ const UserIcon = styled.img`
   }
 `;
 
-// ✅ Pop-up Container (Fixes Prop Issue)
-const PopUpWrapper = styled.div.attrs((props) => ({
-  style: { display: props.$isVisible ? "block" : "none" }, // ✅ Use `$` prefix for styled-components props
-}))`
+const PopUpWrapper = styled.div`
   position: absolute;
   top: 90px;
   right: -50px;
   z-index: 100;
+  display: ${({ $isVisible }) => ($isVisible ? "block" : "none")};
 `;
 
 const GeneralNavBar = () => {
   const router = useRouter();
   const [showPopUp, setShowPopUp] = useState(false);
 
-
   return (
     <NavBarContainer>
-      {/* ✅ Center: VROOMBLE Logo & Emblem */}
-      <LogoContainer>VROOMBLE</LogoContainer>
+      <LogoContainer>
+        <Link href="/homepage" passHref style={{ color: 'inherit', textDecoration: 'none' }}>
+          VROOMBLE
+        </Link>
+      </LogoContainer>
+
       <EmblemBackground>
         <EmblemContainer>
           <Emblem src="/LOGO.png" alt="Vroomble Logo" />
         </EmblemContainer>
       </EmblemBackground>
 
-
-
-      {/* ✅ Right: Home + View Listings + User Icon */}
       <RightContainer>
         <NavButton onClick={() => router.push("/homepage")}>HOME</NavButton>
-        <NavButton onClick={() => router.push("/vehicle_listing")}>
-          VIEW LISTINGS
-        </NavButton>
+        <NavButton onClick={() => router.push("/vehicle_listing")}>VIEW LISTINGS</NavButton>
 
-        {/* ✅ User Icon + Clickable Pop-up */}
         <UserIconContainer>
           <UserIcon
             src="/usericonround.png"
             alt="User Profile"
-            onClick={() => setShowPopUp(!showPopUp)} // ✅ Toggle Pop-up Visibility
+            onClick={() => setShowPopUp(!showPopUp)}
           />
           <PopUpWrapper $isVisible={showPopUp}>
-            <UserIconPopUp /> {/* ✅ Displays the pop-up below the icon */}
+            <UserIconPopUp />
           </PopUpWrapper>
         </UserIconContainer>
       </RightContainer>
