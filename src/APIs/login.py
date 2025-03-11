@@ -100,15 +100,27 @@ def get_current_user(request: Request):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         users_ID: int = payload.get("users_ID")
-        contact_number: str = payload.get("contactNumber")  # ✅ Extract `contactNumber`
+        first_name: str = payload.get("firstName")
+        last_name: str = payload.get("lastName")
+        contact_number: str = payload.get("contactNumber")
 
         if users_ID is None or contact_number is None:
             raise HTTPException(status_code=401, detail="Invalid token")
 
-        return {"users_ID": users_ID, "contactNumber": contact_number}  # ✅ Return both
+        return {
+            "users_ID": users_ID,
+            "firstName": first_name,
+            "lastName": last_name,
+            "contactNumber": contact_number
+        }
 
     except jwt.PyJWTError:
         raise HTTPException(status_code=401, detail="Invalid token")
+    
+@app.get("/user/me")
+async def get_user_data(request: Request):
+    user = get_current_user(request)
+    return user
 
 # ✅ Updated Login API to Include `contactNumber` in Token
 @app.post("/login/")

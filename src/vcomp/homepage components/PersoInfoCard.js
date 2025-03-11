@@ -1,219 +1,160 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const PersoInfoCard = () => {
   const [isEditing, setIsEditing] = useState(false);
-  const [name, setName] = useState("Temp Name");
-  const [age, setAge] = useState(21);
-  const [region, setRegion] = useState("Philippines");
-  const [vehicleCount, setVehicleCount] = useState(1);
+  const [name, setName] = useState("Loading...");
+  const [contactNumber, setContactNumber] = useState("Loading...");
+  const [region, setRegion] = useState("Loading...");
+  const [vehicleCount, setVehicleCount] = useState(0);
+
+  // ✅ Fetch User Data (From Backend)
+  useEffect(() => {
+    fetch("http://localhost:8000/user/me", {
+      method: "GET",
+      credentials: "include", // Ensures cookies are sent
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setName(`${data.firstName} ${data.lastName}`);
+        setContactNumber(data.contactNumber);
+        setRegion(data.region);
+        setVehicleCount(data.vehicleCount);
+      })
+      .catch((error) => console.error("Error fetching user data:", error));
+  }, []);
 
   const handleEditClick = () => {
     setIsEditing(true);
   };
 
   const handleSaveClick = () => {
-    setIsEditing(false);
-    console.log("Saved:", { name, age, region, vehicleCount });
+    fetch("http://localhost:8000/user/update-region", {
+      method: "PUT",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ region }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          setIsEditing(false);
+          console.log("Region updated successfully:", region);
+        } else {
+          console.error("Failed to update region");
+        }
+      })
+      .catch((error) => console.error("Error updating region:", error));
+  };
+
+  // ✅ Styling Definitions
+const cardStyle = {
+  width: "600px",
+  minHeight: "360px", // ✅ Adjust this to match the Manage Vehicles container
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between", // ✅ Ensures spacing is even
+  padding: "20px",
+  border: "5px solid gold",
+  borderRadius: "10px",
+  backgroundColor: "#D9D9D9",
+  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+  fontFamily: "'Segoe UI Variable', sans-serif",
+  color: "black",
+};
+
+  const inputStyle = {
+    width: "100%",
+    padding: "8px",
+    borderRadius: "5px",
+    border: "1px solid #ccc",
+  };
+
+  const displayInfoStyle = {
+    backgroundColor: "#FFFFFF",
+    padding: "10px",
+    marginBottom: "10px",
+    borderRadius: "5px",
+    color: "black",
+    minHeight: "40px",
+    display: "flex",
+    alignItems: "center",
+  };
+
+  const buttonStyle = {
+    backgroundColor: "gold",
+    padding: "10px 15px",
+    borderRadius: "12px",
+    cursor: "pointer",
+    width: "80%",
+    display: "block",
+    margin: "0 auto",
+    fontWeight: "bold",
+    textAlign: "center",
+    transition: "transform 0.2s ease-in-out",
   };
 
   return (
-    <div
-      style={{
-        width: "600px",
-        padding: "20px",
-        border: "5px solid gold",
-        borderRadius: "10px",
-        backgroundColor: "#D9D9D9", // ✅ Changed Background to #D9D9D9
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-        fontFamily: "'Segoe UI Variable', sans-serif",
-        color: "black",
-      }}
-    >
-      <div style={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>
-        <div
-          style={{
-            width: "4px",
-            height: "20px",
-            backgroundColor: "#333",
-            marginRight: "10px",
-          }}
-        ></div>
-      <h2 style={{ margin: 0, color: "black", fontWeight: "bold" }}>PERSONAL INFORMATION</h2>
+    <div style={cardStyle}>
+      <h2 style={{ color: "black", fontWeight: "bold", textAlign: "center" }}>
+        PERSONAL INFORMATION
+      </h2>
+
+      {/* ✅ Display Name (Read-Only) */}
+      <div style={displayInfoStyle}>
+        <strong>NAME:</strong> &nbsp; {name}
+      </div>
+
+      {/* ✅ Display Contact Number (Read-Only) */}
+      <div style={displayInfoStyle}>
+        <strong>CONTACT NUMBER:</strong> &nbsp; {contactNumber}
+      </div>
+
+      {/* ✅ Display Vehicle Count (Read-Only) */}
+      <div style={displayInfoStyle}>
+        <strong>VEHICLE COUNT:</strong> &nbsp; {vehicleCount}
       </div>
 
       {isEditing ? (
         <div>
-          <div style={{ marginBottom: "10px" }}>
-            <label style={{ color: "black" }}>Name:</label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              style={{
-                width: "100%",
-                padding: "8px",
-                boxSizing: "border-box",
-                fontFamily: "'Segoe UI Variable', sans-serif",
-                color: "black",
-                backgroundColor: "#FFFFFF", // ✅ Changed Input Fields to White
-                boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.2)", // ✅ Added dropdown shadow
-                borderRadius: "5px",
-                border: "1px solid #ccc",
-              }}
-            />
-          </div>
-          <div style={{ marginBottom: "10px" }}>
-            <label style={{ color: "black" }}>Age:</label>
-            <input
-              type="number"
-              value={age}
-              onChange={(e) => setAge(parseInt(e.target.value))}
-              style={{
-                width: "100%",
-                padding: "8px",
-                boxSizing: "border-box",
-                fontFamily: "'Segoe UI Variable', sans-serif",
-                color: "black",
-                backgroundColor: "#FFFFFF", // ✅ Changed Input Fields to White
-                boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.2)", // ✅ Added dropdown shadow
-                borderRadius: "5px",
-                border: "1px solid #ccc",
-              }}
-            />
-          </div>
+          {/* ✅ General Region (Editable) */}
           <div style={{ marginBottom: "10px" }}>
             <label style={{ color: "black" }}>General Region:</label>
             <input
               type="text"
               value={region}
               onChange={(e) => setRegion(e.target.value)}
-              style={{
-                width: "100%",
-                padding: "8px",
-                boxSizing: "border-box",
-                fontFamily: "'Segoe UI Variable', sans-serif",
-                color: "black",
-                backgroundColor: "#FFFFFF", // ✅ Changed Input Fields to White
-                boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.2)", // ✅ Added dropdown shadow
-                borderRadius: "5px",
-                border: "1px solid #ccc",
-              }}
+              style={inputStyle}
             />
           </div>
-          <div style={{ marginBottom: "20px" }}>
-            <label style={{ color: "black" }}>Vehicle Count:</label>
-            <input
-              type="number"
-              value={vehicleCount}
-              onChange={(e) => setVehicleCount(parseInt(e.target.value))}
-              style={{
-                width: "100%",
-                padding: "8px",
-                boxSizing: "border-box",
-                fontFamily: "'Segoe UI Variable', sans-serif",
-                color: "black",
-                backgroundColor: "#FFFFFF", // ✅ Changed Input Fields to White
-                boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.2)", // ✅ Added dropdown shadow
-                borderRadius: "5px",
-                border: "1px solid #ccc",
-              }}
-            />
-          </div>
-          <button
-            onClick={handleSaveClick}
-            style={{
-              backgroundColor: "#4CAF50",
-              color: "white",
-              padding: "10px 15px",
-              border: "none",
-              borderRadius: "12px",
-              cursor: "pointer",
-              width: "100%",
-              fontFamily: "'Segoe UI Variable', sans-serif",
-            }}
+
+          {/* ✅ Save Button */}
+          <button 
+            onClick={handleSaveClick} 
+            style={buttonStyle}
+            onMouseEnter={(e) => (e.target.style.transform = "scale(1.05)")}
+            onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
           >
-            Save Information
+            Save Region
           </button>
         </div>
       ) : (
         <div>
-          <div
-            style={{
-              backgroundColor: "#FFFFFF", // ✅ Changed Display Containers to White
-              padding: "10px",
-              marginBottom: "10px",
-              borderRadius: "5px",
-              color: "black",
-              fontFamily: "'Segoe UI Variable', sans-serif",
-              boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.2)", // ✅ Added dropdown shadow to display containers
-            }}
-          >
-            <strong>NAME:</strong> {name}
+          {/* ✅ Display General Region */}
+          <div style={displayInfoStyle}>
+            <strong>GENERAL REGION:</strong> &nbsp; {region}
           </div>
-          <div
-            style={{
-              backgroundColor: "#FFFFFF",
-              padding: "10px",
-              marginBottom: "10px",
-              borderRadius: "5px",
-              color: "black",
-              fontFamily: "'Segoe UI Variable', sans-serif",
-              boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.2)",
-            }}
-          >
-            <strong>AGE:</strong> {age}
-          </div>
-          <div
-            style={{
-              backgroundColor: "#FFFFFF",
-              padding: "10px",
-              marginBottom: "10px",
-              borderRadius: "5px",
-              color: "black",
-              fontFamily: "'Segoe UI Variable', sans-serif",
-              boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.2)",
-            }}
-          >
-            <strong>GENERAL REGION:</strong> {region}
-          </div>
-          <div
-            style={{
-              backgroundColor: "#FFFFFF",
-              padding: "10px",
-              marginBottom: "20px",
-              borderRadius: "5px",
-              color: "black",
-              fontFamily: "'Segoe UI Variable', sans-serif",
-              boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.2)", // ✅ Added dropdown shadow to display containers
-            }}
-          >
-            <strong>VEHICLE COUNT:</strong> {vehicleCount}
-          </div>
-          <button
-  onClick={handleEditClick}
-  style={{
-    backgroundColor: "gold",
-    padding: "10px 15px",
-    border: "none",
-    borderRadius: "12px",
-    cursor: "pointer",
-    width: "80%",  // ✅ Adjusted width
-    fontFamily: "'Segoe UI Variable', sans-serif",
-    color: "black",
-    fontWeight: "bold",
-    transition: "transform 0.2s ease-in-out",
-    display: "block",  // ✅ Makes it a block element
-    margin: "0 auto",  // ✅ Centers the button horizontally
-    textAlign: "center", // ✅ Ensures text stays centered
-  }}
-  onMouseEnter={(e) => (e.target.style.transform = "scale(1.05)")}
-  onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
->
-  EDIT INFORMATION
-</button>
 
-
+          {/* ✅ Edit Button */}
+          <button 
+            onClick={handleEditClick} 
+            style={buttonStyle}
+            onMouseEnter={(e) => (e.target.style.transform = "scale(1.05)")}
+            onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
+          >
+            EDIT REGION
+          </button>
         </div>
       )}
     </div>
