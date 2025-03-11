@@ -89,94 +89,94 @@ const RegisterVehicle = () => {
   const [color, setColor] = useState("");
   const [mileage, setMileage] = useState({ value: "", error: "" });
 
-const handleSelect = (selectedVehicle) => { // Expecting the entire vehicle object now
-   console.log("📡 Received CarID from Dropdown:", selectedVehicle); // Log the entire object
-   console.log("🚗 Type of Received Vehicle:", typeof selectedVehicle); // Log the type of received data
+  const handleSelect = (selectedVehicle) => {
+    console.log("📡 Received CarID from Dropdown:", selectedVehicle); // Log the entire object
+    console.log("🚗 Type of Received Vehicle:", typeof selectedVehicle);
 
-   if (!selectedVehicle || typeof selectedVehicle.carID !== 'number') {
-     console.error("❌ Invalid CarID:", selectedVehicle);
-     alert("❌ Please select a valid vehicle!");
-     return;
-   }
+    if (!selectedVehicle || typeof selectedVehicle.carID !== "number") {
+      console.error("❌ Invalid CarID:", selectedVehicle);
+      alert("❌ Please select a valid vehicle!");
+      return;
+    }
 
-   setCarID(selectedVehicle.carID);
-   console.log("✅ CarID set:", selectedVehicle.carID, "State carID:", carID);
-   console.log("🚗 Type of State carID:", typeof carID); // Log the type of state carID
- };
+    setCarID(selectedVehicle.carID);
+    console.log("✅ CarID set:", selectedVehicle.carID, "State carID:", carID);
+    console.log("🚗 Type of State carID:", typeof carID);
+  };
 
-  const handleUploadButtonClick = () => {
-    setShowModal(true);
-  };
+  const handleUploadButtonClick = () => {
+    setShowModal(true);
+  };
 
-  const handleModalClose = () => {
-    setShowModal(false);
-  };
+  const handleModalClose = () => {
+    setShowModal(false);
+  };
 
-  const handleImagesUpload = (images) => {
-    setUploadedImages(images);
-    setShowModal(false);
-  };
+  const handleImagesUpload = (images) => {
+    setUploadedImages(images);
+    setShowModal(false);
+  };
 
-  const handleMileageChange = (e) => {
-    const value = e.target.value;
-    const isValidMileage = /^\d*$/.test(value); // Regex to allow only digits
+  const handleMileageChange = (e) => {
+    const value = e.target.value;
+    const isValidMileage = /^\d*$/.test(value); // Regex to allow only digits
 
-    if (isValidMileage) {
-      setMileage({ value: value, error: "" }); // Valid input, clear error
-    } else {
-      setMileage({ value: value, error: "Mileage must be a number" }); // Invalid input, set error message
-    }
-  };
+    if (isValidMileage) {
+      setMileage({ value: value, error: "" }); // Valid input, clear error
+    } else {
+      setMileage({ value: value, error: "Mileage must be a number" }); // Invalid input, set error message
+    }
+  };
 
-  const handleSubmit = async () => {
-    console.log("📡 Submitting Vehicle Registration...");
-    console.log("Current carID before submit:", carID, typeof carID); // ⭐️ Log carID and its type before submit
-    console.log("handleSubmit - trim value:", trim); // ADD THIS LINE - DEBUGGING
+  const handleSubmit = async () => {
+    console.log("📡 Submitting Vehicle Registration...");
+    console.log("Current carID before submit:", carID, typeof carID);
 
-    if (!carID || isNaN(carID)) {
-      console.error("❌ Invalid CarID in handleSubmit:", carID);
-      alert("❌ Please select a valid vehicle!");
-      return;
-    }
+    if (!carID || isNaN(carID)) {
+      console.error("❌ Invalid CarID in handleSubmit:", carID);
+      alert("❌ Please select a valid vehicle!");
+      return;
+    }
 
-    if (mileage.error || !mileage.value.trim()) { // Check for mileage error or empty value
-      alert("❌ Please enter a valid mileage (numbers only).");
-      return; // Prevent form submission
-    }
+    if (mileage.error || !mileage.value.trim()) {
+      alert("❌ Please enter a valid mileage (numbers only).");
+      return;
+    }
 
-    const formData = {
-      carID: parseInt(carID), // Keep parseInt to ensure integer for API
-      trim: trim.trim(), // Line 141 - Potential Error
-      plateEnd: plateEnd.trim(),
-      color: color.trim(),
-      mileage: mileage.value.trim(),
-    };
+    const formData = {
+      carID: parseInt(carID), // Ensure integer for API
+      trim: trim.trim(),
+      plateEnd: plateEnd.trim(),
+      color: color.trim(),
+      mileage: mileage.value.trim(),
+    };
 
-    console.log("📡 Sending Data to API:", formData);
+    console.log("📡 Sending Data to API:", formData);
 
-    try {
-      const response = await fetch("http://localhost:8004/api/register-vehicle/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+    try {
+      const response = await fetch("http://localhost:8004/api/register-vehicle/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+        credentials: "include", // ✅ Ensure JWT token (session) is sent
+      });
 
-      if (response.ok) {
-        alert("✅ Vehicle registered successfully!");
-        setCarID(""); // Reset carID after successful registration
-        setTrim("");
-        setPlateEnd("");
-        setColor("");
-        setMileage({ value: "", error: "" }); // Reset mileage state after successful registration
-      } else {
-        const errorData = await response.json();
-        alert(`❌ Failed to register vehicle: ${errorData.detail}`);
-      }
-    } catch (error) {
-      console.error("❌ Error:", error);
-      alert("An error occurred while registering the vehicle.");
-    }
-  };
+      if (response.ok) {
+        alert("✅ Vehicle registered successfully!");
+        setCarID(""); // Reset carID after successful registration
+        setTrim("");
+        setPlateEnd("");
+        setColor("");
+        setMileage({ value: "", error: "" });
+      } else {
+        const errorData = await response.json();
+        alert(`❌ Failed to register vehicle: ${errorData.detail}`);
+      }
+    } catch (error) {
+      console.error("❌ Error:", error);
+      alert("An error occurred while registering the vehicle.");
+    }
+  };
 
   return (
     <Container>
@@ -201,7 +201,11 @@ const handleSelect = (selectedVehicle) => { // Expecting the entire vehicle obje
           <InputField placeholder="Blue" value={color} onChange={(e) => setColor(e.target.value)} />
 
           <Label>Mileage (Km)</Label>
-          <InputField placeholder="12345" value={mileage.value} onChange={handleMileageChange} error={mileage.error} />
+          <InputField
+            placeholder="12345"
+            value={mileage.value}
+            onChange={handleMileageChange}
+          />
           {mileage.error && <ErrorMessage>{mileage.error}</ErrorMessage>}
           <ButtonContainer style={{ marginTop: "50px" }}>
             <GeneralButton onClick={handleUploadButtonClick}>+ Upload Images</GeneralButton>
