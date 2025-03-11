@@ -1,65 +1,292 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 
-const usePredict = () => {
-  const [makers, setMakers] = useState([]);
-  const [models, setModels] = useState([]);
+const API_BASE_URL = "http://127.0.0.1:8000"; // Ensure this is correct
+
+// Styled Components
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+`;
+
+const FormContainer = styled.div`
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+`;
+
+const OutputContainer = styled.div`
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+`;
+
+const Label = styled.label`
+  font-weight: bold;
+  margin-bottom: 5px;
+`;
+
+const Select = styled.select`
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+`;
+
+const CheckboxGroup = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+`;
+
+const CheckboxLabel = styled.label`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`;
+
+const Button = styled.button`
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  &:disabled {
+    background-color: #ccc;
+  }
+`;
+
+const Input = styled.input`
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+`;
+
+const PredictForm = () => {
+  const [carMakers, setCarMakers] = useState([]);
+  const [carModels, setCarModels] = useState([]);
   const [modificationTypes, setModificationTypes] = useState([]);
   const [carParts, setCarParts] = useState([]);
-
-  const [selectedMaker, setSelectedMaker] = useState("");
+  const [selectedMake, setSelectedMake] = useState("");
   const [selectedModel, setSelectedModel] = useState("");
-  const [modificationType, setModificationType] = useState("");
+  const [selectedModification, setSelectedModification] = useState("");
   const [selectedParts, setSelectedParts] = useState([]);
-  const [months, setMonths] = useState(12);
-  const [prediction, setPrediction] = useState(null);
+  const [predictionMonths, setPredictionMonths] = useState(12);
+  const [predictionResult, setPredictionResult] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/car-makers")
-      .then((res) => res.json())
-      .then((data) => setMakers(data.makers))
-      .catch((err) => console.error("Error fetching car makers:", err));
+    fetchCarMakers();
   }, []);
 
-  useEffect(() => {
-    if (selectedMaker) {
-      fetch(`http://127.0.0.1:8000/car-models?make=${selectedMaker}`)
-        .then((res) => res.json())
-        .then((data) => setModels(data.models))
-        .catch((err) => console.error("Error fetching car models:", err));
+  const fetchCarMakers = async () => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/car-makers`);
+      if (!response.ok)
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      const data = await response.json();
+      setCarMakers(data);
+    } catch (error) {
+      console.error("Error fetching car makers:", error);
     }
-  }, [selectedMaker]);
-
-  useEffect(() => {
-    if (selectedModel) {
-      fetch(`http://127.0.0.1:8000/modification-types?model=${selectedModel}`)
-        .then((res) => res.json())
-        .then((data) => setModificationTypes(data.modification_types))
-        .catch((err) => console.error("Error fetching modification types:", err));
-
-      fetch(`http://127.0.0.1:8000/car-parts?model=${selectedModel}`)
-        .then((res) => res.json())
-        .then((data) => setCarParts(data.parts))
-        .catch((err) => console.error("Error fetching car parts:", err));
-    }
-  }, [selectedModel]);
-
-  return {
-    makers,
-    models,
-    modificationTypes,
-    carParts,
-    selectedMaker,
-    setSelectedMaker,
-    selectedModel,
-    setSelectedModel,
-    modificationType,
-    setModificationType,
-    selectedParts,
-    setSelectedParts,
-    months,
-    setMonths,
   };
+
+  const fetchCarModels = async (make) => {
+    setSelectedMake(make);
+    setSelectedModel("");
+    setModificationTypes([]);
+    setCarParts([]);
+    try {
+      const response = await fetch(`${API_BASE_URL}/car-models?make=${make}`);
+      if (!response.ok)
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      const data = await response.json();
+      setCarModels(data);
+    } catch (error) {
+      console.error("Error fetching car models:", error);
+    }
+  };
+
+  const fetchModificationTypes = async (model) => {
+    setSelectedModel(model);
+    setSelectedModification("");
+    setCarParts([]);
+    try {
+      const response = await fetch(
+        `${API_BASE_URL}/modification-types?model=${model}`
+      );
+      if (!response.ok)
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      const data = await response.json();
+      setModificationTypes(data);
+    } catch (error) {
+      console.error("Error fetching modification types:", error);
+    }
+  };
+
+  const fetchCarParts = async (modification) => {
+    setSelectedModification(modification);
+    setCarParts([]);
+    setSelectedParts([]);
+
+    if (!selectedModel) {
+      console.warn("⚠️ No model selected. Cannot fetch car parts.");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `${API_BASE_URL}/car-parts?model=${encodeURIComponent(
+          selectedModel
+        )}&modification_type=${encodeURIComponent(modification)}`
+      );
+
+      if (!response.ok)
+        throw new Error(`HTTP error! Status: ${response.status}`);
+
+      const data = await response.json();
+      setCarParts(data);
+    } catch (error) {
+      console.error("❌ Error fetching car parts:", error);
+    }
+  };
+
+  const handleCheckboxChange = (part) => {
+    setSelectedParts((prevParts) =>
+      prevParts.includes(part)
+        ? prevParts.filter((p) => p !== part)
+        : [...prevParts, part]
+    );
+  };
+
+  const predictPrice = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(`${API_BASE_URL}/predict-price`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          make: selectedMake,
+          model_name: selectedModel,
+          modification_type: selectedModification,
+          selected_parts: selectedParts,
+          months: predictionMonths,
+        }),
+      });
+
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        console.error("❌ Prediction API Error:", responseData);
+        alert(`Failed to predict: ${responseData.detail || "Unknown error"}`);
+        throw new Error(`API Error: ${responseData.detail}`);
+      }
+
+      console.log("✅ Prediction Response:", responseData);
+      setPredictionResult(responseData);
+    } catch (error) {
+      console.error("❌ Error predicting price:", error);
+      alert("Prediction failed. Check the console logs for details.");
+    }
+    setLoading(false);
+  };
+
+  return (
+    <Container>
+      <FormContainer>
+        <h2 style={{ textAlign: "center" }}>Car Price Prediction</h2>
+
+        <Label>Select Maker:</Label>
+        <Select
+          onChange={(e) => fetchCarModels(e.target.value)}
+          value={selectedMake}
+        >
+          <option value="">Select Maker</option>
+          {carMakers.map((maker) => (
+            <option key={maker} value={maker}>
+              {maker}
+            </option>
+          ))}
+        </Select>
+
+        <Label>Select Model:</Label>
+        <Select
+          onChange={(e) => fetchModificationTypes(e.target.value)}
+          value={selectedModel}
+          disabled={!selectedMake}
+        >
+          <option value="">Select Model</option>
+          {carModels.map((model) => (
+            <option key={model} value={model}>
+              {model}
+            </option>
+          ))}
+        </Select>
+
+        <Label>Select Modification Type:</Label>
+        <Select
+          onChange={(e) => fetchCarParts(e.target.value)}
+          value={selectedModification}
+          disabled={!selectedModel}
+        >
+          <option value="">Select Modification Type</option>
+          {modificationTypes.map((type) => (
+            <option key={type} value={type}>
+              {type}
+            </option>
+          ))}
+        </Select>
+
+        <Label>Select Car Parts:</Label>
+        <CheckboxGroup>
+          {carParts.length > 0 ? (
+            carParts.map((part) => (
+              <CheckboxLabel key={part}>
+                <input
+                  type="checkbox"
+                  value={part}
+                  checked={selectedParts.includes(part)}
+                  onChange={() => handleCheckboxChange(part)}
+                />
+                {part}
+              </CheckboxLabel>
+            ))
+          ) : (
+            <p style={{ fontSize: "14px", color: "#999" }}>
+              No car parts available for this modification type.
+            </p>
+          )}
+        </CheckboxGroup>
+
+
+
+        <Button onClick={predictPrice} disabled={!selectedModification || loading}>
+          {loading ? "Predicting..." : "Predict Price"}
+        </Button>
+      </FormContainer>
+
+      <OutputContainer>
+        <h3>Prediction Output</h3>
+        {predictionResult && <pre>{JSON.stringify(predictionResult, null, 2)}</pre>}
+      </OutputContainer>
+    </Container>
+  );
 };
 
-export default usePredict;
+export default PredictForm;
