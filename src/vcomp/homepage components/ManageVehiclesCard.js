@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation"; // ✅ Import Router
 import styled from "styled-components";
 import CarInfoCard from "@/vcomp/homepage components/CarInfoCard";
 
-// ✅ Main Container for Manage Vehicles (Updated Background)
+// ✅ Main Container for Manage Vehicles
 const ManageVehiclesContainer = styled.div`
   background-color: #D9D9D9; /* ✅ Updated Background */
   border: 5px solid #FFC629;
@@ -31,7 +32,7 @@ const TitleContainer = styled.div`
   color: black;
 `;
 
-// ✅ Buttons (Updated `VIEW ALL` to Match Other Buttons)
+// ✅ Buttons
 const StyledButton = styled.button`
   background-color: ${({ $color }) => $color || "black"};
   color: ${({ $textColor }) => $textColor || "white"};
@@ -41,7 +42,7 @@ const StyledButton = styled.button`
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  width: 200px; /* ✅ Matches size of other buttons */
+  width: 200px;
   transition: transform 0.2s;
 
   &:hover {
@@ -90,6 +91,8 @@ const NavButton = styled.button`
 `;
 
 const ManageVehiclesCard = () => { 
+  const router = useRouter(); // ✅ Initialize Router
+
   // ✅ List of Cars
   const cars = [
     { carName: "LEXUS LC 500", totalSpent: "2500", imageUrl: "/lexus-lc500.png" },
@@ -127,7 +130,14 @@ const ManageVehiclesCard = () => {
 
       {/* ✅ Bottom Buttons & Navigation */}
       <BottomButtonsContainer>
-        <StyledButton $color="black" $textColor="gold">+ ADD VEHICLE</StyledButton>
+        {/* ✅ Redirects to User Vehicle Registration */}
+        <StyledButton 
+          $color="black" 
+          $textColor="gold"
+          onClick={() => router.push("/user_vehicle_registration")} 
+        >
+          + ADD VEHICLE
+        </StyledButton>
 
         {/* ✅ Navigation Arrows */}
         <NavigationContainer>
