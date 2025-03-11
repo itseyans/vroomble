@@ -11,60 +11,89 @@ const AdminNavBarContainer = styled.nav`
   align-items: center;
   padding: 1rem;
   justify-content: space-between;
-`;
-
-const NavItems = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const NavItem = styled.a`
-  color: gold;
-  text-decoration: none;
-  margin: 0 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-
-  &:hover {
-    background-color: rgba(255, 215, 0, 0.2);
-  }
+  width: 100%;
+  position: relative;
 `;
 
 const LogoContainer = styled.div`
   display: flex;
   align-items: center;
+  position: relative;
 `;
 
-const Logo = styled.span`
-  font-weight: bold;
-  font-size: 1.2rem;
-  margin-right: 2rem;
+const LogoBackground = styled.div`
+  width: 180px; /* Adjust for proper proportions */
+  height: 80px;
+  background-color: #d9d9d9;
+  position: absolute;
+  left: 0;
+  top: 0;
+  clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);
+  z-index: 1;
 `;
 
-const EmblemContainer = styled.div`
-  background-color: #e0e0e0;
-  border-radius: 50%;
-  padding: 0.5rem;
+const LogoImage = styled.img`
+  width: 70px;
+  height: auto;
+  position: relative;
+  z-index: 2;
+`;
+
+const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 3rem;
-  height: 3rem;
+  gap: 1.5rem; /* ✅ Increased spacing between VROOMBLE & ADMIN */
+  margin-left: 100px; /* Ensures text does not overlap the shape */
+  z-index: 2;
 `;
 
-const Emblem = styled.img`
-  max-width: 100%;
-  height: auto;
+const LogoText = styled.span`
+  font-weight: bold;
+  font-size: 2.5rem;
+  font-family: "Shrikhand", sans-serif;
+  color: #ffc629;
+`;
+
+const AdminText = styled.span`
+  font-weight: bold;
+  font-size: 2.5rem;
+  font-family: "Shrikhand", sans-serif;
+  color: #d9d9d9;
+`;
+
+const NavItems = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+`;
+
+const NavItem = styled(Link)`
+  color: gold;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: #ffc629;
+  }
 `;
 
 const LogoutButton = styled.button`
-  background-color: gold;
+  background-color: #ffc629;
   color: black;
   padding: 0.5rem 1rem;
+  font-weight: bold;
+  font-size: 1rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
-  margin-left: 1rem;
+  transition: background 0.2s, transform 0.2s;
+
+  &:hover {
+    background-color: #e5bd3f;
+    transform: scale(1.05);
+  }
 `;
 
 const AdminNavBar = () => {
@@ -78,50 +107,23 @@ const AdminNavBar = () => {
       setIsLoggedIn(true);
       setUserRole(role);
     }
-    console.log("AdminNavBar useEffect:", isLoggedIn, userRole);
   }, []);
-
-  console.log("AdminNavBar rendering:", isLoggedIn, userRole);
-
-  // if (!isLoggedIn) {
-  //   return null; // Temporarily commented out
-  // }
 
   return (
     <AdminNavBarContainer>
       <LogoContainer>
-        <Logo>VROOMBLE</Logo>
-        <EmblemContainer>
-          <Emblem src="/images/emblem.png" alt="Emblem" />
-        </EmblemContainer>
+        <LogoBackground />
+        <LogoImage src="/LOGO.png" alt="Vroomble Logo" />
+        <LogoWrapper>
+          <LogoText>VROOMBLE</LogoText>
+          <AdminText>ADMIN</AdminText>
+        </LogoWrapper>
       </LogoContainer>
 
       <NavItems>
-        {userRole === "admin" ? (
-          <>
-            <Link href="/admin/dashboard">
-              <NavItem>Dashboard</NavItem>
-            </Link>
-            <Link href="/admin/users">
-              <NavItem>Users</NavItem>
-            </Link>
-          </>
-        ) : (
-          <>
-            <Link href="/homepage">
-              <NavItem>Home</NavItem>
-            </Link>
-            <Link href="/services">
-              <NavItem>Services</NavItem>
-            </Link>
-            <Link href="/vehicle_registration">
-              <NavItem>Vehicle Registration</NavItem>
-            </Link>
-            <Link href="/part_registration">
-              <NavItem>Car Part Registration</NavItem>
-            </Link>
-          </>
-        )}
+        <NavItem href="/homepage">Home</NavItem>
+        <NavItem href="/vehicle_registration">Vehicle Registration</NavItem>
+        <NavItem href="/part_registration">Car Part Registration</NavItem>
         <LogoutButton
           onClick={() => {
             localStorage.removeItem("token");
@@ -131,7 +133,7 @@ const AdminNavBar = () => {
             window.location.href = "/";
           }}
         >
-          Logout
+          LOGOUT
         </LogoutButton>
       </NavItems>
     </AdminNavBarContainer>
