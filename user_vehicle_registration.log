@@ -94,60 +94,15 @@
 2025-03-11 22:14:18,552 - DEBUG - Calling on_end with no data
 2025-03-11 22:14:18,940 - DEBUG - cannot commit - no transaction is active
 2025-03-11 22:14:18,990 - DEBUG - cannot commit - no transaction is active
-2025-03-12 00:10:08,242 - DEBUG - cannot commit - no transaction is active
-2025-03-12 00:10:08,245 - INFO - \u2705 Tables initialized successfully.
-2025-03-12 00:10:08,292 - DEBUG - cannot commit - no transaction is active
-2025-03-12 00:12:39,487 - DEBUG - Calling on_part_begin with no data
-2025-03-12 00:12:39,487 - DEBUG - Calling on_header_field with data[42:61]
-2025-03-12 00:12:39,487 - DEBUG - Calling on_header_value with data[63:86]
-2025-03-12 00:12:39,487 - DEBUG - Calling on_header_end with no data
-2025-03-12 00:12:39,487 - DEBUG - Calling on_headers_finished with no data
-2025-03-12 00:12:39,487 - DEBUG - Calling on_part_data with data[90:92]
-2025-03-12 00:12:39,487 - DEBUG - Calling on_part_end with no data
-2025-03-12 00:12:39,487 - DEBUG - Calling on_part_begin with no data
-2025-03-12 00:12:39,487 - DEBUG - Calling on_header_field with data[136:155]
-2025-03-12 00:12:39,487 - DEBUG - Calling on_header_value with data[157:179]
-2025-03-12 00:12:39,487 - DEBUG - Calling on_header_end with no data
-2025-03-12 00:12:39,487 - DEBUG - Calling on_headers_finished with no data
-2025-03-12 00:12:39,487 - DEBUG - Calling on_part_data with data[183:186]
-2025-03-12 00:12:39,487 - DEBUG - Calling on_part_end with no data
-2025-03-12 00:12:39,487 - DEBUG - Calling on_part_begin with no data
-2025-03-12 00:12:39,487 - DEBUG - Calling on_header_field with data[230:249]
-2025-03-12 00:12:39,487 - DEBUG - Calling on_header_value with data[251:277]
-2025-03-12 00:12:39,487 - DEBUG - Calling on_header_end with no data
-2025-03-12 00:12:39,487 - DEBUG - Calling on_headers_finished with no data
-2025-03-12 00:12:39,487 - DEBUG - Calling on_part_data with data[281:284]
-2025-03-12 00:12:39,487 - DEBUG - Calling on_part_end with no data
-2025-03-12 00:12:39,487 - DEBUG - Calling on_part_begin with no data
-2025-03-12 00:12:39,487 - DEBUG - Calling on_header_field with data[328:347]
-2025-03-12 00:12:39,488 - DEBUG - Calling on_header_value with data[349:372]
-2025-03-12 00:12:39,488 - DEBUG - Calling on_header_end with no data
-2025-03-12 00:12:39,488 - DEBUG - Calling on_headers_finished with no data
-2025-03-12 00:12:39,488 - DEBUG - Calling on_part_data with data[376:379]
-2025-03-12 00:12:39,488 - DEBUG - Calling on_part_end with no data
-2025-03-12 00:12:39,488 - DEBUG - Calling on_part_begin with no data
-2025-03-12 00:12:39,488 - DEBUG - Calling on_header_field with data[423:442]
-2025-03-12 00:12:39,488 - DEBUG - Calling on_header_value with data[444:469]
-2025-03-12 00:12:39,488 - DEBUG - Calling on_header_end with no data
-2025-03-12 00:12:39,488 - DEBUG - Calling on_headers_finished with no data
-2025-03-12 00:12:39,488 - DEBUG - Calling on_part_data with data[473:478]
-2025-03-12 00:12:39,488 - DEBUG - Calling on_part_end with no data
-2025-03-12 00:12:39,488 - DEBUG - Calling on_part_begin with no data
-2025-03-12 00:12:39,488 - DEBUG - Calling on_header_field with data[522:541]
-2025-03-12 00:12:39,488 - DEBUG - Calling on_header_value with data[543:589]
-2025-03-12 00:12:39,488 - DEBUG - Calling on_header_end with no data
-2025-03-12 00:12:39,488 - DEBUG - Calling on_header_field with data[591:603]
-2025-03-12 00:12:39,488 - DEBUG - Calling on_header_value with data[605:615]
-2025-03-12 00:12:39,488 - DEBUG - Calling on_header_end with no data
-2025-03-12 00:12:39,488 - DEBUG - Calling on_headers_finished with no data
-2025-03-12 00:12:39,488 - DEBUG - Calling on_part_data with data[619:65654]
-2025-03-12 00:12:39,488 - DEBUG - Calling on_part_end with no data
-2025-03-12 00:12:39,488 - DEBUG - Calling on_end with no data
-2025-03-12 00:12:39,909 - DEBUG - cannot commit - no transaction is active
-2025-03-12 00:12:39,953 - DEBUG - cannot commit - no transaction is active
-2025-03-12 01:08:23,938 - DEBUG - cannot commit - no transaction is active
-2025-03-12 01:08:23,938 - INFO - \u2705 Tables initialized successfully.
-2025-03-12 01:08:23,982 - DEBUG - cannot commit - no transaction is active
-2025-03-12 01:36:14,608 - DEBUG - cannot commit - no transaction is active
-2025-03-12 01:36:14,608 - INFO - \u2705 Tables initialized successfully.
-2025-03-12 01:36:14,653 - DEBUG - cannot commit - no transaction is active
+2025-03-12 01:17:22,266 - DEBUG - cannot commit - no transaction is active
+2025-03-12 01:17:22,268 - INFO - \u2705 Tables initialized successfully.
+2025-03-12 01:17:22,324 - DEBUG - cannot commit - no transaction is active
+2025-03-12 01:28:21,605 - DEBUG - cannot commit - no transaction is active
+2025-03-12 01:28:21,606 - INFO - \u2705 Tables initialized successfully.
+2025-03-12 01:28:21,650 - DEBUG - cannot commit - no transaction is active
+2025-03-12 02:56:39,607 - DEBUG - cannot commit - no transaction is active
+2025-03-12 02:56:39,607 - INFO - \u2705 Tables initialized successfully.
+2025-03-12 02:56:39,659 - DEBUG - cannot commit - no transaction is active
+2025-03-12 03:04:13,571 - DEBUG - cannot commit - no transaction is active
+2025-03-12 03:04:13,571 - INFO - \u2705 Tables initialized successfully.
+2025-03-12 03:04:13,633 - DEBUG - cannot commit - no transaction is active

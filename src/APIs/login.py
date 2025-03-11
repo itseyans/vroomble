@@ -77,7 +77,7 @@ def get_db_connection():
 def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
 
-# ✅ JWT Token Creation (Updated to Include `contactNumber`)
+# ✅ JWT Token Creation (Now Includes `firstName`, `lastName`, `region`, `contactNumber`)
 def create_access_token(data: dict, expires_delta: timedelta = None):
     to_encode = data.copy()
     expire = datetime.utcnow() + (expires_delta or timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
@@ -90,7 +90,7 @@ def create_refresh_token(data: dict, expires_delta: timedelta = None):
     to_encode.update({"exp": expire})
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
-# ✅ Get User Data (Including `contactNumber`) from Token
+# ✅ Get User Data from Token (Now Extracts `firstName`, `lastName`, `region`)
 def get_current_user(request: Request):
     token = request.cookies.get("access_token")
 
@@ -103,6 +103,7 @@ def get_current_user(request: Request):
         first_name: str = payload.get("firstName")
         last_name: str = payload.get("lastName")
         contact_number: str = payload.get("contactNumber")
+        region: str = payload.get("region")  # ✅ Extract `region`
 
         if users_ID is None or contact_number is None:
             raise HTTPException(status_code=401, detail="Invalid token")
@@ -111,31 +112,33 @@ def get_current_user(request: Request):
             "users_ID": users_ID,
             "firstName": first_name,
             "lastName": last_name,
-            "contactNumber": contact_number
+            "contactNumber": contact_number,
+            "region": region  # ✅ Include `region`
         }
 
     except jwt.PyJWTError:
         raise HTTPException(status_code=401, detail="Invalid token")
-    
+
+# ✅ Get Logged-In User Data
 @app.get("/user/me")
 async def get_user_data(request: Request):
     user = get_current_user(request)
     return user
 
-# ✅ Updated Login API to Include `contactNumber` in Token
+# ✅ Login API (Now Includes `firstName`, `lastName`, `region`)
 @app.post("/login/")
 async def login_user(login_data: Login, response: Response):
     try:
         with get_db_connection() as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT users_ID, firstName, lastName, contactNumber, email, password FROM users WHERE email = ?", (login_data.email,))
+            cursor.execute("SELECT users_ID, firstName, lastName, contactNumber, region, email, password FROM users WHERE email = ?", (login_data.email,))
             user = cursor.fetchone()
 
         if not user:
             logger.warning(f"❌ Login failed: No user found with email {login_data.email}")
             raise HTTPException(status_code=400, detail="Incorrect email or password")
 
-        users_ID, first_name, last_name, contact_number, email, hashed_password = user
+        users_ID, first_name, last_name, contact_number, region, email, hashed_password = user
 
         if not verify_password(login_data.password, hashed_password):
             logger.warning(f"❌ Login failed: Incorrect password for email {email}")
@@ -145,11 +148,14 @@ async def login_user(login_data: Login, response: Response):
         response.delete_cookie("access_token", path="/", domain=None)
         response.delete_cookie("refresh_token", path="/", domain=None)
 
-        # ✅ Include `contactNumber` in the Token Payload
+        # ✅ Token Payload Includes `firstName`, `lastName`, `region`, `contactNumber`
         token_payload = {
             "sub": email,
             "users_ID": users_ID,
-            "contactNumber": contact_number  # ✅ Added `contactNumber`
+            "firstName": first_name,
+            "lastName": last_name,
+            "contactNumber": contact_number,
+            "region": region  # ✅ Added `region`
         }
 
         access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
