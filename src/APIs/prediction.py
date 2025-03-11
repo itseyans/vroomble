@@ -117,9 +117,15 @@ def predict_price(request: PredictionRequest):
     # ✅ Correctly Sum the Modification Costs (Avoiding Duplicates)
     modification_cost = sum(float(row[1]) for row in mod_results if row[1] is not None)
 
-    future_price = (base_price + modification_cost) * ((1 + inflation_rate) ** request.months)
-    features_scaled = scaler.transform([[future_price, modification_cost, inflation_rate]])
+    # ✅ Correct Inflation Calculation Based on Trained Model
+    future_price = (base_price + modification_cost) * ((1 + inflation_rate) ** (request.months / 12))
+
+    # ✅ Fix: Ensure "months" is included in feature scaling
+    features_scaled = scaler.transform([[base_price, modification_cost, inflation_rate, request.months]])
+
+    # ✅ Use the trained model to predict the price
     predicted_price = float(model.predict(features_scaled)[0])
+
 
 
     return {
