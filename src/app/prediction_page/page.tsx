@@ -2,7 +2,7 @@
 
 import React from "react";
 import styled from "styled-components";
-import Background from "../../vcomp/background";
+import Background from '@/vcomp/background.js';
 import NavBar from "../../vcomp/GeneralNavBar"; // Use the correct import path
 import PredictForm from "../../vcomp/PredictForm"; // ✅ Keep this
 import GeneralButton from "../../vcomp/GeneralButton"; // Add if needed

@@ -7,16 +7,20 @@ const API_BASE_URL = "http://127.0.0.1:8000"; // Ensure this is correct
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  gap: 20px;
-  padding: 20px;
+  gap: 40px;
+  padding: 40px;
+  background: transparent; /* Makes the container transparent */
 `;
-
+//reload
+//tite  
 const FormContainer = styled.div`
-  width: 100%;
-  max-width: 500px;
+  min-width: 400px;
+  max-width: 400px;
   padding: 20px;
-  background: white;
-  border-radius: 10px;
+  border-radius: 12px;
+  background-color: #e0e0e0;
+  border: 4px solid #ffc629;
+  font-family: "Segoe UI Variable", sans-serif;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
@@ -24,13 +28,21 @@ const FormContainer = styled.div`
 `;
 
 const OutputContainer = styled.div`
-  width: 100%;
+  min-width: 400px;
   max-width: 400px;
   padding: 20px;
   background: #f8f9fa;
-  border-radius: 10px;
+  border-radius: 12px;
+  background-color: #e0e0e0;
+  border: 4px solid #ffc629;
+  font-family: "Segoe UI Variable", sans-serif;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 `;
+
+//reloafd
 
 const Label = styled.label`
   font-weight: bold;
@@ -274,16 +286,19 @@ const PredictForm = () => {
           )}
         </CheckboxGroup>
 
-
-
-        <Button onClick={predictPrice} disabled={!selectedModification || loading}>
+        <Button
+          onClick={predictPrice}
+          disabled={!selectedModification || loading}
+        >
           {loading ? "Predicting..." : "Predict Price"}
         </Button>
       </FormContainer>
 
       <OutputContainer>
         <h3>Prediction Output</h3>
-        {predictionResult && <pre>{JSON.stringify(predictionResult, null, 2)}</pre>}
+        {predictionResult && (
+          <pre>{JSON.stringify(predictionResult, null, 2)}</pre>
+        )}
       </OutputContainer>
     </Container>
   );
