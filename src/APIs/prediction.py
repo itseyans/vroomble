@@ -79,28 +79,54 @@ def predict_price(request: PredictionRequest):
             SELECT Base_Price_PHP, Monthly_Inflation_Rate FROM Car_Model
             WHERE Make = ? AND Model = ?
         """
-        car_info = pd.read_sql_query(query_car, conn, params=(request.make, request.model_name))
-    
+        car_info = pd.read_sql_query(query_car, conn, params=[request.make, request.model_name])
+
     if car_info.empty:
         raise HTTPException(status_code=404, detail=f"Car '{request.make} {request.model_name}' not found.")
-    
+
     base_price = float(car_info.iloc[0]["Base_Price_PHP"])  # Convert numpy type to float
     inflation_rate = float(car_info.iloc[0]["Monthly_Inflation_Rate"])
-    
-    placeholders = ','.join('?' for _ in request.selected_parts)
-    query_mod = f"""
-        SELECT SUM(Modification_Cost_PHP) as mod_cost 
-        FROM Car_Modifications 
-        WHERE Modification_Type = ? AND Model = ? AND Car_Part IN ({placeholders})
-    """
-    params = [request.modification_type, request.model_name] + request.selected_parts
+
+    # ✅ Fix: Properly handling modification costs
+    modification_cost = 0.0
+
+    if request.selected_parts:
+        placeholders = ','.join(['?'] * len(request.selected_parts))
+        query_mod = f"""
+            SELECT DISTINCT Car_Part, Modification_Cost_PHP
+            FROM Car_Modifications 
+            WHERE Modification_Type = ? 
+            AND Model = ? 
+            AND Car_Part IN ({placeholders})
+        """
+        params = [request.modification_type, request.model_name] + request.selected_parts
+    else:
+        query_mod = """
+            SELECT DISTINCT Car_Part, Modification_Cost_PHP
+            FROM Car_Modifications 
+            WHERE Modification_Type = ? 
+            AND Model = ?
+        """
+        params = [request.modification_type, request.model_name]
+
     with sqlite3.connect(DB_PATH) as conn:
-        mod_df = pd.read_sql_query(query_mod, conn, params=params)
-    modification_cost = float(mod_df.iloc[0]["mod_cost"]) if not mod_df.empty and mod_df.iloc[0]["mod_cost"] is not None else 0
-    
-    future_inflation = (1 + inflation_rate) ** request.months
-    features_scaled = scaler.transform([[base_price * future_inflation, modification_cost, inflation_rate]])
-    predicted_price = float(model.predict(features_scaled)[0])  # Convert numpy type to float
+        cursor = conn.cursor()
+        cursor.execute(query_mod, params)
+        mod_results = cursor.fetchall()
+
+    # ✅ Correctly Sum the Modification Costs (Avoiding Duplicates)
+    modification_cost = sum(float(row[1]) for row in mod_results if row[1] is not None)
+
+    # ✅ Correct Inflation Calculation Based on Trained Model
+    future_price = (base_price + modification_cost) * ((1 + inflation_rate) ** (request.months / 12))
+
+    # ✅ Fix: Ensure "months" is included in feature scaling
+    features_scaled = scaler.transform([[base_price, modification_cost, inflation_rate, request.months]])
+
+    # ✅ Use the trained model to predict the price
+    predicted_price = float(model.predict(features_scaled)[0])
+
+
 
     return {
         "Make": request.make,
@@ -112,4 +138,3 @@ def predict_price(request: PredictionRequest):
         "Current Total Price (PHP)": base_price + modification_cost,
         f"Predicted Price After {request.months} Months (PHP)": predicted_price
     }
-

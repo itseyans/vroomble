@@ -46,7 +46,7 @@ export default function Page() {
       <PageContainer>
         {/* ✅ Title Container */}
         <TitleBox>
-          <Title>Car Price Prediction</Title>
+          <Title>CAR BUILDER</Title>
         </TitleBox>
 
         {/* ✅ Prediction Form */}
@@ -56,3 +56,4 @@ export default function Page() {
   );
 }
 
+//tite
