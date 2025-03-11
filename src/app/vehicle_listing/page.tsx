@@ -1,98 +1,106 @@
-// pages/listed-vehicles.js
-
 "use client";
 
 import React from "react";
 import styled from "styled-components";
-import LandingNavBar from "../../vcomp/landingpage components/LandingNavBar";
-import FilterButton from "../../vcomp/FilterButton"; // Import FilterButton
-import ListingCard from "../../vcomp/ListingCard"; //CAPITAL C
+import GeneralNavBar from "@/vcomp/GeneralNavBar"; // ✅ Nav Bar
+import FilterListings from "@/vcomp/listingspage components/FilterListings"; // ✅ Filter Bar
+import ListingCard from "@/vcomp/ListingCard"; // ✅ Vehicle Listings
 
+// ✅ Page Container
 const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+  width: 100%;
   min-height: 100vh;
-`;
-
-const ContentContainer = styled.div`
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   padding: 2rem;
+  padding-top: 9rem; /* ✅ Pushes content BELOW navbar */
 `;
 
-const Title = styled.h1`
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  align-self: flex-start;
-  margin-left: 2rem;
+// ✅ Filter Bar Wrapper (Centered & Spaced Below Navbar)
+const FilterListingsWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem; /* ✅ Increased spacing below FilterListings */
+`;
+
+// ✅ Vehicle Listings Grid (Centered)
+const VehicleGridContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center; /* ✅ Ensures grid stays in center */
+  align-items: center;
+  margin: 0 auto; /* ✅ Forces proper centering */
 `;
 
 const VehicleGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, minmax(335px, 1fr)); // 3 images per row
-  gap: 20px;
-  padding: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  margin-top: 20px;
+  width: 90%; /* ✅ Keeps grid from stretching too far */
+  max-width: 1200px; /* ✅ Ensures grid is properly contained */
+  justify-content: center; /* ✅ Ensures grid items are centered */
 `;
 
-const VehicleItem = styled.div`
-  /* You can keep the styles here if you want to apply them to the ListingCard */
+// ✅ Pagination Controls
+const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
 `;
 
-const ListedVehiclesPage = () => {
-  const vehicles = [
-    {
-      id: 1,
-      name: "Car 1",
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/BMW_330i_G20_IMG_0083.jpg/800px-BMW_330i_G20_IMG_0083.jpg",
-    },
-    {
-      id: 2,
-      name: "Car 2",
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/2021_Mini_John_Cooper_Works_Countryman_front.jpg/800px-2021_Mini_John_Cooper_Works_Countryman_front.jpg",
-    },
-    {
-      id: 3,
-      name: "Car 3",
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Peugeot_9X8_LMH_2022_Monza_front.jpg/800px-Peugeot_9X8_LMH_2022_Monza_front.jpg",
-    },
-    {
-      id: 4,
-      name: "Car 4",
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/2020_Honda_Civic_Type_R_GT_Edition_front.jpg/800px-2020_Honda_Civic_Type_R_GT_Edition_front.jpg",
-    },
-  ];
+// ✅ Pagination Buttons
+const PaginationButton = styled.button`
+  background-color: #ffc629;
+  color: black;
+  font-weight: bold;
+  padding: 15px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
 
-  const handleClick = (vehicle: { name: string; image: string }) => {
-    alert(`You clicked on ${vehicle.name}`);
-  };
-  
+  &:hover {
+    transform: scale(1.05);
+  }
+`;
 
+export default function VehicleListing() {
   return (
     <PageContainer>
-      <LandingNavBar />
-      <ContentContainer>
-        <Title>LISTED VEHICLE VIEWING</Title>
-        <FilterButton /> {/* Use FilterButton instead of FilterListings */}
+      {/* ✅ Navbar */}
+      <GeneralNavBar />
+
+      {/* ✅ Filter Bar with Extra Spacing */}
+      <FilterListingsWrapper>
+        <FilterListings />
+      </FilterListingsWrapper>
+
+      {/* ✅ Centered Vehicle Listings Grid */}
+      <VehicleGridContainer>
         <VehicleGrid>
-          {vehicles.map((vehicle) => (
-            <VehicleItem key={vehicle.id} onClick={() => handleClick(vehicle)}>
-              <ListingCard
-                carName={vehicle.name}
-                imageUrl={vehicle.image}
-                dateListed="2 Weeks Ago"
-              />
-            </VehicleItem>
-          ))}
+          <ListingCard />
+          <ListingCard />
+          <ListingCard />
+          <ListingCard />
+          <ListingCard />
+          <ListingCard />
+          <ListingCard />
+          <ListingCard />
         </VehicleGrid>
-      </ContentContainer>
+      </VehicleGridContainer>
+
+      <PaginationContainer>
+        <PaginationButton>⬅</PaginationButton>
+        <PaginationButton>➡</PaginationButton>
+      </PaginationContainer>
     </PageContainer>
   );
-};
+}
 
-export default ListedVehiclesPage;
+

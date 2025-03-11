@@ -122,6 +122,7 @@ const GeneralNavBar = () => {
   const router = useRouter();
   const [showPopUp, setShowPopUp] = useState(false);
 
+
   return (
     <NavBarContainer>
       {/* ✅ Center: VROOMBLE Logo & Emblem */}
@@ -132,10 +133,12 @@ const GeneralNavBar = () => {
         </EmblemContainer>
       </EmblemBackground>
 
+
+
       {/* ✅ Right: Home + View Listings + User Icon */}
       <RightContainer>
         <NavButton onClick={() => router.push("/homepage")}>HOME</NavButton>
-        <NavButton onClick={() => router.push("/ListedVehiclesPage")}>
+        <NavButton onClick={() => router.push("/vehicle_listing")}>
           VIEW LISTINGS
         </NavButton>
 
