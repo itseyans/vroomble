@@ -10,6 +10,10 @@ from dotenv import load_dotenv  # Import load_dotenv
 
 app = FastAPI()
 
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
+
 SQLITE_CLOUD_API_KEY = os.environ.get("SQLITE_CLOUD_API_KEY")
 
 # ✅ SQLite Cloud Connection String

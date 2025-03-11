@@ -1316,3 +1316,10 @@ Traceback (most recent call last):
                              ^^^^^^^^^^^^
 NameError: name 'DATABASE_URL' is not defined
 2025-03-09 12:03:27,232 - ERROR - \u274c SQLite Cloud database table initialization error: Database Vroomble%20Dataset does not exist.
+2025-03-11 09:24:30,805 - ERROR - \u274c Error initializing SQLite Cloud database table: Invalid APIKEY.
+2025-03-11 09:25:07,988 - ERROR - \u274c Error initializing SQLite Cloud database table: Invalid APIKEY.
+2025-03-11 09:26:23,261 - ERROR - \u274c Error initializing SQLite Cloud database table: Invalid APIKEY.
+2025-03-11 09:26:57,777 - ERROR - \u274c Error initializing SQLite Cloud database table: Invalid APIKEY.
+2025-03-11 09:27:30,337 - ERROR - \u274c Error initializing SQLite Cloud database table: Invalid APIKEY.
+2025-03-11 09:27:46,608 - ERROR - \u274c Error initializing SQLite Cloud database table: Invalid APIKEY.
+2025-03-11 09:33:53,665 - ERROR - \u274c Error initializing SQLite Cloud database table: Invalid APIKEY.
