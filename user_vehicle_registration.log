@@ -106,3 +106,6 @@
 2025-03-12 03:04:13,571 - DEBUG - cannot commit - no transaction is active
 2025-03-12 03:04:13,571 - INFO - \u2705 Tables initialized successfully.
 2025-03-12 03:04:13,633 - DEBUG - cannot commit - no transaction is active
+2025-03-12 03:09:07,536 - DEBUG - cannot commit - no transaction is active
+2025-03-12 03:09:07,536 - INFO - \u2705 Tables initialized successfully.
+2025-03-12 03:09:07,581 - DEBUG - cannot commit - no transaction is active

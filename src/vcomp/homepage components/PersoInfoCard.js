@@ -6,9 +6,9 @@ const PersoInfoCard = () => {
   const [name, setName] = useState("Loading...");
   const [contactNumber, setContactNumber] = useState("Loading...");
   const [region, setRegion] = useState("Loading...");
-  const [vehicleCount, setVehicleCount] = useState(0);
+  const [vehicleCount, setVehicleCount] = useState(0); // 🚨 Vehicle count is NOT stored in the token, needs API call
 
-  // ✅ Fetch User Data (From Backend)
+  // ✅ Fetch User Data from JWT Token (Stored in Cookies)
   useEffect(() => {
     fetch("http://localhost:8000/user/me", {
       method: "GET",
@@ -19,9 +19,17 @@ const PersoInfoCard = () => {
         setName(`${data.firstName} ${data.lastName}`);
         setContactNumber(data.contactNumber);
         setRegion(data.region);
-        setVehicleCount(data.vehicleCount);
       })
       .catch((error) => console.error("Error fetching user data:", error));
+
+    // ✅ Fetch Vehicle Count Separately (If stored in a different table)
+    fetch("http://localhost:8000/user/vehicle-count", {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((response) => response.json())
+      .then((data) => setVehicleCount(data.vehicleCount))
+      .catch((error) => console.error("Error fetching vehicle count:", error));
   }, []);
 
   const handleEditClick = () => {
@@ -49,20 +57,20 @@ const PersoInfoCard = () => {
   };
 
   // ✅ Styling Definitions
-const cardStyle = {
-  width: "600px",
-  minHeight: "360px", // ✅ Adjust this to match the Manage Vehicles container
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "space-between", // ✅ Ensures spacing is even
-  padding: "20px",
-  border: "5px solid gold",
-  borderRadius: "10px",
-  backgroundColor: "#D9D9D9",
-  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-  fontFamily: "'Segoe UI Variable', sans-serif",
-  color: "black",
-};
+  const cardStyle = {
+    width: "600px",
+    minHeight: "450px", // ✅ Adjust to match right container
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    padding: "20px",
+    border: "5px solid gold",
+    borderRadius: "10px",
+    backgroundColor: "#D9D9D9",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    fontFamily: "'Segoe UI Variable', sans-serif",
+    color: "black",
+  };
 
   const inputStyle = {
     width: "100%",
