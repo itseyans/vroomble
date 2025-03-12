@@ -7,6 +7,7 @@ import os
 import shutil
 from dotenv import load_dotenv
 import jwt
+from fastapi.staticfiles import StaticFiles
 
 # ✅ Load Environment Variables
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
@@ -40,9 +41,16 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ✅ Upload Directory for Images
-UPLOAD_DIR = "uploads/"
-os.makedirs(UPLOAD_DIR, exist_ok=True)
+# ✅ Set Dynamic Upload Directory
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+UPLOAD_DIR = os.path.join(BASE_DIR, "uploads")
+os.makedirs(UPLOAD_DIR, exist_ok=True)  # Ensure uploads folder exists
+
+# ✅ Serve Static Files for Images
+if not os.path.exists(UPLOAD_DIR):
+    os.makedirs(UPLOAD_DIR)
+
+app.mount("/car_images", StaticFiles(directory=UPLOAD_DIR), name="car_images")
 
 # ✅ Create Tables for Vehicles & Images
 def create_tables():
@@ -128,18 +136,19 @@ async def register_vehicle_with_image(
 
             usersRV_ID = cursor.lastrowid  # ✅ Get the generated usersRV_ID
 
-            # ✅ Save image file
-            image_path = f"{UPLOAD_DIR}{usersRV_ID}_{image.filename}"
+            # ✅ Save Image to `uploads/`
+            filename = f"{usersRV_ID}_{image.filename}"
+            image_path = os.path.join(UPLOAD_DIR, filename)  
             with open(image_path, "wb") as buffer:
                 shutil.copyfileobj(image.file, buffer)
 
-            # ✅ Store image path in database
+            # ✅ Store ONLY filename in database
             cursor.execute(
                 """
                 INSERT INTO vehicle_images (usersRV_ID, ImagePath)
                 VALUES (?, ?)
                 """,
-                (usersRV_ID, image_path),
+                (usersRV_ID, filename),
             )
 
             conn.commit()
@@ -150,6 +159,7 @@ async def register_vehicle_with_image(
         logger.error(f"❌ Database error: {e}")
         raise HTTPException(status_code=500, detail="Vehicle registration failed.")
 
+
 # ✅ Fetch Registered Vehicles for a User
 @app.get("/api/user-vehicles/")
 async def get_user_vehicles(users_ID: int = Depends(get_current_user)):
@@ -158,8 +168,10 @@ async def get_user_vehicles(users_ID: int = Depends(get_current_user)):
             cursor = conn.cursor()
             cursor.execute(
                 """
-                SELECT UserRV_ID, CarID, Trim, PlateEnd, Color, Mileage FROM user_registered_vehicles
-                WHERE users_ID = ?
+                SELECT urv.UserRV_ID, c.Make, c.Model, c.Variant, c.Year
+                FROM user_registered_vehicles urv
+                JOIN cars c ON urv.CarID = c.CarID
+                WHERE urv.users_ID = ?
                 """,
                 (users_ID,)
             )
@@ -171,11 +183,7 @@ async def get_user_vehicles(users_ID: int = Depends(get_current_user)):
             return [
                 {
                     "usersRV_ID": row[0],
-                    "carID": row[1],
-                    "trim": row[2],
-                    "plateEnd": row[3],
-                    "color": row[4],
-                    "mileage": row[5],
+                    "carName": f"{row[1]} {row[2]} {row[3]} ({row[4]})",
                 }
                 for row in vehicles
             ]
@@ -183,6 +191,7 @@ async def get_user_vehicles(users_ID: int = Depends(get_current_user)):
     except sqlitecloud.Error as e:
         logger.error(f"❌ Error fetching user vehicles: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+                              
 
 # ✅ Fetch Images for a Registered Vehicle
 @app.get("/api/vehicle-images/{usersRV_ID}")
@@ -201,11 +210,34 @@ async def get_vehicle_images(usersRV_ID: int):
             if not images:
                 return {"message": "No images found for this vehicle"}
 
-            return {"images": [row[0] for row in images]}
+            return {"images": [row[0] for row in images]}  # ✅ Returns only filenames
 
     except sqlitecloud.Error as e:
         logger.error(f"❌ Error fetching vehicle images: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+    
+# ✅ Fetch Vehicle Count for Logged-in User
+@app.get("/user/vehicle-count")
+async def get_vehicle_count(users_ID: int = Depends(get_current_user)):
+    try:
+        with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                "SELECT COUNT(*) FROM user_registered_vehicles WHERE users_ID = ?",
+                (users_ID,),
+            )
+            vehicle_count = cursor.fetchone()[0]  # Get count from DB
+
+        return {"vehicle_count": vehicle_count}
+
+    except sqlitecloud.Error as e:
+        logger.error(f"❌ Error fetching vehicle count: {e}")
+        raise HTTPException(status_code=500, detail="Database error")
+    except Exception as e:
+        logger.exception(f"❌ Unexpected error fetching vehicle count: {e}")
+        return JSONResponse(status_code=500, content={"error": "Internal server error"})
+
 
 # ✅ Root API Endpoint
 @app.get("/")
