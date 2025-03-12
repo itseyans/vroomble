@@ -23,13 +23,14 @@ const PersoInfoCard = () => {
       .catch((error) => console.error("Error fetching user data:", error));
 
     // ✅ Fetch Vehicle Count Separately (If stored in a different table)
-    fetch("http://localhost:8000/user/vehicle-count", {
-      method: "GET",
-      credentials: "include",
-    })
-      .then((response) => response.json())
-      .then((data) => setVehicleCount(data.vehicleCount))
-      .catch((error) => console.error("Error fetching vehicle count:", error));
+fetch("http://localhost:8000/user/vehicle-count", {
+  method: "GET",
+  credentials: "include",
+})
+.then((response) => response.json())
+.then((data) => setVehicleCount(data.vehicle_count)) // ✅ Using correct key
+.catch((error) => console.error("Error fetching vehicle count:", error));
+
   }, []);
 
   const handleEditClick = () => {
@@ -121,8 +122,9 @@ const PersoInfoCard = () => {
 
       {/* ✅ Display Vehicle Count (Read-Only) */}
       <div style={displayInfoStyle}>
-        <strong>VEHICLE COUNT:</strong> &nbsp; {vehicleCount}
+       <strong>VEHICLE COUNT:</strong> &nbsp; {vehicleCount > 0 ? vehicleCount : "No vehicles registered"}
       </div>
+
 
       {isEditing ? (
         <div>

@@ -180,8 +180,6 @@ useEffect(() => {
         <StyledButton $color="black" $textColor="gold">VIEW ALL</StyledButton>
       </TitleContainer>
 
-      {/* ✅ Display Vehicle Count */}
-      <VehicleCount>Registered Vehicles: {vehicleCount}</VehicleCount>
 
       {vehicles.length > 0 ? (
         <CarListContainer>
