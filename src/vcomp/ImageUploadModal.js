@@ -26,6 +26,8 @@ const ModalContent = styled.div`
 
 const Input = styled.input`
   margin-bottom: 10px;
+    color: #000000;
+
 `;
 
 const Button = styled.button`
