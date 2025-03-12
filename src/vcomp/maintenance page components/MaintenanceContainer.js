@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import CarDetails from "../vcomp/CarDetails";
-import EngineTireInputs from "../vcomp/EngineTireInputs";
-import Changes from "../vcomp/Changes";
-import MaintenanceLogs from "./MaintenanceLogs";
+import CarDetails from "../CarDetails";
+import EngineTireInputs from "../maintenance page components/EngineTireInputs";
+import Changes from "../maintenance page components/Changes";
+import MaintenanceLogs from "../maintenance page components/MaintenanceLogs";
 
 const MainContainer = styled.div`
   display: grid;

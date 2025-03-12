@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import DatePicker from "../vcomp/SelectDate";
-import GeneralButton from "../vcomp/GeneralButton";
-import ImageUploadModal from "../vcomp/ImageUploadModal";
+import SelectDate from "../SelectDate";
+import GeneralButton from "../GeneralButton";
+import ImageUploadModal from "../ImageUploadModal";
 
 const FormContainer = styled.div`
   width: 350px;
@@ -67,7 +67,7 @@ const SubmitButton = styled(GeneralButton)`
   display: ${(props) => (props.isCalendarOpen ? "none" : "block")};
 `;
 
-const PartsAndCostWithDatePicker = () => {
+const Changes = () => {
   const [part, setPart] = useState("");
   const [cost, setCost] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -103,6 +103,8 @@ const PartsAndCostWithDatePicker = () => {
     <FormContainer>
       <Title>+ Add Changes</Title>
       <form onSubmit={handleSubmit}>
+
+        {/*Forms for Parts and Cost */}
         <InputGroup>
           <StyledLabel>PART</StyledLabel>
           <LInput
@@ -119,6 +121,8 @@ const PartsAndCostWithDatePicker = () => {
             onChange={(e) => setCost(e.target.value)}
           />
         </InputGroup>
+
+        {/* Upload Image for Parts and Cost */}
         <CenteredContainer>
           <UploadButton onClick={handleUploadButtonClick}>
             + UPLOAD IMAGES
@@ -129,11 +133,15 @@ const PartsAndCostWithDatePicker = () => {
               onUpload={handleImagesUpload}
             />
           )}
-          <DatePicker
+
+          {/*SelectDate, an open up calendar for selecting date*/}
+          <SelectDate
             onChange={setSelectedDate}
             isCalendarOpen={isCalendarOpen}
             setIsCalendarOpen={setIsCalendarOpen}
           />
+
+          {/*Button for submitting the changes*/}
           <SubmitButton type="submit" isCalendarOpen={isCalendarOpen}>
             + SUBMIT CHANGES
           </SubmitButton>
@@ -143,4 +151,4 @@ const PartsAndCostWithDatePicker = () => {
   );
 };
 
-export default PartsAndCostWithDatePicker;
+export default Changes;

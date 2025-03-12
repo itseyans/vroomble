@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import VehicleMaintenanceLogs from "./VeicleMaintenanceLogs";
+import VehicleMaintenanceLogs from "../VeicleMaintenanceLogs";
 
 const LogsContainer = styled.div`
   width: 350px;
@@ -50,6 +50,7 @@ const ViewAllButtonContainer = styled.div`
   transform: scale(1.1); // Enlargen on hover
 `;
 
+{/*Data for the Logs */}
 const MaintenanceLogs = ({ logs }) => {
   const [logsData] = useState([
     { id: 1, date: "02/12/25", description: "Oil Change" },
@@ -63,6 +64,8 @@ const MaintenanceLogs = ({ logs }) => {
   return (
     <LogsContainer>
       <Title>| ALL LOGS</Title>
+
+      {/*Data fetch from within the .js */}
       {logsData.map((log) => (
         <LogItem key={log.id}>
           <LogDate>{log.date}</LogDate> {/* Render LogDate */}
