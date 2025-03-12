@@ -4,17 +4,20 @@ import styled from "styled-components";
 
 // ✅ Main Container for Car Info
 const CarInfoCardContainer = styled.div`
-  background-color: #d9d9d9; /* Temporary Background for Visualization */
+  background-color: #d9d9d9;
   padding: 5px;
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
   width: 100%;
-  max-width: 610px; /* ✅ Matches image width */
+  max-width: 610px;
   font-family: "Segoe UI Variable", sans-serif;
   color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-// ✅ Car Image Container (Fixed Size 500x300)
+// ✅ Car Image Container (Fixed Size)
 const CarImageContainer = styled.div`
   width: 600px;
   height: 300px;
@@ -31,45 +34,51 @@ const CarImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: ${({ isVisible }) => (isVisible ? "block" : "none")}; /* Hide if not available */
 `;
 
-// ✅ Car Details Wrapper (Ensures proper left alignment)
+// ✅ Car Details Wrapper
 const CarDetailsWrapper = styled.div`
-  padding: 10px; /* ✅ Adds padding for spacing */
+  padding: 10px;
+  width: 100%;
+  text-align: center;
 `;
 
-// ✅ Car Name (Left-Aligned & Spacing Adjusted)
+// ✅ Car Name
 const CarName = styled.h3`
-  margin: 1px 0 1px 0; /* ✅ Reduced bottom margin */
+  margin: 5px 0;
   font-size: 1.4rem;
   font-weight: bold;
   color: black;
-  text-align: left; /* ✅ Left-Aligned */
 `;
 
-// ✅ Total Spent (Left-Aligned & Peso Sign)
+// ✅ Total Spent
 const TotalSpent = styled.p`
   font-size: 1rem;
   font-weight: bold;
-  margin: 0; /* ✅ Removes extra bottom spacing */
+  margin: 0;
   color: black;
-  text-align: left; /* ✅ Left-Aligned */
 `;
 
 // ✅ Main Component Function
 const CarInfoCard = ({ imageUrl, carName, totalSpent }) => {
   return (
     <CarInfoCardContainer>
-      {/* ✅ Image Placeholder */}
+      {/* ✅ Image Placeholder Handling */}
       <CarImageContainer>
         {imageUrl ? (
-          <CarImage src={imageUrl} alt={carName} />
+          <CarImage
+            src={imageUrl}
+            alt={carName}
+            isVisible={true}
+            onError={(e) => (e.target.style.display = "none")} // Hide image if it fails to load
+          />
         ) : (
-          "Car Image Here"
+          <span style={{ fontSize: "1rem", color: "#fff" }}>No Image Available</span>
         )}
       </CarImageContainer>
 
-      {/* ✅ Car Details Section */}
+      {/* ✅ Car Details */}
       <CarDetailsWrapper>
         <CarName>{carName || "Car Name Here"}</CarName>
         <TotalSpent>TOTAL SPENT: ₱{totalSpent || "0.00"}</TotalSpent>

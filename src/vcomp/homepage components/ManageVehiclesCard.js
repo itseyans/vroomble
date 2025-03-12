@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
-import { useRouter } from "next/navigation"; // ✅ Import Router
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation"; 
 import styled from "styled-components";
 import CarInfoCard from "@/vcomp/homepage components/CarInfoCard";
 
-// ✅ Main Container for Manage Vehicles
+// ✅ Styled Components (Same as Before)
 const ManageVehiclesContainer = styled.div`
-  background-color: #D9D9D9; /* ✅ Updated Background */
+  background-color: #D9D9D9;
   border: 5px solid #FFC629;
   border-radius: 12px;
   padding: 20px;
@@ -20,7 +20,6 @@ const ManageVehiclesContainer = styled.div`
   align-items: center;
 `;
 
-// ✅ Title Section
 const TitleContainer = styled.div`
   display: flex;
   align-items: center;
@@ -32,7 +31,6 @@ const TitleContainer = styled.div`
   color: black;
 `;
 
-// ✅ Buttons
 const StyledButton = styled.button`
   background-color: ${({ $color }) => $color || "black"};
   color: ${({ $textColor }) => $textColor || "white"};
@@ -50,7 +48,6 @@ const StyledButton = styled.button`
   }
 `;
 
-// ✅ Car List Container
 const CarListContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -59,7 +56,6 @@ const CarListContainer = styled.div`
   width: 100%;
 `;
 
-// ✅ Bottom Button Container
 const BottomButtonsContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -68,7 +64,6 @@ const BottomButtonsContainer = styled.div`
   margin-top: 20px;
 `;
 
-// ✅ Navigation Arrows
 const NavigationContainer = styled.div`
   display: flex;
   gap: 20px;
@@ -90,47 +85,117 @@ const NavButton = styled.button`
   }
 `;
 
-const ManageVehiclesCard = () => { 
-  const router = useRouter(); // ✅ Initialize Router
+const VehicleCount = styled.p`
+  font-size: 1rem;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 10px;
+`;
 
-  // ✅ List of Cars
-  const cars = [
-    { carName: "LEXUS LC 500", totalSpent: "2500", imageUrl: "/lexus-lc500.png" },
-    { carName: "LB HURACAN STO", totalSpent: "12500", imageUrl: "/huracan-sto.png" },
-  ];
-
-  // ✅ State for Current Car Index
+// ✅ Manage Vehicles Component
+const ManageVehiclesCard = () => {
+  const router = useRouter();
+  const [vehicles, setVehicles] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [vehicleCount, setVehicleCount] = useState(0); // ✅ Vehicle count state
 
-  // ✅ Handle Navigation
+useEffect(() => {
+  const fetchVehicles = async () => {
+    try {
+      const response = await fetch("http://localhost:8004/api/user-vehicles/", {
+        credentials: "include", // ✅ Ensures cookies are sent
+      });
+      const data = await response.json();
+
+      if (!Array.isArray(data)) {
+        console.error("Error: Expected array but got:", data);
+        return;
+      }
+
+      const vehicleDetails = await Promise.all(
+        data.map(async (vehicle) => {
+          console.log("🔍 Fetching vehicle details for usersRV_ID:", vehicle.usersRV_ID);
+
+          const imageResponse = await fetch(`http://localhost:8004/api/vehicle-images/${vehicle.usersRV_ID}`);
+          const imageData = await imageResponse.json();
+
+          return {
+            usersRV_ID: vehicle.usersRV_ID,
+            carName: vehicle.carName,
+            totalSpent: "0",
+            imageUrl: imageData.images.length > 0
+              ? `http://localhost:8004/car_images/${imageData.images[0]}`
+              : "/default-placeholder.png", // ✅ Use placeholder if no image
+          };
+        })
+      );
+
+      console.log("🚘 Processed Vehicles:", vehicleDetails);
+      setVehicles(vehicleDetails.filter((v) => v !== null)); // Remove null values
+    } catch (error) {
+      console.error("Error fetching vehicles:", error);
+    }
+  };
+
+  fetchVehicles();
+}, []);
+
+
+
+  // ✅ Fetch vehicle count on component mount
+useEffect(() => {
+  const fetchVehicleCount = async () => {
+    try {
+      const response = await fetch("http://localhost:8004/user/vehicle-count", {
+        credentials: "include", // ✅ Ensure cookies are sent
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        setVehicleCount(data.vehicle_count);
+      } else {
+        console.error("Failed to fetch vehicle count:", data);
+      }
+    } catch (error) {
+      console.error("Error fetching vehicle count:", error);
+    }
+  };
+
+  fetchVehicleCount();
+}, []);
+
+
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % cars.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % vehicles.length);
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + cars.length) % cars.length);
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + vehicles.length) % vehicles.length);
   };
 
   return (
     <ManageVehiclesContainer>
-      {/* ✅ Title Section */}
       <TitleContainer>
         <span>MANAGE VEHICLES</span>
         <StyledButton $color="black" $textColor="gold">VIEW ALL</StyledButton>
       </TitleContainer>
 
-      {/* ✅ Car Info (Dynamic Based on Current Index) */}
-      <CarListContainer>
-        <CarInfoCard 
-          carName={cars[currentIndex].carName} 
-          totalSpent={cars[currentIndex].totalSpent}
-          imageUrl={cars[currentIndex].imageUrl} 
-        />
-      </CarListContainer>
+      {/* ✅ Display Vehicle Count */}
+      <VehicleCount>Registered Vehicles: {vehicleCount}</VehicleCount>
 
-      {/* ✅ Bottom Buttons & Navigation */}
+      {vehicles.length > 0 ? (
+        <CarListContainer>
+          <CarInfoCard 
+            carName={vehicles[currentIndex].carName} 
+            totalSpent={vehicles[currentIndex].totalSpent}
+            imageUrl={vehicles[currentIndex].imageUrl} 
+          />
+        </CarListContainer>
+      ) : (
+        <p>No registered vehicles found.</p>
+      )}
+
       <BottomButtonsContainer>
-        {/* ✅ Redirects to User Vehicle Registration */}
         <StyledButton 
           $color="black" 
           $textColor="gold"
@@ -139,10 +204,9 @@ const ManageVehiclesCard = () => {
           + ADD VEHICLE
         </StyledButton>
 
-        {/* ✅ Navigation Arrows */}
         <NavigationContainer>
-          <NavButton onClick={handlePrev}>←</NavButton>
-          <NavButton onClick={handleNext}>→</NavButton>
+          <NavButton onClick={handlePrev} disabled={vehicles.length === 0}>←</NavButton>
+          <NavButton onClick={handleNext} disabled={vehicles.length === 0}>→</NavButton>
         </NavigationContainer>
 
         <StyledButton $color="black" $textColor="gold">LIST VEHICLE</StyledButton>
