@@ -7,7 +7,7 @@ import LoginForm from "../LoginForm.js";
 
 // ✅ Black Navbar Container
 const NavBarContainer = styled.nav`
-  background-color: black;
+  background-color: #131415;
   color: gold;
   display: flex;
   align-items: center;
@@ -80,7 +80,6 @@ const NavButton = styled.button`
   }
 `;
 
-// ✅ Yellow Section directly below the navbar
 const YellowSection = styled.div`
   background-color: #ffc629;
   height: 200px;
@@ -114,7 +113,6 @@ const StatBox = styled.div`
   justify-content: center;
 `;
 
-// ✅ Blurred Overlay (Applies blur when a form is active)
 const BlurOverlay = styled.div`
   position: fixed;
   top: 0;

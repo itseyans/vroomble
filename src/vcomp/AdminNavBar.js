@@ -125,9 +125,6 @@ const AdminNavBar = () => {
       </EmblemBackground>
       <RightContainer>
         <NavButton onClick={() => router.push("/adminhomepage")}>HOME</NavButton>
-        <NavButton onClick={() => router.push("/adminhomepage")}>ANALYSIS</NavButton>
-        <NavButton onClick={() => router.push("/part_registration")}>PART REG</NavButton>
-        <NavButton onClick={() => router.push("/vehicle_registration")}>VEHICLE REG</NavButton>
         <LogoutButton
           onClick={() => {
             localStorage.removeItem("token");
