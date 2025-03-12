@@ -1,10 +1,8 @@
-from fastapi import FastAPI, Depends, HTTPException
-from sqlalchemy.orm import Session
+from fastapi import FastAPI, HTTPException
 import sqlitecloud
 import os
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy.sql import func
 
 # Load environment variables
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
@@ -40,13 +38,41 @@ def get_car_maker_stats():
     try:
         with get_db() as conn:
             cursor = conn.cursor()
-            cursor.execute(
-                """
-                SELECT Make, COUNT(*) as count FROM cars
-                GROUP BY Make
-                """
-            )
+            cursor.execute("SELECT Make, COUNT(*) as count FROM cars GROUP BY Make")
             results = cursor.fetchall()
         return [{"car_maker": row[0], "count": row[1]} for row in results]
     except sqlitecloud.Error as e:
         raise HTTPException(status_code=500, detail=f"Error fetching car maker stats: {e}")
+
+@app.get("/body-type-distribution")
+def get_body_type_distribution():
+    try:
+        with get_db() as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT Body_Type, COUNT(*) as count FROM cars GROUP BY Body_Type")
+            results = cursor.fetchall()
+        return [{"body_type": row[0], "count": row[1]} for row in results]
+    except sqlitecloud.Error as e:
+        raise HTTPException(status_code=500, detail=f"Error fetching body type distribution: {e}")
+
+@app.get("/yearly-registrations")
+def get_yearly_registrations():
+    try:
+        with get_db() as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT Year, COUNT(*) as count FROM cars GROUP BY Year ORDER BY Year ASC")
+            results = cursor.fetchall()
+        return [{"year": row[0], "count": row[1]} for row in results]
+    except sqlitecloud.Error as e:
+        raise HTTPException(status_code=500, detail=f"Error fetching yearly registrations: {e}")
+
+@app.get("/fuel-type-distribution")
+def get_fuel_type_distribution():
+    try:
+        with get_db() as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT Fuel_Type, COUNT(*) as count FROM cars GROUP BY Fuel_Type")
+            results = cursor.fetchall()
+        return [{"fuel_type": row[0], "count": row[1]} for row in results]
+    except sqlitecloud.Error as e:
+        raise HTTPException(status_code=500, detail=f"Error fetching fuel type distribution: {e}")
