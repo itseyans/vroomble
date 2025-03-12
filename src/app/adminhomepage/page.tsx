@@ -2,7 +2,8 @@
 
 import React from "react";
 import styled from "styled-components";
-import AdminNavBar from "../../vcomp/AdminNavBar";
+import AdminNavBar from "@/vcomp/AdminNavBar";
+import AnalyticsForm from "@/vcomp/adminhomepage components/AnalyticsForm.js"
 
 const PageContainer = styled.div`
   width: 100%;
@@ -82,7 +83,7 @@ const AdminHomepage = () => {
         </LeftContainer>
 
         <RightContainer>
-          <h1>Right Panel</h1>
+          <AnalyticsForm />
         </RightContainer>
       </ContentWrapper>
       
@@ -91,3 +92,4 @@ const AdminHomepage = () => {
 };
 
 export default AdminHomepage;
+//testing
