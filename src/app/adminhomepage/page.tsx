@@ -20,5 +20,3 @@ const VehicleRegistrationPage = () => {
 };
 
 export default VehicleRegistrationPage;
-
-//testing

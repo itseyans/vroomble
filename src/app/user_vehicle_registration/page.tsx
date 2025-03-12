@@ -3,7 +3,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import Background from '../../vcomp/background';
-import NavBar from '../../vcomp/AdminNavBar.js';
+import NavBar from '../../vcomp/GeneralNavBar.js';
 import RegisterVehicle from "../../vcomp/RegisterVehicle.js";
 
 const AppContainer = styled.div` 

@@ -1,11 +1,8 @@
-// pages/maintenance.js (or whatever you name the file)
-
-"use client"; // Assuming you're using Next.js App Router
+"use client";
 
 import React from "react";
 import styled from "styled-components";
-import NavBar from "../../vcomp/AdminNavBar"; // Adjust the path as needed
-import Background from "../../vcomp/background"; // Adjust the path as needed
+import GeneralNavBar from "../../vcomp/GeneralNavBar"; // Adjust the path as needed
 import MaintenanceContainer from "../../vcomp/MaintenanceContainer"; // Adjust the path as needed
 
 const PageContainer = styled.div`
@@ -26,8 +23,7 @@ const ContentContainer = styled.div`
 const MaintenancePage = () => {
   return (
     <PageContainer>
-      <Background />
-      <NavBar />
+      <GeneralNavBar />
       <ContentContainer>
         <MaintenanceContainer />
       </ContentContainer>
@@ -37,4 +33,3 @@ const MaintenancePage = () => {
 
 export default MaintenancePage;
 
-//tite
