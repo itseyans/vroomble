@@ -13,34 +13,58 @@ const PageContainer = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  display: flex; /* ✅ Makes Left & Right containers sit side by side */
+  display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: center; /* ✅ Centers the containers horizontally */
   width: 90%; /* Adjust width as needed */
   max-width: 1300px; /* Prevents content from being too wide */
   margin-top: 10rem; /* ✅ Pushes below navbar */
+  gap: 3rem; /* ✅ Equal spacing between left, right, and in between */
 `;
 
 const LeftContainer = styled.div`
-  max-width: 300px;
+  min-width: 300px;
   width: 100%;
-  min-height: 700px; /* Adjust as needed */
+  min-height: 750px;
   background-color: #d9d9d9;
   border: 8px solid #ffc629;
   border-radius: 12px;
-  padding: 10px;
+  padding: 20px; /* ✅ Added padding for better spacing */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* ✅ Ensures buttons are centered */
+  gap: 1rem; /* ✅ Provides spacing between buttons */
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
 `;
 
 const RightContainer = styled.div`
-  max-width: 1500px;
+  min-width: 1400px;
   width: 100%;
-  min-height: 700px; /* Adjust as needed */
+  min-height: 750px;
   background-color: #d9d9d9;
   border: 8px solid #ffc629;
   border-radius: 12px;
   padding: 10px;
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+`;
+
+const AdminButtons = styled.button`
+  background-color: #FFC629;
+  color: #131415;
+  font-weight: bold;
+  width: 95%; /* ✅ Ensures buttons are equal in width */
+  padding: 1rem 1.5rem; /* ✅ Proper internal padding */
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.3s, transform 0.2s;
+
+  &:hover {
+    background-color: #FFEE8C;
+    transform: scale(1.05);
+  }
 `;
 
 const AdminHomepage = () => {
@@ -48,11 +72,13 @@ const AdminHomepage = () => {
     <PageContainer>
       <AdminNavBar />
       
-      {/* ✅ Wrapper to keep containers side by side */}
       <ContentWrapper>
         <LeftContainer>
-          <h2>Left Panel</h2>
-          <p>Content goes here...</p>
+          <AdminButtons>ANALYSIS</AdminButtons>
+          <AdminButtons>VEHICLE REGISTRATION</AdminButtons>
+          <AdminButtons>PART REGISTRATION</AdminButtons>
+          <AdminButtons>USER VERIFICATION</AdminButtons>
+          <AdminButtons>LISTING VERIFICATION</AdminButtons>
         </LeftContainer>
 
         <RightContainer>
