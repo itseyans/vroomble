@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 // ✅ Container for the pop-up
@@ -48,10 +48,30 @@ const LogoutButton = styled(PopUpButton)`
 `;
 
 const UserIconPopUp = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userRole, setUserRole] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+    if (token) {
+      setIsLoggedIn(true);
+      setUserRole(role);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    setIsLoggedIn(false);
+    setUserRole(null);
+    window.location.href = "/"; // Redirects to /homepage
+  };
+
   return (
     <PopUpContainer>
       <ServicesButton>SERVICES</ServicesButton>
-      <LogoutButton>LOGOUT</LogoutButton>
+      <LogoutButton onClick={handleLogout}>LOGOUT</LogoutButton>
     </PopUpContainer>
   );
 };

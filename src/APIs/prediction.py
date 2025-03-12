@@ -5,6 +5,7 @@ import sqlite3
 import pandas as pd
 import numpy as np
 import joblib
+import os
 
 app = FastAPI()
 
@@ -17,10 +18,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ✅ Absolute paths for model, scaler, and database
-MODEL_PATH = r"C:\Users\HP\Documents\GitHub\vroomble\src\AI\trained_model.pkl"
-SCALER_PATH = r"C:\Users\HP\Documents\GitHub\vroomble\src\AI\scaler.pkl"
-DB_PATH = r"C:\Users\HP\Documents\GitHub\vroomble\Vroomble Dataset\prediction_database.db"
+# ✅ Robust Path Handling
+current_dir = os.path.dirname(os.path.abspath(__file__))  # Get the directory of the current script
+project_root = os.path.dirname(os.path.dirname(current_dir)) # Get the root of the project
+
+MODEL_PATH = os.path.join(project_root, "src", "AI", "trained_model.pkl")
+SCALER_PATH = os.path.join(project_root, "src", "AI", "scaler.pkl")
+DB_PATH = os.path.join(project_root, "Vroomble Dataset", "prediction_database.db")
 
 # Load trained model and scaler
 try:

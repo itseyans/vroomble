@@ -109,3 +109,16 @@
 2025-03-12 03:09:07,536 - DEBUG - cannot commit - no transaction is active
 2025-03-12 03:09:07,536 - INFO - \u2705 Tables initialized successfully.
 2025-03-12 03:09:07,581 - DEBUG - cannot commit - no transaction is active
+2025-03-12 14:15:11,164 - DEBUG - cannot commit - no transaction is active
+2025-03-12 14:15:11,164 - INFO - \u2705 Tables initialized successfully.
+2025-03-12 14:15:12,422 - DEBUG - cannot commit - no transaction is active
+2025-03-12 14:25:37,294 - ERROR - \u274c Database initialization error: An error occurred while initializing the socket.
+2025-03-12 14:25:41,263 - DEBUG - cannot commit - no transaction is active
+2025-03-12 14:25:41,264 - INFO - \u2705 Tables initialized successfully.
+2025-03-12 14:25:41,456 - DEBUG - cannot commit - no transaction is active
+2025-03-12 14:26:09,776 - DEBUG - cannot commit - no transaction is active
+2025-03-12 14:26:09,777 - INFO - \u2705 Tables initialized successfully.
+2025-03-12 14:26:09,945 - DEBUG - cannot commit - no transaction is active
+2025-03-12 14:31:12,705 - DEBUG - cannot commit - no transaction is active
+2025-03-12 14:31:12,706 - INFO - \u2705 Tables initialized successfully.
+2025-03-12 14:31:13,498 - DEBUG - cannot commit - no transaction is active

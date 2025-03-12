@@ -1385,3 +1385,6 @@ Traceback (most recent call last):
     )(errmsg.decode(), errcode, xerrcode)
 sqlitecloud.exceptions.SQLiteCloudOperationalError: no such column: deleted_at
 2025-03-11 17:52:30,488 - ERROR - \u274c Error fetching vehicles: no such column: deleted_at
+2025-03-12 14:25:36,418 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
+2025-03-12 14:25:38,269 - DEBUG - cannot commit - no transaction is active
+2025-03-12 14:25:38,395 - DEBUG - cannot commit - no transaction is active
