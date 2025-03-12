@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import AdminNavBar from "@/vcomp/AdminNavBar";
 
-// ✅ Import Components for Each Button
+// Import Components for Each Button
 import AnalyticsForm from "@/vcomp/adminhomepage components/AnalyticsForm.js"; // Analysis
 import AddVehicle from "@/vcomp/AddVehicle"; // Vehicle Registration
 import AddPart from "@/vcomp/CarPartsRegistrationForm"; // Part Registration
@@ -12,7 +12,7 @@ import UserVerificationForm from "@/vcomp/adminhomepage components/UserVerificat
 import ListingVerificationForm from "@/vcomp/adminhomepage components/ListingVerificationForm"; // Listing Verification
 import DefaultContainerForm from "@/vcomp/adminhomepage components/DefaultContainerForm"; // Default View
 
-// ✅ Styled Components
+// Styled Components
 const PageContainer = styled.div`
   width: 100%;
   min-height: 100vh;
@@ -53,7 +53,7 @@ const RightContainer = styled.div`
   background-color: #d9d9d9;
   border: 8px solid #ffc629;
   border-radius: 12px;
-  padding: 10px;
+  padding: 0px;
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
 `;
 
