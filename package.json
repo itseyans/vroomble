@@ -16,6 +16,8 @@
     "react": "^19.0.0",
     "react-calendar": "^5.1.0",
     "react-dom": "^19.0.0",
+    "rechart": "^0.0.1",
+    "recharts": "^2.15.1",
     "styled-components": "^6.1.15"
   },
   "devDependencies": {

@@ -13,12 +13,18 @@ const StyledContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #131415;  /* Set default text color */
+`;
+
+// Styled Heading for consistency (optional but recommended)
+const Heading = styled.h2`
+  color: inherit; /* Automatically inherits color from parent */
 `;
 
 const UserVerificationForm = () => {
   return (
     <StyledContainer>
-      <h2>Component Content Here</h2>
+      <Heading>FUTURE FEATURE!</Heading>
     </StyledContainer>
   );
 };

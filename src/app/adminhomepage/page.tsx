@@ -5,7 +5,7 @@ import styled from "styled-components";
 import AdminNavBar from "@/vcomp/AdminNavBar";
 
 // Import Components for Each Button
-import AnalyticsForm from "@/vcomp/adminhomepage components/AnalyticsForm.js"; // Analysis
+import AnalyticsForm from "@/vcomp/adminhomepage components/AnalyticsForm"; // Analysis
 import AddVehicle from "@/vcomp/AddVehicle"; // Vehicle Registration
 import AddPart from "@/vcomp/CarPartsRegistrationForm"; // Part Registration
 import UserVerificationForm from "@/vcomp/adminhomepage components/UserVerificationForm"; // User Verification
@@ -17,18 +17,18 @@ const PageContainer = styled.div`
   width: 100%;
   min-height: 100vh;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
 `;
 
 const ContentWrapper = styled.div`
   display: flex;
   align-items: flex-start;
-  justify-content: center; /* ✅ Centers the containers horizontally */
+  justify-content: center;
   width: 90%;
   max-width: 2000px;
   margin-top: 10rem;
-  gap: 3rem; /* ✅ Equal spacing between left, right, and in between */
+  gap: 3rem;
 `;
 
 const LeftContainer = styled.div`
@@ -50,11 +50,11 @@ const RightContainer = styled.div`
   min-width: 1400px;
   width: 100%;
   min-height: 750px;
-  background-color: #d9d9d9;
-  border: 8px solid #ffc629;
-  border-radius: 12px;
-  padding: 0px;
-  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
 `;
 
 const AdminButtons = styled.button<{ $isDefault?: boolean }>`
@@ -63,7 +63,7 @@ const AdminButtons = styled.button<{ $isDefault?: boolean }>`
   font-weight: bold;
   width: 95%;
   padding: 1rem 1.5rem;
-  font-size: 1.3rem;
+  font-size: 1rem;
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -71,18 +71,14 @@ const AdminButtons = styled.button<{ $isDefault?: boolean }>`
   transition: background 0.3s, transform 0.2s;
 
   &:hover {
-    background-color: #FFEE8C;
+    background-color: #ffdb6d;
     transform: scale(1.05);
   }
 `;
 
-
-// ✅ Admin Homepage Component
 const AdminHomepage = () => {
-  // ✅ State to Track Selected Component
-  const [selectedComponent, setSelectedComponent] = useState("default");
+  const [selectedComponent, setSelectedComponent] = useState<string>("default");
 
-  // ✅ Function to Render the Selected Component
   const renderComponent = () => {
     switch (selectedComponent) {
       case "analytics":
@@ -105,43 +101,56 @@ const AdminHomepage = () => {
       <AdminNavBar />
 
       <ContentWrapper>
-        {/* ✅ Left Panel with Navigation Buttons */}
         <LeftContainer>
-          <AdminButtons 
-            $isDefault={selectedComponent === "default"} 
+          <AdminButtons
+            $isDefault={selectedComponent === "default"}
             onClick={() => setSelectedComponent("default")}
           >
             DEFAULT
           </AdminButtons>
 
-          <AdminButtons onClick={() => setSelectedComponent("analytics")}>
+          <AdminButtons
+            $isDefault={selectedComponent === "analytics"}
+            onClick={() => setSelectedComponent("analytics")}
+          >
             ANALYSIS
           </AdminButtons>
 
-          <AdminButtons onClick={() => setSelectedComponent("vehicle_registration")}>
+          <AdminButtons
+            $isDefault={selectedComponent === "vehicle_registration"}
+            onClick={() => setSelectedComponent("vehicle_registration")}
+          >
             VEHICLE REGISTRATION
           </AdminButtons>
 
-          <AdminButtons onClick={() => setSelectedComponent("part_registration")}>
+          <AdminButtons
+            $isDefault={selectedComponent === "part_registration"}
+            onClick={() => setSelectedComponent("part_registration")}
+          >
             PART REGISTRATION
           </AdminButtons>
 
-          <AdminButtons onClick={() => setSelectedComponent("user_verification")}>
+          <AdminButtons
+            $isDefault={selectedComponent === "user_verification"}
+            onClick={() => setSelectedComponent("user_verification")}
+          >
             USER VERIFICATION
           </AdminButtons>
 
-          <AdminButtons onClick={() => setSelectedComponent("listing_verification")}>
+          <AdminButtons
+            $isDefault={selectedComponent === "listing_verification"}
+            onClick={() => setSelectedComponent("listing_verification")}
+          >
             LISTING VERIFICATION
           </AdminButtons>
         </LeftContainer>
 
-        {/* ✅ Right Panel (Changes Dynamically) */}
-        <RightContainer>
-          {renderComponent()}
-        </RightContainer>
+        <RightContainer>{renderComponent()}</RightContainer>
       </ContentWrapper>
     </PageContainer>
   );
 };
 
 export default AdminHomepage;
+
+//testing
