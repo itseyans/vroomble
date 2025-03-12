@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import styled from "styled-components";
-import MaintenanceLogsPopUp from "@/vcomp/MaintenanceLogsPopUp"; // ✅ Import Pop-Up Component
+import MaintenanceLogsPopUp from "@/vcomp/MaintenanceLogsPopUp";
 
 // ✅ Main Container (Updated Height to 600px)
 const CardContainer = styled.div`

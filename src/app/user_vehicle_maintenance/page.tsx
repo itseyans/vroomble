@@ -3,7 +3,7 @@
 import React from "react";
 import styled from "styled-components";
 import GeneralNavBar from "../../vcomp/GeneralNavBar"; // Adjust the path as needed
-import MaintenanceContainer from "../../vcomp/MaintenanceContainer"; // Adjust the path as needed
+import MaintenanceContainer from "../../vcomp/maintenancepage components/MaintenanceContainer"; // Adjust the path as needed
 
 const PageContainer = styled.div`
   display: flex;
@@ -33,3 +33,4 @@ const MaintenancePage = () => {
 
 export default MaintenancePage;
 
+//gegeg

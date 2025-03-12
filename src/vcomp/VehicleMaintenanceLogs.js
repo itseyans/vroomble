@@ -1,10 +1,9 @@
-// VehicleMaintenanceLogs.js
+
 "use client";
 
 import React from "react";
 import styled from "styled-components";
 
-// Reuse styles from LoginForm
 const LForm = styled.div`
   padding: 20px;
   margin: 20px;

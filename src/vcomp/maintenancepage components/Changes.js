@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import SelectDate from "../SelectDate";
-import GeneralButton from "../GeneralButton";
-import ImageUploadModal from "../ImageUploadModal";
+import SelectDate from "@/vcomp/SelectDate";
+import GeneralButton from "@/vcomp/GeneralButton";
+import ImageUploadModal from "@/vcomp/ImageUploadModal";
 
 const FormContainer = styled.div`
   width: 350px;

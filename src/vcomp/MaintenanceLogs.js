@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import VehicleMaintenanceLogs from "../VeicleMaintenanceLogs";
+import VehicleMaintenanceLogs from "@/vcomp/VehicleMaintenanceLogs.js";
 
 const LogsContainer = styled.div`
   width: 350px;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import SelectDate from "../SelectDate"; // Import your DatePicker component
+import SelectDate from "@/vcomp/SelectDate"; // Import your DatePicker component
 
 const InputsContainer = styled.div`
   display: flex;
