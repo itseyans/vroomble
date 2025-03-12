@@ -1,91 +1,103 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { useRouter } from "next/navigation";
+import Link from 'next/link';
 
-const AdminNavBarContainer = styled.nav`
-  background-color: black;
-  color: gold;
+const NavBarContainer = styled.nav`
+  background-color: #131415;
+  color: #E5BD3F;
   display: flex;
   align-items: center;
-  padding: 1.5rem; /* ✅ Slightly increased padding */
   justify-content: space-between;
+  padding: 1.5rem 4rem;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  position: relative;
+  height: 6rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 10;
 `;
 
 const LogoContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 2rem; /* ✅ Increased spacing */
-`;
-
-const EmblemContainer = styled.div`
-  background-color: #d9d9d9;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100px; /* ✅ Increased size */
-  height: 100px;
-`;
-
-const Emblem = styled.img`
-  width: 80px; /* ✅ Logo size increased */
-  height: auto;
-  border-radius: 50%;
-`;
-
-const LogoWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1.5rem; /* ✅ More spacing between "VROOMBLE" and "ADMIN" */
-`;
-
-const LogoText = styled.span`
-  font-weight: bold;
-  font-size: 2.8rem; /* ✅ Bigger text */
-  font-family: "Shrikhand", sans-serif;
-  color: #ffc629;
+  gap: 5rem; /* ✅ Adds spacing between VROOMBLE and ADMIN */
+  font-family: "Shrikhand", cursive;
+  font-size: 2.8rem;
+  color: #E5BD3F;
 `;
 
 const AdminText = styled.span`
+  font-family: "Shrikhand", cursive;
+  font-size: 2.8rem;
   font-weight: bold;
-  font-size: 2.8rem; /* ✅ Bigger text */
-  font-family: "Shrikhand", sans-serif;
-  color: #d9d9d9;
+  color: #D9D9D9; /* ✅ ADMIN text in gray */
 `;
 
-const NavItems = styled.div`
+const EmblemBackground = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #D9D9D9;
+  width: 12rem;
+  height: 6rem;
+  clip-path: polygon(12% 100%, 88% 100%, 100% 0, 0 0);
   display: flex;
   align-items: center;
-  gap: 3rem; /* ✅ Increased spacing between navbar items */
+  justify-content: center;
+  z-index: 2;
 `;
 
-const NavItem = styled(Link)`
-  color: gold;
-  text-decoration: none;
-  font-size: 1.3rem;
+const EmblemContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5rem;
+  height: 5rem;
+`;
+
+const Emblem = styled.img`
+  width: 100%;
+  height: auto;
+`;
+
+const RightContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-right: 2rem;
+  position: relative;
+`;
+
+const NavButton = styled.button`
+  background-color: #FFC629;
+  color: #131415;
   font-weight: bold;
-  padding: 10px 15px; /* ✅ Added padding for better spacing */
-  border-radius: 6px;
-  transition: background 0.3s ease-in-out, color 0.2s ease-in-out;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
 
   &:hover {
-    background-color: rgba(255, 215, 0, 0.2); /* ✅ Lightens the background slightly */
-    color: #ffc629;
+    background-color: #FFEE8C;
+    transform: scale(1.05);
   }
 `;
 
 const LogoutButton = styled.button`
-  background-color: #ffc629;
+  background-color: #f66b6b;
   color: black;
   padding: 12px 18px;
   font-weight: bold;
-  font-size: 1.3rem;
+  font-size: 1rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
   transition: background 0.2s, transform 0.2s;
 
@@ -96,34 +108,26 @@ const LogoutButton = styled.button`
 `;
 
 const AdminNavBar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userRole, setUserRole] = useState(null);
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const role = localStorage.getItem("role");
-    if (token) {
-      setIsLoggedIn(true);
-      setUserRole(role);
-    }
-  }, []);
+  const router = useRouter();
 
   return (
-    <AdminNavBarContainer>
+    <NavBarContainer>
       <LogoContainer>
+        <Link href="/adminhomepage" passHref style={{ color: 'inherit', textDecoration: 'none' }}>
+          VROOMBLE
+        </Link>
+        <AdminText>ADMIN</AdminText>
+      </LogoContainer>
+      <EmblemBackground>
         <EmblemContainer>
           <Emblem src="/LOGO.png" alt="Vroomble Logo" />
         </EmblemContainer>
-        <LogoWrapper>
-          <LogoText>VROOMBLE</LogoText>
-          <AdminText>ADMIN</AdminText>
-        </LogoWrapper>
-      </LogoContainer>
-
-      <NavItems>
-        <NavItem href="/adminhomepage">Home</NavItem>
-        <NavItem href="/vehicle_registration">Vehicle Registration</NavItem>
-        <NavItem href="/part_registration">Car Part Registration</NavItem>
+      </EmblemBackground>
+      <RightContainer>
+        <NavButton onClick={() => router.push("/adminhomepage")}>HOME</NavButton>
+        <NavButton onClick={() => router.push("/adminhomepage")}>ANALYSIS</NavButton>
+        <NavButton onClick={() => router.push("/part_registration")}>PART REG</NavButton>
+        <NavButton onClick={() => router.push("/vehicle_registration")}>VEHICLE REG</NavButton>
         <LogoutButton
           onClick={() => {
             localStorage.removeItem("token");
@@ -135,8 +139,8 @@ const AdminNavBar = () => {
         >
           LOGOUT
         </LogoutButton>
-      </NavItems>
-    </AdminNavBarContainer>
+      </RightContainer>
+    </NavBarContainer>
   );
 };
 
