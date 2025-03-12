@@ -36,7 +36,7 @@ const CalendarDropdown = styled.div`
   color: #000000;
 `;
 
-const DatePicker = ({ onChange, isCalendarOpen, setIsCalendarOpen }) => {
+const SelectDate = ({ onChange, isCalendarOpen, setIsCalendarOpen }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handleDateChange = (date) => {
@@ -72,4 +72,4 @@ const DatePicker = ({ onChange, isCalendarOpen, setIsCalendarOpen }) => {
   );
 };
 
-export default DatePicker;
+export default SelectDate;

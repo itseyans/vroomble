@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import DatePicker from "../vcomp/SelectDate"; // Import your DatePicker component
+import SelectDate from "../SelectDate"; // Import your DatePicker component
 
 const InputsContainer = styled.div`
   display: flex;
@@ -38,6 +38,7 @@ const EngineTireInputs = () => {
 
   return (
     <InputsContainer>
+      {/* FORM for engine*/}
       <InputContainer>
         <Label>Engine</Label>
         <Input
@@ -46,13 +47,14 @@ const EngineTireInputs = () => {
           onChange={(e) => setEngineValue(e.target.value)}
           placeholder="Value"
         />
-        <DatePicker
+        <SelectDate
           onChange={setEngineDate}
           isCalendarOpen={isEngineCalendarOpen}
           setIsCalendarOpen={setIsEngineCalendarOpen}
         />
       </InputContainer>
 
+      {/* FORM for Tires*/}
       <InputContainer>
         <Label>Tire</Label>
         <Input
@@ -61,7 +63,7 @@ const EngineTireInputs = () => {
           onChange={(e) => setTireValue(e.target.value)}
           placeholder="Value"
         />
-        <DatePicker
+        <SelectDate
           onChange={setTireDate}
           isCalendarOpen={isTireCalendarOpen}
           setIsCalendarOpen={setIsTireCalendarOpen}
