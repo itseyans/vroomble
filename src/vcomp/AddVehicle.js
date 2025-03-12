@@ -3,11 +3,12 @@ import styled from "styled-components";
 import GeneralButton from "./GeneralButton";
 
 const Container = styled.div`
-  width: 950px;
+  min-width: 1400px;
+  min-height: 750px;
   background: #d9d9d9;
   border-radius: 12px;
   padding: 30px;
-  border: 4px solid #ffc629;
+  border: 8px solid #ffc629;
   display: flex;
   flex-direction: column;
   gap: 20px;

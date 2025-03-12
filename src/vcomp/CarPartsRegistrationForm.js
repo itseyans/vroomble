@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const FormContainer = styled.div`
-  width: 450px;
-  height: auto;
+  width: 1400px;
+  height: 750px;
   background: #ddd;
   border-radius: 20px;
   border: 5px solid #ffc629;

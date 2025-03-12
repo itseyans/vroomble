@@ -22,16 +22,19 @@ const Title = styled.h2`
   padding-bottom: 10px;
   font-size: 2em;
   border-bottom: 2px solid #ccc;
+  color: black; /* ✅ Ensures title is black */
 `;
 
 const InputGroup = styled.div`
   margin-bottom: 15px;
+  color: black; /* ✅ Ensures input group labels are black */
 `;
 
 const StyledLabel = styled.label`
   font-weight: bold;
   margin-bottom: 5px;
   display: block;
+  color: black; /* ✅ Ensures labels are black */
 `;
 
 const LInput = styled.input`
@@ -40,6 +43,7 @@ const LInput = styled.input`
   border-radius: 4px;
   width: 100%;
   box-sizing: border-box;
+  color: black; /* ✅ Ensures input text is black */
 `;
 
 const CenteredContainer = styled.div`
@@ -57,14 +61,20 @@ const UploadButton = styled(GeneralButton)`
   cursor: pointer;
   margin-bottom: 30px;
   width: 160px;
-  font-size: 14px; // Reduced font size for UploadButton
+  font-size: 14px;
+  color: black; /* ✅ Ensures button text is black */
+
+  &:hover {
+    background-color: #ffdf70;
+  }
 `;
 
 const SubmitButton = styled(GeneralButton)`
   margin-top: 30px;
   width: 200px;
-  font-size: 16px; // Reduced font size for SubmitButton
+  font-size: 16px;
   display: ${(props) => (props.isCalendarOpen ? "none" : "block")};
+  color: black; /* ✅ Ensures button text is black */
 `;
 
 const Changes = () => {
@@ -73,23 +83,23 @@ const Changes = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [uploadedImage, setUploadedImage] = useState(null);
-  const [showModal, setShowModal] = useState(false); // Correct state variable name
+  const [showModal, setShowModal] = useState(false);
 
   const handleImageUpload = (image) => {
     setUploadedImage(image);
   };
 
   const handleUploadButtonClick = () => {
-    setShowModal(!showModal); // Correct state variable name
+    setShowModal(!showModal);
   };
 
   const handleModalClose = () => {
-    setShowModal(false); // Correct state variable name
+    setShowModal(false);
   };
 
   const handleImagesUpload = (images) => {
     setUploadedImage(images);
-    setShowModal(false); // Correct state variable name
+    setShowModal(false);
   };
 
   const handleSubmit = (e) => {
@@ -103,8 +113,6 @@ const Changes = () => {
     <FormContainer>
       <Title>+ Add Changes</Title>
       <form onSubmit={handleSubmit}>
-
-        {/*Forms for Parts and Cost */}
         <InputGroup>
           <StyledLabel>PART</StyledLabel>
           <LInput
@@ -122,26 +130,23 @@ const Changes = () => {
           />
         </InputGroup>
 
-        {/* Upload Image for Parts and Cost */}
         <CenteredContainer>
           <UploadButton onClick={handleUploadButtonClick}>
             + UPLOAD IMAGES
           </UploadButton>
-          {showModal && ( // Correct state variable name
+          {showModal && (
             <ImageUploadModal
               onClose={handleModalClose}
               onUpload={handleImagesUpload}
             />
           )}
 
-          {/*SelectDate, an open up calendar for selecting date*/}
           <SelectDate
             onChange={setSelectedDate}
             isCalendarOpen={isCalendarOpen}
             setIsCalendarOpen={setIsCalendarOpen}
           />
 
-          {/*Button for submitting the changes*/}
           <SubmitButton type="submit" isCalendarOpen={isCalendarOpen}>
             + SUBMIT CHANGES
           </SubmitButton>
