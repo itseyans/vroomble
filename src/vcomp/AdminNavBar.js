@@ -9,7 +9,7 @@ const AdminNavBarContainer = styled.nav`
   color: gold;
   display: flex;
   align-items: center;
-  padding: 1rem;
+  padding: 1.5rem; /* ✅ Slightly increased padding */
   justify-content: space-between;
   width: 100%;
   position: relative;
@@ -18,45 +18,41 @@ const AdminNavBarContainer = styled.nav`
 const LogoContainer = styled.div`
   display: flex;
   align-items: center;
-  position: relative;
+  gap: 2rem; /* ✅ Increased spacing */
 `;
 
-const LogoBackground = styled.div`
-  width: 180px; /* Adjust for proper proportions */
-  height: 80px;
+const EmblemContainer = styled.div`
   background-color: #d9d9d9;
-  position: absolute;
-  left: 0;
-  top: 0;
-  clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);
-  z-index: 1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px; /* ✅ Increased size */
+  height: 100px;
 `;
 
-const LogoImage = styled.img`
-  width: 70px;
+const Emblem = styled.img`
+  width: 80px; /* ✅ Logo size increased */
   height: auto;
-  position: relative;
-  z-index: 2;
+  border-radius: 50%;
 `;
 
 const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 1.5rem; /* ✅ Increased spacing between VROOMBLE & ADMIN */
-  margin-left: 100px; /* Ensures text does not overlap the shape */
-  z-index: 2;
+  gap: 1.5rem; /* ✅ More spacing between "VROOMBLE" and "ADMIN" */
 `;
 
 const LogoText = styled.span`
   font-weight: bold;
-  font-size: 2.5rem;
+  font-size: 2.8rem; /* ✅ Bigger text */
   font-family: "Shrikhand", sans-serif;
   color: #ffc629;
 `;
 
 const AdminText = styled.span`
   font-weight: bold;
-  font-size: 2.5rem;
+  font-size: 2.8rem; /* ✅ Bigger text */
   font-family: "Shrikhand", sans-serif;
   color: #d9d9d9;
 `;
@@ -64,17 +60,20 @@ const AdminText = styled.span`
 const NavItems = styled.div`
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 3rem; /* ✅ Increased spacing between navbar items */
 `;
 
 const NavItem = styled(Link)`
   color: gold;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-weight: bold;
-  transition: color 0.2s ease-in-out;
+  padding: 10px 15px; /* ✅ Added padding for better spacing */
+  border-radius: 6px;
+  transition: background 0.3s ease-in-out, color 0.2s ease-in-out;
 
   &:hover {
+    background-color: rgba(255, 215, 0, 0.2); /* ✅ Lightens the background slightly */
     color: #ffc629;
   }
 `;
@@ -82,9 +81,9 @@ const NavItem = styled(Link)`
 const LogoutButton = styled.button`
   background-color: #ffc629;
   color: black;
-  padding: 0.5rem 1rem;
+  padding: 12px 18px;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.3rem;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -112,8 +111,9 @@ const AdminNavBar = () => {
   return (
     <AdminNavBarContainer>
       <LogoContainer>
-        <LogoBackground />
-        <LogoImage src="/LOGO.png" alt="Vroomble Logo" />
+        <EmblemContainer>
+          <Emblem src="/LOGO.png" alt="Vroomble Logo" />
+        </EmblemContainer>
         <LogoWrapper>
           <LogoText>VROOMBLE</LogoText>
           <AdminText>ADMIN</AdminText>
@@ -121,7 +121,7 @@ const AdminNavBar = () => {
       </LogoContainer>
 
       <NavItems>
-        <NavItem href="/homepage">Home</NavItem>
+        <NavItem href="/adminhomepage">Home</NavItem>
         <NavItem href="/vehicle_registration">Vehicle Registration</NavItem>
         <NavItem href="/part_registration">Car Part Registration</NavItem>
         <LogoutButton
