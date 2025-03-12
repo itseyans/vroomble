@@ -188,7 +188,7 @@ async def logout(response: Response):
     response.delete_cookie("refresh_token")  # ✅ Remove refresh token
     return {"message": "Logged out successfully"}
 
-# ✅ Root API Endpoint
+# ✅ Root API Endpoint        
 @app.get("/")
 async def root():
     return {"message": "🚀 Authentication API is running!"}
