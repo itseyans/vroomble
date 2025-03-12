@@ -21,24 +21,26 @@ const Title = styled.h2`
   padding-top: 10px;
   width: 100%;
   font-size: 2em;
-  
+  color: black; /* ✅ Ensures title is black */
 `;
 
 const LogItem = styled.div`
-  background-color:rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 10px;
   width: 90%;
   text-align: left;
+  color: black; /* ✅ Ensures log text is black */
 `;
 
 const LogDate = styled.span`
-  font-weight: bold; // Add styling for LogDate here
+  font-weight: bold;
+  color: black; /* ✅ Ensures date text is black */
 `;
 
 const LogDescription = styled.span`
-  // Add styling for LogDescription here
+  color: black; /* ✅ Ensures description text is black */
 `;
 
 const ViewAllButtonContainer = styled.div`
@@ -47,32 +49,45 @@ const ViewAllButtonContainer = styled.div`
   transition: transform 0.3s ease;
 
   &:hover {
-  transform: scale(1.1); // Enlargen on hover
+    transform: scale(1.1);
+  }
+  
+  button {
+    background-color: #ffc629;
+    color: black; /* ✅ Ensures button text is black */
+    font-weight: bold;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background-color: #ffdf70;
+    }
+  }
 `;
 
-{/*Data for the Logs */}
 const MaintenanceLogs = ({ logs }) => {
   const [logsData] = useState([
     { id: 1, date: "02/12/25", description: "Oil Change" },
     { id: 2, date: "02/05/25", description: "Wrap" },
     { id: 3, date: "01/25/25", description: "Battery" },
   ]);
-  
-  const [showLogs, setShowLogs] = useState(false); // Define showLogs and setShowLogs
 
+  const [showLogs, setShowLogs] = useState(false);
 
   return (
     <LogsContainer>
       <Title>| ALL LOGS</Title>
 
-      {/*Data fetch from within the .js */}
       {logsData.map((log) => (
         <LogItem key={log.id}>
-          <LogDate>{log.date}</LogDate> {/* Render LogDate */}
-          <LogDescription>{log.description}</LogDescription> {/* Render LogDescription */}
+          <LogDate>{log.date}</LogDate> - <LogDescription>{log.description}</LogDescription>
         </LogItem>
       ))}
-        <ViewAllButtonContainer> {/* Use a container with onClick */}
+      
+      <ViewAllButtonContainer>
         <button onClick={() => setShowLogs(true)}>VIEW ALL</button>
       </ViewAllButtonContainer>
 

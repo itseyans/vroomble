@@ -6,7 +6,7 @@ import {
   PieChart, Pie, LineChart, Line
 } from "recharts";
 
-const AnalyticsPage = () => {
+const AnalyticsForm = () => {
   const [activeChart, setActiveChart] = useState("carMaker");
   const [carMakerData, setCarMakerData] = useState([]);
   const [bodyTypeData, setBodyTypeData] = useState([]);
@@ -91,4 +91,4 @@ const AnalyticsPage = () => {
   );
 };
 
-export default AnalyticsPage;
+export default AnalyticsForm;
