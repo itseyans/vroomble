@@ -97,73 +97,66 @@ const ManageVehiclesCard = () => {
   const router = useRouter();
   const [vehicles, setVehicles] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [vehicleCount, setVehicleCount] = useState(0); // ✅ Vehicle count state
+  const [vehicleCount, setVehicleCount] = useState(0);
 
-useEffect(() => {
-  const fetchVehicles = async () => {
-    try {
-      const response = await fetch("http://localhost:8004/api/user-vehicles/", {
-        credentials: "include", // ✅ Ensures cookies are sent
-      });
-      const data = await response.json();
+  useEffect(() => {
+    const fetchVehicles = async () => {
+      try {
+        const response = await fetch("http://localhost:8004/api/user-vehicles/", {
+          credentials: "include",
+        });
+        const data = await response.json();
 
-      if (!Array.isArray(data)) {
-        console.error("Error: Expected array but got:", data);
-        return;
+        if (!Array.isArray(data)) {
+          console.error("Error: Expected array but got:", data);
+          return;
+        }
+
+        const vehicleDetails = await Promise.all(
+          data.map(async (vehicle) => {
+            const imageResponse = await fetch(`http://localhost:8004/api/vehicle-images/${vehicle.usersRV_ID}`);
+            const imageData = await imageResponse.json();
+
+            return {
+              usersRV_ID: vehicle.usersRV_ID,
+              carName: vehicle.carName,
+              totalSpent: "0",
+              imageUrl: imageData.images.length > 0
+                ? `http://localhost:8004/car_images/${imageData.images[0]}`
+                : "/default-placeholder.png",
+            };
+          })
+        );
+
+        setVehicles(vehicleDetails.filter((v) => v !== null));
+      } catch (error) {
+        console.error("Error fetching vehicles:", error);
       }
+    };
 
-      const vehicleDetails = await Promise.all(
-        data.map(async (vehicle) => {
-          console.log("🔍 Fetching vehicle details for usersRV_ID:", vehicle.usersRV_ID);
+    fetchVehicles();
+  }, []);
 
-          const imageResponse = await fetch(`http://localhost:8004/api/vehicle-images/${vehicle.usersRV_ID}`);
-          const imageData = await imageResponse.json();
+  useEffect(() => {
+    const fetchVehicleCount = async () => {
+      try {
+        const response = await fetch("http://localhost:8004/user/vehicle-count", {
+          credentials: "include",
+        });
+        const data = await response.json();
 
-          return {
-            usersRV_ID: vehicle.usersRV_ID,
-            carName: vehicle.carName,
-            totalSpent: "0",
-            imageUrl: imageData.images.length > 0
-              ? `http://localhost:8004/car_images/${imageData.images[0]}`
-              : "/default-placeholder.png", // ✅ Use placeholder if no image
-          };
-        })
-      );
-
-      console.log("🚘 Processed Vehicles:", vehicleDetails);
-      setVehicles(vehicleDetails.filter((v) => v !== null)); // Remove null values
-    } catch (error) {
-      console.error("Error fetching vehicles:", error);
-    }
-  };
-
-  fetchVehicles();
-}, []);
-
-
-
-  // ✅ Fetch vehicle count on component mount
-useEffect(() => {
-  const fetchVehicleCount = async () => {
-    try {
-      const response = await fetch("http://localhost:8004/user/vehicle-count", {
-        credentials: "include", // ✅ Ensure cookies are sent
-      });
-      const data = await response.json();
-
-      if (response.ok) {
-        setVehicleCount(data.vehicle_count);
-      } else {
-        console.error("Failed to fetch vehicle count:", data);
+        if (response.ok) {
+          setVehicleCount(data.vehicle_count);
+        } else {
+          console.error("Failed to fetch vehicle count:", data);
+        }
+      } catch (error) {
+        console.error("Error fetching vehicle count:", error);
       }
-    } catch (error) {
-      console.error("Error fetching vehicle count:", error);
-    }
-  };
+    };
 
-  fetchVehicleCount();
-}, []);
-
+    fetchVehicleCount();
+  }, []);
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % vehicles.length);
@@ -180,24 +173,25 @@ useEffect(() => {
         <StyledButton $color="black" $textColor="gold">VIEW ALL</StyledButton>
       </TitleContainer>
 
-
       {vehicles.length > 0 ? (
         <CarListContainer>
-          <CarInfoCard 
-            carName={vehicles[currentIndex].carName} 
-            totalSpent={vehicles[currentIndex].totalSpent}
-            imageUrl={vehicles[currentIndex].imageUrl} 
-          />
+          <div onClick={() => router.push("/user_vehicle_maintenance")}>
+            <CarInfoCard
+              carName={vehicles[currentIndex].carName}
+              totalSpent={vehicles[currentIndex].totalSpent}
+              imageUrl={vehicles[currentIndex].imageUrl}
+            />
+          </div>
         </CarListContainer>
       ) : (
         <p>No registered vehicles found.</p>
       )}
 
       <BottomButtonsContainer>
-        <StyledButton 
-          $color="black" 
+        <StyledButton
+          $color="black"
           $textColor="gold"
-          onClick={() => router.push("/user_vehicle_registration")} 
+          onClick={() => router.push("/user_vehicle_registration")}
         >
           + ADD VEHICLE
         </StyledButton>
