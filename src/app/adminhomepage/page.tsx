@@ -2,16 +2,17 @@
 
 import React, { useState } from "react";
 import styled from "styled-components";
-import AdminNavBar from "@/vcomp/AdminNavBar";
+import dynamic from "next/dynamic";
 
-// Import Components for Each Button
-import AnalyticsForm from "@/vcomp/adminhomepage components/AnalyticsForm"; // Analysis
-import AddVehicle from "@/vcomp/AddVehicle"; // Vehicle Registration
-import AddPart from "@/vcomp/CarPartsRegistrationForm"; // Part Registration
-import UserVerificationForm from "@/vcomp/adminhomepage components/UserVerificationForm"; // User Verification
-import ListingVerificationForm from "@/vcomp/adminhomepage components/ListingVerificationForm"; // Listing Verification
-import DefaultContainerForm from "@/vcomp/adminhomepage components/DefaultContainerForm"; // Default View
-
+// Import components dynamically to prevent SSR
+const AdminNavBar = dynamic(() => import("@/vcomp/AdminNavBar"), { ssr: false });
+const AnalyticsForm = dynamic(() => import("@/vcomp/adminhomepage components/AnalyticsForm"), { ssr: false });
+const AddVehicle = dynamic(() => import("@/vcomp/AddVehicle"), { ssr: false });
+const AddPart = dynamic(() => import("@/vcomp/CarPartsRegistrationForm"), { ssr: false });
+const UserVerificationForm = dynamic(() => import("@/vcomp/adminhomepage components/UserVerificationForm"), { ssr: false });
+const ListingVerificationForm = dynamic(() => import("@/vcomp/adminhomepage components/ListingVerificationForm"), { ssr: false });
+const DefaultContainerForm = dynamic(() => import("@/vcomp/adminhomepage components/DefaultContainerForm"), { ssr: false });
+//lolomopanot
 // Styled Components
 const PageContainer = styled.div`
   width: 100%;
