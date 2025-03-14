@@ -160,12 +160,13 @@ async def register_vehicle_with_image(
         raise HTTPException(status_code=500, detail="Vehicle registration failed.")
 
 
-# ✅ Fetch Registered Vehicles for a User
 @app.get("/api/user-vehicles/")
 async def get_user_vehicles(users_ID: int = Depends(get_current_user)):
     try:
         with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:
             cursor = conn.cursor()
+
+            # ✅ Fetch user vehicles
             cursor.execute(
                 """
                 SELECT urv.UserRV_ID, c.Make, c.Model, c.Variant, c.Year
@@ -180,17 +181,33 @@ async def get_user_vehicles(users_ID: int = Depends(get_current_user)):
             if not vehicles:
                 return {"message": "No vehicles registered by this user"}
 
-            return [
-                {
-                    "usersRV_ID": row[0],
-                    "carName": f"{row[1]} {row[2]} {row[3]} ({row[4]})",
-                }
-                for row in vehicles
-            ]
+            final_vehicles = []
+            for vehicle in vehicles:
+                usersRV_ID = vehicle[0]
+
+                # ✅ Fetch the correct image filename
+                cursor.execute(
+                    "SELECT ImagePath FROM vehicle_images WHERE usersRV_ID = ? LIMIT 1",
+                    (usersRV_ID,),
+                )
+                image_row = cursor.fetchone()
+
+                # ✅ Use correct filename from database or fallback to default
+                image_filename = image_row[0] if image_row else "default.jpg"
+                image_url = f"http://localhost:8004/uploads/{image_filename}"
+
+                final_vehicles.append({
+                    "usersRV_ID": usersRV_ID,
+                    "carName": f"{vehicle[1]} {vehicle[2]} {vehicle[3]} ({vehicle[4]})",
+                    "carImage": image_url
+                })
+
+            return final_vehicles
 
     except sqlitecloud.Error as e:
         logger.error(f"❌ Error fetching user vehicles: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
                               
 
 # ✅ Fetch Images for a Registered Vehicle

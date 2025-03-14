@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import CarDetails from "@/vcomp/CarDetails";
 import EngineTireInputs from "@/vcomp/maintenancepage components/EngineTireInputs.js";
@@ -7,7 +7,7 @@ import MaintenanceLogs from "@/vcomp/MaintenanceLogs.js";
 
 const MainContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 0.6fr 1fr; // Reduced middle column width
+  grid-template-columns: 1fr 0.6fr 1fr;
   grid-template-rows: minmax(0, 1fr);
   gap: 50px;
   padding: 20px;
@@ -22,28 +22,32 @@ const MainContainer = styled.div`
 const CarDetailsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 5px; // Reduced padding
+  padding: 5px;
 `;
 
 const EngineTireWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 5px; // Reduced margin
+  margin-top: 5px;
 `;
 
-const MaintenancePage = () => {
+const MaintenanceContainer = () => {
+  const [selectedVehicle, setSelectedVehicle] = useState(null); // ✅ Ensure useState is properly imported
+
   return (
     <MainContainer>
       <MaintenanceLogs style={{ maxHeight: "250px", overflowY: "auto" }} />
       <CarDetailsWrapper>
-        <CarDetails />
+        {/* ✅ Pass `setSelectedVehicle` to `CarDetails.js` */}
+        <CarDetails onVehicleSelect={setSelectedVehicle} />
         <EngineTireWrapper>
           <EngineTireInputs />
         </EngineTireWrapper>
       </CarDetailsWrapper>
-      <Changes style={{ maxHeight: "250px", overflowY: "auto" }} />
+      {/* ✅ Pass `selectedVehicle` to `Changes.js` */}
+      <Changes selectedVehicle={selectedVehicle} style={{ maxHeight: "250px", overflowY: "auto" }} />
     </MainContainer>
   );
 };
 
-export default MaintenancePage;
+export default MaintenanceContainer;

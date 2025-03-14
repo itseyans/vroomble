@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 # ✅ Uploads Directory
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_DIR = os.path.join(BASE_DIR, "uploads", "maintenance_Photos")
-os.makedirs(UPLOAD_DIR, exist_ok=True)
+os.makedirs(UPLOAD_DIR, exist_ok=True)  # ✅ Ensure the folder exists
 
 # ✅ Create Maintenance Table
 def create_maintenance_table():
@@ -69,38 +69,30 @@ def create_maintenance_table():
 # ✅ Ensure Table Exists
 create_maintenance_table()
 
-# ✅ Add Maintenance Record API
 @app.post("/api/add-maintenance/")
 async def add_maintenance(
     UserRV_ID: int = Form(...),
     ChangeType: str = Form(...),
     Details: str = Form(...),
     Cost: float = Form(...),
-    image: UploadFile = File(None)
+    images: list[UploadFile] = File(None)  # ✅ Support multiple files
 ):
     try:
-        # ✅ Ensure the maintenance_Photos directory exists
-        os.makedirs(UPLOAD_DIR, exist_ok=True)
+        os.makedirs(UPLOAD_DIR, exist_ok=True)  # ✅ Ensure the directory exists
 
-        # ✅ Count existing changes for this vehicle
-        with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:
-            cursor = conn.cursor()
-            cursor.execute(
-                "SELECT COUNT(*) FROM vehicle_maintenance WHERE UserRV_ID = ?",
-                (UserRV_ID,),
-            )
-            change_count = cursor.fetchone()[0] + 1  # Increment for the new change
+        saved_filenames = []
+        for image in images:
+            if image:
+                # ✅ Generate a unique filename
+                extension = os.path.splitext(image.filename)[-1]
+                filename = f"Changes_{UserRV_ID}_{datetime.now().strftime('%Y%m%d%H%M%S')}{extension}"
+                image_path = os.path.join(UPLOAD_DIR, filename)
 
-        # ✅ Format filename as Changes_(UserRV_ID)_(ChangeCount).jpg
-        filename = None
-        if image:
-            extension = os.path.splitext(image.filename)[-1]  # Get file extension
-            filename = f"Changes_{UserRV_ID}_{change_count}{extension}"
-            image_path = os.path.join(UPLOAD_DIR, filename)
+                # ✅ Save file to maintenance_Photos
+                with open(image_path, "wb") as buffer:
+                    shutil.copyfileobj(image.file, buffer)
 
-            # ✅ Save image to maintenance_Photos
-            with open(image_path, "wb") as buffer:
-                shutil.copyfileobj(image.file, buffer)
+                saved_filenames.append(filename)  # ✅ Store saved filename
 
         # ✅ Insert maintenance record into database
         with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:
@@ -110,12 +102,12 @@ async def add_maintenance(
                 INSERT INTO vehicle_maintenance (UserRV_ID, ChangeType, Details, Cost, ImagePath)
                 VALUES (?, ?, ?, ?, ?)
                 """,
-                (UserRV_ID, ChangeType, Details, Cost, filename if image else None),
+                (UserRV_ID, ChangeType, Details, Cost, ",".join(saved_filenames) if saved_filenames else None),
             )
             conn.commit()
 
-        return {"message": "✅ Maintenance record added successfully", "filename": filename}
-    
+        return {"message": "✅ Maintenance record added successfully", "filenames": saved_filenames}
+
     except sqlitecloud.Error as e:
         raise HTTPException(status_code=500, detail=f"Database error: {e}")
 
@@ -202,6 +194,31 @@ async def update_maintenance(
     
     except sqlitecloud.Error as e:
         raise HTTPException(status_code=500, detail=f"Database error: {e}")
+    
+@app.post("/api/upload-vehicle-images/")
+async def upload_vehicle_images(
+    UserRV_ID: int = Form(...),
+    images: list[UploadFile] = File(...)
+):
+    try:
+        saved_filenames = []
+        for image in images:
+            if image:
+                # ✅ Generate a unique filename
+                extension = os.path.splitext(image.filename)[-1]
+                filename = f"Changes_{UserRV_ID}_{datetime.now().strftime('%Y%m%d%H%M%S')}{extension}"
+                image_path = os.path.join(UPLOAD_DIR, filename)
+
+                # ✅ Save file dynamically to `uploads/maintenance_Photos`
+                with open(image_path, "wb") as buffer:
+                    shutil.copyfileobj(image.file, buffer)
+
+                saved_filenames.append(filename)  # ✅ Store saved filename
+
+        return {"message": "✅ Images uploaded successfully!", "file_paths": saved_filenames}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Server error: {e}")
 
 # ✅ Root API Endpoint
 @app.get("/")

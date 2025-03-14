@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import SelectDate from "@/vcomp/SelectDate";
 import GeneralButton from "@/vcomp/GeneralButton";
 import ImageUploadModal from "@/vcomp/ImageUploadModal";
 
+// ✅ Styled Components (same as before)
 const FormContainer = styled.div`
-  width: 350px;
+  width: 400px;
   padding: 20px;
   background-color: #e0e0e0;
   border-radius: 10px;
@@ -17,24 +17,33 @@ const FormContainer = styled.div`
 
 const Title = styled.h2`
   text-align: center;
-  margin-bottom: 40px;
-  padding-top: 30px;
+  margin-bottom: 30px;
+  padding-top: 20px;
   padding-bottom: 10px;
   font-size: 2em;
   border-bottom: 2px solid #ccc;
-  color: black; /* ✅ Ensures title is black */
+  color: black;
 `;
 
 const InputGroup = styled.div`
   margin-bottom: 15px;
-  color: black; /* ✅ Ensures input group labels are black */
+  color: black;
 `;
 
 const StyledLabel = styled.label`
   font-weight: bold;
   margin-bottom: 5px;
   display: block;
-  color: black; /* ✅ Ensures labels are black */
+  color: black;
+`;
+
+const StyledSelect = styled.select`
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  color: black;
 `;
 
 const LInput = styled.input`
@@ -43,7 +52,7 @@ const LInput = styled.input`
   border-radius: 4px;
   width: 100%;
   box-sizing: border-box;
-  color: black; /* ✅ Ensures input text is black */
+  color: black;
 `;
 
 const CenteredContainer = styled.div`
@@ -53,6 +62,18 @@ const CenteredContainer = styled.div`
   margin-top: 20px;
 `;
 
+const DateDropdownContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const DateDropdown = styled.select`
+  width: 32%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+`;
+
 const UploadButton = styled(GeneralButton)`
   background-color: #f0f0e0;
   padding: 15px;
@@ -60,9 +81,9 @@ const UploadButton = styled(GeneralButton)`
   border-radius: 4px;
   cursor: pointer;
   margin-bottom: 30px;
-  width: 160px;
+  width: 180px;
   font-size: 14px;
-  color: black; /* ✅ Ensures button text is black */
+  color: black;
 
   &:hover {
     background-color: #ffdf70;
@@ -70,25 +91,46 @@ const UploadButton = styled(GeneralButton)`
 `;
 
 const SubmitButton = styled(GeneralButton)`
-  margin-top: 30px;
+  margin-top: 20px;
   width: 200px;
   font-size: 16px;
-  display: ${(props) => (props.isCalendarOpen ? "none" : "block")};
-  color: black; /* ✅ Ensures button text is black */
+  color: black;
 `;
 
-const Changes = () => {
-  const [part, setPart] = useState("");
+// ✅ Helper Functions for Dates
+const getYears = () => {
+  const currentYear = new Date().getFullYear();
+  return Array.from({ length: 20 }, (_, i) => currentYear - i); // Last 20 years
+};
+
+const getDays = () => {
+  return Array.from({ length: 31 }, (_, i) => i + 1);
+};
+
+const getMonths = () => {
+  return [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December",
+  ];
+};
+
+// ✅ Main Component
+const Changes = ({ selectedVehicle }) => {
+  const [changeType, setChangeType] = useState("Maintenance");
+  const [details, setDetails] = useState("");
   const [cost, setCost] = useState("");
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [uploadedImage, setUploadedImage] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
-  const handleImageUpload = (image) => {
-    setUploadedImage(image);
-  };
+  // ✅ Date State
+  const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
+  const [selectedDay, setSelectedDay] = useState(new Date().getDate());
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
 
+  // ✅ Get `UserRV_ID` from the selected vehicle
+  const userRV_ID = selectedVehicle?.usersRV_ID || null;
+
+  // ✅ Image Upload Functions
   const handleUploadButtonClick = () => {
     setShowModal(!showModal);
   };
@@ -102,27 +144,87 @@ const Changes = () => {
     setShowModal(false);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Part:", part);
-    console.log("Cost:", cost);
-    console.log("Date:", selectedDate);
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (!selectedVehicle) {
+    alert("❌ Error: No vehicle selected.");
+    return;
+  }
+
+  console.log("UserRV_ID:", selectedVehicle.usersRV_ID);
+  console.log("Change Type:", changeType);
+  console.log("Details:", details);
+  console.log("Cost:", cost);
+  console.log("Date:", `${selectedYear}-${selectedMonth + 1}-${selectedDay}`);
+
+  const formData = new FormData();
+  formData.append("UserRV_ID", selectedVehicle.usersRV_ID);
+  formData.append("ChangeType", changeType);
+  formData.append("Details", details);
+  formData.append("Cost", cost);
+  formData.append("Date", `${selectedYear}-${selectedMonth + 1}-${selectedDay}`);
+
+  if (uploadedImage.length > 0) {
+    uploadedImage.forEach((file) => {
+      formData.append("images", file);  // ✅ Append all selected images
+    });
+  }
+
+  try {
+    const response = await fetch("http://localhost:8005/api/add-maintenance/", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert("✅ Maintenance record added successfully!");
+      console.log("📂 Saved images:", data.filenames);
+    } else {
+      alert(`❌ Failed to add maintenance record: ${data.detail}`);
+    }
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    alert("❌ Server error. Please try again later.");
+  }
+};
+
 
   return (
     <FormContainer>
       <Title>+ Add Changes</Title>
       <form onSubmit={handleSubmit}>
+        {/* ✅ Dropdown for Change Type */}
         <InputGroup>
-          <StyledLabel>PART</StyledLabel>
+          <StyledLabel>Change Type</StyledLabel>
+          <StyledSelect
+            value={changeType}
+            onChange={(e) => setChangeType(e.target.value)}
+          >
+            <option value="Maintenance">Maintenance</option>
+            <option value="Accident">Accident</option>
+            <option value="Modding">Modding</option>
+            <option value="Repairs">Repairs</option>
+            <option value="Damages">Damages</option>
+          </StyledSelect>
+        </InputGroup>
+
+        {/* ✅ Input for Details */}
+        <InputGroup>
+          <StyledLabel>Details</StyledLabel>
           <LInput
             type="text"
-            value={part}
-            onChange={(e) => setPart(e.target.value)}
+            value={details}
+            onChange={(e) => setDetails(e.target.value)}
+            placeholder="Describe the changes made..."
           />
         </InputGroup>
+
+        {/* ✅ Input for Cost */}
         <InputGroup>
-          <StyledLabel>COST</StyledLabel>
+          <StyledLabel>Cost (PHP)</StyledLabel>
           <LInput
             type="number"
             value={cost}
@@ -130,27 +232,40 @@ const Changes = () => {
           />
         </InputGroup>
 
+        {/* ✅ Date Selection */}
+        <InputGroup>
+          <StyledLabel>Select Date</StyledLabel>
+          <DateDropdownContainer>
+            <DateDropdown value={selectedMonth} onChange={(e) => setSelectedMonth(parseInt(e.target.value))}>
+              {getMonths().map((month, index) => <option key={index} value={index}>{month}</option>)}
+            </DateDropdown>
+            <DateDropdown value={selectedDay} onChange={(e) => setSelectedDay(parseInt(e.target.value))}>
+              {getDays().map((day) => <option key={day} value={day}>{day}</option>)}
+            </DateDropdown>
+            <DateDropdown value={selectedYear} onChange={(e) => setSelectedYear(parseInt(e.target.value))}>
+              {getYears().map((year) => <option key={year} value={year}>{year}</option>)}
+            </DateDropdown>
+          </DateDropdownContainer>
+        </InputGroup>
+
         <CenteredContainer>
-          <UploadButton onClick={handleUploadButtonClick}>
-            + UPLOAD IMAGES
-          </UploadButton>
-          {showModal && (
-            <ImageUploadModal
-              onClose={handleModalClose}
-              onUpload={handleImagesUpload}
-            />
-          )}
+  {/* ✅ Prevents form submission when clicking */}
+  <UploadButton type="button" onClick={() => setShowModal(true)}>+ UPLOAD IMAGE</UploadButton>
 
-          <SelectDate
-            onChange={setSelectedDate}
-            isCalendarOpen={isCalendarOpen}
-            setIsCalendarOpen={setIsCalendarOpen}
-          />
+  {/* ✅ Pass `selectedVehicle?.usersRV_ID` only when it exists */}
+  {showModal && selectedVehicle && (
+    <ImageUploadModal 
+      onClose={() => setShowModal(false)} 
+      onUpload={setUploadedImage} 
+      usersRV_ID={selectedVehicle.usersRV_ID} // ✅ Ensures Vehicle ID is passed properly
+    />
+  )}
 
-          <SubmitButton type="submit" isCalendarOpen={isCalendarOpen}>
-            + SUBMIT CHANGES
-          </SubmitButton>
-        </CenteredContainer>
+  {/* ✅ This button should handle form submission */}
+  <SubmitButton type="submit">+ SUBMIT CHANGES</SubmitButton>
+</CenteredContainer>
+
+
       </form>
     </FormContainer>
   );
