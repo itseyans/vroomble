@@ -23,7 +23,7 @@ const PersoInfoCard = () => {
       .catch((error) => console.error("Error fetching user data:", error));
 
     // ✅ Fetch Vehicle Count Separately (If stored in a different table)
-fetch("http://localhost:8000/user/vehicle-count", {
+fetch("http://localhost:8004/user/vehicle-count", {
   method: "GET",
   credentials: "include",
 })
