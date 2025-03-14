@@ -234,3 +234,15 @@
 2025-03-15 02:10:41,910 - DEBUG - cannot commit - no transaction is active
 2025-03-15 02:10:41,910 - INFO - \u2705 Vehicle maintenance table created successfully.
 2025-03-15 02:10:41,959 - DEBUG - cannot commit - no transaction is active
+2025-03-15 02:18:22,442 - DEBUG - cannot commit - no transaction is active
+2025-03-15 02:18:22,442 - INFO - \u2705 Vehicle maintenance table created successfully.
+2025-03-15 02:18:22,489 - DEBUG - cannot commit - no transaction is active
+2025-03-15 02:20:59,314 - DEBUG - cannot commit - no transaction is active
+2025-03-15 02:20:59,314 - INFO - \u2705 Vehicle maintenance table created successfully.
+2025-03-15 02:20:59,367 - DEBUG - cannot commit - no transaction is active
+2025-03-15 02:22:36,638 - DEBUG - cannot commit - no transaction is active
+2025-03-15 02:22:36,638 - INFO - \u2705 Vehicle maintenance table created successfully.
+2025-03-15 02:22:36,688 - DEBUG - cannot commit - no transaction is active
+2025-03-15 02:28:22,635 - DEBUG - cannot commit - no transaction is active
+2025-03-15 02:28:22,635 - INFO - \u2705 Vehicle maintenance table created successfully.
+2025-03-15 02:28:22,688 - DEBUG - cannot commit - no transaction is active
