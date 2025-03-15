@@ -159,15 +159,18 @@ const handleSubmit = async (e) => {
   console.log("Date:", `${selectedYear}-${selectedMonth + 1}-${selectedDay}`);
 
   const formData = new FormData();
-  formData.append("UserRV_ID", selectedVehicle.usersRV_ID);
+  formData.append("UserRV_ID", parseInt(selectedVehicle.usersRV_ID));
   formData.append("ChangeType", changeType);
   formData.append("Details", details);
-  formData.append("Cost", cost);
+  formData.append("Cost", parseFloat(cost));
   formData.append("Date", `${selectedYear}-${selectedMonth + 1}-${selectedDay}`);
 
-  if (uploadedImage.length > 0) {
+  // ✅ Ensure multiple images are appended correctly
+  if (uploadedImage && uploadedImage.length > 0) {
     uploadedImage.forEach((file) => {
-      formData.append("images", file);  // ✅ Append all selected images
+      if (file instanceof File) {
+        formData.append("images", file);  // ✅ Append all images correctly
+      }
     });
   }
 
@@ -183,13 +186,14 @@ const handleSubmit = async (e) => {
       alert("✅ Maintenance record added successfully!");
       console.log("📂 Saved images:", data.filenames);
     } else {
-      alert(`❌ Failed to add maintenance record: ${data.detail}`);
+      alert(`❌ Failed to add maintenance record: ${JSON.stringify(data.detail)}`);
     }
   } catch (error) {
     console.error("Error submitting form:", error);
     alert("❌ Server error. Please try again later.");
   }
 };
+
 
 
   return (

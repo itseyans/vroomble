@@ -4,6 +4,8 @@ from fastapi import FastAPI, HTTPException, Form, UploadFile, File, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 import os
+import random
+import uuid
 import shutil
 from datetime import datetime
 from dotenv import load_dotenv
@@ -22,10 +24,10 @@ app = FastAPI()
 # ✅ CORS Middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["*"],  # ✅ Allow all origins (Update this for production security)
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["*"],  # ✅ Allow all HTTP methods (GET, POST, PUT, DELETE)
+    allow_headers=["*"],  # ✅ Allow all headers
 )
 
 # ✅ Logging Configuration
@@ -39,7 +41,8 @@ logger = logging.getLogger(__name__)
 # ✅ Uploads Directory
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_DIR = os.path.join(BASE_DIR, "uploads", "maintenance_Photos")
-os.makedirs(UPLOAD_DIR, exist_ok=True)  # ✅ Ensure the folder exists
+os.makedirs(UPLOAD_DIR, exist_ok=True)
+
 
 # ✅ Create Maintenance Table
 def create_maintenance_table():
@@ -75,74 +78,102 @@ async def add_maintenance(
     ChangeType: str = Form(...),
     Details: str = Form(...),
     Cost: float = Form(...),
-    images: list[UploadFile] = File(None)  # ✅ Support multiple files
+    Date: str = Form(...),
+    images: list[UploadFile] = File(None)
 ):
+    print(f"🟢 Received UserRV_ID: {UserRV_ID}")
+    print(f"🟢 Received Images: {len(images) if images else 0}")
+
     try:
-        os.makedirs(UPLOAD_DIR, exist_ok=True)  # ✅ Ensure the directory exists
+        os.makedirs(UPLOAD_DIR, exist_ok=True)
 
         saved_filenames = []
-        for image in images:
-            if image:
-                # ✅ Generate a unique filename
-                extension = os.path.splitext(image.filename)[-1]
-                filename = f"Changes_{UserRV_ID}_{datetime.now().strftime('%Y%m%d%H%M%S')}{extension}"
-                image_path = os.path.join(UPLOAD_DIR, filename)
+        if images:
+            for image in images:
+                if image:
+                    extension = os.path.splitext(image.filename)[-1]
+                    filename = f"Changes_{UserRV_ID}_{datetime.now().strftime('%Y%m%d%H%M%S%f')}_{uuid.uuid4().hex[:8]}{extension}"
+                    image_path = os.path.join(UPLOAD_DIR, filename)
 
-                # ✅ Save file to maintenance_Photos
-                with open(image_path, "wb") as buffer:
-                    shutil.copyfileobj(image.file, buffer)
+                    print(f"🟢 Saving file: {image_path}")  # Debugging
 
-                saved_filenames.append(filename)  # ✅ Store saved filename
+                    with open(image_path, "wb") as buffer:
+                        shutil.copyfileobj(image.file, buffer)
 
-        # ✅ Insert maintenance record into database
+                    saved_filenames.append(filename)
+
+        # ✅ Fix 2: Store Image Path Correctly in Database
+        image_paths_str = ",".join(saved_filenames) if saved_filenames else None
+
         with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:
             cursor = conn.cursor()
             cursor.execute(
                 """
-                INSERT INTO vehicle_maintenance (UserRV_ID, ChangeType, Details, Cost, ImagePath)
-                VALUES (?, ?, ?, ?, ?)
+                INSERT INTO vehicle_maintenance (UserRV_ID, ChangeType, Details, Cost, Date, ImagePath)
+                VALUES (?, ?, ?, ?, ?, ?)
                 """,
-                (UserRV_ID, ChangeType, Details, Cost, ",".join(saved_filenames) if saved_filenames else None),
+                (UserRV_ID, ChangeType, Details, Cost, Date, image_paths_str),
             )
             conn.commit()
 
-        return {"message": "✅ Maintenance record added successfully", "filenames": saved_filenames}
+        print(f"✅ Saved images: {saved_filenames}")
+        return {"message": "✅ Maintenance record added successfully!", "filenames": saved_filenames}
 
     except sqlitecloud.Error as e:
+        print(f"❌ Database Error: {e}")
         raise HTTPException(status_code=500, detail=f"Database error: {e}")
 
-# ✅ Fetch Maintenance Logs API
-@app.get("/api/maintenance/{UserRV_ID}")
-async def get_maintenance_logs(UserRV_ID: int):
+        
+@app.post("/api/add-maintenance/")
+async def add_maintenance(
+    UserRV_ID: int = Form(...),
+    ChangeType: str = Form(...),
+    Details: str = Form(...),
+    Cost: float = Form(...),
+    Date: str = Form(...),
+    images: list[UploadFile] = File(None)  # ✅ Optional images
+):
+    print(f"🟢 Received UserRV_ID: {UserRV_ID}")  # Debugging log
+    print(f"🟢 Received Images: {len(images) if images else 0}")
+
     try:
+        os.makedirs(UPLOAD_DIR, exist_ok=True)
+
+        saved_filenames = []
+        if images:
+            for image in images:
+                if image:
+                    extension = os.path.splitext(image.filename)[-1]
+                    filename = f"Changes_{UserRV_ID}_{datetime.now().strftime('%Y%m%d%H%M%S%f')}_{uuid.uuid4().hex[:8]}{extension}"
+                    image_path = os.path.join(UPLOAD_DIR, filename)
+
+                    print(f"🟢 Saving file: {image_path}")  # Debugging
+
+                    with open(image_path, "wb") as buffer:
+                        shutil.copyfileobj(image.file, buffer)
+
+                    saved_filenames.append(filename)
+
+        image_paths_str = ",".join(saved_filenames) if saved_filenames else None
+
         with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:
             cursor = conn.cursor()
             cursor.execute(
                 """
-                SELECT MaintenanceID, ChangeType, Details, Cost, Date, ImagePath
-                FROM vehicle_maintenance
-                WHERE UserRV_ID = ?
-                ORDER BY Date DESC
+                INSERT INTO vehicle_maintenance (UserRV_ID, ChangeType, Details, Cost, Date, ImagePath)
+                VALUES (?, ?, ?, ?, ?, ?)
                 """,
-                (UserRV_ID,)
+                (UserRV_ID, ChangeType, Details, Cost, Date, image_paths_str),
             )
-            logs = cursor.fetchall()
-            if not logs:
-                return {"message": "No maintenance records found."}
+            conn.commit()
 
-            return [
-                {
-                    "MaintenanceID": row[0],
-                    "ChangeType": row[1],
-                    "Details": row[2],
-                    "Cost": row[3],
-                    "Date": row[4],
-                    "ImagePath": row[5] if row[5] else None,
-                }
-                for row in logs
-            ]
+        return {"message": "✅ Maintenance record added successfully!", "filenames": saved_filenames}
+
     except sqlitecloud.Error as e:
         raise HTTPException(status_code=500, detail=f"Database error: {e}")
+
+
+
 
 # ✅ Delete Maintenance Record API
 @app.delete("/api/delete-maintenance/{MaintenanceID}")
@@ -201,24 +232,27 @@ async def upload_vehicle_images(
     images: list[UploadFile] = File(...)
 ):
     try:
+        os.makedirs(UPLOAD_DIR, exist_ok=True)  # ✅ Ensure the directory exists
+
         saved_filenames = []
         for image in images:
             if image:
-                # ✅ Generate a unique filename
                 extension = os.path.splitext(image.filename)[-1]
                 filename = f"Changes_{UserRV_ID}_{datetime.now().strftime('%Y%m%d%H%M%S')}{extension}"
                 image_path = os.path.join(UPLOAD_DIR, filename)
 
-                # ✅ Save file dynamically to `uploads/maintenance_Photos`
                 with open(image_path, "wb") as buffer:
                     shutil.copyfileobj(image.file, buffer)
 
-                saved_filenames.append(filename)  # ✅ Store saved filename
+                saved_filenames.append(filename)
 
         return {"message": "✅ Images uploaded successfully!", "file_paths": saved_filenames}
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Server error: {e}")
+
+
+                                                                         
 
 # ✅ Root API Endpoint
 @app.get("/")
