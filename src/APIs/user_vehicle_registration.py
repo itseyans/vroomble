@@ -322,6 +322,37 @@ async def get_listed_vehicles():
     except sqlitecloud.Error as e:
         raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")
 
+@app.get("/api/vehicle-details/{usersRV_ID}")
+async def get_vehicle_details(usersRV_ID: int):
+    try:
+        with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:
+            cursor = conn.cursor()
+
+            cursor.execute("""
+                SELECT c.Make, c.Model, c.Variant, c.Year, urv.Color, urv.Trim, urv.Mileage, urv.PlateEnd
+                FROM user_registered_vehicles urv
+                JOIN cars c ON urv.CarID = c.CarID
+                WHERE urv.UserRV_ID = ?
+            """, (usersRV_ID,))
+
+            vehicle = cursor.fetchone()
+            if not vehicle:
+                raise HTTPException(status_code=404, detail="Vehicle not found")
+
+            return {
+                "make": vehicle[0],
+                "model": vehicle[1],
+                "variant": vehicle[2],
+                "year": vehicle[3],
+                "color": vehicle[4],
+                "trim": vehicle[5],
+                "mileage": vehicle[6],
+                "plateEnd": vehicle[7],
+            }
+
+    except sqlitecloud.Error as e:
+        logger.error(f" Error fetching vehicle details: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 # Root API Endpoint
 @app.get("/")
