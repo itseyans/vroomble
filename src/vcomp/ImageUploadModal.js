@@ -96,22 +96,23 @@ const Button = styled.button`
 const ImageUploadModal = ({ onClose, onUpload, usersRV_ID }) => {
   const [selectedImages, setSelectedImages] = useState([]);
 
-  const handleImageChange = (event) => {
-    const files = Array.from(event.target.files); // Convert FileList to Array
-    if (files.length > 3) {
-      alert("❌ You can only upload up to 3 images.");
-      return;
-    }
+const handleImageChange = (event) => {
+  const files = Array.from(event.target.files); // Convert FileList to Array
+  if (files.length > 3) {
+    alert("❌ You can only upload up to 3 images.");
+    return;
+  }
 
-    // ✅ Validate all selected files
-    const validImages = files.filter(file => file.type.startsWith("image/"));
-    if (validImages.length !== files.length) {
-      alert("❌ Some files are not images. Please select only image files.");
-      return;
-    }
+  // ✅ Ensure images are stored as `File` objects
+  const validImages = files.filter(file => file instanceof File);
+  if (validImages.length !== files.length) {
+    alert("❌ Some files are not valid images.");
+    return;
+  }
 
-    setSelectedImages(validImages); // Store selected images in state
-  };                          
+  setSelectedImages(validImages); // ✅ Store `File` objects in state
+};
+
 
 const handleUpload = async () => {
   console.log("✅ Received Vehicle ID in Modal:", usersRV_ID);

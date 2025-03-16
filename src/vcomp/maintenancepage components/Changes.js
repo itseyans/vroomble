@@ -147,29 +147,27 @@ const Changes = ({ selectedVehicle }) => {
 const handleSubmit = async (e) => {
   e.preventDefault();
 
-  if (!selectedVehicle) {
+  if (!selectedVehicle || !selectedVehicle.usersRV_ID) {
     alert("❌ Error: No vehicle selected.");
     return;
   }
 
-  console.log("UserRV_ID:", selectedVehicle.usersRV_ID);
-  console.log("Change Type:", changeType);
-  console.log("Details:", details);
-  console.log("Cost:", cost);
-  console.log("Date:", `${selectedYear}-${selectedMonth + 1}-${selectedDay}`);
+  console.log("🔍 Checking Cookies:", document.cookie);  // ✅ Debugging: See if the cookie exists
+  console.log("📂 Uploaded Images:", uploadedImage);  // ✅ Debugging: Check if images are correct
 
   const formData = new FormData();
-  formData.append("UserRV_ID", parseInt(selectedVehicle.usersRV_ID));
+  formData.append("UserRV_ID", selectedVehicle.usersRV_ID);
   formData.append("ChangeType", changeType);
   formData.append("Details", details);
   formData.append("Cost", parseFloat(cost));
   formData.append("Date", `${selectedYear}-${selectedMonth + 1}-${selectedDay}`);
 
-  // ✅ Ensure multiple images are appended correctly
-  if (uploadedImage && uploadedImage.length > 0) {
+if (uploadedImage && uploadedImage.length > 0) {
     uploadedImage.forEach((file) => {
       if (file instanceof File) {
-        formData.append("images", file);  // ✅ Append all images correctly
+        formData.append("images", file);  // ✅ Append `File` objects only
+      } else {
+        console.error("❌ Invalid File Type:", file);
       }
     });
   }
@@ -177,11 +175,11 @@ const handleSubmit = async (e) => {
   try {
     const response = await fetch("http://localhost:8005/api/add-maintenance/", {
       method: "POST",
+      credentials: "include",  // ✅ Ensures cookies (tokens) are sent
       body: formData,
     });
 
     const data = await response.json();
-
     if (response.ok) {
       alert("✅ Maintenance record added successfully!");
       console.log("📂 Saved images:", data.filenames);
@@ -189,10 +187,11 @@ const handleSubmit = async (e) => {
       alert(`❌ Failed to add maintenance record: ${JSON.stringify(data.detail)}`);
     }
   } catch (error) {
-    console.error("Error submitting form:", error);
+    console.error("❌ Error submitting form:", error);
     alert("❌ Server error. Please try again later.");
   }
 };
+
 
 
 
