@@ -5566,3 +5566,105 @@ Traceback (most recent call last):
         errmsg.decode(), errcode, xerrcode
     )(errmsg.decode(), errcode, xerrcode)
 sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_listed
+2025-03-16 22:58:19,588 - DEBUG - cannot commit - no transaction is active
+2025-03-16 22:58:19,588 - INFO - Tables initialized successfully.
+2025-03-16 22:58:19,629 - DEBUG - cannot commit - no transaction is active
+2025-03-16 22:58:19,864 - DEBUG - cannot rollback - no transaction is active
+2025-03-16 22:58:19,864 - ERROR - Rolling back transaction - error 'duplicate column name: is_listed'
+Traceback (most recent call last):
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\src\APIs\user_vehicle_registration.py", line 263, in ensure_column_exists
+    cursor.execute("""
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_listed
+2025-03-16 23:00:36,421 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:00:36,771 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:00:37,056 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:00:37,471 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:00:37,710 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:00:37,922 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:00:38,169 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:00:38,411 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:00:38,692 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:00:38,923 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:00:39,727 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:00:40,014 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:00:40,254 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:00:40,475 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:00:42,452 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:00:42,813 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:00:43,034 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:00:43,303 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:00:43,592 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:00:43,807 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:00:44,636 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:00:44,896 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:00:47,520 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:00:47,999 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:11,325 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:11,684 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:11,946 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:12,364 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:18,358 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:18,359 - INFO - Tables initialized successfully.
+2025-03-16 23:01:18,390 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:18,600 - DEBUG - cannot rollback - no transaction is active
+2025-03-16 23:01:18,600 - ERROR - Rolling back transaction - error 'duplicate column name: is_listed'
+Traceback (most recent call last):
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\src\APIs\user_vehicle_registration.py", line 263, in ensure_column_exists
+    cursor.execute("""
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_listed
+2025-03-16 23:01:18,836 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:19,124 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:19,389 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:19,602 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:19,810 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:20,016 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:20,274 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:20,520 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:20,742 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:20,946 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:21,294 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:21,730 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:21,967 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:22,234 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:22,465 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:22,664 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:22,902 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:23,121 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:23,355 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:23,582 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:23,800 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:23,994 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:24,207 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:24,417 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:24,690 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:24,884 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:25,114 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:01:25,333 - DEBUG - cannot commit - no transaction is active
