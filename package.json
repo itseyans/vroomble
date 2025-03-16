@@ -29,6 +29,7 @@
     "@storybook/experimental-nextjs-vite": "^8.6.2",
     "@storybook/nextjs": "^8.6.2",
     "@storybook/test": "^8.6.2",
+    "@types/html-minifier-terser": "^7.0.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
