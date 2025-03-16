@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import AddImage from "./AddImage";
 
 // Styled Components
 const CarDetailsContainer = styled.div`
@@ -107,7 +108,8 @@ const NextButton = styled(ArrowButton)`
 const CarDetails = ({ onVehicleSelect }) => {
   const [vehicles, setVehicles] = useState([]);
   const [selectedVehicle, setSelectedVehicle] = useState(null);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [vehicleImages, setVehicleImages] = useState({});
+  const [currentImageIndex, setCurrentImageIndex] = useState({});
 
   useEffect(() => {
     const fetchVehicles = async () => {
@@ -130,13 +132,15 @@ const CarDetails = ({ onVehicleSelect }) => {
             const detailsResponse = await fetch(`http://localhost:8004/api/vehicle-details/${vehicle.usersRV_ID}`);
             const detailsData = await detailsResponse.json();
 
+            const images = imageData.images.length > 0
+              ? imageData.images.map(img => `http://localhost:8004/car_images/${img}`)
+              : ["/default-placeholder.png"];
+
             return {
               usersRV_ID: vehicle.usersRV_ID,
               carName: vehicle.carName,
               year: detailsData.year,
-              images: imageData.images.length > 0
-                ? imageData.images.map(img => `http://localhost:8004/car_images/${img}`)
-                : ["/default-placeholder.png"],
+              images: images,
               make: detailsData.make,
               model: detailsData.model,
               variant: detailsData.variant,
@@ -148,10 +152,18 @@ const CarDetails = ({ onVehicleSelect }) => {
           })
         );
 
+        // Store images for each vehicle
+        const imagesMap = vehicleDetails.reduce((acc, vehicle) => {
+          acc[vehicle.usersRV_ID] = vehicle.images;
+          return acc;
+        }, {});
+
         setVehicles(vehicleDetails);
+        setVehicleImages(imagesMap);
 
         if (vehicleDetails.length > 0) {
           setSelectedVehicle(vehicleDetails[0]);
+          setCurrentImageIndex({ [vehicleDetails[0].usersRV_ID]: 0 });
           onVehicleSelect(vehicleDetails[0]);
         }
       } catch (error) {
@@ -165,17 +177,40 @@ const CarDetails = ({ onVehicleSelect }) => {
   const handleVehicleChange = (event) => {
     const vehicleId = parseInt(event.target.value, 10);
     const selected = vehicles.find((v) => v.usersRV_ID === vehicleId);
+
+    if (!selected) return; 
+
     setSelectedVehicle(selected);
-    setCurrentImageIndex(0);
+    setCurrentImageIndex({ [vehicleId]: 0 });
     onVehicleSelect(selected);
   };
 
   const handleNextImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % selectedVehicle.images.length);
+    if (!selectedVehicle) return;
+
+    const vehicleId = selectedVehicle.usersRV_ID;
+    const images = vehicleImages[vehicleId] || [];
+
+    if (images.length === 0) return;
+
+    setCurrentImageIndex((prev) => ({
+      ...prev,
+      [vehicleId]: (prev[vehicleId] + 1) % images.length,
+    }));
   };
 
   const handlePrevImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + selectedVehicle.images.length) % selectedVehicle.images.length);
+    if (!selectedVehicle) return;
+
+    const vehicleId = selectedVehicle.usersRV_ID;
+    const images = vehicleImages[vehicleId] || [];
+
+    if (images.length === 0) return;
+
+    setCurrentImageIndex((prev) => ({
+      ...prev,
+      [vehicleId]: (prev[vehicleId] - 1 + images.length) % images.length,
+    }));
   };
 
   return (
@@ -192,7 +227,12 @@ const CarDetails = ({ onVehicleSelect }) => {
 
       <ImageContainer>
         <PrevButton onClick={handlePrevImage}>◀</PrevButton>
-        <CarImage src={selectedVehicle?.images[currentImageIndex]} alt={selectedVehicle?.carName || "Car Image"} />
+        <CarImage 
+          src={selectedVehicle && vehicleImages[selectedVehicle.usersRV_ID]
+            ? vehicleImages[selectedVehicle.usersRV_ID][currentImageIndex[selectedVehicle.usersRV_ID] || 0]
+            : "/default-placeholder.png"} 
+          alt={selectedVehicle?.carName || "Car Image"} 
+        />
         <NextButton onClick={handleNextImage}>▶</NextButton>
       </ImageContainer>
 
@@ -209,7 +249,7 @@ const CarDetails = ({ onVehicleSelect }) => {
           <DetailItem>Mileage: {selectedVehicle?.mileage || "N/A"} km</DetailItem>
           <DetailItem>Plate End: {selectedVehicle?.plateEnd || "N/A"}</DetailItem>
         </DetailColumn>
-        <Button>Add Image</Button>
+        <AddImage usersRV_ID={selectedVehicle?.usersRV_ID} />
       </DetailsBox>
     </CarDetailsContainer>
   );

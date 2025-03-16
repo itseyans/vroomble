@@ -109,55 +109,67 @@ def get_current_user(access_token: str = Cookie(None)):
         return users_ID
     except jwt.PyJWTError:
         raise HTTPException(status_code=401, detail="Invalid token")
-
-# Register Vehicle API with Image
-@app.post("/api/register-vehicle-with-image/")
-async def register_vehicle_with_image(
-    users_ID: int = Depends(get_current_user),
-    carID: int = Form(...),
-    trim: str = Form(...),
-    plateEnd: str = Form(...),
-    color: str = Form(...),
-    mileage: str = Form(...),
-    image: UploadFile = File(...)
-):
+    
+def insert_image_path(usersRV_ID: int, image_path: str):
+    """
+    Inserts the uploaded image path into the vehicle_images table.
+    """
     try:
         with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:
             cursor = conn.cursor()
 
-            # Insert vehicle details
-            cursor.execute(
-                """
-                INSERT INTO user_registered_vehicles (users_ID, CarID, Trim, PlateEnd, Color, Mileage)
-                VALUES (?, ?, ?, ?, ?, ?)
-                """,
-                (users_ID, carID, trim, plateEnd, color, mileage),
-            )
-
-            usersRV_ID = cursor.lastrowid  # Get the generated usersRV_ID
-
-            # Save Image to `uploads/`
-            filename = f"{usersRV_ID}_{image.filename}"
-            image_path = os.path.join(UPLOAD_DIR, filename)  
-            with open(image_path, "wb") as buffer:
-                shutil.copyfileobj(image.file, buffer)
-
-            # Store ONLY filename in database
             cursor.execute(
                 """
                 INSERT INTO vehicle_images (usersRV_ID, ImagePath)
                 VALUES (?, ?)
                 """,
-                (usersRV_ID, filename),
+                (usersRV_ID, image_path),
             )
 
             conn.commit()
-
-            return {"message": "User vehicle registered successfully with image", "usersRV_ID": usersRV_ID}
+            print(f"✅ Image {image_path} saved in database for UserRV_ID {usersRV_ID}")
 
     except sqlitecloud.Error as e:
-        logger.error(f"Database error: {e}")
-        raise HTTPException(status_code=500, detail="Vehicle registration failed.")
+        print(f"❌ Failed to insert image path: {e}")
+        raise HTTPException(status_code=500, detail=f"Database error: {e}")
+
+
+    except sqlitecloud.Error as e:
+        print(f"❌ Failed to insert image path: {e}")
+        raise HTTPException(status_code=500, detail=f"Database error: {e}")
+
+
+@app.post("/api/upload-vehicle-images/")
+async def upload_vehicle_images(
+    UserRV_ID: int = Form(...),
+    images: list[UploadFile] = File(...)
+):
+    """
+    Handles the upload of vehicle images, stores them in the `uploads/` directory,
+    and inserts image paths into the `vehicle_images` table.
+    """
+    try:
+        saved_filenames = []
+
+        for image in images:
+            if image:
+                filename = image.filename  # ✅ Keep original naming
+                image_path = os.path.join(UPLOAD_DIR, filename)  # ✅ Store in `uploads/`
+
+                # Save image to disk
+                with open(image_path, "wb") as buffer:
+                    shutil.copyfileobj(image.file, buffer)
+
+                # Insert into database (Fix: No `user_registered_vehicle` column)
+                insert_image_path(UserRV_ID, filename)  
+
+                saved_filenames.append(filename)
+
+        return {"message": "Images uploaded successfully!", "file_paths": saved_filenames}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Server error: {e}")
+
 
 
 @app.get("/api/user-vehicles/")

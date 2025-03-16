@@ -1397,3 +1397,9 @@ sqlitecloud.exceptions.SQLiteCloudOperationalError: no such column: deleted_at
 2025-03-16 02:02:42,022 - ERROR - \u274c Error connecting to cloud database: An error occurred while initializing the socket.
 2025-03-16 02:26:11,860 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
 2025-03-16 02:26:11,947 - ERROR - \u274c Error connecting to cloud database: An error occurred while initializing the socket.
+2025-03-17 00:42:47,732 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
+2025-03-17 00:42:48,017 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:42:48,058 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:45:37,662 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
+2025-03-17 00:45:37,960 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:45:38,001 - DEBUG - cannot commit - no transaction is active

@@ -6489,3 +6489,236 @@ sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_li
 2025-03-17 00:42:18,257 - DEBUG - cannot commit - no transaction is active
 2025-03-17 00:42:18,511 - DEBUG - cannot commit - no transaction is active
 2025-03-17 00:42:47,753 - ERROR - Database initialization error: An error occurred while initializing the socket.
+2025-03-17 00:43:43,482 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:43:43,484 - INFO - Tables initialized successfully.
+2025-03-17 00:43:43,516 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:43:43,737 - DEBUG - cannot rollback - no transaction is active
+2025-03-17 00:43:43,737 - ERROR - Rolling back transaction - error 'duplicate column name: is_listed'
+Traceback (most recent call last):
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\src\APIs\user_vehicle_registration.py", line 263, in ensure_column_exists
+    cursor.execute("""
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_listed
+2025-03-17 00:45:23,047 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:45:23,700 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:45:23,911 - ERROR - Error fetching vehicle count: An error occurred while initializing the socket.
+2025-03-17 00:45:24,132 - ERROR - Error fetching user vehicles: An error occurred while initializing the socket.
+2025-03-17 00:45:24,337 - ERROR - Error fetching vehicle count: An error occurred while initializing the socket.
+2025-03-17 00:45:24,633 - ERROR - Error fetching vehicle images: An error occurred while initializing the socket.
+2025-03-17 00:45:24,742 - ERROR - Error fetching vehicle images: An error occurred while initializing the socket.
+2025-03-17 00:45:24,861 - ERROR - Error fetching vehicle images: An error occurred while initializing the socket.
+2025-03-17 00:45:24,970 - ERROR - Error fetching vehicle images: An error occurred while initializing the socket.
+2025-03-17 00:45:25,094 - ERROR - Error fetching vehicle count: An error occurred while initializing the socket.
+2025-03-17 00:46:07,477 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:07,479 - INFO - Tables initialized successfully.
+2025-03-17 00:46:07,513 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:07,746 - DEBUG - cannot rollback - no transaction is active
+2025-03-17 00:46:07,747 - ERROR - Rolling back transaction - error 'duplicate column name: is_listed'
+Traceback (most recent call last):
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\src\APIs\user_vehicle_registration.py", line 275, in ensure_column_exists
+    cursor.execute("""
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_listed
+2025-03-17 00:46:14,090 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:14,475 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:14,740 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:15,234 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:15,537 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:15,809 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:16,076 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:16,328 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:16,579 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:16,831 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:17,068 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:17,331 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:17,588 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:17,847 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:18,204 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:18,592 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:18,917 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:19,168 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:19,394 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:19,634 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:19,910 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:20,170 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:20,494 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:21,327 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:21,564 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:21,786 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:22,022 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:22,280 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:22,589 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:22,845 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:23,114 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:46:23,346 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:47:55,235 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:47:55,889 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:47:56,143 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:47:56,388 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:47:56,629 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:47:56,907 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:47:57,185 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:47:57,471 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:47:57,707 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:58:50,498 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:58:50,498 - INFO - Tables initialized successfully.
+2025-03-17 00:58:50,535 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:58:50,807 - DEBUG - cannot rollback - no transaction is active
+2025-03-17 00:58:50,807 - ERROR - Rolling back transaction - error 'duplicate column name: is_listed'
+Traceback (most recent call last):
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\src\APIs\user_vehicle_registration.py", line 275, in ensure_column_exists
+    cursor.execute("""
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_listed
+2025-03-17 00:59:59,903 - DEBUG - cannot commit - no transaction is active
+2025-03-17 01:00:00,280 - DEBUG - cannot commit - no transaction is active
+2025-03-17 01:00:00,581 - DEBUG - cannot commit - no transaction is active
+2025-03-17 01:00:00,984 - DEBUG - cannot commit - no transaction is active
+2025-03-17 01:00:01,255 - DEBUG - cannot commit - no transaction is active
+2025-03-17 01:00:01,489 - DEBUG - cannot commit - no transaction is active
+2025-03-17 01:00:01,736 - DEBUG - cannot commit - no transaction is active
+2025-03-17 01:00:01,969 - DEBUG - cannot commit - no transaction is active
+2025-03-17 01:00:02,220 - DEBUG - cannot commit - no transaction is active
+2025-03-17 01:00:02,447 - DEBUG - cannot commit - no transaction is active
+2025-03-17 01:00:02,682 - DEBUG - cannot commit - no transaction is active
+2025-03-17 01:00:02,974 - DEBUG - cannot commit - no transaction is active
+2025-03-17 01:00:03,212 - DEBUG - cannot commit - no transaction is active
+2025-03-17 01:00:03,477 - DEBUG - cannot commit - no transaction is active
+2025-03-17 01:32:07,888 - DEBUG - Calling on_part_begin with no data
+2025-03-17 01:32:07,888 - DEBUG - Calling on_header_field with data[42:61]
+2025-03-17 01:32:07,889 - DEBUG - Calling on_header_value with data[63:86]
+2025-03-17 01:32:07,889 - DEBUG - Calling on_header_end with no data
+2025-03-17 01:32:07,889 - DEBUG - Calling on_headers_finished with no data
+2025-03-17 01:32:07,889 - DEBUG - Calling on_part_data with data[90:92]
+2025-03-17 01:32:07,889 - DEBUG - Calling on_part_end with no data
+2025-03-17 01:32:07,889 - DEBUG - Calling on_part_begin with no data
+2025-03-17 01:32:07,889 - DEBUG - Calling on_header_field with data[136:155]
+2025-03-17 01:32:07,889 - DEBUG - Calling on_header_value with data[157:179]
+2025-03-17 01:32:07,889 - DEBUG - Calling on_header_end with no data
+2025-03-17 01:32:07,889 - DEBUG - Calling on_headers_finished with no data
+2025-03-17 01:32:07,889 - DEBUG - Calling on_part_data with data[183:204]
+2025-03-17 01:32:07,889 - DEBUG - Calling on_part_end with no data
+2025-03-17 01:32:07,889 - DEBUG - Calling on_part_begin with no data
+2025-03-17 01:32:07,889 - DEBUG - Calling on_header_field with data[248:267]
+2025-03-17 01:32:07,889 - DEBUG - Calling on_header_value with data[269:295]
+2025-03-17 01:32:07,889 - DEBUG - Calling on_header_end with no data
+2025-03-17 01:32:07,889 - DEBUG - Calling on_headers_finished with no data
+2025-03-17 01:32:07,889 - DEBUG - Calling on_part_data with data[299:300]
+2025-03-17 01:32:07,889 - DEBUG - Calling on_part_end with no data
+2025-03-17 01:32:07,889 - DEBUG - Calling on_part_begin with no data
+2025-03-17 01:32:07,889 - DEBUG - Calling on_header_field with data[344:363]
+2025-03-17 01:32:07,889 - DEBUG - Calling on_header_value with data[365:388]
+2025-03-17 01:32:07,889 - DEBUG - Calling on_header_end with no data
+2025-03-17 01:32:07,889 - DEBUG - Calling on_headers_finished with no data
+2025-03-17 01:32:07,889 - DEBUG - Calling on_part_data with data[392:413]
+2025-03-17 01:32:07,889 - DEBUG - Calling on_part_end with no data
+2025-03-17 01:32:07,889 - DEBUG - Calling on_part_begin with no data
+2025-03-17 01:32:07,890 - DEBUG - Calling on_header_field with data[457:476]
+2025-03-17 01:32:07,890 - DEBUG - Calling on_header_value with data[478:503]
+2025-03-17 01:32:07,890 - DEBUG - Calling on_header_end with no data
+2025-03-17 01:32:07,890 - DEBUG - Calling on_headers_finished with no data
+2025-03-17 01:32:07,890 - DEBUG - Calling on_part_data with data[507:512]
+2025-03-17 01:32:07,890 - DEBUG - Calling on_part_end with no data
+2025-03-17 01:32:07,890 - DEBUG - Calling on_part_begin with no data
+2025-03-17 01:32:07,890 - DEBUG - Calling on_header_field with data[556:575]
+2025-03-17 01:32:07,890 - DEBUG - Calling on_header_value with data[577:628]
+2025-03-17 01:32:07,890 - DEBUG - Calling on_header_end with no data
+2025-03-17 01:32:07,890 - DEBUG - Calling on_header_field with data[630:642]
+2025-03-17 01:32:07,890 - DEBUG - Calling on_header_value with data[644:654]
+2025-03-17 01:32:07,890 - DEBUG - Calling on_header_end with no data
+2025-03-17 01:32:07,890 - DEBUG - Calling on_headers_finished with no data
+2025-03-17 01:32:07,890 - DEBUG - Calling on_part_data with data[658:180224]
+2025-03-17 01:32:07,892 - DEBUG - Calling on_part_data with data[0:245760]
+2025-03-17 01:32:07,892 - DEBUG - Calling on_part_data with data[0:114688]
+2025-03-17 01:32:07,894 - DEBUG - Calling on_part_data with data[0:95950]
+2025-03-17 01:32:07,894 - DEBUG - Calling on_part_end with no data
+2025-03-17 01:32:07,894 - DEBUG - Calling on_end with no data
+2025-03-17 01:32:19,764 - DEBUG - Calling on_part_begin with no data
+2025-03-17 01:32:19,764 - DEBUG - Calling on_header_field with data[42:61]
+2025-03-17 01:32:19,764 - DEBUG - Calling on_header_value with data[63:86]
+2025-03-17 01:32:19,764 - DEBUG - Calling on_header_end with no data
+2025-03-17 01:32:19,764 - DEBUG - Calling on_headers_finished with no data
+2025-03-17 01:32:19,765 - DEBUG - Calling on_part_data with data[90:92]
+2025-03-17 01:32:19,765 - DEBUG - Calling on_part_end with no data
+2025-03-17 01:32:19,765 - DEBUG - Calling on_part_begin with no data
+2025-03-17 01:32:19,765 - DEBUG - Calling on_header_field with data[136:155]
+2025-03-17 01:32:19,765 - DEBUG - Calling on_header_value with data[157:179]
+2025-03-17 01:32:19,765 - DEBUG - Calling on_header_end with no data
+2025-03-17 01:32:19,765 - DEBUG - Calling on_headers_finished with no data
+2025-03-17 01:32:19,766 - DEBUG - Calling on_part_data with data[183:204]
+2025-03-17 01:32:19,766 - DEBUG - Calling on_part_end with no data
+2025-03-17 01:32:19,766 - DEBUG - Calling on_part_begin with no data
+2025-03-17 01:32:19,766 - DEBUG - Calling on_header_field with data[248:267]
+2025-03-17 01:32:19,766 - DEBUG - Calling on_header_value with data[269:295]
+2025-03-17 01:32:19,766 - DEBUG - Calling on_header_end with no data
+2025-03-17 01:32:19,766 - DEBUG - Calling on_headers_finished with no data
+2025-03-17 01:32:19,766 - DEBUG - Calling on_part_data with data[299:300]
+2025-03-17 01:32:19,766 - DEBUG - Calling on_part_end with no data
+2025-03-17 01:32:19,766 - DEBUG - Calling on_part_begin with no data
+2025-03-17 01:32:19,766 - DEBUG - Calling on_header_field with data[344:363]
+2025-03-17 01:32:19,766 - DEBUG - Calling on_header_value with data[365:388]
+2025-03-17 01:32:19,766 - DEBUG - Calling on_header_end with no data
+2025-03-17 01:32:19,766 - DEBUG - Calling on_headers_finished with no data
+2025-03-17 01:32:19,766 - DEBUG - Calling on_part_data with data[392:413]
+2025-03-17 01:32:19,766 - DEBUG - Calling on_part_end with no data
+2025-03-17 01:32:19,766 - DEBUG - Calling on_part_begin with no data
+2025-03-17 01:32:19,766 - DEBUG - Calling on_header_field with data[457:476]
+2025-03-17 01:32:19,766 - DEBUG - Calling on_header_value with data[478:503]
+2025-03-17 01:32:19,766 - DEBUG - Calling on_header_end with no data
+2025-03-17 01:32:19,766 - DEBUG - Calling on_headers_finished with no data
+2025-03-17 01:32:19,766 - DEBUG - Calling on_part_data with data[507:512]
+2025-03-17 01:32:19,766 - DEBUG - Calling on_part_end with no data
+2025-03-17 01:32:19,768 - DEBUG - Calling on_part_begin with no data
+2025-03-17 01:32:19,768 - DEBUG - Calling on_header_field with data[556:575]
+2025-03-17 01:32:19,768 - DEBUG - Calling on_header_value with data[577:628]
+2025-03-17 01:32:19,768 - DEBUG - Calling on_header_end with no data
+2025-03-17 01:32:19,768 - DEBUG - Calling on_header_field with data[630:642]
+2025-03-17 01:32:19,768 - DEBUG - Calling on_header_value with data[644:654]
+2025-03-17 01:32:19,768 - DEBUG - Calling on_header_end with no data
+2025-03-17 01:32:19,768 - DEBUG - Calling on_headers_finished with no data
+2025-03-17 01:32:19,768 - DEBUG - Calling on_part_data with data[658:32768]
+2025-03-17 01:32:19,769 - DEBUG - Calling on_part_data with data[0:196608]
+2025-03-17 01:32:19,770 - DEBUG - Calling on_part_data with data[0:229376]
+2025-03-17 01:32:19,770 - DEBUG - Calling on_part_data with data[0:98304]
+2025-03-17 01:32:19,770 - DEBUG - Calling on_part_data with data[0:79566]
+2025-03-17 01:32:19,770 - DEBUG - Calling on_part_end with no data
+2025-03-17 01:32:19,771 - DEBUG - Calling on_end with no data
