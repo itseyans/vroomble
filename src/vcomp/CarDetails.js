@@ -18,7 +18,8 @@ const TitleContainer = styled.div`
   color: #333;
   text-align: center;
   padding: 10px;
-  font-size: 1.5em;
+  margin: 0;
+  font-size: 2em;
   font-weight: bold;
   text-transform: uppercase;
 `;
@@ -31,36 +32,16 @@ const CarSelect = styled.select`
   border: 1px solid #ccc;
 `;
 
-const CarouselContainer = styled.div`
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-`;
-
 const CarImage = styled.img`
   width: 100%;
   display: block;
-`;
-
-const NavButton = styled.button`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  z-index: 1;
-
-  ${({ left }) => (left ? "left: 10px;" : "right: 10px;")}
 `;
 
 const DetailsBox = styled.div`
   background-color: #f9f9f9;
   padding: 15px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 15px;
   border: 2px solid black;
   border-radius: 0 0 10px 10px;
@@ -77,10 +58,51 @@ const DetailItem = styled.div`
   color: #555;
 `;
 
+const Button = styled.button`
+  background-color: #ffc629;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 1em;
+  border-radius: 5px;
+  transition: background 0.3s;
+
+  &:hover {
+    background-color: white;
+  }
+`;
+
+const ImageControls = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+`;
+
+const CenteredButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  grid-column: span 3;
+  margin-top: 10px;
+`;
+
+const ArrowButton = styled.button`
+  background-color: #ffc629;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1.5em;
+  border-radius: 5px;
+  transition: background 0.3s;
+
+  &:hover {
+    background-color: white;
+  }
+`;
+
 const CarDetails = ({ onVehicleSelect }) => {
   const [vehicles, setVehicles] = useState([]);
   const [selectedVehicle, setSelectedVehicle] = useState(null);
-  const [imageIndex, setImageIndex] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     const fetchVehicles = async () => {
@@ -107,7 +129,9 @@ const CarDetails = ({ onVehicleSelect }) => {
               usersRV_ID: vehicle.usersRV_ID,
               carName: vehicle.carName,
               year: detailsData.year,
-              images: imageData.images.length > 0 ? imageData.images : ["/default-placeholder.png"],
+              images: imageData.images.length > 0
+                ? imageData.images.map(img => `http://localhost:8004/car_images/${img}`)
+                : ["/default-placeholder.png"],
               make: detailsData.make,
               model: detailsData.model,
               variant: detailsData.variant,
@@ -137,16 +161,16 @@ const CarDetails = ({ onVehicleSelect }) => {
     const vehicleId = parseInt(event.target.value, 10);
     const selected = vehicles.find((v) => v.usersRV_ID === vehicleId);
     setSelectedVehicle(selected);
-    setImageIndex(0);
+    setCurrentImageIndex(0);
     onVehicleSelect(selected);
   };
 
-  const nextImage = () => {
-    setImageIndex((prevIndex) => (prevIndex + 1) % selectedVehicle.images.length);
+  const handleNextImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % selectedVehicle.images.length);
   };
 
-  const prevImage = () => {
-    setImageIndex((prevIndex) => (prevIndex - 1 + selectedVehicle.images.length) % selectedVehicle.images.length);
+  const handlePrevImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + selectedVehicle.images.length) % selectedVehicle.images.length);
   };
 
   return (
@@ -161,15 +185,12 @@ const CarDetails = ({ onVehicleSelect }) => {
         </CarSelect>
       </TitleContainer>
 
-      <CarouselContainer>
-        <NavButton left onClick={prevImage}>&lt;</NavButton>
-        <CarImage 
-          src={`http://localhost:8004/car_images/${selectedVehicle?.images[imageIndex]}`} 
-          alt={selectedVehicle?.carName || "Car Image"} 
-          onError={(e) => e.target.src = "/default-placeholder.png"}
-        />
-        <NavButton onClick={nextImage}>&gt;</NavButton>
-      </CarouselContainer>
+      <CarImage src={selectedVehicle?.images[currentImageIndex]} alt={selectedVehicle?.carName || "Car Image"} />
+
+      <ImageControls>
+        <ArrowButton onClick={handlePrevImage}>◀</ArrowButton>
+        <ArrowButton onClick={handleNextImage}>▶</ArrowButton>
+      </ImageControls>
 
       <DetailsBox>
         <DetailColumn>
@@ -184,6 +205,9 @@ const CarDetails = ({ onVehicleSelect }) => {
           <DetailItem>Mileage: {selectedVehicle?.mileage || "N/A"} km</DetailItem>
           <DetailItem>Plate End: {selectedVehicle?.plateEnd || "N/A"}</DetailItem>
         </DetailColumn>
+        <CenteredButtonContainer>
+          <Button>Add Image</Button>
+        </CenteredButtonContainer>
       </DetailsBox>
     </CarDetailsContainer>
   );
