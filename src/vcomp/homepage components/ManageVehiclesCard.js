@@ -121,6 +121,7 @@ const ManageVehiclesCard = () => {
               usersRV_ID: vehicle.usersRV_ID,
               carName: vehicle.carName,
               totalSpent: "0",
+              is_listed: vehicle.is_listed, // ✅ Store listing status
               imageUrl: imageData.images.length > 0
                 ? `http://localhost:8004/car_images/${imageData.images[0]}`
                 : "/default-placeholder.png",
@@ -166,6 +167,31 @@ const ManageVehiclesCard = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + vehicles.length) % vehicles.length);
   };
 
+  // ✅ Function to toggle vehicle listing status
+  const handleToggleListStatus = async (usersRV_ID, isListed) => {
+    try {
+      const endpoint = isListed ? "/api/unlist-vehicle/" : "/api/list-vehicle/";
+      const response = await fetch(`http://localhost:8004${endpoint}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `usersRV_ID=${usersRV_ID}`,
+        credentials: "include",
+      });
+
+      if (response.ok) {
+        setVehicles((prevVehicles) =>
+          prevVehicles.map((vehicle) =>
+            vehicle.usersRV_ID === usersRV_ID ? { ...vehicle, is_listed: isListed ? 0 : 1 } : vehicle
+          )
+        );
+      } else {
+        console.error("Failed to update listing status");
+      }
+    } catch (error) {
+      console.error("Error updating listing status:", error);
+    }
+  };
+
   return (
     <ManageVehiclesContainer>
       <TitleContainer>
@@ -201,7 +227,17 @@ const ManageVehiclesCard = () => {
           <NavButton onClick={handleNext} disabled={vehicles.length === 0}>→</NavButton>
         </NavigationContainer>
 
-        <StyledButton $color="black" $textColor="gold">LIST VEHICLE</StyledButton>
+        {vehicles.length > 0 && (
+          <StyledButton
+            $color={vehicles[currentIndex].is_listed ? "red" : "green"}
+            $textColor="white"
+            onClick={() =>
+              handleToggleListStatus(vehicles[currentIndex].usersRV_ID, vehicles[currentIndex].is_listed)
+            }
+          >
+            {vehicles[currentIndex].is_listed ? "UNLIST VEHICLE" : "LIST VEHICLE"}
+          </StyledButton>
+        )}
       </BottomButtonsContainer>
     </ManageVehiclesContainer>
   );
