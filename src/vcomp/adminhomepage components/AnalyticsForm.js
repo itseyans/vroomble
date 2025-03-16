@@ -57,8 +57,11 @@ const AnalyticsForm = () => {
   const [yearlyData, setYearlyData] = useState(null);
   const [fuelTypeData, setFuelTypeData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [mounted, setMounted] = useState(false); // Fix for hydration mismatch
 
   useEffect(() => {
+    setMounted(true);
+
     const fetchData = async () => {
       try {
         const res = await Promise.all([
@@ -84,6 +87,8 @@ const AnalyticsForm = () => {
 
     fetchData();
   }, []);
+
+  if (!mounted) return null; // Ensures it only renders on the client
 
   if (isLoading) {
     return <p>Loading data...</p>;
@@ -145,5 +150,5 @@ const AnalyticsForm = () => {
     </RightContainer>
   );
 };
-//reload
+
 export default AnalyticsForm;
