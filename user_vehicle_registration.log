@@ -4048,3 +4048,12 @@ sqlitecloud.exceptions.SQLiteCloudOperationalError: no such column: urv.is_liste
 2025-03-16 17:18:02,760 - DEBUG - cannot commit - no transaction is active
 2025-03-16 17:18:03,037 - DEBUG - cannot commit - no transaction is active
 2025-03-16 17:18:03,304 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:18:21,660 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:18:21,661 - INFO - \u2705 Tables initialized successfully.
+2025-03-16 17:18:21,714 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:18:23,544 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:18:23,545 - INFO - \u2705 Tables initialized successfully.
+2025-03-16 17:18:23,610 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:18:28,778 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:18:28,778 - INFO - \u2705 Tables initialized successfully.
+2025-03-16 17:18:28,831 - DEBUG - cannot commit - no transaction is active
