@@ -97,47 +97,43 @@ def get_current_user_id(request: Request):
     except jwt.PyJWTError:
         raise HTTPException(status_code=401, detail="Invalid token")
         
-# ✅ API to Add Maintenance Record
 @app.post("/api/add-maintenance/")
 async def add_maintenance(
+    users_ID: int = Depends(get_current_user_id),  # ✅ Extract `users_ID` from token
     UserRV_ID: int = Form(...),
     ChangeType: str = Form(...),
     Details: str = Form(...),
     Cost: float = Form(...),
     Date: str = Form(...),
-    images: Optional[List[UploadFile]] = File(None)  # ✅ Accept multiple images
+    images: Optional[List[UploadFile]] = File(None)  # ✅ Optional image upload
 ):
     try:
-        os.makedirs(UPLOAD_DIR, exist_ok=True)  # ✅ Ensure upload folder exists
-
         saved_filenames = []
-        for image in images or []:  # ✅ Ensure `images` is not None
-            if image:
-                extension = os.path.splitext(image.filename)[-1]
-                filename = f"Changes_{UserRV_ID}_{datetime.now().strftime('%Y%m%d%H%M%S%f')}_{uuid.uuid4().hex[:8]}{extension}"
-                image_path = os.path.join(UPLOAD_DIR, filename)
 
-                with open(image_path, "wb") as buffer:
-                    shutil.copyfileobj(image.file, buffer)
+        if images:
+            for image in images:
+                if image and isinstance(image, UploadFile):
+                    filename = f"Changes_{UserRV_ID}_{image.filename}"
+                    with open(f"uploads/{filename}", "wb") as buffer:
+                        shutil.copyfileobj(image.file, buffer)
+                    saved_filenames.append(filename)
 
-                saved_filenames.append(image_path)  # ✅ Store the file path, NOT the file
-
-        # ✅ Store only the `saved_filenames` paths in the database
-        image_paths_str = ",".join(saved_filenames) if saved_filenames else None
-
-        # ✅ Save to Database
-        with get_db_connection() as conn:
+        with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:
             cursor = conn.cursor()
             cursor.execute(
-                "INSERT INTO vehicle_maintenance (UserRV_ID, ChangeType, Details, Cost, Date, ImagePath) VALUES (?, ?, ?, ?, ?, ?)",
-                (UserRV_ID, ChangeType, Details, Cost, Date, image_paths_str)
+                """
+                INSERT INTO vehicle_maintenance (users_ID, UserRV_ID, ChangeType, Details, Cost, Date, ImagePath)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+                """,
+                (users_ID, UserRV_ID, ChangeType, Details, Cost, Date, ", ".join(saved_filenames) if saved_filenames else None),
             )
             conn.commit()
 
-        return {"message": "✅ Maintenance record added successfully!", "image_paths": saved_filenames}
+        return {"message": "✅ Maintenance record added successfully!", "filenames": saved_filenames}
 
-    except Exception as e:
-        return {"error": f"❌ Server error: {e}"}
+    except sqlitecloud.Error as e:
+        raise HTTPException(status_code=500, detail=f"Database error: {e}")
+
     
 # ✅ Delete Maintenance Record API
 @app.delete("/api/delete-maintenance/{MaintenanceID}")
