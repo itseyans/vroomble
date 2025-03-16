@@ -12,7 +12,7 @@ const AddPart = dynamic(() => import("@/vcomp/CarPartsRegistrationForm"), { ssr:
 const UserVerificationForm = dynamic(() => import("@/vcomp/adminhomepage components/UserVerificationForm"), { ssr: false });
 const ListingVerificationForm = dynamic(() => import("@/vcomp/adminhomepage components/ListingVerificationForm"), { ssr: false });
 const DefaultContainerForm = dynamic(() => import("@/vcomp/adminhomepage components/DefaultContainerForm"), { ssr: false });
-//lolomopanot
+
 // Styled Components
 const PageContainer = styled.div`
   width: 100%;
@@ -78,8 +78,7 @@ const AdminButtons = styled.button<{ $isDefault?: boolean }>`
 `;
 
 const AdminHomepage = () => {
-  const [selectedComponent, setSelectedComponent] = useState<string>(() => "default");
-
+  const [selectedComponent, setSelectedComponent] = useState<string>("default");
 
   const renderComponent = () => {
     switch (selectedComponent) {
