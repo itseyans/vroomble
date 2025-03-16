@@ -163,7 +163,7 @@ async def register_vehicle_with_image(
 @app.get("/api/user-vehicles/")
 async def get_user_vehicles(users_ID: int = Depends(get_current_user)):
     try:
-        with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:
+        with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:               
             cursor = conn.cursor()
 
             # ✅ Fetch user vehicles
@@ -254,6 +254,38 @@ async def get_vehicle_count(users_ID: int = Depends(get_current_user)):
     except Exception as e:
         logger.exception(f"❌ Unexpected error fetching vehicle count: {e}")
         return JSONResponse(status_code=500, content={"error": "Internal server error"})
+
+@app.get("/api/vehicle-details/{usersRV_ID}")
+async def get_vehicle_details(usersRV_ID: int):
+    try:
+        with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:
+            cursor = conn.cursor()
+
+            cursor.execute("""
+                SELECT c.Make, c.Model, c.Variant, c.Year, urv.Color, urv.Trim, urv.Mileage, urv.PlateEnd
+                FROM user_registered_vehicles urv
+                JOIN cars c ON urv.CarID = c.CarID
+                WHERE urv.UserRV_ID = ?
+            """, (usersRV_ID,))
+
+            vehicle = cursor.fetchone()
+            if not vehicle:
+                raise HTTPException(status_code=404, detail="Vehicle not found")
+
+            return {
+                "make": vehicle[0],
+                "model": vehicle[1],
+                "variant": vehicle[2],
+                "year": vehicle[3],
+                "color": vehicle[4],
+                "trim": vehicle[5],
+                "mileage": vehicle[6],
+                "plateEnd": vehicle[7],
+            }
+
+    except sqlitecloud.Error as e:
+        logger.error(f"❌ Error fetching vehicle details: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 # ✅ Root API Endpoint

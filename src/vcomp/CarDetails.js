@@ -73,21 +73,35 @@ const CarDetails = ({ onVehicleSelect }) => {
           return;
         }
 
-        const vehicleDetails = await Promise.all(
-          data.map(async (vehicle) => {
-            const imageResponse = await fetch(`http://localhost:8004/api/vehicle-images/${vehicle.usersRV_ID}`);
-            const imageData = await imageResponse.json();
+const vehicleDetails = await Promise.all(
+  data.map(async (vehicle) => {
+    const imageResponse = await fetch(`http://localhost:8004/api/vehicle-images/${vehicle.usersRV_ID}`);
+    const imageData = await imageResponse.json();
 
-            return {
-              usersRV_ID: vehicle.usersRV_ID,
-              carName: vehicle.carName,
-              year: vehicle.year,
-              imageUrl: imageData.images.length > 0
-                ? `http://localhost:8004/car_images/${imageData.images[0]}`
-                : "/default-placeholder.png",
-            };
-          })
-        );
+    // ✅ Fetch additional details from the backend
+    const detailsResponse = await fetch(`http://localhost:8004/api/vehicle-details/${vehicle.usersRV_ID}`);
+    const detailsData = await detailsResponse.json();
+
+    return {
+      usersRV_ID: vehicle.usersRV_ID,
+      carName: vehicle.carName, // ✅ Keep for dropdown selection
+      year: detailsData.year,
+      imageUrl: imageData.images.length > 0
+        ? `http://localhost:8004/car_images/${imageData.images[0]}`
+        : "/default-placeholder.png",
+
+      // ✅ New details added without modifying the existing structure
+      make: detailsData.make,
+      model: detailsData.model,
+      variant: detailsData.variant,
+      color: detailsData.color,
+      trim: detailsData.trim,
+      mileage: detailsData.mileage,
+      plateEnd: detailsData.plateEnd,
+    };
+  })
+);
+
 
         setVehicles(vehicleDetails);
 
@@ -132,19 +146,20 @@ const CarDetails = ({ onVehicleSelect }) => {
 
       {/* ✅ Vehicle Details */}
       <DetailsBox>
-        <DetailColumn>
-          <DetailItem>{selectedVehicle?.carName || "Unknown Car"}</DetailItem>
-          <DetailItem>{selectedVehicle?.year || "N/A"} Model</DetailItem>
-          <DetailItem>2.0L Naturally Aspirated I4</DetailItem>
-          <DetailItem>181 bhp (135kw)</DetailItem>
-        </DetailColumn>
-        <DetailColumn>
-          <DetailItem>Front-Engine</DetailItem>
-          <DetailItem>Rear Wheel Drive</DetailItem>
-          <DetailItem>1112 KG</DetailItem>
-          <DetailItem>6 Speed Trans</DetailItem>
-        </DetailColumn>
-      </DetailsBox>
+  <DetailColumn>
+    <DetailItem>{selectedVehicle?.make || "Unknown Make"}</DetailItem>
+    <DetailItem>{selectedVehicle?.model || "Unknown Model"}</DetailItem>
+    <DetailItem>{selectedVehicle?.variant || "N/A Variant"}</DetailItem>
+    <DetailItem>{selectedVehicle?.year || "N/A"} Model</DetailItem>
+  </DetailColumn>
+  <DetailColumn>
+    <DetailItem>Color: {selectedVehicle?.color || "N/A"}</DetailItem>
+    <DetailItem>Trim: {selectedVehicle?.trim || "N/A"}</DetailItem>
+    <DetailItem>Mileage: {selectedVehicle?.mileage || "N/A"} km</DetailItem>
+    <DetailItem>Plate End: {selectedVehicle?.plateEnd || "N/A"}</DetailItem>
+  </DetailColumn>
+</DetailsBox>
+
     </CarDetailsContainer>
   );
 };
