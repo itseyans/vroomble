@@ -2363,3 +2363,85 @@ sqlitecloud.exceptions.SQLiteCloudOperationalError: table vehicle_maintenance ha
 2025-03-16 22:58:23,030 - DEBUG - cannot commit - no transaction is active
 2025-03-16 22:58:23,030 - INFO - Vehicle maintenance table created successfully.
 2025-03-16 22:58:23,065 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:03:23,217 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:03:23,218 - INFO - Vehicle maintenance table created successfully.
+2025-03-16 23:03:23,250 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:51:19,291 - DEBUG - Calling on_part_begin with no data
+2025-03-16 23:51:19,292 - DEBUG - Calling on_header_field with data[42:61]
+2025-03-16 23:51:19,292 - DEBUG - Calling on_header_value with data[63:90]
+2025-03-16 23:51:19,292 - DEBUG - Calling on_header_end with no data
+2025-03-16 23:51:19,292 - DEBUG - Calling on_headers_finished with no data
+2025-03-16 23:51:19,292 - DEBUG - Calling on_part_data with data[94:96]
+2025-03-16 23:51:19,292 - DEBUG - Calling on_part_end with no data
+2025-03-16 23:51:19,292 - DEBUG - Calling on_part_begin with no data
+2025-03-16 23:51:19,292 - DEBUG - Calling on_header_field with data[140:159]
+2025-03-16 23:51:19,292 - DEBUG - Calling on_header_value with data[161:226]
+2025-03-16 23:51:19,292 - DEBUG - Calling on_header_end with no data
+2025-03-16 23:51:19,292 - DEBUG - Calling on_header_field with data[228:240]
+2025-03-16 23:51:19,292 - DEBUG - Calling on_header_value with data[242:252]
+2025-03-16 23:51:19,292 - DEBUG - Calling on_header_end with no data
+2025-03-16 23:51:19,292 - DEBUG - Calling on_headers_finished with no data
+2025-03-16 23:51:19,292 - DEBUG - Calling on_part_data with data[256:162209]
+2025-03-16 23:51:19,292 - DEBUG - Calling on_part_end with no data
+2025-03-16 23:51:19,292 - DEBUG - Calling on_end with no data
+2025-03-16 23:57:44,913 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:57:44,913 - INFO - Vehicle maintenance table created successfully.
+2025-03-16 23:57:44,949 - DEBUG - cannot commit - no transaction is active
+2025-03-16 23:58:44,793 - DEBUG - Calling on_part_begin with no data
+2025-03-16 23:58:44,794 - DEBUG - Calling on_header_field with data[42:61]
+2025-03-16 23:58:44,794 - DEBUG - Calling on_header_value with data[63:90]
+2025-03-16 23:58:44,794 - DEBUG - Calling on_header_end with no data
+2025-03-16 23:58:44,794 - DEBUG - Calling on_headers_finished with no data
+2025-03-16 23:58:44,794 - DEBUG - Calling on_part_data with data[94:96]
+2025-03-16 23:58:44,794 - DEBUG - Calling on_part_end with no data
+2025-03-16 23:58:44,794 - DEBUG - Calling on_part_begin with no data
+2025-03-16 23:58:44,794 - DEBUG - Calling on_header_field with data[140:159]
+2025-03-16 23:58:44,794 - DEBUG - Calling on_header_value with data[161:226]
+2025-03-16 23:58:44,795 - DEBUG - Calling on_header_end with no data
+2025-03-16 23:58:44,795 - DEBUG - Calling on_header_field with data[228:240]
+2025-03-16 23:58:44,795 - DEBUG - Calling on_header_value with data[242:252]
+2025-03-16 23:58:44,795 - DEBUG - Calling on_header_end with no data
+2025-03-16 23:58:44,795 - DEBUG - Calling on_headers_finished with no data
+2025-03-16 23:58:44,795 - DEBUG - Calling on_part_data with data[256:49152]
+2025-03-16 23:58:44,795 - DEBUG - Calling on_part_data with data[0:113057]
+2025-03-16 23:58:44,795 - DEBUG - Calling on_part_end with no data
+2025-03-16 23:58:44,795 - DEBUG - Calling on_end with no data
+2025-03-17 00:02:39,841 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:02:39,841 - INFO - Vehicle maintenance table created successfully.
+2025-03-17 00:02:39,882 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:03:31,311 - DEBUG - Calling on_part_begin with no data
+2025-03-17 00:03:31,311 - DEBUG - Calling on_header_field with data[42:61]
+2025-03-17 00:03:31,311 - DEBUG - Calling on_header_value with data[63:90]
+2025-03-17 00:03:31,311 - DEBUG - Calling on_header_end with no data
+2025-03-17 00:03:31,311 - DEBUG - Calling on_headers_finished with no data
+2025-03-17 00:03:31,311 - DEBUG - Calling on_part_data with data[94:96]
+2025-03-17 00:03:31,311 - DEBUG - Calling on_part_end with no data
+2025-03-17 00:03:31,312 - DEBUG - Calling on_part_begin with no data
+2025-03-17 00:03:31,312 - DEBUG - Calling on_header_field with data[140:159]
+2025-03-17 00:03:31,312 - DEBUG - Calling on_header_value with data[161:217]
+2025-03-17 00:03:31,312 - DEBUG - Calling on_header_end with no data
+2025-03-17 00:03:31,312 - DEBUG - Calling on_header_field with data[219:231]
+2025-03-17 00:03:31,313 - DEBUG - Calling on_header_value with data[233:243]
+2025-03-17 00:03:31,313 - DEBUG - Calling on_header_end with no data
+2025-03-17 00:03:31,313 - DEBUG - Calling on_headers_finished with no data
+2025-03-17 00:03:31,313 - DEBUG - Calling on_part_data with data[247:162200]
+2025-03-17 00:03:31,313 - DEBUG - Calling on_part_end with no data
+2025-03-17 00:03:31,313 - DEBUG - Calling on_end with no data
+2025-03-17 00:11:42,841 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:11:42,841 - INFO - Vehicle maintenance table created successfully.
+2025-03-17 00:11:42,950 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:13:26,095 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:13:26,095 - INFO - Vehicle maintenance table created successfully.
+2025-03-17 00:13:26,127 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:23:26,671 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:23:26,671 - INFO - Vehicle maintenance table created successfully.
+2025-03-17 00:23:26,707 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:23:56,585 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:23:56,587 - INFO - Vehicle maintenance table created successfully.
+2025-03-17 00:23:56,620 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:27:04,802 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:27:04,802 - INFO - Vehicle maintenance table created successfully.
+2025-03-17 00:27:04,840 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:42:47,792 - DEBUG - cannot commit - no transaction is active
+2025-03-17 00:42:47,793 - INFO - Vehicle maintenance table created successfully.
+2025-03-17 00:42:47,829 - DEBUG - cannot commit - no transaction is active
