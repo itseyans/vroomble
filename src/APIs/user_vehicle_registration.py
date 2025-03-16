@@ -284,11 +284,11 @@ async def get_vehicle_details(usersRV_ID: int):
             }
 
     except sqlitecloud.Error as e:
-        logger.error(f"❌ Error fetching vehicle details: {e}")
+        logger.error(f" Error fetching vehicle details: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
 # Root API Endpoint
 @app.get("/")
 async def root():
-    return {"message": "🚗 User Vehicle Registration API is running"}
+    return {"message": " User Vehicle Registration API is running"}

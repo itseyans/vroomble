@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-// ✅ Styled Components
+//  Styled Components
 const CarDetailsContainer = styled.div`
   font-family: sans-serif;
   width: 600px;
@@ -78,19 +78,19 @@ const vehicleDetails = await Promise.all(
     const imageResponse = await fetch(`http://localhost:8004/api/vehicle-images/${vehicle.usersRV_ID}`);
     const imageData = await imageResponse.json();
 
-    // ✅ Fetch additional details from the backend
+    //  Fetch additional details from the backend
     const detailsResponse = await fetch(`http://localhost:8004/api/vehicle-details/${vehicle.usersRV_ID}`);
     const detailsData = await detailsResponse.json();
 
     return {
       usersRV_ID: vehicle.usersRV_ID,
-      carName: vehicle.carName, // ✅ Keep for dropdown selection
+      carName: vehicle.carName, // =====--or dropdown selection
       year: detailsData.year,
       imageUrl: imageData.images.length > 0
         ? `http://localhost:8004/car_images/${imageData.images[0]}`
         : "/default-placeholder.png",
 
-      // ✅ New details added without modifying the existing structure
+      //  New details added without modifying the existing structure
       make: detailsData.make,
       model: detailsData.model,
       variant: detailsData.variant,
@@ -107,7 +107,7 @@ const vehicleDetails = await Promise.all(
 
         if (vehicleDetails.length > 0) {
           setSelectedVehicle(vehicleDetails[0]);
-          onVehicleSelect(vehicleDetails[0]); // ✅ Pass selected vehicle up
+          onVehicleSelect(vehicleDetails[0]); //  Pass selected vehicle up
         }
       } catch (error) {
         console.error("Error fetching vehicles:", error);
@@ -121,12 +121,12 @@ const vehicleDetails = await Promise.all(
     const vehicleId = parseInt(event.target.value, 10);
     const selected = vehicles.find((v) => v.usersRV_ID === vehicleId);
     setSelectedVehicle(selected);
-    onVehicleSelect(selected); // ✅ Notify parent
+    onVehicleSelect(selected); //  Notify parent
   };
 
   return (
     <CarDetailsContainer>
-      {/* ✅ Title with Dropdown */}
+      {/*  Title with Dropdown */}
       <TitleContainer>
         <CarSelect onChange={handleVehicleChange} value={selectedVehicle?.usersRV_ID || ""}>
           {vehicles.map((vehicle) => (
@@ -137,14 +137,14 @@ const vehicleDetails = await Promise.all(
         </CarSelect>
       </TitleContainer>
 
-      {/* ✅ Vehicle Image */}
+      {/*  Vehicle Image */}
       <CarImage 
         src={selectedVehicle?.imageUrl} 
         alt={selectedVehicle?.carName || "Car Image"} 
-        onError={(e) => e.target.src = "/default-placeholder.png"} // ✅ Fallback if image is missing
+        onError={(e) => e.target.src = "/default-placeholder.png"} //  Fallback if image is missing
       />
 
-      {/* ✅ Vehicle Details */}
+      {/*  Vehicle Details */}
       <DetailsBox>
   <DetailColumn>
     <DetailItem>{selectedVehicle?.make || "Unknown Make"}</DetailItem>
