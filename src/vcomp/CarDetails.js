@@ -32,6 +32,13 @@ const CarSelect = styled.select`
   border: 1px solid #ccc;
 `;
 
+const ImageContainer = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const CarImage = styled.img`
   width: 100%;
   display: block;
@@ -72,19 +79,6 @@ const Button = styled.button`
   }
 `;
 
-const ImageControls = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-`;
-
-const CenteredButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  grid-column: span 3;
-  margin-top: 10px;
-`;
-
 const ArrowButton = styled.button`
   background-color: #ffc629;
   border: none;
@@ -93,10 +87,21 @@ const ArrowButton = styled.button`
   font-size: 1.5em;
   border-radius: 5px;
   transition: background 0.3s;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 
   &:hover {
     background-color: white;
   }
+`;
+
+const PrevButton = styled(ArrowButton)`
+  left: 10px;
+`;
+
+const NextButton = styled(ArrowButton)`
+  right: 10px;
 `;
 
 const CarDetails = ({ onVehicleSelect }) => {
@@ -185,12 +190,11 @@ const CarDetails = ({ onVehicleSelect }) => {
         </CarSelect>
       </TitleContainer>
 
-      <CarImage src={selectedVehicle?.images[currentImageIndex]} alt={selectedVehicle?.carName || "Car Image"} />
-
-      <ImageControls>
-        <ArrowButton onClick={handlePrevImage}>◀</ArrowButton>
-        <ArrowButton onClick={handleNextImage}>▶</ArrowButton>
-      </ImageControls>
+      <ImageContainer>
+        <PrevButton onClick={handlePrevImage}>◀</PrevButton>
+        <CarImage src={selectedVehicle?.images[currentImageIndex]} alt={selectedVehicle?.carName || "Car Image"} />
+        <NextButton onClick={handleNextImage}>▶</NextButton>
+      </ImageContainer>
 
       <DetailsBox>
         <DetailColumn>
@@ -205,9 +209,7 @@ const CarDetails = ({ onVehicleSelect }) => {
           <DetailItem>Mileage: {selectedVehicle?.mileage || "N/A"} km</DetailItem>
           <DetailItem>Plate End: {selectedVehicle?.plateEnd || "N/A"}</DetailItem>
         </DetailColumn>
-        <CenteredButtonContainer>
-          <Button>Add Image</Button>
-        </CenteredButtonContainer>
+        <Button>Add Image</Button>
       </DetailsBox>
     </CarDetailsContainer>
   );
