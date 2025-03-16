@@ -72,57 +72,6 @@ def create_maintenance_table():
 # ✅ Ensure Table Exists
 create_maintenance_table()
 
-@app.post("/api/add-maintenance/")
-async def add_maintenance(
-    UserRV_ID: int = Form(...),
-    ChangeType: str = Form(...),
-    Details: str = Form(...),
-    Cost: float = Form(...),
-    Date: str = Form(...),
-    images: list[UploadFile] = File(None)
-):
-    print(f"🟢 Received UserRV_ID: {UserRV_ID}")
-    print(f"🟢 Received Images: {len(images) if images else 0}")
-
-    try:
-        os.makedirs(UPLOAD_DIR, exist_ok=True)
-
-        saved_filenames = []
-        if images:
-            for image in images:
-                if image:
-                    extension = os.path.splitext(image.filename)[-1]
-                    filename = f"Changes_{UserRV_ID}_{datetime.now().strftime('%Y%m%d%H%M%S%f')}_{uuid.uuid4().hex[:8]}{extension}"
-                    image_path = os.path.join(UPLOAD_DIR, filename)
-
-                    print(f"🟢 Saving file: {image_path}")  # Debugging
-
-                    with open(image_path, "wb") as buffer:
-                        shutil.copyfileobj(image.file, buffer)
-
-                    saved_filenames.append(filename)
-
-        # ✅ Fix 2: Store Image Path Correctly in Database
-        image_paths_str = ",".join(saved_filenames) if saved_filenames else None
-
-        with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:
-            cursor = conn.cursor()
-            cursor.execute(
-                """
-                INSERT INTO vehicle_maintenance (UserRV_ID, ChangeType, Details, Cost, Date, ImagePath)
-                VALUES (?, ?, ?, ?, ?, ?)
-                """,
-                (UserRV_ID, ChangeType, Details, Cost, Date, image_paths_str),
-            )
-            conn.commit()
-
-        print(f"✅ Saved images: {saved_filenames}")
-        return {"message": "✅ Maintenance record added successfully!", "filenames": saved_filenames}
-
-    except sqlitecloud.Error as e:
-        print(f"❌ Database Error: {e}")
-        raise HTTPException(status_code=500, detail=f"Database error: {e}")
-
         
 @app.post("/api/add-maintenance/")
 async def add_maintenance(
@@ -143,17 +92,30 @@ async def add_maintenance(
         if images:
             for image in images:
                 if image:
-                    extension = os.path.splitext(image.filename)[-1]
-                    filename = f"Changes_{UserRV_ID}_{datetime.now().strftime('%Y%m%d%H%M%S%f')}_{uuid.uuid4().hex[:8]}{extension}"
-                    image_path = os.path.join(UPLOAD_DIR, filename)
+                    # ✅ Extract the original filename
+                    original_filename = os.path.basename(image.filename)
+                    
+                    # ✅ Ensure safe filename (remove spaces, special chars)
+                    safe_filename = original_filename.replace(" ", "_").replace("(", "").replace(")", "")
 
-                    print(f"🟢 Saving file: {image_path}")  # Debugging
+                    # ✅ Prefix with Changes_UserRV_ID_
+                    new_filename = f"Changes_UserRV_{UserRV_ID}_{safe_filename}"
 
-                    with open(image_path, "wb") as buffer:
+                    # ✅ Check if file exists and avoid overwriting
+                    file_path = os.path.join(UPLOAD_DIR, new_filename)
+                    if os.path.exists(file_path):
+                        # Append timestamp if file already exists
+                        new_filename = f"Changes_UserRV_{UserRV_ID}_{datetime.now().strftime('%Y%m%d%H%M%S')}_{safe_filename}"
+                        file_path = os.path.join(UPLOAD_DIR, new_filename)
+
+                    print(f"🟢 Saving file: {file_path}")  # Debugging
+
+                    with open(file_path, "wb") as buffer:
                         shutil.copyfileobj(image.file, buffer)
 
-                    saved_filenames.append(filename)
+                    saved_filenames.append(new_filename)
 
+        # ✅ Store file paths in database
         image_paths_str = ",".join(saved_filenames) if saved_filenames else None
 
         with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:
@@ -171,9 +133,8 @@ async def add_maintenance(
 
     except sqlitecloud.Error as e:
         raise HTTPException(status_code=500, detail=f"Database error: {e}")
-
-
-
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Server error: {e}")
 
 # ✅ Delete Maintenance Record API
 @app.delete("/api/delete-maintenance/{MaintenanceID}")
