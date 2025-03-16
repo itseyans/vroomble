@@ -3570,3 +3570,481 @@ sqlitecloud.exceptions.SQLiteCloudOperationalError: table user_registered_vehicl
 2025-03-16 16:38:20,220 - DEBUG - cannot commit - no transaction is active
 2025-03-16 16:38:20,737 - DEBUG - cannot commit - no transaction is active
 2025-03-16 16:38:23,989 - DEBUG - cannot commit - no transaction is active
+2025-03-16 16:44:46,106 - DEBUG - cannot commit - no transaction is active
+2025-03-16 16:44:46,107 - INFO - \u2705 Tables initialized successfully.
+2025-03-16 16:44:46,151 - DEBUG - cannot commit - no transaction is active
+2025-03-16 16:44:52,193 - DEBUG - cannot commit - no transaction is active
+2025-03-16 16:44:52,194 - INFO - \u2705 Tables initialized successfully.
+2025-03-16 16:44:52,245 - DEBUG - cannot commit - no transaction is active
+2025-03-16 16:46:09,744 - DEBUG - cannot rollback - no transaction is active
+2025-03-16 16:46:09,744 - ERROR - Rolling back transaction - error 'no such column: urv.is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 169, in get_user_vehicles
+    cursor.execute(
+    ~~~~~~~~~~~~~~^
+        """
+        ^^^
+    ...<5 lines>...
+        (users_ID,)
+        ^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: no such column: urv.is_listed
+2025-03-16 16:46:09,750 - ERROR - \u274c Error fetching user vehicles: no such column: urv.is_listed
+2025-03-16 16:46:10,121 - DEBUG - cannot commit - no transaction is active
+2025-03-16 16:46:12,667 - DEBUG - cannot commit - no transaction is active
+2025-03-16 16:46:13,022 - DEBUG - cannot rollback - no transaction is active
+2025-03-16 16:46:13,022 - ERROR - Rolling back transaction - error 'no such column: urv.is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 169, in get_user_vehicles
+    cursor.execute(
+    ~~~~~~~~~~~~~~^
+        """
+        ^^^
+    ...<5 lines>...
+        (users_ID,)
+        ^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: no such column: urv.is_listed
+2025-03-16 16:46:13,024 - ERROR - \u274c Error fetching user vehicles: no such column: urv.is_listed
+2025-03-16 16:46:13,296 - DEBUG - cannot commit - no transaction is active
+2025-03-16 16:46:28,071 - DEBUG - cannot commit - no transaction is active
+2025-03-16 16:46:28,445 - DEBUG - cannot rollback - no transaction is active
+2025-03-16 16:46:28,445 - ERROR - Rolling back transaction - error 'no such column: urv.is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 169, in get_user_vehicles
+    cursor.execute(
+    ~~~~~~~~~~~~~~^
+        """
+        ^^^
+    ...<5 lines>...
+        (users_ID,)
+        ^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: no such column: urv.is_listed
+2025-03-16 16:46:28,446 - ERROR - \u274c Error fetching user vehicles: no such column: urv.is_listed
+2025-03-16 16:46:28,762 - DEBUG - cannot commit - no transaction is active
+2025-03-16 16:46:29,028 - DEBUG - cannot rollback - no transaction is active
+2025-03-16 16:46:29,028 - ERROR - Rolling back transaction - error 'no such column: urv.is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 169, in get_user_vehicles
+    cursor.execute(
+    ~~~~~~~~~~~~~~^
+        """
+        ^^^
+    ...<5 lines>...
+        (users_ID,)
+        ^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: no such column: urv.is_listed
+2025-03-16 16:46:29,030 - ERROR - \u274c Error fetching user vehicles: no such column: urv.is_listed
+2025-03-16 16:46:29,350 - DEBUG - cannot commit - no transaction is active
+2025-03-16 16:46:29,628 - DEBUG - cannot commit - no transaction is active
+2025-03-16 16:47:42,876 - DEBUG - cannot commit - no transaction is active
+2025-03-16 16:47:43,953 - DEBUG - cannot rollback - no transaction is active
+2025-03-16 16:47:43,954 - ERROR - Rolling back transaction - error 'no such column: urv.is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 169, in get_user_vehicles
+    cursor.execute(
+    ~~~~~~~~~~~~~~^
+        """
+        ^^^
+    ...<5 lines>...
+        (users_ID,)
+        ^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: no such column: urv.is_listed
+2025-03-16 16:47:43,956 - ERROR - \u274c Error fetching user vehicles: no such column: urv.is_listed
+2025-03-16 16:47:44,263 - DEBUG - cannot commit - no transaction is active
+2025-03-16 16:48:29,250 - DEBUG - cannot commit - no transaction is active
+2025-03-16 16:48:29,250 - INFO - \u2705 Tables initialized successfully.
+2025-03-16 16:48:29,306 - DEBUG - cannot commit - no transaction is active
+2025-03-16 16:48:52,979 - DEBUG - cannot commit - no transaction is active
+2025-03-16 16:48:53,343 - DEBUG - cannot rollback - no transaction is active
+2025-03-16 16:48:53,343 - ERROR - Rolling back transaction - error 'no such column: urv.is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 169, in get_user_vehicles
+    cursor.execute(
+    ~~~~~~~~~~~~~~^
+        """
+        ^^^
+    ...<5 lines>...
+        (users_ID,)
+        ^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: no such column: urv.is_listed
+2025-03-16 16:48:53,349 - ERROR - \u274c Error fetching user vehicles: no such column: urv.is_listed
+2025-03-16 16:48:53,620 - DEBUG - cannot commit - no transaction is active
+2025-03-16 16:48:53,884 - DEBUG - cannot rollback - no transaction is active
+2025-03-16 16:48:53,884 - ERROR - Rolling back transaction - error 'no such column: urv.is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 169, in get_user_vehicles
+    cursor.execute(
+    ~~~~~~~~~~~~~~^
+        """
+        ^^^
+    ...<5 lines>...
+        (users_ID,)
+        ^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: no such column: urv.is_listed
+2025-03-16 16:48:53,886 - ERROR - \u274c Error fetching user vehicles: no such column: urv.is_listed
+2025-03-16 16:48:54,212 - DEBUG - cannot commit - no transaction is active
+2025-03-16 16:48:54,487 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:02:07,333 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:02:07,660 - DEBUG - cannot rollback - no transaction is active
+2025-03-16 17:02:07,660 - ERROR - Rolling back transaction - error 'no such column: urv.is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 169, in get_user_vehicles
+    cursor.execute(
+    ~~~~~~~~~~~~~~^
+        """
+        ^^^
+    ...<5 lines>...
+        (users_ID,)
+        ^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: no such column: urv.is_listed
+2025-03-16 17:02:07,662 - ERROR - \u274c Error fetching user vehicles: no such column: urv.is_listed
+2025-03-16 17:02:09,642 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:02:09,961 - DEBUG - cannot rollback - no transaction is active
+2025-03-16 17:02:09,961 - ERROR - Rolling back transaction - error 'no such column: urv.is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 169, in get_user_vehicles
+    cursor.execute(
+    ~~~~~~~~~~~~~~^
+        """
+        ^^^
+    ...<5 lines>...
+        (users_ID,)
+        ^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: no such column: urv.is_listed
+2025-03-16 17:02:09,963 - ERROR - \u274c Error fetching user vehicles: no such column: urv.is_listed
+2025-03-16 17:02:10,241 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:17:14,636 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:17:14,992 - DEBUG - cannot rollback - no transaction is active
+2025-03-16 17:17:14,993 - ERROR - Rolling back transaction - error 'no such column: urv.is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 169, in get_user_vehicles
+    cursor.execute(
+    ~~~~~~~~~~~~~~^
+        """
+        ^^^
+    ...<5 lines>...
+        (users_ID,)
+        ^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: no such column: urv.is_listed
+2025-03-16 17:17:14,994 - ERROR - \u274c Error fetching user vehicles: no such column: urv.is_listed
+2025-03-16 17:17:15,343 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:17:15,649 - DEBUG - cannot rollback - no transaction is active
+2025-03-16 17:17:15,650 - ERROR - Rolling back transaction - error 'no such column: urv.is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 169, in get_user_vehicles
+    cursor.execute(
+    ~~~~~~~~~~~~~~^
+        """
+        ^^^
+    ...<5 lines>...
+        (users_ID,)
+        ^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: no such column: urv.is_listed
+2025-03-16 17:17:15,651 - ERROR - \u274c Error fetching user vehicles: no such column: urv.is_listed
+2025-03-16 17:17:16,034 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:17:16,340 - DEBUG - cannot rollback - no transaction is active
+2025-03-16 17:17:16,341 - ERROR - Rolling back transaction - error 'no such column: urv.is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 169, in get_user_vehicles
+    cursor.execute(
+    ~~~~~~~~~~~~~~^
+        """
+        ^^^
+    ...<5 lines>...
+        (users_ID,)
+        ^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: no such column: urv.is_listed
+2025-03-16 17:17:16,342 - ERROR - \u274c Error fetching user vehicles: no such column: urv.is_listed
+2025-03-16 17:17:16,623 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:17:16,984 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:17:17,335 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:17:18,128 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:17:18,443 - DEBUG - cannot rollback - no transaction is active
+2025-03-16 17:17:18,444 - ERROR - Rolling back transaction - error 'no such column: urv.is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 169, in get_user_vehicles
+    cursor.execute(
+    ~~~~~~~~~~~~~~^
+        """
+        ^^^
+    ...<5 lines>...
+        (users_ID,)
+        ^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: no such column: urv.is_listed
+2025-03-16 17:17:18,445 - ERROR - \u274c Error fetching user vehicles: no such column: urv.is_listed
+2025-03-16 17:17:18,716 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:17:19,017 - DEBUG - cannot rollback - no transaction is active
+2025-03-16 17:17:19,017 - ERROR - Rolling back transaction - error 'no such column: urv.is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 169, in get_user_vehicles
+    cursor.execute(
+    ~~~~~~~~~~~~~~^
+        """
+        ^^^
+    ...<5 lines>...
+        (users_ID,)
+        ^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: no such column: urv.is_listed
+2025-03-16 17:17:19,018 - ERROR - \u274c Error fetching user vehicles: no such column: urv.is_listed
+2025-03-16 17:17:19,290 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:17:19,616 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:18:01,193 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:18:01,193 - INFO - \u2705 Tables initialized successfully.
+2025-03-16 17:18:01,246 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:18:01,833 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:18:02,160 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:18:02,481 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:18:02,760 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:18:03,037 - DEBUG - cannot commit - no transaction is active
+2025-03-16 17:18:03,304 - DEBUG - cannot commit - no transaction is active
