@@ -132,17 +132,20 @@ const CarDetails = ({ onVehicleSelect }) => {
 
       {/* ✅ Vehicle Details */}
       <DetailsBox>
+        {/* Left Column: Make, Model, Variant, Year */}
         <DetailColumn>
-          <DetailItem>{selectedVehicle?.carName || "Unknown Car"}</DetailItem>
-          <DetailItem>{selectedVehicle?.year || "N/A"} Model</DetailItem>
-          <DetailItem>2.0L Naturally Aspirated I4</DetailItem>
-          <DetailItem>181 bhp (135kw)</DetailItem>
+          <DetailItem>Make: {selectedVehicle?.Make || "Unknown"}</DetailItem>
+          <DetailItem>Model: {selectedVehicle?.Model || "Unknown"}</DetailItem>
+          <DetailItem>Variant: {selectedVehicle?.Variant || "Unknown"}</DetailItem>
+          <DetailItem>Year: {selectedVehicle?.Year || "N/A"}</DetailItem>
         </DetailColumn>
+
+        {/* Right Column: Color, Trim Color, Mileage, Plate End */}
         <DetailColumn>
-          <DetailItem>Front-Engine</DetailItem>
-          <DetailItem>Rear Wheel Drive</DetailItem>
-          <DetailItem>1112 KG</DetailItem>
-          <DetailItem>6 Speed Trans</DetailItem>
+          <DetailItem>Color: {selectedVehicle?.Color || "N/A"}</DetailItem>
+          <DetailItem>Trim Color: {selectedVehicle?.Trim || "N/A"}</DetailItem>
+          <DetailItem>Mileage: {selectedVehicle?.Mileage || "N/A"} km</DetailItem>
+          <DetailItem>Plate End: {selectedVehicle?.PlateEnd || "N/A"}</DetailItem>
         </DetailColumn>
       </DetailsBox>
     </CarDetailsContainer>
