@@ -189,35 +189,7 @@ async def update_maintenance(
     
     except sqlitecloud.Error as e:
         raise HTTPException(status_code=500, detail=f"Database error: {e}")
-    
-@app.post("/api/upload-vehicle-images/")
-async def upload_vehicle_images(
-    UserRV_ID: int = Form(...),
-    images: list[UploadFile] = File(...)
-):
-    try:
-        os.makedirs(UPLOAD_DIR, exist_ok=True)  # Ensure the directory exists
 
-        saved_filenames = []
-        for image in images:
-            if image:
-                extension = os.path.splitext(image.filename)[-1]
-                timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
-                filename = f"{UserRV_ID}_{timestamp}{extension}"  # Format: UserRV_ID_Timestamp.extension
-                image_path = os.path.join(UPLOAD_DIR, filename)
-
-                with open(image_path, "wb") as buffer:
-                    shutil.copyfileobj(image.file, buffer)
-
-                saved_filenames.append(filename)
-
-        return {"message": "Images uploaded successfully!", "file_paths": saved_filenames}
-
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Server error: {e}")
-
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Server error: {e}")
     
 @app.get("/api/get-maintenance-logs/")
 async def get_maintenance_logs(users_ID: int = Depends(get_current_user_id)):

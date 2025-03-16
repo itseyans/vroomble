@@ -120,20 +120,14 @@ def insert_image_path(usersRV_ID: int, image_path: str):
 
             cursor.execute(
                 """
-                INSERT INTO vehicle_images (usersRV_ID, ImagePath)
-                VALUES (?, ?)
+                INSERT INTO vehicle_images (usersRV_ID, ImagePath, user_registered_vehicle)
+                VALUES (?, ?, 'user_registered_vehicle')
                 """,
                 (usersRV_ID, image_path),
             )
 
             conn.commit()
             print(f"✅ Image {image_path} saved in database for UserRV_ID {usersRV_ID}")
-
-    except sqlitecloud.Error as e:
-        print(f"❌ Failed to insert image path: {e}")
-        raise HTTPException(status_code=500, detail=f"Database error: {e}")
-
-
     except sqlitecloud.Error as e:
         print(f"❌ Failed to insert image path: {e}")
         raise HTTPException(status_code=500, detail=f"Database error: {e}")
@@ -145,23 +139,20 @@ async def upload_vehicle_images(
     images: list[UploadFile] = File(...)
 ):
     """
-    Handles the upload of vehicle images, stores them in the `uploads/` directory,
-    and inserts image paths into the `vehicle_images` table.
+    Handles the upload of vehicle images and stores them in the correct `uploads/` directory.
+    Filenames follow the format: `UserRV_ID_original_filename.extension`
     """
     try:
         saved_filenames = []
 
         for image in images:
             if image:
-                filename = image.filename  # ✅ Keep original naming
+                # ✅ Frontend is already including `UserRV_ID_` in the filename, so don't add it again
+                filename = image.filename  
                 image_path = os.path.join(UPLOAD_DIR, filename)  # ✅ Store in `uploads/`
 
-                # Save image to disk
                 with open(image_path, "wb") as buffer:
                     shutil.copyfileobj(image.file, buffer)
-
-                # Insert into database (Fix: No `user_registered_vehicle` column)
-                insert_image_path(UserRV_ID, filename)  
 
                 saved_filenames.append(filename)
 
@@ -169,8 +160,7 @@ async def upload_vehicle_images(
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Server error: {e}")
-
-
+    
 
 @app.get("/api/user-vehicles/")
 async def get_user_vehicles(users_ID: int = Depends(get_current_user)):

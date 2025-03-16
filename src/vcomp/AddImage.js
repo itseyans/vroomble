@@ -79,7 +79,7 @@ const AddImage = ({ usersRV_ID }) => {
     setSelectedImages([...selectedImages, ...files]);
   };
 
-const handleUpload = async () => {
+  const handleUpload = async () => {
     if (!usersRV_ID) {
       alert("❌ Please select a vehicle first.");
       return;
@@ -118,7 +118,6 @@ const handleUpload = async () => {
       alert("An error occurred while uploading the images.");
     }
 };
-
 
   return (
     <>
