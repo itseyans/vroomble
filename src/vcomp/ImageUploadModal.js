@@ -96,25 +96,26 @@ const Button = styled.button`
 const ImageUploadModal = ({ onClose, onUpload, usersRV_ID }) => {
   const [selectedImages, setSelectedImages] = useState([]);
 
-  const handleImageChange = (event) => {
-    const files = Array.from(event.target.files); // Convert FileList to Array
-    if (files.length > 3) {
-      alert("❌ You can only upload up to 3 images.");
-      return;
-    }
+const handleImageChange = (event) => {
+  const files = Array.from(event.target.files); // Convert FileList to Array
+  if (files.length > 3) {
+    alert("❌ You can only upload up to 3 images.");
+    return;
+  }
 
-    // ✅ Validate all selected files
-    const validImages = files.filter(file => file.type.startsWith("image/"));
-    if (validImages.length !== files.length) {
-      alert("❌ Some files are not images. Please select only image files.");
-      return;
-    }
+  // ✅ Ensure images are stored as `File` objects
+  const validImages = files.filter(file => file instanceof File);
+  if (validImages.length !== files.length) {
+    alert("❌ Some files are not valid images.");
+    return;
+  }
 
-    setSelectedImages(validImages); // Store selected images in state
-  };
+  setSelectedImages(validImages); // ✅ Store `File` objects in state
+};
+
 
 const handleUpload = async () => {
-  console.log("✅ Received Vehicle ID in Modal:", usersRV_ID); // Debugging
+  console.log("✅ Received Vehicle ID in Modal:", usersRV_ID);
 
   if (!usersRV_ID) {
     alert("❌ Vehicle ID is missing. Register a vehicle first.");
@@ -127,14 +128,14 @@ const handleUpload = async () => {
   }
 
   const formData = new FormData();
-  formData.append("usersRV_ID", usersRV_ID);
+  formData.append("UserRV_ID", usersRV_ID);
 
-  selectedImages.forEach((image, index) => {
-    formData.append("images", image);  // ✅ Append all selected images
+  selectedImages.forEach((image) => {
+    formData.append("images", image);  // ✅ Append only images
   });
 
   try {
-    const response = await fetch("http://localhost:8004/api/upload-vehicle-images/", {
+    const response = await fetch("http://localhost:8005/api/upload-vehicle-images/", {
       method: "POST",
       body: formData,
     });
@@ -147,13 +148,16 @@ const handleUpload = async () => {
       onUpload(data.file_paths);
       onClose();
     } else {
-      alert(`❌ Failed to upload images: ${data.detail}`);
+      console.error("❌ Upload failed:", data);
+      alert(`❌ Failed to upload images: ${JSON.stringify(data)}`);
     }
   } catch (error) {
     console.error("❌ Image Upload Error:", error);
     alert("An error occurred while uploading the images.");
   }
 };
+
+
 
 
   return (

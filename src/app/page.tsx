@@ -13,7 +13,6 @@ const ListingContainer = styled.div`
   flex-wrap: wrap; /* Ensure responsiveness */
 `;
 
-
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
