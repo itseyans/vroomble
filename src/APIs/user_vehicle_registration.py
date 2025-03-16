@@ -9,22 +9,22 @@ from dotenv import load_dotenv
 import jwt
 from fastapi.staticfiles import StaticFiles
 
-# ✅ Load Environment Variables
+# Load Environment Variables
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
-# ✅ Fetch API Key and Secret Key
+# Fetch API Key and Secret Key
 SQLITE_CLOUD_API_KEY = os.environ.get("SQLITE_CLOUD_API_KEY")
 SECRET_KEY = os.environ.get("SECRET_KEY", "your_secret_key")
 ALGORITHM = "HS256"
 
-# ✅ SQLite Cloud Connection String
+# SQLite Cloud Connection String
 CLOUD_DATABASE_CONNECTION_STRING = f"sqlitecloud://cuf1maatnz.g6.sqlite.cloud:8860/Vroomble_Database.db?apikey={SQLITE_CLOUD_API_KEY}"
 
-# ✅ FastAPI App Initialization
+# FastAPI App Initialization
 app = FastAPI()
 
-# ✅ CORS Middleware
+# CORS Middleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],
@@ -33,7 +33,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ✅ Logging Configuration
+# Logging Configuration
 logging.basicConfig(
     filename="user_vehicle_registration.log",
     level=logging.DEBUG,
@@ -41,18 +41,18 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ✅ Set Dynamic Upload Directory
+# Set Dynamic Upload Directory
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_DIR = os.path.join(BASE_DIR, "uploads")
 os.makedirs(UPLOAD_DIR, exist_ok=True)  # Ensure uploads folder exists
 
-# ✅ Serve Static Files for Images
+# Serve Static Files for Images
 if not os.path.exists(UPLOAD_DIR):
     os.makedirs(UPLOAD_DIR)
 
 app.mount("/car_images", StaticFiles(directory=UPLOAD_DIR), name="car_images")
 
-# ✅ Create Tables for Vehicles & Images
+# Create Tables for Vehicles & Images
 def create_tables():
     try:
         with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:
@@ -86,15 +86,15 @@ def create_tables():
             )
 
             conn.commit()
-            logger.info("✅ Tables initialized successfully.")
+            logger.info("Tables initialized successfully.")
     except sqlitecloud.Error as e:
-        logger.error(f"❌ Database initialization error: {e}")
+        logger.error(f"Database initialization error: {e}")
         raise HTTPException(status_code=500, detail="Database initialization failed.")
 
-# ✅ Ensure Tables Exist
+# Ensure Tables Exist
 create_tables()
 
-# ✅ Extract users_ID from JWT Token
+# Extract users_ID from JWT Token
 def get_current_user(access_token: str = Cookie(None)):
     if not access_token:
         raise HTTPException(status_code=401, detail="Not authenticated")
@@ -110,7 +110,7 @@ def get_current_user(access_token: str = Cookie(None)):
     except jwt.PyJWTError:
         raise HTTPException(status_code=401, detail="Invalid token")
 
-# ✅ Register Vehicle API with Image
+# Register Vehicle API with Image
 @app.post("/api/register-vehicle-with-image/")
 async def register_vehicle_with_image(
     users_ID: int = Depends(get_current_user),
@@ -125,7 +125,7 @@ async def register_vehicle_with_image(
         with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:
             cursor = conn.cursor()
 
-            # ✅ Insert vehicle details
+            # Insert vehicle details
             cursor.execute(
                 """
                 INSERT INTO user_registered_vehicles (users_ID, CarID, Trim, PlateEnd, Color, Mileage)
@@ -134,15 +134,15 @@ async def register_vehicle_with_image(
                 (users_ID, carID, trim, plateEnd, color, mileage),
             )
 
-            usersRV_ID = cursor.lastrowid  # ✅ Get the generated usersRV_ID
+            usersRV_ID = cursor.lastrowid  # Get the generated usersRV_ID
 
-            # ✅ Save Image to `uploads/`
+            # Save Image to `uploads/`
             filename = f"{usersRV_ID}_{image.filename}"
             image_path = os.path.join(UPLOAD_DIR, filename)  
             with open(image_path, "wb") as buffer:
                 shutil.copyfileobj(image.file, buffer)
 
-            # ✅ Store ONLY filename in database
+            # Store ONLY filename in database
             cursor.execute(
                 """
                 INSERT INTO vehicle_images (usersRV_ID, ImagePath)
@@ -156,7 +156,7 @@ async def register_vehicle_with_image(
             return {"message": "User vehicle registered successfully with image", "usersRV_ID": usersRV_ID}
 
     except sqlitecloud.Error as e:
-        logger.error(f"❌ Database error: {e}")
+        logger.error(f"Database error: {e}")
         raise HTTPException(status_code=500, detail="Vehicle registration failed.")
 
 
@@ -166,7 +166,7 @@ async def get_user_vehicles(users_ID: int = Depends(get_current_user)):
         with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:               
             cursor = conn.cursor()
 
-            # ✅ Fetch user vehicles
+            # Fetch user vehicles
             cursor.execute(
                 """
                 SELECT urv.UserRV_ID, c.Make, c.Model, c.Variant, c.Year
@@ -185,14 +185,14 @@ async def get_user_vehicles(users_ID: int = Depends(get_current_user)):
             for vehicle in vehicles:
                 usersRV_ID = vehicle[0]
 
-                # ✅ Fetch the correct image filename
+                # Fetch the correct image filename
                 cursor.execute(
                     "SELECT ImagePath FROM vehicle_images WHERE usersRV_ID = ? LIMIT 1",
                     (usersRV_ID,),
                 )
                 image_row = cursor.fetchone()
 
-                # ✅ Use correct filename from database or fallback to default
+                # Use correct filename from database or fallback to default
                 image_filename = image_row[0] if image_row else "default.jpg"
                 image_url = f"http://localhost:8004/uploads/{image_filename}"
 
@@ -205,12 +205,12 @@ async def get_user_vehicles(users_ID: int = Depends(get_current_user)):
             return final_vehicles
 
     except sqlitecloud.Error as e:
-        logger.error(f"❌ Error fetching user vehicles: {e}")
+        logger.error(f"Error fetching user vehicles: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
                               
 
-# ✅ Fetch Images for a Registered Vehicle
+# Fetch Images for a Registered Vehicle
 @app.get("/api/vehicle-images/{usersRV_ID}")
 async def get_vehicle_images(usersRV_ID: int):
     try:
@@ -227,14 +227,14 @@ async def get_vehicle_images(usersRV_ID: int):
             if not images:
                 return {"message": "No images found for this vehicle"}
 
-            return {"images": [row[0] for row in images]}  # ✅ Returns only filenames
+            return {"images": [row[0] for row in images]}  # Returns only filenames
 
     except sqlitecloud.Error as e:
-        logger.error(f"❌ Error fetching vehicle images: {e}")
+        logger.error(f"Error fetching vehicle images: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
     
-# ✅ Fetch Vehicle Count for Logged-in User
+# Fetch Vehicle Count for Logged-in User
 @app.get("/user/vehicle-count")
 async def get_vehicle_count(users_ID: int = Depends(get_current_user)):
     try:
@@ -249,10 +249,10 @@ async def get_vehicle_count(users_ID: int = Depends(get_current_user)):
         return {"vehicle_count": vehicle_count}
 
     except sqlitecloud.Error as e:
-        logger.error(f"❌ Error fetching vehicle count: {e}")
+        logger.error(f"Error fetching vehicle count: {e}")
         raise HTTPException(status_code=500, detail="Database error")
     except Exception as e:
-        logger.exception(f"❌ Unexpected error fetching vehicle count: {e}")
+        logger.exception(f"Unexpected error fetching vehicle count: {e}")
         return JSONResponse(status_code=500, content={"error": "Internal server error"})
 
 @app.get("/api/vehicle-details/{usersRV_ID}")
@@ -288,7 +288,7 @@ async def get_vehicle_details(usersRV_ID: int):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-# ✅ Root API Endpoint
+# Root API Endpoint
 @app.get("/")
 async def root():
     return {"message": "🚗 User Vehicle Registration API is running"}

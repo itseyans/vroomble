@@ -18,7 +18,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ✅ Robust Path Handling
+# Robust Path Handling
 current_dir = os.path.dirname(os.path.abspath(__file__))  # Get the directory of the current script
 project_root = os.path.dirname(os.path.dirname(current_dir)) # Get the root of the project
 
@@ -91,7 +91,7 @@ def predict_price(request: PredictionRequest):
     base_price = float(car_info.iloc[0]["Base_Price_PHP"])  # Convert numpy type to float
     inflation_rate = float(car_info.iloc[0]["Monthly_Inflation_Rate"])
 
-    # ✅ Fix: Properly handling modification costs
+    # Fix: Properly handling modification costs
     modification_cost = 0.0
 
     if request.selected_parts:
@@ -118,16 +118,16 @@ def predict_price(request: PredictionRequest):
         cursor.execute(query_mod, params)
         mod_results = cursor.fetchall()
 
-    # ✅ Correctly Sum the Modification Costs (Avoiding Duplicates)
+    # Correctly Sum the Modification Costs (Avoiding Duplicates)
     modification_cost = sum(float(row[1]) for row in mod_results if row[1] is not None)
 
-    # ✅ Correct Inflation Calculation Based on Trained Model
+    # Correct Inflation Calculation Based on Trained Model
     future_price = (base_price + modification_cost) * ((1 + inflation_rate) ** (request.months / 12))
 
-    # ✅ Fix: Ensure "months" is included in feature scaling
+    # Fix: Ensure "months" is included in feature scaling
     features_scaled = scaler.transform([[base_price, modification_cost, inflation_rate, request.months]])
 
-    # ✅ Use the trained model to predict the price
+    # Use the trained model to predict the price
     predicted_price = float(model.predict(features_scaled)[0])
 
 
