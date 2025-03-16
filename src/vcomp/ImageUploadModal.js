@@ -165,7 +165,7 @@ const handleUpload = async () => {
   return (
     <ModalOverlay onClick={onClose}>
       <ModalContent onClick={(e) => e.stopPropagation()}>
-        <Title>Upload Vehicle Images</Title>
+        <Title>Upload Images</Title>
 
         <InputContainer>
           <FileInput id="file-upload" type="file" accept="image/*" multiple onChange={handleImageChange} />

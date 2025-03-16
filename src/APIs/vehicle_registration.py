@@ -198,7 +198,7 @@ async def get_dropdown_options():
                 "Subaru", "Suzuki", "Tata", "Toyota", "Volkswagen", "Volvo",
             ],
             "body_types": [
-                "Sedan", "Hatchback", "Coupe", "Convertible", "Wagon", "Fastback",
+                "Sedan", "Hatchback", "Coupe", "Convertible", "Sports" , "Wagon", "Fastback",
                 "SUV", "Crossover", "Pickup Truck", "Off-Road Vehicle", "Van", "Minivan (MPV)",
                 "Supercar", "Roadster", "Muscle Car", "Luxury Car",
                 "Pickup-Based SUV", "Microcar / Kei Car", "Panel Van", "Box Truck / Lorry",
