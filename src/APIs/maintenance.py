@@ -73,7 +73,7 @@ def create_maintenance_table():
             conn.commit()
             logger.info("Vehicle maintenance table created successfully.")
     except sqlitecloud.Error as e:
-        logger.error(f"❌ Error creating maintenance table: {e}")
+        logger.error(f"Error creating maintenance table: {e}")
         raise HTTPException(status_code=500, detail="Database initialization failed.")
 
 # Ensure Table Exists
@@ -137,7 +137,7 @@ async def add_maintenance(
         return {"message": "Maintenance record added successfully!", "image_paths": saved_filenames}
 
     except Exception as e:
-        return {"error": f"❌ Server error: {e}"}
+        return {"error": f"Server error: {e}"}
     
 # Delete Maintenance Record API
 @app.delete("/api/delete-maintenance/{MaintenanceID}")
