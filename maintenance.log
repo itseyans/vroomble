@@ -2506,3 +2506,6 @@ sqlitecloud.exceptions.SQLiteCloudOperationalError: table vehicle_maintenance ha
 2025-03-17 02:16:45,491 - INFO - Vehicle maintenance table created successfully.
 2025-03-17 02:16:45,523 - DEBUG - cannot commit - no transaction is active
 2025-03-17 02:21:35,236 - ERROR - Error creating maintenance table: An error occurred while initializing the socket.
+2025-03-17 02:40:14,359 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:40:14,359 - INFO - Vehicle maintenance table created successfully.
+2025-03-17 02:40:14,394 - DEBUG - cannot commit - no transaction is active

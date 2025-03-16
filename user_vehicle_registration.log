@@ -7465,3 +7465,326 @@ Traceback (most recent call last):
   File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
     raise get_sqlitecloud_error_with_extended_code(
 sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_listed
+2025-03-17 02:39:44,112 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:39:44,112 - INFO - Tables initialized successfully.
+2025-03-17 02:39:44,147 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:39:44,367 - DEBUG - cannot rollback - no transaction is active
+2025-03-17 02:39:44,367 - ERROR - Rolling back transaction - error 'duplicate column name: is_listed'
+Traceback (most recent call last):
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\src\APIs\user_vehicle_registration.py", line 265, in ensure_column_exists
+    cursor.execute("""
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_listed
+2025-03-17 02:48:46,919 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:47,327 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:47,543 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:47,931 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:48,150 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:48,379 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:48,593 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:48,808 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:49,048 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:49,316 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:49,561 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:49,864 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:50,192 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:50,759 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:51,165 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:51,578 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:52,331 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:53,075 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:53,424 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:53,678 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:53,961 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:54,231 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:54,452 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:54,669 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:54,926 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:55,154 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:55,386 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:55,613 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:55,852 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:56,074 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:56,299 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:56,555 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:56,779 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:57,013 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:57,255 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:57,495 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:57,743 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:48:57,974 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:49:11,232 - DEBUG - Calling on_part_begin with no data
+2025-03-17 02:49:11,232 - DEBUG - Calling on_header_field with data[42:61]
+2025-03-17 02:49:11,232 - DEBUG - Calling on_header_value with data[63:90]
+2025-03-17 02:49:11,232 - DEBUG - Calling on_header_end with no data
+2025-03-17 02:49:11,233 - DEBUG - Calling on_headers_finished with no data
+2025-03-17 02:49:11,233 - DEBUG - Calling on_part_data with data[94:96]
+2025-03-17 02:49:11,233 - DEBUG - Calling on_part_end with no data
+2025-03-17 02:49:11,233 - DEBUG - Calling on_part_begin with no data
+2025-03-17 02:49:11,233 - DEBUG - Calling on_header_field with data[140:159]
+2025-03-17 02:49:11,233 - DEBUG - Calling on_header_value with data[161:217]
+2025-03-17 02:49:11,233 - DEBUG - Calling on_header_end with no data
+2025-03-17 02:49:11,233 - DEBUG - Calling on_header_field with data[219:231]
+2025-03-17 02:49:11,233 - DEBUG - Calling on_header_value with data[233:243]
+2025-03-17 02:49:11,233 - DEBUG - Calling on_header_end with no data
+2025-03-17 02:49:11,233 - DEBUG - Calling on_headers_finished with no data
+2025-03-17 02:49:11,233 - DEBUG - Calling on_part_data with data[247:162200]
+2025-03-17 02:49:11,233 - DEBUG - Calling on_part_end with no data
+2025-03-17 02:49:11,234 - DEBUG - Calling on_end with no data
+2025-03-17 02:52:23,252 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:52:56,321 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:52:56,682 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:52:57,161 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:52:57,527 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:03,474 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:03,474 - INFO - Tables initialized successfully.
+2025-03-17 02:53:03,505 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:03,703 - DEBUG - cannot rollback - no transaction is active
+2025-03-17 02:53:03,705 - ERROR - Rolling back transaction - error 'duplicate column name: is_listed'
+Traceback (most recent call last):
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\src\APIs\user_vehicle_registration.py", line 268, in ensure_column_exists
+    cursor.execute("""
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_listed
+2025-03-17 02:53:03,960 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:04,195 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:04,442 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:04,702 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:04,899 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:05,161 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:05,374 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:05,622 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:05,843 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:06,052 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:06,272 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:06,484 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:06,680 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:06,876 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:07,092 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:07,318 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:07,530 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:07,727 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:07,932 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:08,141 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:08,364 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:08,588 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:08,800 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:09,018 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:09,241 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:09,443 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:09,923 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:10,174 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:10,386 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:10,588 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:10,791 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:11,028 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:11,226 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:11,597 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:11,961 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:12,184 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:12,377 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:12,590 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:12,824 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:13,077 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:13,280 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:13,542 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:13,760 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:13,957 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:14,182 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:14,396 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:14,613 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:14,821 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:15,074 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:15,278 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:15,500 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:15,715 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:15,915 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:16,150 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:16,350 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:22,738 - DEBUG - Calling on_part_begin with no data
+2025-03-17 02:53:22,738 - DEBUG - Calling on_header_field with data[42:61]
+2025-03-17 02:53:22,738 - DEBUG - Calling on_header_value with data[63:90]
+2025-03-17 02:53:22,738 - DEBUG - Calling on_header_end with no data
+2025-03-17 02:53:22,738 - DEBUG - Calling on_headers_finished with no data
+2025-03-17 02:53:22,738 - DEBUG - Calling on_part_data with data[94:96]
+2025-03-17 02:53:22,738 - DEBUG - Calling on_part_end with no data
+2025-03-17 02:53:22,738 - DEBUG - Calling on_part_begin with no data
+2025-03-17 02:53:22,738 - DEBUG - Calling on_header_field with data[140:159]
+2025-03-17 02:53:22,738 - DEBUG - Calling on_header_value with data[161:217]
+2025-03-17 02:53:22,738 - DEBUG - Calling on_header_end with no data
+2025-03-17 02:53:22,738 - DEBUG - Calling on_header_field with data[219:231]
+2025-03-17 02:53:22,738 - DEBUG - Calling on_header_value with data[233:243]
+2025-03-17 02:53:22,738 - DEBUG - Calling on_header_end with no data
+2025-03-17 02:53:22,738 - DEBUG - Calling on_headers_finished with no data
+2025-03-17 02:53:22,738 - DEBUG - Calling on_part_data with data[247:98304]
+2025-03-17 02:53:22,740 - DEBUG - Calling on_part_data with data[0:63896]
+2025-03-17 02:53:22,740 - DEBUG - Calling on_part_end with no data
+2025-03-17 02:53:22,740 - DEBUG - Calling on_end with no data
+2025-03-17 02:53:22,943 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:22,974 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:54,108 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:54,491 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:54,719 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:54,983 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:55,397 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:55,602 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:55,811 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:56,015 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:56,269 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:56,491 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:56,704 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:56,911 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:57,147 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:57,358 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:57,562 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:57,957 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:58,214 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:58,441 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:58,667 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:58,890 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:59,127 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:59,331 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:59,551 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:53:59,820 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:00,037 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:00,249 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:00,644 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:00,865 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:01,088 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:01,334 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:01,554 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:01,810 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:02,026 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:02,287 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:02,507 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:02,705 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:02,930 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:03,137 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:32,123 - DEBUG - Calling on_part_begin with no data
+2025-03-17 02:54:32,123 - DEBUG - Calling on_header_field with data[42:61]
+2025-03-17 02:54:32,123 - DEBUG - Calling on_header_value with data[63:90]
+2025-03-17 02:54:32,123 - DEBUG - Calling on_header_end with no data
+2025-03-17 02:54:32,123 - DEBUG - Calling on_headers_finished with no data
+2025-03-17 02:54:32,123 - DEBUG - Calling on_part_data with data[94:96]
+2025-03-17 02:54:32,123 - DEBUG - Calling on_part_end with no data
+2025-03-17 02:54:32,123 - DEBUG - Calling on_part_begin with no data
+2025-03-17 02:54:32,123 - DEBUG - Calling on_header_field with data[140:159]
+2025-03-17 02:54:32,123 - DEBUG - Calling on_header_value with data[161:216]
+2025-03-17 02:54:32,123 - DEBUG - Calling on_header_end with no data
+2025-03-17 02:54:32,123 - DEBUG - Calling on_header_field with data[218:230]
+2025-03-17 02:54:32,123 - DEBUG - Calling on_header_value with data[232:242]
+2025-03-17 02:54:32,123 - DEBUG - Calling on_header_end with no data
+2025-03-17 02:54:32,123 - DEBUG - Calling on_headers_finished with no data
+2025-03-17 02:54:32,123 - DEBUG - Calling on_part_data with data[246:163840]
+2025-03-17 02:54:32,124 - DEBUG - Calling on_part_data with data[0:245760]
+2025-03-17 02:54:32,124 - DEBUG - Calling on_part_data with data[0:114688]
+2025-03-17 02:54:32,124 - DEBUG - Calling on_part_data with data[0:41219]
+2025-03-17 02:54:32,124 - DEBUG - Calling on_part_end with no data
+2025-03-17 02:54:32,124 - DEBUG - Calling on_part_begin with no data
+2025-03-17 02:54:32,124 - DEBUG - Calling on_header_field with data[41263:41282]
+2025-03-17 02:54:32,124 - DEBUG - Calling on_header_value with data[41284:41339]
+2025-03-17 02:54:32,124 - DEBUG - Calling on_header_end with no data
+2025-03-17 02:54:32,124 - DEBUG - Calling on_header_field with data[41341:41353]
+2025-03-17 02:54:32,124 - DEBUG - Calling on_header_value with data[41355:41365]
+2025-03-17 02:54:32,124 - DEBUG - Calling on_header_end with no data
+2025-03-17 02:54:32,124 - DEBUG - Calling on_headers_finished with no data
+2025-03-17 02:54:32,124 - DEBUG - Calling on_part_data with data[41369:98304]
+2025-03-17 02:54:32,124 - DEBUG - Calling on_part_data with data[0:163840]
+2025-03-17 02:54:32,124 - DEBUG - Calling on_part_data with data[0:49152]
+2025-03-17 02:54:32,124 - DEBUG - Calling on_part_data with data[0:32768]
+2025-03-17 02:54:32,124 - DEBUG - Calling on_part_data with data[0:32768]
+2025-03-17 02:54:32,126 - DEBUG - Calling on_part_data with data[0:32768]
+2025-03-17 02:54:32,126 - DEBUG - Calling on_part_data with data[0:32768]
+2025-03-17 02:54:32,126 - DEBUG - Calling on_part_data with data[0:32768]
+2025-03-17 02:54:32,126 - DEBUG - Calling on_part_data with data[0:16384]
+2025-03-17 02:54:32,126 - DEBUG - Calling on_part_data with data[0:16384]
+2025-03-17 02:54:32,126 - DEBUG - Calling on_part_data with data[0:32768]
+2025-03-17 02:54:32,126 - DEBUG - Calling on_part_data with data[0:49152]
+2025-03-17 02:54:32,126 - DEBUG - Calling on_part_data with data[0:49152]
+2025-03-17 02:54:32,127 - DEBUG - Calling on_part_data with data[0:14195]
+2025-03-17 02:54:32,127 - DEBUG - Calling on_part_end with no data
+2025-03-17 02:54:32,127 - DEBUG - Calling on_end with no data
+2025-03-17 02:54:32,344 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:32,376 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:32,600 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:32,632 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:53,267 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:53,746 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:53,992 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:54,372 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:54,580 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:54,816 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:55,061 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:55,273 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:55,497 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:55,726 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:55,949 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:56,151 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:56,392 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:56,599 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:56,825 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:57,028 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:57,470 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:57,844 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:58,049 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:58,312 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:58,578 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:58,786 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:59,032 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:59,233 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:59,440 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:59,654 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:54:59,919 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:00,113 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:00,314 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:00,538 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:00,761 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:00,973 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:01,202 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:01,421 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:01,647 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:01,866 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:02,083 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:02,292 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:11,803 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:12,167 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:12,397 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:12,764 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:12,988 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:13,236 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:13,441 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:13,644 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:13,852 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:14,056 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:14,274 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:14,509 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:14,736 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:15,009 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:15,249 - DEBUG - cannot commit - no transaction is active
+2025-03-17 02:55:15,460 - DEBUG - cannot commit - no transaction is active
