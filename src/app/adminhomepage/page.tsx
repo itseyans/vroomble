@@ -78,7 +78,8 @@ const AdminButtons = styled.button<{ $isDefault?: boolean }>`
 `;
 
 const AdminHomepage = () => {
-  const [selectedComponent, setSelectedComponent] = useState<string>("default");
+  const [selectedComponent, setSelectedComponent] = useState<string>(() => "default");
+
 
   const renderComponent = () => {
     switch (selectedComponent) {
