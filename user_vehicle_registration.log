@@ -7788,3 +7788,650 @@ sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_li
 2025-03-17 02:55:15,009 - DEBUG - cannot commit - no transaction is active
 2025-03-17 02:55:15,249 - DEBUG - cannot commit - no transaction is active
 2025-03-17 02:55:15,460 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:19:45,979 - ERROR - Database initialization error: An error occurred while initializing the socket.
+2025-03-17 10:19:56,530 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:19:56,530 - INFO - Tables initialized successfully.
+2025-03-17 10:19:56,576 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:19:57,919 - DEBUG - cannot rollback - no transaction is active
+2025-03-17 10:19:57,919 - ERROR - Rolling back transaction - error 'duplicate column name: is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 268, in ensure_column_exists
+    cursor.execute("""
+    ~~~~~~~~~~~~~~^^^^
+        ALTER TABLE user_registered_vehicles ADD COLUMN is_listed INTEGER DEFAULT 0
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    """)
+    ^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_listed
+2025-03-17 10:24:59,493 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:24:59,493 - INFO - Tables initialized successfully.
+2025-03-17 10:24:59,556 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:25:06,653 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:25:06,653 - INFO - Tables initialized successfully.
+2025-03-17 10:25:06,717 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:25:47,674 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:25:48,210 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:25:48,471 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:25:48,925 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:25:49,227 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:25:49,479 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:25:50,177 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:25:50,560 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:25:50,918 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:25:54,357 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:25:54,946 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:25:55,275 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:25:55,574 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:25:55,941 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:08,167 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:08,621 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:08,914 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:09,179 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:09,473 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:09,734 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:10,007 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:10,271 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:10,545 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:10,822 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:11,103 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:12,388 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:12,864 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:13,190 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:13,447 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:13,710 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:13,963 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:14,216 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:22,618 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:23,067 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:23,380 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:23,829 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:24,104 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:24,371 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:24,651 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:24,947 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:25,223 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:25,779 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:26,036 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:26,331 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:26,608 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:26,918 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:45,375 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:45,375 - INFO - Tables initialized successfully.
+2025-03-17 10:26:45,419 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:45,723 - DEBUG - cannot rollback - no transaction is active
+2025-03-17 10:26:45,724 - ERROR - Rolling back transaction - error 'duplicate column name: is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 268, in ensure_column_exists
+    cursor.execute("""
+    ~~~~~~~~~~~~~~^^^^
+        ALTER TABLE user_registered_vehicles ADD COLUMN is_listed INTEGER DEFAULT 0
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    """)
+    ^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_listed
+2025-03-17 10:26:54,239 - DEBUG - Calling on_field_start with no data
+2025-03-17 10:26:54,239 - DEBUG - Calling on_field_name with data[0:10]
+2025-03-17 10:26:54,239 - DEBUG - Calling on_field_data with data[11:13]
+2025-03-17 10:26:54,239 - DEBUG - Calling on_field_end with no data
+2025-03-17 10:26:54,239 - DEBUG - Calling on_end with no data
+2025-03-17 10:26:54,528 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:54,574 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:55,633 - DEBUG - Calling on_field_start with no data
+2025-03-17 10:26:55,633 - DEBUG - Calling on_field_name with data[0:10]
+2025-03-17 10:26:55,633 - DEBUG - Calling on_field_data with data[11:13]
+2025-03-17 10:26:55,633 - DEBUG - Calling on_field_end with no data
+2025-03-17 10:26:55,633 - DEBUG - Calling on_end with no data
+2025-03-17 10:26:55,929 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:55,975 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:56,613 - DEBUG - Calling on_field_start with no data
+2025-03-17 10:26:56,613 - DEBUG - Calling on_field_name with data[0:10]
+2025-03-17 10:26:56,613 - DEBUG - Calling on_field_data with data[11:13]
+2025-03-17 10:26:56,613 - DEBUG - Calling on_field_end with no data
+2025-03-17 10:26:56,613 - DEBUG - Calling on_end with no data
+2025-03-17 10:26:56,897 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:56,943 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:57,604 - DEBUG - Calling on_field_start with no data
+2025-03-17 10:26:57,604 - DEBUG - Calling on_field_name with data[0:10]
+2025-03-17 10:26:57,604 - DEBUG - Calling on_field_data with data[11:13]
+2025-03-17 10:26:57,604 - DEBUG - Calling on_field_end with no data
+2025-03-17 10:26:57,604 - DEBUG - Calling on_end with no data
+2025-03-17 10:26:57,868 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:26:57,913 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:03,702 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:03,703 - INFO - Tables initialized successfully.
+2025-03-17 10:27:03,755 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:16,095 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:16,096 - INFO - Tables initialized successfully.
+2025-03-17 10:27:16,142 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:17,502 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:17,503 - INFO - Tables initialized successfully.
+2025-03-17 10:27:17,566 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:17,825 - DEBUG - cannot rollback - no transaction is active
+2025-03-17 10:27:17,825 - ERROR - Rolling back transaction - error 'duplicate column name: is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 268, in ensure_column_exists
+    cursor.execute("""
+    ~~~~~~~~~~~~~~^^^^
+        ALTER TABLE user_registered_vehicles ADD COLUMN is_listed INTEGER DEFAULT 0
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    """)
+    ^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_listed
+2025-03-17 10:27:17,862 - DEBUG - Calling on_field_start with no data
+2025-03-17 10:27:17,862 - DEBUG - Calling on_field_name with data[0:10]
+2025-03-17 10:27:17,862 - DEBUG - Calling on_field_data with data[11:13]
+2025-03-17 10:27:17,862 - DEBUG - Calling on_field_end with no data
+2025-03-17 10:27:17,862 - DEBUG - Calling on_end with no data
+2025-03-17 10:27:18,124 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:18,169 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:18,245 - DEBUG - Calling on_field_start with no data
+2025-03-17 10:27:18,245 - DEBUG - Calling on_field_name with data[0:10]
+2025-03-17 10:27:18,245 - DEBUG - Calling on_field_data with data[11:13]
+2025-03-17 10:27:18,245 - DEBUG - Calling on_field_end with no data
+2025-03-17 10:27:18,245 - DEBUG - Calling on_end with no data
+2025-03-17 10:27:18,633 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:18,709 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:18,855 - DEBUG - Calling on_field_start with no data
+2025-03-17 10:27:18,855 - DEBUG - Calling on_field_name with data[0:10]
+2025-03-17 10:27:18,855 - DEBUG - Calling on_field_data with data[11:13]
+2025-03-17 10:27:18,855 - DEBUG - Calling on_field_end with no data
+2025-03-17 10:27:18,855 - DEBUG - Calling on_end with no data
+2025-03-17 10:27:19,510 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:19,573 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:19,609 - DEBUG - Calling on_field_start with no data
+2025-03-17 10:27:19,609 - DEBUG - Calling on_field_name with data[0:10]
+2025-03-17 10:27:19,609 - DEBUG - Calling on_field_data with data[11:13]
+2025-03-17 10:27:19,609 - DEBUG - Calling on_field_end with no data
+2025-03-17 10:27:19,609 - DEBUG - Calling on_end with no data
+2025-03-17 10:27:19,873 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:19,920 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:19,951 - DEBUG - Calling on_field_start with no data
+2025-03-17 10:27:19,951 - DEBUG - Calling on_field_name with data[0:10]
+2025-03-17 10:27:19,952 - DEBUG - Calling on_field_data with data[11:13]
+2025-03-17 10:27:19,952 - DEBUG - Calling on_field_end with no data
+2025-03-17 10:27:19,952 - DEBUG - Calling on_end with no data
+2025-03-17 10:27:20,310 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:20,373 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:30,192 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:30,192 - INFO - Tables initialized successfully.
+2025-03-17 10:27:30,244 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:30,906 - DEBUG - cannot rollback - no transaction is active
+2025-03-17 10:27:30,906 - ERROR - Rolling back transaction - error 'duplicate column name: is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 268, in ensure_column_exists
+    cursor.execute("""
+    ~~~~~~~~~~~~~~^^^^
+        ALTER TABLE user_registered_vehicles ADD COLUMN is_listed INTEGER DEFAULT 0
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    """)
+    ^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_listed
+2025-03-17 10:27:33,128 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:33,128 - INFO - Tables initialized successfully.
+2025-03-17 10:27:33,173 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:33,521 - DEBUG - cannot rollback - no transaction is active
+2025-03-17 10:27:33,521 - ERROR - Rolling back transaction - error 'duplicate column name: is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 268, in ensure_column_exists
+    cursor.execute("""
+    ~~~~~~~~~~~~~~^^^^
+        ALTER TABLE user_registered_vehicles ADD COLUMN is_listed INTEGER DEFAULT 0
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    """)
+    ^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_listed
+2025-03-17 10:27:34,820 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:34,820 - INFO - Tables initialized successfully.
+2025-03-17 10:27:34,883 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:35,422 - DEBUG - cannot rollback - no transaction is active
+2025-03-17 10:27:35,422 - ERROR - Rolling back transaction - error 'duplicate column name: is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 268, in ensure_column_exists
+    cursor.execute("""
+    ~~~~~~~~~~~~~~^^^^
+        ALTER TABLE user_registered_vehicles ADD COLUMN is_listed INTEGER DEFAULT 0
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    """)
+    ^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_listed
+2025-03-17 10:27:35,730 - DEBUG - Calling on_field_start with no data
+2025-03-17 10:27:35,730 - DEBUG - Calling on_field_name with data[0:10]
+2025-03-17 10:27:35,730 - DEBUG - Calling on_field_data with data[11:13]
+2025-03-17 10:27:35,731 - DEBUG - Calling on_field_end with no data
+2025-03-17 10:27:35,731 - DEBUG - Calling on_end with no data
+2025-03-17 10:27:36,127 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:36,509 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:37,834 - DEBUG - Calling on_field_start with no data
+2025-03-17 10:27:37,834 - DEBUG - Calling on_field_name with data[0:10]
+2025-03-17 10:27:37,834 - DEBUG - Calling on_field_data with data[11:13]
+2025-03-17 10:27:37,834 - DEBUG - Calling on_field_end with no data
+2025-03-17 10:27:37,834 - DEBUG - Calling on_end with no data
+2025-03-17 10:27:38,192 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:38,254 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:39,027 - DEBUG - Calling on_field_start with no data
+2025-03-17 10:27:39,028 - DEBUG - Calling on_field_name with data[0:10]
+2025-03-17 10:27:39,028 - DEBUG - Calling on_field_data with data[11:13]
+2025-03-17 10:27:39,028 - DEBUG - Calling on_field_end with no data
+2025-03-17 10:27:39,028 - DEBUG - Calling on_end with no data
+2025-03-17 10:27:39,301 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:27:39,346 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:28:20,185 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:28:20,186 - INFO - Tables initialized successfully.
+2025-03-17 10:28:20,256 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:28:20,520 - DEBUG - cannot rollback - no transaction is active
+2025-03-17 10:28:20,521 - ERROR - Rolling back transaction - error 'duplicate column name: is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 268, in ensure_column_exists
+    cursor.execute("""
+    ~~~~~~~~~~~~~~^^^^
+        ALTER TABLE user_registered_vehicles ADD COLUMN is_listed INTEGER DEFAULT 0
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    """)
+    ^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_listed
+2025-03-17 10:28:21,748 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:28:21,748 - INFO - Tables initialized successfully.
+2025-03-17 10:28:21,811 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:28:22,076 - DEBUG - cannot rollback - no transaction is active
+2025-03-17 10:28:22,076 - ERROR - Rolling back transaction - error 'duplicate column name: is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 268, in ensure_column_exists
+    cursor.execute("""
+    ~~~~~~~~~~~~~~^^^^
+        ALTER TABLE user_registered_vehicles ADD COLUMN is_listed INTEGER DEFAULT 0
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    """)
+    ^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_listed
+2025-03-17 10:28:41,940 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:28:41,941 - INFO - Tables initialized successfully.
+2025-03-17 10:28:42,002 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:28:43,503 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:28:43,503 - INFO - Tables initialized successfully.
+2025-03-17 10:28:43,569 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:28:45,042 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:28:45,043 - INFO - Tables initialized successfully.
+2025-03-17 10:28:45,418 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:28:51,533 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:28:51,534 - INFO - Tables initialized successfully.
+2025-03-17 10:28:51,599 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:06,461 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:06,462 - INFO - Tables initialized successfully.
+2025-03-17 10:29:06,508 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:06,850 - DEBUG - cannot rollback - no transaction is active
+2025-03-17 10:29:06,850 - ERROR - Rolling back transaction - error 'duplicate column name: is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 268, in ensure_column_exists
+    cursor.execute("""
+    ~~~~~~~~~~~~~~^^^^
+        ALTER TABLE user_registered_vehicles ADD COLUMN is_listed INTEGER DEFAULT 0
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    """)
+    ^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_listed
+2025-03-17 10:29:08,084 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:08,085 - INFO - Tables initialized successfully.
+2025-03-17 10:29:08,129 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:08,490 - DEBUG - cannot rollback - no transaction is active
+2025-03-17 10:29:08,490 - ERROR - Rolling back transaction - error 'duplicate column name: is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 268, in ensure_column_exists
+    cursor.execute("""
+    ~~~~~~~~~~~~~~^^^^
+        ALTER TABLE user_registered_vehicles ADD COLUMN is_listed INTEGER DEFAULT 0
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    """)
+    ^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_listed
+2025-03-17 10:29:16,867 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:16,867 - INFO - Tables initialized successfully.
+2025-03-17 10:29:16,930 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:17,286 - DEBUG - cannot rollback - no transaction is active
+2025-03-17 10:29:17,287 - ERROR - Rolling back transaction - error 'duplicate column name: is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 268, in ensure_column_exists
+    cursor.execute("""
+    ~~~~~~~~~~~~~~^^^^
+        ALTER TABLE user_registered_vehicles ADD COLUMN is_listed INTEGER DEFAULT 0
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    """)
+    ^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_listed
+2025-03-17 10:29:27,151 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:27,151 - INFO - Tables initialized successfully.
+2025-03-17 10:29:27,473 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:27,797 - DEBUG - cannot rollback - no transaction is active
+2025-03-17 10:29:27,798 - ERROR - Rolling back transaction - error 'duplicate column name: is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 268, in ensure_column_exists
+    cursor.execute("""
+    ~~~~~~~~~~~~~~^^^^
+        ALTER TABLE user_registered_vehicles ADD COLUMN is_listed INTEGER DEFAULT 0
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    """)
+    ^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_listed
+2025-03-17 10:29:29,501 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:29,501 - INFO - Tables initialized successfully.
+2025-03-17 10:29:29,557 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:29,877 - DEBUG - cannot rollback - no transaction is active
+2025-03-17 10:29:29,877 - ERROR - Rolling back transaction - error 'duplicate column name: is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 268, in ensure_column_exists
+    cursor.execute("""
+    ~~~~~~~~~~~~~~^^^^
+        ALTER TABLE user_registered_vehicles ADD COLUMN is_listed INTEGER DEFAULT 0
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    """)
+    ^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_listed
+2025-03-17 10:29:33,294 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:33,295 - INFO - Tables initialized successfully.
+2025-03-17 10:29:33,397 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:33,858 - DEBUG - cannot rollback - no transaction is active
+2025-03-17 10:29:33,858 - ERROR - Rolling back transaction - error 'duplicate column name: is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 268, in ensure_column_exists
+    cursor.execute("""
+    ~~~~~~~~~~~~~~^^^^
+        ALTER TABLE user_registered_vehicles ADD COLUMN is_listed INTEGER DEFAULT 0
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    """)
+    ^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_listed
+2025-03-17 10:29:35,675 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:35,675 - INFO - Tables initialized successfully.
+2025-03-17 10:29:35,734 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:36,305 - DEBUG - cannot rollback - no transaction is active
+2025-03-17 10:29:36,305 - ERROR - Rolling back transaction - error 'duplicate column name: is_listed'
+Traceback (most recent call last):
+  File "C:\Users\silva\OneDrive\Desktop\vroomble\src\APIs\user_vehicle_registration.py", line 268, in ensure_column_exists
+    cursor.execute("""
+    ~~~~~~~~~~~~~~^^^^
+        ALTER TABLE user_registered_vehicles ADD COLUMN is_listed INTEGER DEFAULT 0
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    """)
+    ^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+        sql, parameters, self.connection.sqlitecloud_connection
+    )
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\silva\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+        errmsg.decode(), errcode, xerrcode
+    )(errmsg.decode(), errcode, xerrcode)
+sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_listed
+2025-03-17 10:29:38,705 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:39,314 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:40,071 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:40,815 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:41,257 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:41,617 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:42,042 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:50,344 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:50,815 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:51,112 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:51,616 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:52,178 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:52,711 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:52,992 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:53,849 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:54,170 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:54,444 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:54,732 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:55,007 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:55,319 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:29:55,591 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:30:05,356 - DEBUG - Calling on_field_start with no data
+2025-03-17 10:30:05,356 - DEBUG - Calling on_field_name with data[0:10]
+2025-03-17 10:30:05,356 - DEBUG - Calling on_field_data with data[11:13]
+2025-03-17 10:30:05,356 - DEBUG - Calling on_field_end with no data
+2025-03-17 10:30:05,356 - DEBUG - Calling on_end with no data
+2025-03-17 10:30:05,625 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:30:05,669 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:30:15,628 - DEBUG - Calling on_field_start with no data
+2025-03-17 10:30:15,628 - DEBUG - Calling on_field_name with data[0:10]
+2025-03-17 10:30:15,628 - DEBUG - Calling on_field_data with data[11:13]
+2025-03-17 10:30:15,628 - DEBUG - Calling on_field_end with no data
+2025-03-17 10:30:15,628 - DEBUG - Calling on_end with no data
+2025-03-17 10:30:15,967 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:30:16,080 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:30:19,249 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:30:20,056 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:30:20,369 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:30:20,647 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:30:20,992 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:30:21,263 - DEBUG - cannot commit - no transaction is active
+2025-03-17 10:30:21,527 - DEBUG - cannot commit - no transaction is active

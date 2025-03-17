@@ -37,3 +37,4 @@ fastapi.exceptions.HTTPException: 400: Incorrect email or password
 2025-03-16 02:01:33,397 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
 2025-03-16 02:26:18,374 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
 2025-03-17 00:42:47,706 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
+2025-03-17 10:19:22,614 - DEBUG - registered 'bcrypt' handler: <class 'passlib.handlers.bcrypt.bcrypt'>
