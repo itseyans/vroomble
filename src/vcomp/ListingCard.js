@@ -8,7 +8,7 @@ const CardContainer = styled.div`
   border-radius: 8px;
   overflow: hidden;
   background-color: white;
-  border: 4px solid #ffc629; /* Yellow border stroke */
+  border: 4px solid #ffc629;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -16,7 +16,7 @@ const CardContainer = styled.div`
 
   &:hover .hoverOverlay {
     opacity: 1;
-    backdrop-filter: blur(5px); /* Blur effect */
+    backdrop-filter: blur(5px);
   }
 `;
 
@@ -30,9 +30,11 @@ const CarImageContainer = styled.div`
 `;
 
 const CarImage = styled.img`
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  border-radius: 4px;
+  transition: opacity 0.3s ease-in-out;
 `;
 
 const LabelContainer = styled.div`
@@ -56,7 +58,7 @@ const HoverOverlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+  background: rgba(0, 0, 0, 0.5);
   color: white;
   display: flex;
   align-items: center;
@@ -68,21 +70,18 @@ const HoverOverlay = styled.div`
   transition: opacity 0.3s ease-in-out;
 `;
 
-const ListingCard = ({
-  carName = "Car Name",
-  imageUrl = "",
-  dateListed = "2 Weeks Ago",
-}) => {
+const ListingCard = ({ carName, imageUrl, dateListed }) => {
   return (
     <CardContainer>
       <CarImageContainer>
         {imageUrl ? (
-          <CarImage src={imageUrl} alt={carName} />
-        ) : (
-          <img
-            src="https://via.placeholder.com/150?text=Car+Image"
-            alt="Placeholder"
+          <CarImage
+            src={imageUrl}
+            alt={carName}
+            onError={(e) => (e.currentTarget.style.display = "none")} // ✅ Hides if image fails
           />
+        ) : (
+          <div style={{ height: "100%", width: "100%", backgroundColor: "#f4f4f5" }} />
         )}
       </CarImageContainer>
       <LabelContainer>{carName}</LabelContainer>
@@ -93,6 +92,4 @@ const ListingCard = ({
   );
 };
 
-
-//ITS FUKIN CAPITAL C OKAY?
 export default ListingCard;
