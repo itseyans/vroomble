@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import AddImage from "./AddImage";
+import HoverZoom from "./HoverZoom";
+
 
 // Styled Components
 const CarDetailsContainer = styled.div`
@@ -110,6 +112,9 @@ const CarDetails = ({ onVehicleSelect }) => {
   const [selectedVehicle, setSelectedVehicle] = useState(null);
   const [vehicleImages, setVehicleImages] = useState({});
   const [currentImageIndex, setCurrentImageIndex] = useState({});
+  const [hovered, setHovered] = useState(false);
+const [position, setPosition] = useState({ x: 50, y: 50 });
+
 
   useEffect(() => {
     const fetchVehicles = async () => {
@@ -199,6 +204,14 @@ const CarDetails = ({ onVehicleSelect }) => {
     }));
   };
 
+  const handleMouseMove = (e) => {
+  const { left, top, width, height } = e.target.getBoundingClientRect();
+  const x = ((e.clientX - left) / width) * 100;
+  const y = ((e.clientY - top) / height) * 100;
+  setPosition({ x, y });
+};
+
+
   const handlePrevImage = () => {
     if (!selectedVehicle) return;
 
@@ -225,16 +238,37 @@ const CarDetails = ({ onVehicleSelect }) => {
         </CarSelect>
       </TitleContainer>
 
-      <ImageContainer>
-        <PrevButton onClick={handlePrevImage}>◀</PrevButton>
-        <CarImage 
-          src={selectedVehicle && vehicleImages[selectedVehicle.usersRV_ID]
-            ? vehicleImages[selectedVehicle.usersRV_ID][currentImageIndex[selectedVehicle.usersRV_ID] || 0]
-            : "/default-placeholder.png"} 
-          alt={selectedVehicle?.carName || "Car Image"} 
-        />
-        <NextButton onClick={handleNextImage}>▶</NextButton>
-      </ImageContainer>
+      <ImageContainer
+  style={{ overflow: "hidden", position: "relative" }}
+  onMouseMove={(e) => handleMouseMove(e)}
+  onMouseEnter={() => setHovered(true)}
+  onMouseLeave={() => setHovered(false)}
+>
+  <PrevButton onClick={handlePrevImage} style={{ zIndex: 10 }}>◀</PrevButton>
+
+  <CarImage
+    src={
+      selectedVehicle && vehicleImages[selectedVehicle.usersRV_ID]
+        ? vehicleImages[selectedVehicle.usersRV_ID][
+            currentImageIndex[selectedVehicle.usersRV_ID] || 0
+          ]
+        : "/default-placeholder.png"
+    }
+    alt={selectedVehicle?.carName || "Car Image"}
+    style={{
+      transform: hovered ? "scale(1.5)" : "scale(1)",
+      transformOrigin: `${position.x}% ${position.y}%`,
+      transition: "transform 0.3s ease-in-out",
+      position: "relative",
+      zIndex: 5, // Keeps image below buttons
+    }}
+  />
+
+  <NextButton onClick={handleNextImage} style={{ zIndex: 10 }}>▶</NextButton>
+</ImageContainer>
+
+
+
 
       <DetailsBox>
         <DetailColumn>
