@@ -78,7 +78,6 @@ export default function VehicleListing() {
   
         const data = await response.json();
         console.log("Vehicle Data:", data);
-        console.log("First Vehicle Entry:", data.listed_vehicles[0]);
   
         if (!data.listed_vehicles || data.listed_vehicles.length === 0) {
           setVehicles([]);
@@ -87,12 +86,8 @@ export default function VehicleListing() {
   
         const vehiclesWithImages = await Promise.all(
           data.listed_vehicles.map(async (vehicle: any) => {
-            // ✅ Convert raw array into an object
             const formattedVehicle = {
-              UserRV_ID: vehicle[0],  // Assuming first index is the ID
-              Color: vehicle[4] || "Unknown",
-              Trim: vehicle[2] || "Model",
-              PlateEnd: vehicle[3] || "N/A",
+              UserRV_ID: vehicle[0], // Assuming first index is the ID
             };
   
             if (!formattedVehicle.UserRV_ID) {
@@ -101,7 +96,23 @@ export default function VehicleListing() {
             }
   
             try {
-              const imageResponse = await fetch(`http://localhost:8004/api/vehicle-images/${formattedVehicle.UserRV_ID}`);
+              // ✅ Fetch Vehicle Details (Make, Model, Year)
+              const detailsResponse = await fetch(
+                `http://localhost:8004/api/vehicle-details/${formattedVehicle.UserRV_ID}`
+              );
+              if (!detailsResponse.ok) throw new Error("Vehicle details fetch failed");
+  
+              const detailsData = await detailsResponse.json();
+              console.log("Details Data for", formattedVehicle.UserRV_ID, ":", detailsData);
+  
+              const carMake = detailsData.make || "Unknown Make";
+              const carModel = detailsData.model || "Unknown Model";
+              const carYear = detailsData.year || "Year N/A";
+  
+              // ✅ Fetch Vehicle Image
+              const imageResponse = await fetch(
+                `http://localhost:8004/api/vehicle-images/${formattedVehicle.UserRV_ID}`
+              );
               if (!imageResponse.ok) throw new Error("Image fetch failed");
   
               const imageData = await imageResponse.json();
@@ -112,15 +123,15 @@ export default function VehicleListing() {
                 imageUrl: imageData.images?.[0]
                   ? `http://localhost:8004/car_images/${imageData.images[0]}`
                   : "", // No placeholder
-                carName: `${formattedVehicle.Color} ${formattedVehicle.Trim} (Plate: ${formattedVehicle.PlateEnd})`,
+                carName: `${carYear} ${carMake} ${carModel}`, // ✅ Updated display format
                 dateListed: "Recently Listed",
               };
             } catch (err) {
-              console.error("Error fetching images for ID:", formattedVehicle.UserRV_ID, err);
+              console.error("Error fetching details for ID:", formattedVehicle.UserRV_ID, err);
               return {
                 UserRV_ID: formattedVehicle.UserRV_ID,
                 imageUrl: "", // No fallback image
-                carName: `${formattedVehicle.Color} ${formattedVehicle.Trim} (Plate: ${formattedVehicle.PlateEnd})`,
+                carName: "Unknown Vehicle", // Generic fallback name
                 dateListed: "Recently Listed",
               };
             }
