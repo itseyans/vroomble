@@ -3,7 +3,7 @@
 import React from "react";
 import styled from "styled-components";
 
-// ✅ Pop-up Container (Now 1000x800px)
+//  Pop-up Container (Now 1000x800px)
 const PopUpContainer = styled.div`
   width: 1000px;
   height: 800px;
@@ -23,7 +23,7 @@ const PopUpContainer = styled.div`
   color: black; /* ✅ Ensures all text inside the pop-up is black */
 `;
 
-// ✅ Header Section
+//  Header Section
 const Header = styled.div`
   width: 100%;
   display: flex;
@@ -38,7 +38,7 @@ const Header = styled.div`
   color: black; /* ✅ Ensures header text is black */
 `;
 
-// ✅ Close Button (Red)
+//  Close Button (Red)
 const CloseButton = styled.button`
   background-color: #F66B6B;
   color: black;
@@ -56,7 +56,7 @@ const CloseButton = styled.button`
   }
 `;
 
-// ✅ Table Container (Expanded to Fit New Size)
+//  Table Container (Expanded to Fit New Size)
 const TableContainer = styled.div`
   width: 95%;
   height: 85%;
@@ -68,7 +68,7 @@ const TableContainer = styled.div`
   color: black; /* ✅ Ensures table text is black */
 `;
 
-// ✅ Styled Table
+//  Styled Table
 const StyledTable = styled.table`
   width: 100%;
   border-collapse: collapse;
@@ -77,24 +77,24 @@ const StyledTable = styled.table`
   color: black; /* ✅ Ensures table text is black */
 `;
 
-// ✅ Table Header
+//  Table Header
 const TableHeader = styled.th`
   background-color: #D9D9D9;
   padding: 15px;
   font-size: 1.2rem;
   font-weight: bold;
-  color: black; /* ✅ Ensures table headers are black */
+  color: black; /*  Ensures table headers are black */
 `;
 
-// ✅ Table Data
+//  Table Data
 const TableData = styled.td`
   padding: 15px;
   border-bottom: 2px solid #D9D9D9;
   font-size: 1.1rem;
-  color: black; /* ✅ Ensures table data is black */
+  color: black; /*  Ensures table data is black */
 `;
 
-// ✅ Sample Data (This should be replaced with actual dynamic data)
+//  Sample Data (This should be replaced with actual dynamic data)
 const maintenanceLogs = [
   { date: "01/25/2025", change: "Tire Change", vehicle: "LEXUS LC 500", cost: "PHP 500" },
   { date: "02/06/2025", change: "Change Oil", vehicle: "LB Huracan STO", cost: "PHP 800" },
@@ -103,13 +103,13 @@ const maintenanceLogs = [
 const MaintenanceLogsPopUp = ({ onClose }) => {
   return (
     <PopUpContainer>
-      {/* ✅ Header */}
+      {/*  Header */}
       <Header>
         <span>MAINTENANCE LOGS</span>
         <CloseButton onClick={onClose}>X</CloseButton>
       </Header>
 
-      {/* ✅ Table */}
+      {/*  Table */}
       <TableContainer>
         <StyledTable>
           <thead>

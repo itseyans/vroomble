@@ -13,16 +13,16 @@ const PageContainer = styled.div`
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding-top: 6rem; /* ✅ Prevents navbar overlap */
+  padding-top: 6rem; /*  Prevents navbar overlap */
 `;
 
 /** Title Box */
 const TitleBox = styled.div`
-  background-color: #d9d9d9; /* ✅ Light gray background */
-  border: 5px solid #ffc629; /* ✅ Yellow stroke */
+  background-color: #d9d9d9; /*  Light gray background */
+  border: 5px solid #ffc629; /*  Yellow stroke */
   border-radius: 10px;
   padding: 10px;
-  margin-bottom: 20px; /* ✅ Spacing between title and PredictForm */
+  margin-bottom: 20px; /*  Spacing between title and PredictForm */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -44,12 +44,12 @@ export default function Page() {
       <Background />
       <GeneralNavBar />
       <PageContainer>
-        {/* ✅ Title Container */}
+        {/*  Title Container */}
         <TitleBox>
           <Title>CAR BUILDER</Title>
         </TitleBox>
 
-        {/* ✅ Prediction Form */}
+        {/* Prediction Form */}
         <PredictForm />
       </PageContainer>
     </>

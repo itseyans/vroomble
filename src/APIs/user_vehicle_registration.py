@@ -127,9 +127,9 @@ def insert_image_path(usersRV_ID: int, image_path: str):
             )
 
             conn.commit()
-            print(f"✅ Image {image_path} saved in database for UserRV_ID {usersRV_ID}")
+            print(f" Image {image_path} saved in database for UserRV_ID {usersRV_ID}")
     except sqlitecloud.Error as e:
-        print(f"❌ Failed to insert image path: {e}")
+        print(f" Failed to insert image path: {e}")
         raise HTTPException(status_code=500, detail=f"Database error: {e}")
 
 
@@ -147,8 +147,8 @@ async def upload_vehicle_images(
 
         for image in images:
             if image:
-                filename = image.filename  # ✅ Keep original naming
-                image_path = os.path.join(UPLOAD_DIR, filename)  # ✅ Store in `uploads/`
+                filename = image.filename  #  Keep original naming
+                image_path = os.path.join(UPLOAD_DIR, filename)  #  Store in `uploads/`
 
                 # Save image to disk
                 with open(image_path, "wb") as buffer:
@@ -377,9 +377,9 @@ def insert_image_path(usersRV_ID: int, image_path: str):
             )
 
             conn.commit()
-            print(f"✅ Image {image_path} saved in database for UserRV_ID {usersRV_ID}")
+            print(f" Image {image_path} saved in database for UserRV_ID {usersRV_ID}")
     except sqlitecloud.Error as e:
-        print(f"❌ Failed to insert image path: {e}")
+        print(f" Failed to insert image path: {e}")
         raise HTTPException(status_code=500, detail=f"Database error: {e}")
 
 
@@ -427,5 +427,5 @@ async def register_vehicle_with_image(
 # Root API Endpoint
 @app.get("/")
 async def root():
-    return {"message": "🚗 User Vehicle Registration API is running"}
+    return {"message": " User Vehicle Registration API is running"}
 

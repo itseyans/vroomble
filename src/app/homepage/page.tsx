@@ -3,8 +3,8 @@
 import styled from "styled-components";
 import GeneralNavBar from "@/vcomp/GeneralNavBar";
 import PersoInfoCard from "@/vcomp/homepage components/PersoInfoCard";
-import MaintenanceLogsHome from "@/vcomp/homepage components/MaintenanceLogsHome"; // ✅ Imported
-import ManageVehiclesCard from "@/vcomp/homepage components/ManageVehiclesCard"; // ✅ Imported
+import MaintenanceLogsHome from "@/vcomp/homepage components/MaintenanceLogsHome"; //  Imported
+import ManageVehiclesCard from "@/vcomp/homepage components/ManageVehiclesCard"; //  Imported
 
 const PageContainer = styled.div`
   width: 100%;
@@ -18,9 +18,9 @@ const PageContainer = styled.div`
 
 const ContentContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr; /* ✅ Two-column layout */
+  grid-template-columns: 1fr 1fr; /*  Two-column layout */
   gap: 2rem;
-  margin-top: 8rem; /* ✅ Prevents overlap with navbar */
+  margin-top: 8rem; /* Prevents overlap with navbar */
   width: 80%;
 `;
 
@@ -39,18 +39,18 @@ const RightColumn = styled.div`
 export default function Home() {
   return (
     <PageContainer>
-      {/* ✅ Navbar */}
+      {/*  Navbar */}
       <GeneralNavBar />
 
-      {/* ✅ Content Section */}
+      {/*  Content Section */}
       <ContentContainer>
-        {/* ✅ Left Column: Personal Info + Maintenance Logs */}
+        {/*  Left Column: Personal Info + Maintenance Logs */}
         <LeftColumn>
           <PersoInfoCard />
           <MaintenanceLogsHome />
         </LeftColumn>
 
-        {/* ✅ Right Column: Manage Vehicles */}
+        {/*  Right Column: Manage Vehicles */}
         <RightColumn>
           <ManageVehiclesCard />
         </RightColumn>

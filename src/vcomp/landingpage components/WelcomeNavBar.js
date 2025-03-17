@@ -138,7 +138,7 @@ const ModalContainer = styled.div`
   width: auto;
 `;
 
-// ✅ Close Button (Fixed Visibility + Better Positioning)
+//  Close Button (Fixed Visibility + Better Positioning)
 const CloseButton = styled.button`
   position: absolute;
   top: -15px;
@@ -169,11 +169,11 @@ const WelcomeNavBar = () => {
 
   return (
     <>
-      {/* ✅ Black Navbar */}
+      {/*  Black Navbar */}
       <NavBarContainer>
         <LogoContainer>VROOMBLE</LogoContainer>
         
-        {/* ✅ Restored Emblem */}
+        {/*  Restored Emblem */}
         <EmblemBackground>
           <EmblemContainer>
             <Emblem src="/LOGO.png" alt="Vroomble Logo" />
@@ -186,7 +186,7 @@ const WelcomeNavBar = () => {
         </ButtonContainer>
       </NavBarContainer>
 
-      {/* ✅ Yellow Section */}
+      {/*  Yellow Section */}
       <YellowSection>
         <StatsContainer>
           <StatBox>
@@ -208,10 +208,10 @@ const WelcomeNavBar = () => {
         </StatsContainer>
       </YellowSection>
 
-      {/* ✅ Blurred Background when Popup is Active */}
+      {/*  Blurred Background when Popup is Active */}
       {activeForm && <BlurOverlay onClick={() => setActiveForm(null)} />}
 
-      {/* ✅ Popup Forms (Now with Close Button) */}
+      {/*  Popup Forms (Now with Close Button) */}
       {activeForm && (
         <ModalContainer>
           <CloseButton onClick={() => setActiveForm(null)}>X</CloseButton>

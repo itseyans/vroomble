@@ -90,14 +90,14 @@ function LoginForm({ required, errorMessage }) {
             });
 
             if (response.ok) {
-                console.log("✅ Login successful!");
+                console.log(" Login successful!");
                 router.push("/homepage"); // Redirect using Next.js router
             } else {
                 const errorData = await response.json();
                 setLoginError(errorData.detail || "Login failed");
             }
         } catch (error) {
-            console.error("❌ Login error:", error);
+            console.error(" Login error:", error);
             setLoginError("An unexpected error occurred.");
         }
     };

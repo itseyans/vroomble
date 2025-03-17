@@ -3,12 +3,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-// ✅ Container for the pop-up
+// Container for the pop-up
 const PopUpContainer = styled.div`
   width: 180px;
   padding: 15px;
-  background-color: #D9D9D9; /* ✅ Updated Background */
-  border: 3px solid #FFC629; /* ✅ Updated Border Color */
+  background-color: #D9D9D9; /*  Updated Background */
+  border: 3px solid #FFC629; /*  Updated Border Color */
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -18,7 +18,7 @@ const PopUpContainer = styled.div`
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 `;
 
-// ✅ Styled button component
+//  Styled button component
 const PopUpButton = styled.button`
   width: 100%;
   padding: 10px;
@@ -37,12 +37,12 @@ const PopUpButton = styled.button`
   }
 `;
 
-// ✅ Services Button (Yellow)
+// Services Button (Yellow)
 const ServicesButton = styled(PopUpButton)`
   background-color: #FFC629;
 `;
 
-// ✅ Logout Button (Red)
+//  Logout Button (Red)
 const LogoutButton = styled(PopUpButton)`
   background-color: #F66B6B;
 `;

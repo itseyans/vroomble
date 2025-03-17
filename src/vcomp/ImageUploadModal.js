@@ -101,31 +101,31 @@ const ImageUploadModal = ({ onClose, onUpload, usersRV_ID }) => {
 const handleImageChange = (event) => {
   const files = Array.from(event.target.files); // Convert FileList to Array
   if (files.length > 3) {
-    alert("❌ You can only upload up to 3 images.");
+    alert(" You can only upload up to 3 images.");
     return;
   }
 
-  // ✅ Ensure images are stored as `File` objects
+  //  Ensure images are stored as `File` objects
   const validImages = files.filter(file => file instanceof File);
   if (validImages.length !== files.length) {
-    alert("❌ Some files are not valid images.");
+    alert(" Some files are not valid images.");
     return;
   }
 
-  setSelectedImages(validImages); // ✅ Store `File` objects in state
+  setSelectedImages(validImages); //  Store `File` objects in state
 };
 
 
 const handleUpload = async () => {
-  console.log("✅ Received Vehicle ID in Modal:", usersRV_ID);
+  console.log(" Received Vehicle ID in Modal:", usersRV_ID);
 
   if (!usersRV_ID) {
-    alert("❌ Vehicle ID is missing. Register a vehicle first.");
+    alert(" Vehicle ID is missing. Register a vehicle first.");
     return;
   }
 
   if (selectedImages.length === 0) {
-    alert("❌ Please select at least one image.");
+    alert(" Please select at least one image.");
     return;
   }
 
@@ -133,7 +133,7 @@ const handleUpload = async () => {
   formData.append("UserRV_ID", usersRV_ID);
 
   selectedImages.forEach((image) => {
-    formData.append("images", image);  // ✅ Append only images
+    formData.append("images", image);  //  Append only images
   });
 
   try {
@@ -145,16 +145,16 @@ const handleUpload = async () => {
     const data = await response.json();
 
     if (response.ok) {
-      alert("✅ Images uploaded successfully!");
+      alert(" Images uploaded successfully!");
       console.log("📂 Images stored at:", data.file_paths);
       onUpload(data.file_paths);
       onClose();
     } else {
-      console.error("❌ Upload failed:", data);
-      alert(`❌ Failed to upload images: ${JSON.stringify(data)}`);
+      console.error(" Upload failed:", data);
+      alert(` Failed to upload images: ${JSON.stringify(data)}`);
     }
   } catch (error) {
-    console.error("❌ Image Upload Error:", error);
+    console.error(" Image Upload Error:", error);
     alert("An error occurred while uploading the images.");
   }
 };
@@ -172,7 +172,7 @@ const handleUpload = async () => {
           <UploadLabel htmlFor="file-upload">Choose Files</UploadLabel>
         </InputContainer>
 
-        {/* ✅ Image Preview Section */}
+        {/* Image Preview Section */}
         <PreviewContainer>
           {selectedImages.length > 0 ? (
             selectedImages.map((image, index) => (
@@ -183,7 +183,7 @@ const handleUpload = async () => {
           )}
         </PreviewContainer>
 
-        {/* ✅ Buttons */}
+        {/*  Buttons */}
         <ButtonContainer>
         <Button type="button" onClick={handleUpload}>Upload</Button>
 

@@ -81,20 +81,20 @@ const AddImage = ({ usersRV_ID }) => {
 
   const handleUpload = async () => {
     if (!usersRV_ID) {
-      alert("❌ Please select a vehicle first.");
+      alert(" Please select a vehicle first.");
       return;
     }
 
     if (selectedImages.length === 0) {
-      alert("❌ Please select at least one image.");
+      alert(" Please select at least one image.");
       return;
     }
 
     const formData = new FormData();
-    formData.append("UserRV_ID", usersRV_ID); // ✅ Include correct Registered Vehicle ID
+    formData.append("UserRV_ID", usersRV_ID); //  Include correct Registered Vehicle ID
 
     selectedImages.forEach((image) => {
-      formData.append("images", image, `${usersRV_ID}_${image.name}`); // ✅ Correct: UserRV_ID + original filename
+      formData.append("images", image, `${usersRV_ID}_${image.name}`); //  Correct: UserRV_ID + original filename
     });
 
     try {
@@ -106,15 +106,15 @@ const AddImage = ({ usersRV_ID }) => {
       const data = await response.json();
 
       if (response.ok) {
-        alert("✅ Images uploaded successfully!");
-        console.log("📂 Images stored at:", data.file_paths);
+        alert(" Images uploaded successfully!");
+        console.log(" Images stored at:", data.file_paths);
         setSelectedImages([]);
       } else {
-        console.error("❌ Upload failed:", data);
-        alert(`❌ Failed to upload images: ${JSON.stringify(data)}`);
+        console.error(" Upload failed:", data);
+        alert(` Failed to upload images: ${JSON.stringify(data)}`);
       }
     } catch (error) {
-      console.error("❌ Image Upload Error:", error);
+      console.error(" Image Upload Error:", error);
       alert("An error occurred while uploading the images.");
     }
 };

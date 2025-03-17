@@ -35,19 +35,19 @@ const EngineTireWrapper = styled.div`
 `;
 
 const MaintenanceContainer = () => {
-  const [selectedVehicle, setSelectedVehicle] = useState(null); // ✅ Ensure useState is properly imported
+  const [selectedVehicle, setSelectedVehicle] = useState(null); //  Ensure useState is properly imported
 
   return (
     <MainContainer>
       <MaintenanceLogs style={{ maxHeight: "250px", overflowY: "auto" }} />
       <CarDetailsWrapper>
-        {/* ✅ Pass `setSelectedVehicle` to `CarDetails.js` */}
+        {/*  Pass `setSelectedVehicle` to `CarDetails.js` */}
         <CarDetails onVehicleSelect={setSelectedVehicle} />
         <EngineTireWrapper>
           <EngineTireInputs />
         </EngineTireWrapper>
       </CarDetailsWrapper>
-      {/* ✅ Pass `selectedVehicle` to `Changes.js` */}
+      {/*  Pass `selectedVehicle` to `Changes.js` */}
       <Changes selectedVehicle={selectedVehicle} style={{ maxHeight: "250px", overflowY: "auto" }} />
     </MainContainer>
   );

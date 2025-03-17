@@ -78,7 +78,7 @@ const ListingCard = ({ carName, imageUrl, dateListed }) => {
           <CarImage
             src={imageUrl}
             alt={carName}
-            onError={(e) => (e.currentTarget.style.display = "none")} // ✅ Hides if image fails
+            onError={(e) => (e.currentTarget.style.display = "none")} //  Hides if image fails
           />
         ) : (
           <div style={{ height: "100%", width: "100%", backgroundColor: "#f4f4f5" }} />

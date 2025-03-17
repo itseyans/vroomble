@@ -18,9 +18,9 @@ def log_action(user_id, action, description, status, request: Request):
     try:
         requests.post(audit_api_url, params=log_data)
     except Exception as e:
-        print("⚠️ Error logging action:", e)
+        print(" Error logging action:", e)
 
-# ✅ Login API (Now Includes Audit Logging)
+#  Login API (Now Includes Audit Logging)
 @app.post("/login/")
 async def login_user(login_data: Login, response: Response, request: Request):
     try:
@@ -30,29 +30,29 @@ async def login_user(login_data: Login, response: Response, request: Request):
             user = cursor.fetchone()
 
         if not user:
-            logger.warning(f"❌ Login failed: No user found with email {login_data.email}")
+            logger.warning(f" Login failed: No user found with email {login_data.email}")
             log_action(None, "Login Attempt", f"Failed login for {login_data.email}", "Failed", request)
             raise HTTPException(status_code=400, detail="Incorrect email or password")
 
         users_ID, first_name, last_name, contact_number, region, email, hashed_password = user
 
         if not verify_password(login_data.password, hashed_password):
-            logger.warning(f"❌ Login failed: Incorrect password for email {email}")
+            logger.warning(f" Login failed: Incorrect password for email {email}")
             log_action(users_ID, "Login Attempt", f"Failed login for {email} (Incorrect password)", "Failed", request)
             raise HTTPException(status_code=400, detail="Incorrect email or password")
 
-        # ✅ Clear old tokens before setting new ones
+        #  Clear old tokens before setting new ones
         response.delete_cookie("access_token", path="/", domain=None)
         response.delete_cookie("refresh_token", path="/", domain=None)
 
-        # ✅ Token Payload Includes `firstName`, `LastName`, `Region`, `ContactNumber`
+        #  Token Payload Includes `firstName`, `LastName`, `Region`, `ContactNumber`
         token_payload = {
             "sub": email,
             "users_ID": users_ID,
             "firstName": first_name,
             "lastName": last_name,
             "contactNumber": contact_number,
-            "region": region  # ✅ Added `region`
+            "region": region  #  Added `region`
         }
 
         access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
@@ -61,7 +61,7 @@ async def login_user(login_data: Login, response: Response, request: Request):
         refresh_token_expires = timedelta(minutes=REFRESH_TOKEN_EXPIRE_MINUTES)
         refresh_token = create_refresh_token(data=token_payload, expires_delta=refresh_token_expires)
 
-        logger.info(f"✅ User {email} logged in successfully")
+        logger.info(f" User {email} logged in successfully")
         log_action(users_ID, "Login", f"User {email} logged in successfully", "Success", request)
 
         response.set_cookie(key="access_token", value=access_token, httponly=True, secure=False, path="/")
@@ -70,8 +70,8 @@ async def login_user(login_data: Login, response: Response, request: Request):
         return {"message": "Login successful"}
 
     except sqlitecloud.Error as e:
-        logger.error(f"❌ Database error during login: {e}")
+        logger.error(f" Database error during login: {e}")
         return JSONResponse(status_code=500, content={"error": "Database error"})
     except Exception as e:
-        logger.exception(f"❌ Unexpected error during login: {e}")
+        logger.exception(f" Unexpected error during login: {e}")
         return JSONResponse(status_code=500, content={"error": "Internal server error"})

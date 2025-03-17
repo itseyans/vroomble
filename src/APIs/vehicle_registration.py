@@ -22,14 +22,14 @@ SQLITE_CLOUD_API_KEY = os.environ.get("SQLITE_CLOUD_API_KEY")
 print("🔍 Loaded API Key:", SQLITE_CLOUD_API_KEY)
 
 if not SQLITE_CLOUD_API_KEY:
-    raise Exception("❌ API Key not found! Check your .env file and path.")
+    raise Exception(" API Key not found! Check your .env file and path.")
 
 CLOUD_DATABASE_CONNECTION_STRING = f"sqlitecloud://cuf1maatnz.g6.sqlite.cloud:8860/Vroomble_Database.db?apikey={SQLITE_CLOUD_API_KEY}"
 
-# ✅ Establish Connection & Check Tables
+#  Establish Connection & Check Tables
 try:
     with sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING) as conn:
-        print("✅ Connected to SQLite Cloud database!")
+        print(" Connected to SQLite Cloud database!")
         cursor = conn.cursor()
         cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
         tables = cursor.fetchall()
@@ -37,7 +37,7 @@ try:
 except sqlitecloud.Error as e:
     print(f"❌ SQLite Cloud connection error: {e}")
 
-# ✅ CORS Middleware
+#  CORS Middleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],  # React App URL
@@ -46,7 +46,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ✅ Logging Configuration
+#  Logging Configuration
 logging.basicConfig(
     filename="app.log",
     level=logging.DEBUG,
@@ -54,7 +54,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ✅ Car Model Schema
+#  Car Model Schema
 class Car(BaseModel):
     make: str
     model: str
@@ -80,7 +80,7 @@ class Car(BaseModel):
             raise ValueError("Retail SRP must be positive")
         return v
 
-# ✅ Create `cars` Table if Not Exists
+#  Create `cars` Table if Not Exists
 def create_table_if_not_exists():
     """Ensures the 'cars' table exists in SQLite Cloud."""
     try:
@@ -103,15 +103,15 @@ def create_table_if_not_exists():
                 """
             )
             conn.commit()
-            logger.info("✅ SQLite Cloud Database table 'cars' initialized.")
+            logger.info(" SQLite Cloud Database table 'cars' initialized.")
     except sqlitecloud.Error as e:
-        logger.error(f"❌ Error initializing SQLite Cloud database table: {e}")
+        logger.error(f" Error initializing SQLite Cloud database table: {e}")
         raise HTTPException(status_code=500, detail=f"SQLite Cloud error: {e}")
 
-# ✅ Ensure Table Exists on Startup
+#  Ensure Table Exists on Startup
 create_table_if_not_exists()
 
-# ✅ API Endpoint to Fetch All Cars (For Dropdown + Search)
+#  API Endpoint to Fetch All Cars (For Dropdown + Search)
 @app.get("/api/vehicles")
 async def get_vehicles(q: str = None):
     """Fetches all vehicles from the 'cars' table, with optional search including Year."""
@@ -146,10 +146,10 @@ async def get_vehicles(q: str = None):
                 for row in results
             ]
     except sqlitecloud.Error as e:
-        logger.error(f"❌ Error fetching vehicles: {e}")
+        logger.error(f" Error fetching vehicles: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
-# ✅ API Endpoint to Add a New Car
+#  API Endpoint to Add a New Car
 @app.post("/cars/form/")
 async def create_car_form(car_data: Car):
     """Adds a new car to the database."""
@@ -174,14 +174,14 @@ async def create_car_form(car_data: Car):
                 ),
             )
             conn.commit()
-            logger.info(f"✅ Car added successfully: {car_data}")
+            logger.info(f" Car added successfully: {car_data}")
             return {"message": "Car model saved successfully to SQLite Cloud"}
 
     except sqlitecloud.Error as e:
-        logger.error(f"❌ SQLite Cloud database error during car creation: {e}")
+        logger.error(f" SQLite Cloud database error during car creation: {e}")
         raise HTTPException(status_code=500, detail=f"SQLite Cloud database error: {e}")
 
-# ✅ API Endpoint to Provide Dropdown Options
+#  API Endpoint to Provide Dropdown Options
 @app.get("/dropdown_options/")
 async def get_dropdown_options():
     """Returns dropdown options (same as before)."""
@@ -210,15 +210,15 @@ async def get_dropdown_options():
         }
     )
 
-# ✅ Root Endpoint
+#  Root Endpoint
 @app.get("/")
 async def root():
-    return {"message": "🚗 Vehicle Registration API is running"}
+    return {"message": "Vehicle Registration API is running"}
 
-# ✅ Exception Handlers
+#  Exception Handlers
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
-    logger.exception(f"❌ Unhandled exception: {exc}")
+    logger.exception(f" Unhandled exception: {exc}")
     return JSONResponse(
         status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
         content={"error": str(exc)},

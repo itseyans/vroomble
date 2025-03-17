@@ -6,12 +6,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from contextlib import contextmanager
 
 # Load environment variables
-load_dotenv()
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
 
 # Fetch API Key
 SQLITE_CLOUD_API_KEY = os.getenv("SQLITE_CLOUD_API_KEY")
 if not SQLITE_CLOUD_API_KEY:
-    raise ValueError("❌ SQLITE_CLOUD_API_KEY is missing in the environment variables.")
+    raise ValueError(" SQLITE_CLOUD_API_KEY is missing in the environment variables.")
 
 CLOUD_DATABASE_CONNECTION_STRING = (
     f"sqlitecloud://cuf1maatnz.g6.sqlite.cloud:8860/Vroomble_Database.db?apikey={SQLITE_CLOUD_API_KEY}"
@@ -37,16 +39,16 @@ def get_db():
     try:
         conn = sqlitecloud.connect(CLOUD_DATABASE_CONNECTION_STRING)
         conn.row_factory = sqlitecloud.Row  # Fetch results as dictionaries
-        print("✅ Connected to SQLite Cloud!")
+        print(" Connected to SQLite Cloud!")
         yield conn
         conn.commit()  # Save changes
     except sqlitecloud.Error as e:
-        print(f"❌ Database Connection Error: {e}")
+        print(f" Database Connection Error: {e}")
         raise HTTPException(status_code=500, detail=f"Database connection failed: {e}")
     finally:
         if conn:
             conn.close()
-            print("🔒 Database connection closed.")
+            print(" Database connection closed.")
 
 def get_table_columns(table_name: str, conn):
     """Retrieve column names from a table for validation."""

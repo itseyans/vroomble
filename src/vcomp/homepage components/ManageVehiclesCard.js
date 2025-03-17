@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import styled from "styled-components";
 import CarInfoCard from "@/vcomp/homepage components/CarInfoCard";
 
-// ✅ Styled Components (Same as Before)
+//  Styled Components (Same as Before)
 const ManageVehiclesContainer = styled.div`
   background-color: #D9D9D9;
   border: 5px solid #FFC629;
@@ -92,7 +92,7 @@ const VehicleCount = styled.p`
   margin-bottom: 10px;
 `;
 
-// ✅ Manage Vehicles Component
+//  Manage Vehicles Component
 const ManageVehiclesCard = () => {
   const router = useRouter();
   const [vehicles, setVehicles] = useState([]);
@@ -121,7 +121,7 @@ const ManageVehiclesCard = () => {
               usersRV_ID: vehicle.usersRV_ID,
               carName: vehicle.carName,
               totalSpent: "0",
-              is_listed: vehicle.is_listed, // ✅ Store listing status
+              is_listed: vehicle.is_listed, //  Store listing status
               imageUrl: imageData.images.length > 0
                 ? `http://localhost:8004/car_images/${imageData.images[0]}`
                 : "/default-placeholder.png",
@@ -167,7 +167,7 @@ const ManageVehiclesCard = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + vehicles.length) % vehicles.length);
   };
 
-  // ✅ Function to toggle vehicle listing status
+  //  Function to toggle vehicle listing status
   const handleToggleListStatus = async (usersRV_ID, isListed) => {
     try {
       const endpoint = isListed ? "/api/unlist-vehicle/" : "/api/list-vehicle/";

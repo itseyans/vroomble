@@ -1,7 +1,9 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-const API_BASE_URL = "http://127.0.0.1:8005"; // Ensure this is correct
+const API_BASE_URL = "http://127.0.0.1:8006"; // Ensure this is correct
 
 // Styled Components
 const Container = styled.div`
@@ -163,7 +165,7 @@ const PredictForm = () => {
     setSelectedParts([]);
 
     if (!selectedModel) {
-      console.warn("⚠️ No model selected. Cannot fetch car parts.");
+      console.warn(" No model selected. Cannot fetch car parts.");
       return;
     }
 
@@ -180,7 +182,7 @@ const PredictForm = () => {
       const data = await response.json();
       setCarParts(data);
     } catch (error) {
-      console.error("❌ Error fetching car parts:", error);
+      console.error(" Error fetching car parts:", error);
     }
   };
 
@@ -210,15 +212,15 @@ const PredictForm = () => {
       const responseData = await response.json();
 
       if (!response.ok) {
-        console.error("❌ Prediction API Error:", responseData);
+        console.error(" Prediction API Error:", responseData);
         alert(`Failed to predict: ${responseData.detail || "Unknown error"}`);
         throw new Error(`API Error: ${responseData.detail}`);
       }
 
-      console.log("✅ Prediction Response:", responseData);
+      console.log(" Prediction Response:", responseData);
       setPredictionResult(responseData);
     } catch (error) {
-      console.error("❌ Error predicting price:", error);
+      console.error(" Error predicting price:", error);
       alert("Prediction failed. Check the console logs for details.");
     }
     setLoading(false);

@@ -65,10 +65,10 @@ const AnalyticsForm = () => {
     const fetchData = async () => {
       try {
         const res = await Promise.all([
-          fetch("http://localhost:8000/car_maker_data"),
-          fetch("http://localhost:8000/body-type-distribution"),
-          fetch("http://localhost:8000/yearly-registrations"),
-          fetch("http://localhost:8000/fuel-type-distribution"),
+          fetch("http://localhost:8007/car_maker_data"),
+          fetch("http://localhost:8007/body-type-distribution"),
+          fetch("http://localhost:8007/yearly-registrations"),
+          fetch("http://localhost:8007/fuel-type-distribution"),
         ]);
 
         const data = await Promise.all(res.map((r) => r.json()));

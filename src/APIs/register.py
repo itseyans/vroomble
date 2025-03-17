@@ -32,7 +32,7 @@ load_dotenv(dotenv_path)
 SQLITE_CLOUD_API_KEY = os.environ.get("SQLITE_CLOUD_API_KEY")
 
 # Debugging: Print to verify
-print("🔍 Loaded API Key:", SQLITE_CLOUD_API_KEY)
+print(" Loaded API Key:", SQLITE_CLOUD_API_KEY)
 
 if not SQLITE_CLOUD_API_KEY:
     raise Exception("API Key not found! Check your .env file and path.")

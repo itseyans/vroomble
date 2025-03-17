@@ -6,7 +6,7 @@ import GeneralButton from "@/vcomp/GeneralButton";
 import SelectBody from "@/vcomp/SelectBody";
 import SelectBrand from "@/vcomp/SelectBrand";
 
-// ✅ Main Filter Container (Now Horizontal)
+//  Main Filter Container (Now Horizontal)
 const FilterContainer = styled.div`
   display: flex;
   align-items: center;
@@ -22,7 +22,7 @@ const FilterContainer = styled.div`
   font-family: "Segoe UI Variable", sans-serif;
 `;
 
-// ✅ Apply Button
+//  Apply Button
 const ApplyButton = styled(GeneralButton)`
   padding: 10px 20px;
   font-size: 1rem;
@@ -38,7 +38,7 @@ const ApplyButton = styled(GeneralButton)`
   }
 `;
 
-// ✅ Search Input Container
+//  Search Input Container
 const SearchContainer = styled.div`
   display: flex;
   align-items: center;
@@ -68,7 +68,7 @@ const ClearButton = styled.button`
   color: black;
 `;
 
-// ✅ Price Range Container
+//  Price Range Container
 const PriceRangeContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -79,7 +79,7 @@ const PriceRangeContainer = styled.div`
   font-weight: bold;
 `;
 
-// ✅ Price Slider
+//  Price Slider
 const PriceSlider = styled.input`
   width: 160px;
   -webkit-appearance: none;
@@ -90,7 +90,7 @@ const PriceSlider = styled.input`
   cursor: pointer;
 `;
 
-// ✅ Dropdown Button (Body Type & Brand)
+//  Dropdown Button (Body Type & Brand)
 const DropdownButton = styled.button`
   display: flex;
   align-items: center;
@@ -116,16 +116,16 @@ const FilterListings = () => {
 
   return (
     <FilterContainer>
-      {/* ✅ Apply Button */}
+      {/*  Apply Button */}
       <ApplyButton>APPLY</ApplyButton>
 
-      {/* ✅ Search Bar */}
+      {/*  Search Bar */}
       <SearchContainer>
         <SearchInput type="text" placeholder="SEARCH" />
         <ClearButton>✕</ClearButton>
       </SearchContainer>
 
-      {/* ✅ Price Range Slider */}
+      {/*  Price Range Slider */}
       <PriceRangeContainer>
         <span>PRICE RANGE</span>
         <PriceSlider
@@ -138,7 +138,7 @@ const FilterListings = () => {
         <span>₱0 - ₱{price}+</span>
       </PriceRangeContainer>
 
-      {/* ✅ Dropdowns */}
+      {/*  Dropdowns */}
       <DropdownButton>
         Body Type ▼
       </DropdownButton>

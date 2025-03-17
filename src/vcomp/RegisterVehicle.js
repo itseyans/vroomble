@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import styled from "styled-components";
 import VehicleDropdown from "../vcomp/VehicleSelect";
@@ -85,18 +87,18 @@ const RegisterVehicle = () => {
   const [plateEnd, setPlateEnd] = useState("");
   const [color, setColor] = useState("");
   const [mileage, setMileage] = useState({ value: "", error: "" });
-  const [imageFile, setImageFile] = useState(null); // ✅ Added state for image file
+  const [imageFile, setImageFile] = useState(null); // Added state for image file
 
   const handleSelect = (selectedVehicle) => {
     if (!selectedVehicle || typeof selectedVehicle.carID !== "number") {
-      alert("❌ Please select a valid vehicle!");
+      alert(" Please select a valid vehicle!");
       return;
     }
     setCarID(selectedVehicle.carID);
   };
 
   const handleImageChange = (event) => {
-    setImageFile(event.target.files[0]); // ✅ Store image file
+    setImageFile(event.target.files[0]); //  Store image file
   };
 
   const handleMileageChange = (e) => {
@@ -107,15 +109,15 @@ const RegisterVehicle = () => {
 
   const handleSubmit = async () => {
     if (!carID || isNaN(carID)) {
-      alert("❌ Please select a valid vehicle!");
+      alert(" Please select a valid vehicle!");
       return;
     }
     if (mileage.error || !mileage.value.trim()) {
-      alert("❌ Please enter a valid mileage (numbers only).");
+      alert(" Please enter a valid mileage (numbers only).");
       return;
     }
     if (!imageFile) {
-      alert("❌ Please select an image to upload.");
+      alert(" Please select an image to upload.");
       return;
     }
 
@@ -137,7 +139,7 @@ const RegisterVehicle = () => {
       const data = await response.json();
 
       if (response.ok) {
-        alert("✅ Vehicle registered successfully with image!");
+        alert(" Vehicle registered successfully with image!");
         setCarID("");
         setTrim("");
         setPlateEnd("");
@@ -145,7 +147,7 @@ const RegisterVehicle = () => {
         setMileage({ value: "", error: "" });
         setImageFile(null);
       } else {
-        alert(`❌ Failed to register vehicle: ${data.detail}`);
+        alert(` Failed to register vehicle: ${data.detail}`);
       }
     } catch (error) {
       alert("An error occurred while registering the vehicle.");
@@ -154,7 +156,7 @@ const RegisterVehicle = () => {
 
   return (
     <Container>
-      <Header>🚗 REGISTER VEHICLE</Header>
+      <Header>REGISTER VEHICLE</Header>
 
       <FormContainer>
         <Column>

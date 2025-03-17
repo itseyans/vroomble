@@ -99,7 +99,7 @@ const VehicleDropdown = ({ onSelect }) => {
         setVehicles(data);
         setFilteredVehicles(data);
       } catch (error) {
-        console.error("❌ Error fetching vehicles:", error);
+        console.error(" Error fetching vehicles:", error);
         setVehicles([]);
       }
     };
@@ -127,8 +127,8 @@ const VehicleDropdown = ({ onSelect }) => {
       vehicle.variant || "N/A"
     }) - ${vehicle.drivetrain} - ${vehicle.year}`;
     setSelectedVehicle(formattedVehicle);
-    console.log("🚗 Selected Vehicle:", vehicle);
-    console.log("🚗 Selected Vehicle carID:", vehicle.carID, typeof vehicle.carID);
+    console.log(" Selected Vehicle:", vehicle);
+    console.log(" Selected Vehicle carID:", vehicle.carID, typeof vehicle.carID);
     setIsOpen(false);
     setSearchTerm("");
 

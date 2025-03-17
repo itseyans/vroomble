@@ -2,7 +2,7 @@
 import React from "react";
 import styled from "styled-components";
 
-// ✅ Main Container for Car Info
+//  Main Container for Car Info
 const CarInfoCardContainer = styled.div`
   background-color: #d9d9d9;
   padding: 5px;
@@ -17,11 +17,11 @@ const CarInfoCardContainer = styled.div`
   align-items: center;
 `;
 
-// ✅ Car Image Container (Fixed Size)
+//  Car Image Container (Fixed Size)
 const CarImageContainer = styled.div`
   width: 600px;
   height: 300px;
-  background-color: #b0b0b0; /* ✅ Placeholder Background */
+  background-color: #b0b0b0; /*  Placeholder Background */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,7 +29,7 @@ const CarImageContainer = styled.div`
   overflow: hidden;
 `;
 
-// ✅ Car Image
+//  Car Image
 const CarImage = styled.img`
   width: 100%;
   height: 100%;
@@ -37,14 +37,14 @@ const CarImage = styled.img`
   display: ${({ isVisible }) => (isVisible ? "block" : "none")}; /* Hide if not available */
 `;
 
-// ✅ Car Details Wrapper
+//  Car Details Wrapper
 const CarDetailsWrapper = styled.div`
   padding: 10px;
   width: 100%;
   text-align: center;
 `;
 
-// ✅ Car Name
+//  Car Name
 const CarName = styled.h3`
   margin: 5px 0;
   font-size: 1.4rem;
@@ -52,7 +52,7 @@ const CarName = styled.h3`
   color: black;
 `;
 
-// ✅ Total Spent
+//  Total Spent
 const TotalSpent = styled.p`
   font-size: 1rem;
   font-weight: bold;
@@ -60,11 +60,11 @@ const TotalSpent = styled.p`
   color: black;
 `;
 
-// ✅ Main Component Function
+//  Main Component Function
 const CarInfoCard = ({ imageUrl, carName, totalSpent }) => {
   return (
     <CarInfoCardContainer>
-      {/* ✅ Image Placeholder Handling */}
+      {/*  Image Placeholder Handling */}
       <CarImageContainer>
         {imageUrl ? (
           <CarImage
@@ -78,7 +78,7 @@ const CarInfoCard = ({ imageUrl, carName, totalSpent }) => {
         )}
       </CarImageContainer>
 
-      {/* ✅ Car Details */}
+      {/*  Car Details */}
       <CarDetailsWrapper>
         <CarName>{carName || "Car Name Here"}</CarName>
         <TotalSpent>TOTAL SPENT: ₱{totalSpent || "0.00"}</TotalSpent>

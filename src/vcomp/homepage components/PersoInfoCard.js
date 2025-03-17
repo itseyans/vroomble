@@ -6,9 +6,9 @@ const PersoInfoCard = () => {
   const [name, setName] = useState("Loading...");
   const [contactNumber, setContactNumber] = useState("Loading...");
   const [region, setRegion] = useState("Loading...");
-  const [vehicleCount, setVehicleCount] = useState(0); // 🚨 Vehicle count is NOT stored in the token, needs API call
+  const [vehicleCount, setVehicleCount] = useState(0); //  Vehicle count is NOT stored in the token, needs API call
 
-  // ✅ Fetch User Data from JWT Token (Stored in Cookies)
+  //  Fetch User Data from JWT Token (Stored in Cookies)
   useEffect(() => {
     fetch("http://localhost:8000/user/me", {
       method: "GET",
@@ -22,13 +22,13 @@ const PersoInfoCard = () => {
       })
       .catch((error) => console.error("Error fetching user data:", error));
 
-    // ✅ Fetch Vehicle Count Separately (If stored in a different table)
+    //  Fetch Vehicle Count Separately (If stored in a different table)
 fetch("http://localhost:8004/user/vehicle-count", {
   method: "GET",
   credentials: "include",
 })
 .then((response) => response.json())
-.then((data) => setVehicleCount(data.vehicle_count)) // ✅ Using correct key
+.then((data) => setVehicleCount(data.vehicle_count)) //  Using correct key
 .catch((error) => console.error("Error fetching vehicle count:", error));
 
   }, []);
@@ -57,10 +57,10 @@ fetch("http://localhost:8004/user/vehicle-count", {
       .catch((error) => console.error("Error updating region:", error));
   };
 
-  // ✅ Styling Definitions
+  //  Styling Definitions
   const cardStyle = {
     width: "600px",
-    minHeight: "450px", // ✅ Adjust to match right container
+    minHeight: "450px", //  Adjust to match right container
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
@@ -110,17 +110,17 @@ fetch("http://localhost:8004/user/vehicle-count", {
         PERSONAL INFORMATION
       </h2>
 
-      {/* ✅ Display Name (Read-Only) */}
+      {/*  Display Name (Read-Only) */}
       <div style={displayInfoStyle}>
         <strong>NAME:</strong> &nbsp; {name}
       </div>
 
-      {/* ✅ Display Contact Number (Read-Only) */}
+      {/*  Display Contact Number (Read-Only) */}
       <div style={displayInfoStyle}>
         <strong>CONTACT NUMBER:</strong> &nbsp; {contactNumber}
       </div>
 
-      {/* ✅ Display Vehicle Count (Read-Only) */}
+      {/*  Display Vehicle Count (Read-Only) */}
       <div style={displayInfoStyle}>
        <strong>VEHICLE COUNT:</strong> &nbsp; {vehicleCount > 0 ? vehicleCount : "No vehicles registered"}
       </div>
@@ -128,7 +128,7 @@ fetch("http://localhost:8004/user/vehicle-count", {
 
       {isEditing ? (
         <div>
-          {/* ✅ General Region (Editable) */}
+          {/*  General Region (Editable) */}
           <div style={{ marginBottom: "10px" }}>
             <label style={{ color: "black" }}>General Region:</label>
             <input
@@ -139,7 +139,7 @@ fetch("http://localhost:8004/user/vehicle-count", {
             />
           </div>
 
-          {/* ✅ Save Button */}
+          {/*  Save Button */}
           <button 
             onClick={handleSaveClick} 
             style={buttonStyle}
@@ -151,12 +151,12 @@ fetch("http://localhost:8004/user/vehicle-count", {
         </div>
       ) : (
         <div>
-          {/* ✅ Display General Region */}
+          {/* Display General Region */}
           <div style={displayInfoStyle}>
             <strong>GENERAL REGION:</strong> &nbsp; {region}
           </div>
 
-          {/* ✅ Edit Button */}
+          {/*  Edit Button */}
           <button 
             onClick={handleEditClick} 
             style={buttonStyle}

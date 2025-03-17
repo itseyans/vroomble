@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import MaintenanceLogsPopUp from "@/vcomp/MaintenanceLogsPopUp";
 
-// ✅ Main Container (Updated Height to 600px)
+//  Main Container (Updated Height to 600px)
 const CardContainer = styled.div`
   background-color: #d9d9d9;
   padding: 12px;
@@ -14,13 +14,13 @@ const CardContainer = styled.div`
   font-family: "Segoe UI Variable", sans-serif;
   color: black;
   width: 600px;
-  height: 185px; /* ✅ Fixed Height */
+  height: 185px; /*  Fixed Height */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 `;
 
-// ✅ Header Section
+//  Header Section
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
@@ -30,7 +30,7 @@ const Header = styled.div`
   padding-bottom: 10px;
 `;
 
-// ✅ View All Button
+//  View All Button
 const ViewAllButton = styled.button`
   background-color: #ffc629;
   font-weight: bold;
@@ -42,14 +42,14 @@ const ViewAllButton = styled.button`
   border-radius: 8px;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
-  align-self: center; /* ✅ Ensures button stays centered */
+  align-self: center; /*  Ensures button stays centered */
 
   &:hover {
     transform: scale(1.05);
   }
 `;
 
-// ✅ Logs Container (Scrollable for More Data)
+//  Logs Container (Scrollable for More Data)
 const LogsContainer = styled.div`
   background-color: white;
   padding: 10px;
@@ -59,7 +59,7 @@ const LogsContainer = styled.div`
   overflow-y: auto;
 `;
 
-// ✅ Log Row
+//  Log Row
 const LogRow = styled.div`
   display: flex;
   justify-content: space-between;
@@ -68,12 +68,12 @@ const LogRow = styled.div`
   font-weight: bold;
 `;
 
-// ✅ Utility Function to Truncate Text
+//  Utility Function to Truncate Text
 const truncateText = (text, maxLength) => {
   return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
 };
 
-// ✅ Sample Maintenance Logs Data
+//  Sample Maintenance Logs Data
 const logs = [
   { date: "01/25/2025", change: "Tire Change", vehicle: "LEXUS LC 500", cost: "PHP 500" },
   { date: "02/06/2025", change: "Change Oil", vehicle: "LB HURACAN STO", cost: "PHP 800" },
@@ -86,13 +86,13 @@ const MaintenanceLogsHome = () => {
 
   return (
     <>
-      {/* ✅ Main Card */}
+      {/*  Main Card */}
       <CardContainer>
         <Header>
           <span>MAINTENANCE LOGS</span>
         </Header>
 
-        {/* ✅ Logs Preview */}
+        {/*  Logs Preview */}
         <LogsContainer>
           {logs.map((log, index) => (
             <LogRow key={index}>
@@ -104,11 +104,11 @@ const MaintenanceLogsHome = () => {
           ))}
         </LogsContainer>
 
-        {/* ✅ View All Button */}
+        {/*  View All Button */}
         <ViewAllButton onClick={() => setShowPopUp(true)}>VIEW ALL</ViewAllButton>
       </CardContainer>
 
-      {/* ✅ Pop-Up (Only shows when triggered) */}
+      {/*  Pop-Up (Only shows when triggered) */}
       {showPopUp && <MaintenanceLogsPopUp onClose={() => setShowPopUp(false)} />}
     </>
   );

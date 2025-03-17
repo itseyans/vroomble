@@ -5,7 +5,7 @@ import styled from "styled-components";
 import GeneralButton from "@/vcomp/GeneralButton";
 import ImageUploadModal from "@/vcomp/ImageUploadModal";
 
-// ✅ Styled Components (same as before)
+//  Styled Components (same as before)
 const FormContainer = styled.div`
   width: 400px;
   padding: 20px;
@@ -99,7 +99,7 @@ const SubmitButton = styled(GeneralButton)`
   color: black;
 `;
 
-// ✅ Helper Functions for Dates
+//  Helper Functions for Dates
 const getYears = () => {
   const currentYear = new Date().getFullYear();
   return Array.from({ length: 20 }, (_, i) => currentYear - i); // Last 20 years
@@ -116,7 +116,7 @@ const getMonths = () => {
   ];
 };
 
-// ✅ Main Component
+//  Main Component
 const Changes = ({ selectedVehicle }) => {
   const [changeType, setChangeType] = useState("Maintenance");
   const [details, setDetails] = useState("");
@@ -124,15 +124,15 @@ const Changes = ({ selectedVehicle }) => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
-  // ✅ Date State
+  //  Date State
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
   const [selectedDay, setSelectedDay] = useState(new Date().getDate());
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
 
-  // ✅ Get `UserRV_ID` from the selected vehicle
+  //  Get `UserRV_ID` from the selected vehicle
   const userRV_ID = selectedVehicle?.usersRV_ID || null;
 
-  // ✅ Image Upload Functions
+  //  Image Upload Functions
   const handleUploadButtonClick = () => {
     setShowModal(!showModal);
   };
@@ -150,12 +150,12 @@ const handleSubmit = async (e) => {
   e.preventDefault();
 
   if (!selectedVehicle || !selectedVehicle.usersRV_ID) {
-    alert("❌ Error: No vehicle selected.");
+    alert(" Error: No vehicle selected.");
     return;
   }
 
-  console.log("🔍 Checking Cookies:", document.cookie);  // ✅ Debugging: See if the cookie exists
-  console.log("📂 Uploaded Images:", uploadedImage);  // ✅ Debugging: Check if images are correct
+  console.log("🔍 Checking Cookies:", document.cookie);  //  Debugging: See if the cookie exists
+  console.log("📂 Uploaded Images:", uploadedImage);  //  Debugging: Check if images are correct
 
   const formData = new FormData();
   formData.append("UserRV_ID", selectedVehicle.usersRV_ID);
@@ -167,9 +167,9 @@ const handleSubmit = async (e) => {
 if (uploadedImage && uploadedImage.length > 0) {
     uploadedImage.forEach((file) => {
       if (file instanceof File) {
-        formData.append("images", file);  // ✅ Append `File` objects only
+        formData.append("images", file);  //  Append `File` objects only
       } else {
-        console.error("❌ Invalid File Type:", file);
+        console.error(" Invalid File Type:", file);
       }
     });
   }
@@ -177,20 +177,20 @@ if (uploadedImage && uploadedImage.length > 0) {
   try {
     const response = await fetch("http://localhost:8005/api/add-maintenance/", {
       method: "POST",
-      credentials: "include",  // ✅ Ensures cookies (tokens) are sent
+      credentials: "include",  //  Ensures cookies (tokens) are sent
       body: formData,
     });
 
     const data = await response.json();
     if (response.ok) {
-      alert("✅ Maintenance record added successfully!");
+      alert(" Maintenance record added successfully!");
       console.log("📂 Saved images:", data.filenames);
     } else {
-      alert(`❌ Failed to add maintenance record: ${JSON.stringify(data.detail)}`);
+      alert(` Failed to add maintenance record: ${JSON.stringify(data.detail)}`);
     }
   } catch (error) {
-    console.error("❌ Error submitting form:", error);
-    alert("❌ Server error. Please try again later.");
+    console.error(" Error submitting form:", error);
+    alert(" Server error. Please try again later.");
   }
 };
 
@@ -201,7 +201,7 @@ if (uploadedImage && uploadedImage.length > 0) {
     <FormContainer>
       <Title>+ Add Changes</Title>
       <form onSubmit={handleSubmit}>
-        {/* ✅ Dropdown for Change Type */}
+        {/*  Dropdown for Change Type */}
         <InputGroup>
           <StyledLabel>Change Type</StyledLabel>
           <StyledSelect
@@ -216,7 +216,7 @@ if (uploadedImage && uploadedImage.length > 0) {
           </StyledSelect>
         </InputGroup>
 
-        {/* ✅ Input for Details */}
+        {/*  Input for Details */}
         <InputGroup>
           <StyledLabel>Details</StyledLabel>
           <LInput
@@ -227,7 +227,7 @@ if (uploadedImage && uploadedImage.length > 0) {
           />
         </InputGroup>
 
-        {/* ✅ Input for Cost */}
+        {/*  Input for Cost */}
         <InputGroup>
           <StyledLabel>Cost (PHP)</StyledLabel>
           <LInput
@@ -237,7 +237,7 @@ if (uploadedImage && uploadedImage.length > 0) {
           />
         </InputGroup>
 
-        {/* ✅ Date Selection */}
+        {/*  Date Selection */}
         <InputGroup>
           <StyledLabel>Select Date</StyledLabel>
           <DateDropdownContainer>
@@ -254,19 +254,19 @@ if (uploadedImage && uploadedImage.length > 0) {
         </InputGroup>
 
         <CenteredContainer>
-  {/* ✅ Prevents form submission when clicking */}
+  {/*  Prevents form submission when clicking */}
   <UploadButton type="button" onClick={() => setShowModal(true)}>+ UPLOAD IMAGE</UploadButton>
 
-  {/* ✅ Pass `selectedVehicle?.usersRV_ID` only when it exists */}
+  {/*  Pass `selectedVehicle?.usersRV_ID` only when it exists */}
   {showModal && selectedVehicle && (
     <ImageUploadModal 
       onClose={() => setShowModal(false)} 
       onUpload={setUploadedImage} 
-      usersRV_ID={selectedVehicle.usersRV_ID} // ✅ Ensures Vehicle ID is passed properly
+      usersRV_ID={selectedVehicle.usersRV_ID} //  Ensures Vehicle ID is passed properly
     />
   )}
 
-  {/* ✅ This button should handle form submission */}
+  {/*  This button should handle form submission */}
   <SubmitButton type="submit">+ SUBMIT CHANGES</SubmitButton>
 </CenteredContainer>
 
