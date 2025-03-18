@@ -3,7 +3,7 @@
 import React from "react";
 import styled from "styled-components";
 import Background from "@/vcomp/background.js";
-import GeneralNavBar from "../../vcomp/GeneralNavBar";
+import WelcomeNavBar from "../../vcomp/landingpage components/WelcomeNavBar";
 import PredictForm from "../../vcomp/PredictForm"; 
 
 /** Styled Components */
@@ -15,7 +15,6 @@ const PageContainer = styled.div`
   min-height: 100vh;
   padding-top: 6rem; /*  Prevents navbar overlap */
 `;
-//load
 /** Title Box */
 const TitleBox = styled.div`
   background-color: #d9d9d9; /*  Light gray background */
@@ -42,7 +41,7 @@ export default function Page() {
   return (
     <>
       <Background />
-      <GeneralNavBar />
+      <WelcomeNavBar />
       <PageContainer>
         {/*  Title Container */}
         <TitleBox>

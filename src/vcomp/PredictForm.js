@@ -97,6 +97,33 @@ const Input = styled.input`
   border: 1px solid #ccc;
 `;
 
+const EmailPopup = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 300px;
+`;
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const PredictForm = () => {
   const [carMakers, setCarMakers] = useState([]);
   const [carModels, setCarModels] = useState([]);
@@ -109,6 +136,8 @@ const PredictForm = () => {
   const [predictionMonths, setPredictionMonths] = useState(12);
   const [predictionResult, setPredictionResult] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [showEmailPopup, setShowEmailPopup] = useState(false);
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     fetchCarMakers();
@@ -226,6 +255,51 @@ const PredictForm = () => {
     setLoading(false);
   };
 
+  const handleSendEmail = async () => {
+    if (!predictionResult) {
+      alert("Please generate a prediction first.");
+      return;
+    }
+  
+    const recipient = email;  // dynamically from input field
+  
+    // Correctly structure the prediction_result for backend
+    const prediction_result = {
+      Make: predictionResult.Make,
+      Model: predictionResult.Model,
+      "Modification Type": predictionResult["Modification Type"],
+      "Selected Car Parts": predictionResult["Selected Car Parts"],
+      "Base Price (PHP)": predictionResult["Base Price (PHP)"],
+      "Car Parts Cost (PHP)": predictionResult["Car Parts Cost (PHP)"],
+      "Current Total Price (PHP)": predictionResult["Current Total Price (PHP)"],
+      [`Predicted Price After ${predictionMonths} Months (PHP)`]: predictionResult[`Predicted Price After ${predictionMonths} Months (PHP)`],
+    };
+  
+    try {
+      const response = await fetch("http://127.0.0.1:8006/send-email/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ recipient, prediction_result }),
+      });
+  
+      if (!response.ok) {
+        const errorDetail = await response.json();
+        alert(`Error sending email: ${errorDetail.detail}`);
+      } else {
+        const success = await response.json();
+        alert(success.message);
+        setShowEmailPopup(false); // close popup on success
+      }
+    } catch (error) {
+      console.error("Frontend Error:", error);
+      alert("An unexpected error occurred. Please check your backend connection.");
+    }
+  };
+  
+  
+  
   return (
     <Container>
       <FormContainer>
@@ -311,19 +385,44 @@ const PredictForm = () => {
           {loading ? "Predicting..." : "Predict Price"}
         </Button>
         <h3>Prediction Output:</h3>
-        {predictionResult && (
-          <div>
-            <p><strong>Make:</strong> {predictionResult.Make}</p>
-            <p><strong>Model:</strong> {predictionResult.Model}</p>
-            <p><strong>Modification Type:</strong> {predictionResult["Modification Type"]}</p>
-            <p><strong>Selected Car Parts:</strong> {predictionResult["Selected Car Parts"].join(", ")}</p>
-            <p><strong>Car Base Price (PHP):</strong> {predictionResult["Base Price (PHP)"].toLocaleString()}</p>
-            <p><strong>Car Parts Cost (PHP):</strong> {predictionResult["Car Parts Cost (PHP)"].toLocaleString()}</p>
-            <p><strong>Current Total Price (PHP):</strong> {predictionResult["Current Total Price (PHP)"].toLocaleString()}</p>
-            <p><strong>Predicted Price After {predictionMonths} Months (PHP):</strong> {predictionResult[`Predicted Price After ${predictionMonths} Months (PHP)`].toLocaleString()}</p>
-          </div>
-        )}
+{predictionResult && (
+  <div>
+    <p><strong>Make:</strong> {predictionResult.Make}</p>
+    <p><strong>Model:</strong> {predictionResult.Model}</p>
+    <p><strong>Modification Type:</strong> {predictionResult["Modification Type"]}</p>
+    <p><strong>Selected Car Parts:</strong> {predictionResult["Selected Car Parts"].join(", ")}</p>
+    <p><strong>Car Base Price (PHP):</strong> {predictionResult["Base Price (PHP)"].toLocaleString()}</p>
+    <p><strong>Car Parts Cost (PHP):</strong> {predictionResult["Car Parts Cost (PHP)"].toLocaleString()}</p>
+    <p><strong>Current Total Price (PHP):</strong> {predictionResult["Current Total Price (PHP)"].toLocaleString()}</p>
+    <p><strong>Predicted Price After {predictionMonths} Months (PHP):</strong> {predictionResult[`Predicted Price After ${predictionMonths} Months (PHP)`].toLocaleString()}</p>
+
+    {/* Button to open the email input form */}
+    <Button onClick={() => setShowEmailPopup(true)}>
+    Send Prediction Email
+    </Button>
+  </div>
+)}
+
       </OutputContainer>
+      {showEmailPopup && (
+  <Overlay>
+    <EmailPopup>
+      <h4>Enter Email Address</h4>
+      <Input
+        type="email"
+        placeholder="Enter your email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <Button onClick={handleSendEmail}>Send Email</Button>
+      <Button onClick={() => setShowEmailPopup(false)} style={{ background: "#dc3545" }}>
+        Cancel
+      </Button>
+
+    </EmailPopup>
+  </Overlay>
+)}
+
     </Container>
   );
 };

@@ -6,6 +6,10 @@ import pandas as pd
 import numpy as np
 import joblib
 import os
+import smtplib
+from email.mime.text import MIMEText
+from dotenv import load_dotenv 
+
 
 app = FastAPI()
 
@@ -26,6 +30,15 @@ MODEL_PATH = os.path.join(project_root, "src", "AI", "trained_model.pkl")
 SCALER_PATH = os.path.join(project_root, "src", "AI", "scaler.pkl")
 DB_PATH = os.path.join(project_root, "Vroomble Dataset", "prediction_database.db")
 
+dotenv_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.env')
+load_dotenv(dotenv_path)
+
+# Email Configuration (Replace with your actual SMTP settings)
+SMTP_SERVER = os.getenv("SMTP_SERVER")
+SMTP_PORT = int(os.getenv("SMTP_PORT"))  # Convert to integer
+EMAIL_SENDER = os.getenv("EMAIL_SENDER")
+EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD") 
+
 # Load trained model and scaler
 try:
     model = joblib.load(MODEL_PATH)
@@ -40,6 +53,10 @@ class PredictionRequest(BaseModel):
     modification_type: str
     selected_parts: list[str]
     months: int
+
+class EmailRequest(BaseModel):
+    recipient: str
+    prediction_result: dict
 
 @app.get("/car-makers", response_model=list[str])
 def get_car_makers():
@@ -142,3 +159,39 @@ def predict_price(request: PredictionRequest):
         "Current Total Price (PHP)": base_price + modification_cost,
         f"Predicted Price After {request.months} Months (PHP)": predicted_price
     }
+
+# Function to send email
+def send_email(email: str, prediction_result: dict):
+    """Sends an email with the car price prediction result."""
+    try:
+        # Format email content nicely
+        message_body = "🔹 Car Price Prediction Result 🔹\n\n"
+        for key, value in prediction_result.items():
+            if isinstance(value, list):
+                value = ', '.join(value)  # Properly format lists
+            message_body += f"{key}: {value}\n"
+
+        msg = MIMEText(message_body, "plain", "utf-8")
+        msg["Subject"] = "Car Price Prediction Result"
+        msg["From"] = EMAIL_SENDER
+        msg["To"] = email
+
+        # SMTP_SSL connection setup (secure connection)
+        server = smtplib.SMTP_SSL(SMTP_SERVER, 465)
+        server.login(EMAIL_SENDER, EMAIL_PASSWORD)
+        server.sendmail(EMAIL_SENDER, email, msg.as_string())
+        server.quit()
+
+        print(f"✅ Email successfully sent to {email}!")
+
+    except Exception as e:
+        print(f"❌ Error: {e}")
+
+
+@app.post("/send-email/")
+def email_endpoint(email_request: EmailRequest):
+    try:
+        send_email(email_request.recipient, email_request.prediction_result)
+        return {"message": "Email sent successfully!"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
