@@ -55,9 +55,8 @@ const About: React.FC = () => {
   }
 
   const developers: Developer[] = [
-    { name: "Cedric John Cangco" },
+    { name: "Bryan Anthony Al Shadani" },
     { name: "Francis Joseph Libres" },
-    { name: "Juan Miguel Molina" },
     { name: "Hanz Ian Silva" },
     { name: "Kim Miguel Sobrepena" },
   ];
