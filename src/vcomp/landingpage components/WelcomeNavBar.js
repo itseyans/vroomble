@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import RegistrationForm from "../RegistrationForm.js";
 import LoginForm from "../LoginForm.js";
+import Link from 'next/link'; // Import Link from Next.js
+import PredictForm from "@/vcomp/PredictForm";
 
 // ✅ Black Navbar Container
 const NavBarContainer = styled.nav`
@@ -119,9 +121,9 @@ const BlurOverlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.3);  /* Dark overlay */
-  backdrop-filter: blur(10px);  /* ✅ Blurs everything */
-  z-index: 1000;  /* ✅ Below the pop-up but above the content */
+  background: rgba(0, 0, 0, 0.3); /* Dark overlay */
+  backdrop-filter: blur(10px); /* ✅ Blurs everything */
+  z-index: 1000; /* ✅ Below the pop-up but above the content */
 `;
 
 // ✅ Popup Container (Ensures form is above the overlay)
@@ -133,12 +135,12 @@ const ModalContainer = styled.div`
   background: transparent;
   padding: 0;
   text-align: center;
-  z-index: 1001;  /* ✅ Ensure it's above the blur */
+  z-index: 1001; /* ✅ Ensure it's above the blur */
   border: none;
   width: auto;
 `;
 
-//  Close Button (Fixed Visibility + Better Positioning)
+// Close Button (Fixed Visibility + Better Positioning)
 const CloseButton = styled.button`
   position: absolute;
   top: -15px;
@@ -162,6 +164,7 @@ const CloseButton = styled.button`
 
 const WelcomeNavBar = () => {
   const [activeForm, setActiveForm] = useState(null);
+  const [showPredictForm, setShowPredictForm] = useState(false); // State for PredictForm modal
 
   const toggleForm = (formType) => {
     setActiveForm((prevForm) => (prevForm === formType ? null : formType));
@@ -169,11 +172,11 @@ const WelcomeNavBar = () => {
 
   return (
     <>
-      {/*  Black Navbar */}
+      {/* Black Navbar */}
       <NavBarContainer>
         <LogoContainer>VROOMBLE</LogoContainer>
-        
-        {/*  Restored Emblem */}
+
+        {/* Restored Emblem */}
         <EmblemBackground>
           <EmblemContainer>
             <Emblem src="/LOGO.png" alt="Vroomble Logo" />
@@ -181,12 +184,13 @@ const WelcomeNavBar = () => {
         </EmblemBackground>
 
         <ButtonContainer>
+          <NavButton onClick={() => setShowPredictForm(true)}>Car Builder</NavButton>                    
           <NavButton onClick={() => toggleForm("login")}>Sign In</NavButton>
           <NavButton onClick={() => toggleForm("register")}>Register</NavButton>
         </ButtonContainer>
       </NavBarContainer>
 
-      {/*  Yellow Section */}
+      {/* Yellow Section */}
       <YellowSection>
         <StatsContainer>
           <StatBox>
@@ -208,16 +212,24 @@ const WelcomeNavBar = () => {
         </StatsContainer>
       </YellowSection>
 
-      {/*  Blurred Background when Popup is Active */}
+      {/* Blurred Background when Popup is Active */}
       {activeForm && <BlurOverlay onClick={() => setActiveForm(null)} />}
+      {showPredictForm && <BlurOverlay onClick={() => setShowPredictForm(false)} />}
 
-      {/*  Popup Forms (Now with Close Button) */}
+      {/* Popup Forms (Now with Close Button) */}
       {activeForm && (
         <ModalContainer>
           <CloseButton onClick={() => setActiveForm(null)}>X</CloseButton>
-          
+
           {activeForm === "register" && <RegistrationForm />}
           {activeForm === "login" && <LoginForm />}
+        </ModalContainer>
+      )}
+
+      {showPredictForm && (
+        <ModalContainer>
+          <CloseButton onClick={() => setShowPredictForm(false)}>X</CloseButton>
+          <PredictForm />
         </ModalContainer>
       )}
     </>
