@@ -10563,3 +10563,374 @@ sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_li
 2025-03-19 20:54:35,735 - DEBUG - cannot commit - no transaction is active
 2025-03-19 20:54:36,367 - DEBUG - cannot commit - no transaction is active
 2025-03-19 20:54:37,281 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:58:52,663 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:58:52,663 - INFO - Tables initialized successfully.
+2025-03-19 20:58:52,733 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:58:53,129 - DEBUG - cannot rollback - no transaction is active
+2025-03-19 20:58:53,129 - ERROR - Rolling back transaction - error 'duplicate column name: is_listed'
+Traceback (most recent call last):
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\src\APIs\user_vehicle_registration.py", line 268, in ensure_column_exists
+    cursor.execute("""
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\dbapi2.py", line 583, in execute
+    result = self._driver.execute_statement(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 109, in execute_statement
+    result = self._internal_run_command(connection, command)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 482, in _internal_run_command
+    return self._internal_socket_read(connection, main_socket)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 590, in _internal_socket_read
+    return self._internal_parse_buffer(connection, buffer, len(buffer))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sobre\OneDrive\Desktop\Vroomble\.venv\Lib\site-packages\sqlitecloud\driver.py", line 731, in _internal_parse_buffer
+    raise get_sqlitecloud_error_with_extended_code(
+sqlitecloud.exceptions.SQLiteCloudOperationalError: duplicate column name: is_listed
+2025-03-19 20:59:10,731 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:11,126 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:11,593 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:11,990 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:12,451 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:12,816 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:13,207 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:13,699 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:14,577 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:15,011 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:15,467 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:15,853 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:16,237 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:16,670 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:17,150 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:17,587 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:17,986 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:18,779 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:19,227 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:19,690 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:20,097 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:20,541 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:20,868 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:21,277 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:21,690 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:22,136 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:23,226 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:23,658 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:24,060 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:24,801 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:25,235 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:25,705 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:26,095 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:26,491 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:26,934 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:27,368 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:27,807 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:28,250 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:28,660 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:29,423 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:29,860 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:30,312 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:30,729 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:31,152 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:31,608 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:32,524 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:32,929 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:33,346 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:33,768 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:34,199 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:34,660 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:35,063 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:35,501 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:35,887 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:36,265 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:36,643 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:37,055 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:37,481 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:38,172 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:38,653 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:39,084 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:39,564 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:40,432 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:40,837 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:41,184 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:41,550 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:41,860 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:42,214 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:42,624 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:43,014 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:43,476 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:43,895 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:44,346 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:44,769 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:45,136 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:45,548 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:45,892 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:46,289 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:46,724 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:47,084 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:47,462 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:47,894 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:48,327 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:49,453 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:49,826 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:50,183 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:50,595 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:51,253 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:51,580 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:51,986 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:52,286 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:52,692 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:53,101 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:53,494 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:54,940 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:55,349 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:55,777 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:56,518 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:56,944 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:57,342 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:57,756 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:58,120 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:58,525 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:58,909 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:59:59,258 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:00,137 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:00,536 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:00,978 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:01,411 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:01,857 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:02,132 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:02,808 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:03,207 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:03,608 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:04,007 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:04,411 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:04,830 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:05,294 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:05,737 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:06,185 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:06,588 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:06,937 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:07,291 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:07,715 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:08,122 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:08,530 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:08,990 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:09,848 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:10,280 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:10,733 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:11,136 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:11,545 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:11,883 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:12,240 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:12,948 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:13,374 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:14,070 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:14,494 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:14,918 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:15,588 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:15,998 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:16,393 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:16,848 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:17,298 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:17,729 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:18,066 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:18,455 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:18,826 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:19,211 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:19,594 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:19,979 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:20,451 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:20,868 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:21,285 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:21,707 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:22,065 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:22,426 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:22,880 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:23,334 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:23,721 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:24,130 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:24,841 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:25,265 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:25,655 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:26,000 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:26,421 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:26,892 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:27,314 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:27,657 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:28,013 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:28,403 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:28,768 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:29,133 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:00:29,599 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:02,194 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:02,916 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:03,615 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:04,207 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:04,601 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:05,051 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:05,464 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:05,863 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:06,326 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:07,081 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:07,551 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:07,933 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:08,345 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:08,755 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:21,930 - DEBUG - Calling on_field_start with no data
+2025-03-19 21:02:21,930 - DEBUG - Calling on_field_name with data[0:10]
+2025-03-19 21:02:21,930 - DEBUG - Calling on_field_data with data[11:13]
+2025-03-19 21:02:21,931 - DEBUG - Calling on_field_end with no data
+2025-03-19 21:02:21,931 - DEBUG - Calling on_end with no data
+2025-03-19 21:02:22,341 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:22,412 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:23,027 - DEBUG - Calling on_field_start with no data
+2025-03-19 21:02:23,027 - DEBUG - Calling on_field_name with data[0:10]
+2025-03-19 21:02:23,027 - DEBUG - Calling on_field_data with data[11:13]
+2025-03-19 21:02:23,027 - DEBUG - Calling on_field_end with no data
+2025-03-19 21:02:23,027 - DEBUG - Calling on_end with no data
+2025-03-19 21:02:23,452 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:23,515 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:25,252 - DEBUG - Calling on_field_start with no data
+2025-03-19 21:02:25,252 - DEBUG - Calling on_field_name with data[0:10]
+2025-03-19 21:02:25,252 - DEBUG - Calling on_field_data with data[11:13]
+2025-03-19 21:02:25,252 - DEBUG - Calling on_field_end with no data
+2025-03-19 21:02:25,252 - DEBUG - Calling on_end with no data
+2025-03-19 21:02:25,626 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:25,691 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:26,098 - DEBUG - Calling on_field_start with no data
+2025-03-19 21:02:26,099 - DEBUG - Calling on_field_name with data[0:10]
+2025-03-19 21:02:26,099 - DEBUG - Calling on_field_data with data[11:13]
+2025-03-19 21:02:26,099 - DEBUG - Calling on_field_end with no data
+2025-03-19 21:02:26,099 - DEBUG - Calling on_end with no data
+2025-03-19 21:02:26,485 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:26,550 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:45,471 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:45,901 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:46,328 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:46,738 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:47,196 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:48,836 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:49,529 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:49,924 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:50,341 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:50,727 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:51,126 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:51,535 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:52,206 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:52,681 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:53,401 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:53,896 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:54,336 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:54,744 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:55,458 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:55,919 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:56,357 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:57,361 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:57,740 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:58,140 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:58,550 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:58,977 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:59,472 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:02:59,939 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:03:00,579 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:03:01,033 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:03:01,434 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:03:01,813 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:03:02,253 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:03:03,638 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:25,972 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:26,958 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:27,679 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:28,387 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:28,960 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:29,372 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:29,839 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:30,304 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:30,726 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:31,204 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:32,364 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:33,050 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:33,753 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:35,100 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:42,284 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:42,985 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:43,398 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:43,769 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:44,148 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:44,555 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:45,236 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:45,726 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:46,469 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:46,897 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:47,976 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:04:48,356 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:05:47,538 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:05:48,305 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:05:48,749 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:05:49,134 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:05:49,541 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:05:49,968 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:05:50,337 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:05:50,801 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:05:51,224 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:05:51,635 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:05:52,107 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:05:52,557 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:05:53,275 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:05:53,678 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:06:16,300 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:06:16,968 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:06:17,375 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:06:18,102 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:06:19,560 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:06:20,031 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:06:20,897 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:06:21,499 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:06:21,889 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:06:22,310 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:06:22,736 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:06:23,757 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:06:24,506 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:06:25,090 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:06:25,666 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:06:26,059 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:06:26,515 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:06:26,944 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:06:27,798 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:06:28,159 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:06:29,009 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:06:29,411 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:06:29,847 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:06:30,613 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:11,197 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:11,626 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:12,034 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:12,690 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:13,133 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:14,823 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:15,237 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:15,700 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:16,623 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:17,298 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:17,664 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:18,214 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:18,622 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:19,365 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:20,099 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:21,623 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:22,054 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:22,511 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:22,911 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:23,281 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:23,722 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:24,082 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:24,451 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:24,863 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:25,333 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:25,818 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:26,278 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:26,740 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:27,433 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:27,862 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:28,281 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:28,934 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:29,383 - DEBUG - cannot commit - no transaction is active
+2025-03-19 21:07:29,811 - DEBUG - cannot commit - no transaction is active

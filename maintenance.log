@@ -2542,3 +2542,6 @@ sqlitecloud.exceptions.SQLiteCloudOperationalError: table vehicle_maintenance ha
 2025-03-19 20:28:46,381 - DEBUG - cannot commit - no transaction is active
 2025-03-19 20:28:46,381 - INFO - Vehicle maintenance table created successfully.
 2025-03-19 20:28:46,446 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:58:53,465 - DEBUG - cannot commit - no transaction is active
+2025-03-19 20:58:53,465 - INFO - Vehicle maintenance table created successfully.
+2025-03-19 20:58:53,526 - DEBUG - cannot commit - no transaction is active
