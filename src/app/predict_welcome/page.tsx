@@ -1,5 +1,5 @@
 "use client";
-
+//as/asdasda
 import React from "react";
 import styled from "styled-components";
 import Background from "@/vcomp/background.js";
@@ -15,6 +15,7 @@ const PageContainer = styled.div`
   min-height: 100vh;
   padding-top: 6rem; /*  Prevents navbar overlap */
 `;
+//lolomopanot
 /** Title Box */
 const TitleBox = styled.div`
   background-color: #d9d9d9; /*  Light gray background */
@@ -28,7 +29,7 @@ const TitleBox = styled.div`
   width: fit-content;
 `;
 
-/** Title Text */ 
+/** Title Text */
 const Title = styled.h2`
   color: black;
   font-weight: bold;
@@ -36,7 +37,7 @@ const Title = styled.h2`
   font-family: "Segoe UI Variable", sans-serif;
   margin: 0;
 `;
-//lolomopanot
+
 export default function Page() {
   return (
     <>

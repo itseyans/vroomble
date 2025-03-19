@@ -52,7 +52,7 @@ const OutputContainer = styled.div`
 const Label = styled.label`
   font-weight: bold;
   margin-bottom: 5px;
-  color: #000; /* Explicitly set label color to black */
+  color:rgb(12, 12, 12);
 `;
 
 const Select = styled.select`
@@ -60,6 +60,7 @@ const Select = styled.select`
   padding: 10px;
   border-radius: 8px;
   border: 1px solid #ccc;
+  color:rgb(12, 12, 12);
 `;
 
 const CheckboxGroup = styled.div`
@@ -72,7 +73,7 @@ const CheckboxLabel = styled.label`
   display: flex;
   align-items: center;
   gap: 5px;
-  color: #000; /* Explicitly set checkbox label color to black */
+  color:rgb(12, 12, 12);
 `;
 
 const Button = styled.button`
@@ -95,6 +96,7 @@ const Input = styled.input`
   padding: 10px;
   border-radius: 8px;
   border: 1px solid #ccc;
+  color:rgb(12, 12, 12);
 `;
 
 const EmailPopup = styled.div`
@@ -110,6 +112,7 @@ const EmailPopup = styled.div`
   flex-direction: column;
   gap: 15px;
   width: 300px;
+  color:rgb(12, 12, 12);
 `;
 
 const Overlay = styled.div`
@@ -122,6 +125,7 @@ const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  
 `;
 
 const PredictForm = () => {
