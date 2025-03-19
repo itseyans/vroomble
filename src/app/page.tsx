@@ -26,7 +26,8 @@ export default function Home() {
       </ListingContainer>
   
       <footer className="flex gap-6 flex-wrap items-center justify-center p-4"></footer>
-
+       
+       
       <style jsx global>{`
         body {
           margin: 0;
