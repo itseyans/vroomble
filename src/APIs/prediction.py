@@ -147,7 +147,7 @@ def predict_price(request: PredictionRequest):
     # Use the trained model to predict the price
     predicted_price = float(model.predict(features_scaled)[0])
 
-
+    #lolomopanot
 
     return {
         "Make": request.make,

@@ -28,7 +28,7 @@ const TitleBox = styled.div`
   width: fit-content;
 `;
 
-/** Title Text */
+/** Title Text */ 
 const Title = styled.h2`
   color: black;
   font-weight: bold;
@@ -36,7 +36,7 @@ const Title = styled.h2`
   font-family: "Segoe UI Variable", sans-serif;
   margin: 0;
 `;
-
+//lolomopanot
 export default function Page() {
   return (
     <>
